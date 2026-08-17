@@ -16,11 +16,11 @@ html { font-size: 16px; scroll-behavior: smooth; }
   --bg:        #f2f4f6;   /* 冷灰白 */
   --bg-warm:   #e9edf0;
   --bg-rule:   #d7dde2;
-  --ink:       #2a3a45;   /* 墨蓝黑 */
-  --ink-2:     #52636e;
-  --ink-3:     #8b99a3;
-  --accent:    #b33a3a;   /* 日系朱红 */
-  --accent-dim: rgba(179, 58, 58, .08);
+  --ink:       #1a1a1a;   /* 纯黑 */
+  --ink-2:     #333333;
+  --ink-3:     #666666;
+  --accent:    #1a1a1a;   /* 统一黑色 */
+  --accent-dim: rgba(26, 26, 26, .08);
   --rule:      #c9d1d8;
   --mono-bg:   #e4e9ec;
 }
@@ -65,7 +65,7 @@ body {
 .hero-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(90deg, rgba(242,244,246,.94) 0%, rgba(242,244,246,.72) 38%, rgba(242,244,246,.08) 72%);
+  background: linear-gradient(90deg, rgba(242,244,246,.55) 0%, rgba(242,244,246,.25) 45%, rgba(242,244,246,.02) 75%);
 }
 .hero-content {
   position: relative; z-index: 2;
@@ -87,7 +87,6 @@ body {
   letter-spacing: .04em;
   color: var(--ink);
 }
-.hero-slogan .em { color: var(--accent); font-weight: 400; }
 .hero-sub {
   margin-top: 4vh;
   font-family: 'Zen Kaku Gothic New', 'Noto Sans SC', sans-serif;
@@ -96,13 +95,6 @@ body {
   color: var(--ink-2);
   max-width: 40ch;
 }
-.hero-meta {
-  margin-top: 7vh;
-  display: flex; align-items: center; gap: 12px;
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 10px; letter-spacing: .2em; color: var(--ink-3);
-}
-.hero-meta::before { content: ''; width: 34px; height: 1px; background: var(--accent); }
 
 /* 竖排侧标（日系杂志元素） */
 .hero-vert {
@@ -233,7 +225,7 @@ body {
 @media (max-width: 900px) {
   .hero { grid-template-columns: 1fr; }
   .hero-content { grid-column: 1; padding: 20vh 8vw 8vh; }
-  .hero-bg::after { background: linear-gradient(180deg, rgba(242,244,246,.9) 0%, rgba(242,244,246,.75) 45%, rgba(242,244,246,.15) 100%); }
+  .hero-bg::after { background: linear-gradient(180deg, rgba(242,244,246,.6) 0%, rgba(242,244,246,.4) 45%, rgba(242,244,246,.05) 100%); }
   .hero-vert { display: none; }
   .domain-item { grid-template-columns: 48px 1fr; }
   .domain-count { display: none; }
@@ -264,12 +256,11 @@ body {
   <div class="hero-content">
     <div class="hero-index">PODCAST ARCHIVE · 2026</div>
     <h1 class="hero-slogan">
-      声音落成文字，<br><span class="em">思考继续发生</span>
+      声音落成文字，<br>思考继续发生
     </h1>
     <p class="hero-sub">
       把听过的播客，变成真正留得下来的个人笔记。
     </p>
-    <div class="hero-meta">五类领域 · 十五期归档 · 十张概念卡片</div>
   </div>
 </header>
 
