@@ -27,6 +27,12 @@ def build(ep, theme_class, theme_name):
     connect = ep.get("connect",""); resonance = ep.get("resonance","")
     poster = ep["poster"]["line"]
 
+    # 封面源：真实封面优先 (covers/<slug>.*)，没有则回退 HTML 海报 (posters/<slug>.png)
+    import glob as _glob
+    covers = _glob.glob(os.path.join(os.path.dirname(OUT), "covers", slug + ".*"))
+    cover_src = (f"../covers/{os.path.basename(covers[0])}" if covers
+                 else f"../posters/{slug}.png")
+
     # 章节
     sections = ""
     for i, (h, body) in enumerate(points, 1):
@@ -202,7 +208,7 @@ body {{
   <h1 class="cover-title">{esc(title)}</h1>
   <p class="cover-sub">{esc(core)}</p>
   <div class="cover-image-slot">
-    <img src="../posters/{slug}.png" alt="{esc(title)} 封面">
+    <img src="{cover_src}" alt="{esc(title)} 封面">
   </div>
   <div class="cover-footer">
     <span>{date} · {esc(guest)}</span>
