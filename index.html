@@ -3,606 +3,443 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zine · 原则，不是答案</title>
+<title>声音落成文字 · 播客知识档案</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { font-size: 16px; scroll-behavior: smooth; }
 
-:root, body.t-a {
-  --bg:           #f5f0e8;
-  --bg-warm:      #ede8dc;
-  --bg-rule:      #d6ceb8;
-  --ink:          #2a2018;
-  --ink-2:        #4a3828;
-  --ink-3:        #8a7060;
-  --accent:       #8b2e1a;
-  --accent-dim:   rgba(139,46,26,.10);
-  --rule:         #c4b89a;
-  --mono-bg:      #e8e2d4;
-  --tracing-bg:   rgba(248,245,235,.55);
-  --tracing-fold: #d8d0bc;
-  --colophon-bg:  #2a2018;
-  --colophon-fg:  rgba(245,240,232,.65);
-  --colophon-acc: #d4916a;
-  --btn-bg:       rgba(42,32,24,.08);
-  --btn-border:   rgba(42,32,24,.18);
-  --btn-active:   #8b2e1a;
+/* ── 日系冷色杂志 palette ── */
+:root {
+  --bg:        #f2f4f6;   /* 冷灰白 */
+  --bg-warm:   #e9edf0;
+  --bg-rule:   #d7dde2;
+  --ink:       #2a3a45;   /* 墨蓝黑 */
+  --ink-2:     #52636e;
+  --ink-3:     #8b99a3;
+  --accent:    #b33a3a;   /* 日系朱红 */
+  --accent-dim: rgba(179, 58, 58, .08);
+  --rule:      #c9d1d8;
+  --mono-bg:   #e4e9ec;
 }
 
 body {
   background: var(--bg);
   color: var(--ink);
-  font-family: 'Noto Serif SC', Georgia, serif;
-  line-height: 1.85;
+  font-family: 'Noto Serif SC', 'Noto Serif JP', Georgia, serif;
+  line-height: 1.9;
   -webkit-font-smoothing: antialiased;
 }
 
-.zine-masthead {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  background: var(--ink);
-  color: var(--bg);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 5vw;
-  height: 44px;
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 11px;
-  letter-spacing: .16em;
-  text-transform: uppercase;
-  gap: 16px;
+/* ── NAV ── */
+.site-nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0 4vw; height: 56px;
+  background: rgba(242, 244, 246, .82);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--rule);
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans SC', sans-serif;
+  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
 }
-.masthead-name  { flex: 1; font-weight: 400; }
-.masthead-issue { color: var(--accent); flex-shrink: 0; }
-@media print { .zine-masthead { display: none; } }
+.nav-brand { color: var(--accent); font-weight: 500; letter-spacing: .3em; }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a { color: var(--ink-2); text-decoration: none; transition: color .25s; }
+.nav-links a:hover { color: var(--accent); }
 
-.zine-cover {
-  max-width: 960px;
-  margin-inline: auto;
-  padding: 8vh 5vw 5vh;
-  min-height: 85vh;
+/* ── HERO · 底图 ── */
+.hero {
+  position: relative;
+  min-height: 100vh;
   display: grid;
-  grid-template-rows: auto auto auto 1fr auto;
-  border-bottom: 2px solid var(--ink);
-}
-.cover-meta {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 11px;
-  letter-spacing: .2em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 5vh;
-}
-.issue-rule { flex: 1; height: 1px; background: var(--rule); }
-.issue-theme { padding: 3px 10px; border: 1px solid var(--rule); color: var(--accent); }
-
-.cover-title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(36px, 6.2vw, 76px);
-  font-weight: 900;
-  line-height: 1.12;
-  letter-spacing: -.022em;
-  color: var(--ink);
-  margin-bottom: 3vh;
-}
-.cover-title em { font-style: italic; color: var(--accent); }
-
-.cover-sub {
-  font-family: 'Noto Sans SC', sans-serif;
-  font-size: clamp(13px, 1.5vw, 16px);
-  font-weight: 300;
-  color: var(--ink-2);
-  line-height: 1.72;
-  max-width: 50ch;
-  padding-left: 18px;
-  border-left: 3px solid var(--accent);
-  margin-bottom: 5vh;
-}
-
-.cover-image-slot {
-  background: var(--bg-warm);
-  border: 1px solid var(--rule);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 30vh;
-  margin-bottom: 4vh;
+  grid-template-columns: 1.1fr 1fr;
+  border-bottom: 1px solid var(--rule);
   overflow: hidden;
 }
-.cover-image-slot img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.75) contrast(1.05); }
-
-.cover-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 11px;
-  letter-spacing: .14em;
-  color: var(--ink-3);
-  border-top: 1px solid var(--rule);
-  padding-top: 2vh;
-  text-transform: uppercase;
+.hero-bg {
+  position: absolute; inset: 0;
+  background: var(--bg) url('hero-bg.png') center 30% / cover no-repeat;
 }
-.stamp {
-  font-family: 'Noto Serif SC', serif;
-  font-size: 28px;
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, rgba(242,244,246,.94) 0%, rgba(242,244,246,.72) 38%, rgba(242,244,246,.08) 72%);
+}
+.hero-content {
+  position: relative; z-index: 2;
+  grid-column: 1;
+  display: flex; flex-direction: column; justify-content: center;
+  padding: 0 6vw 6vh;
+  min-height: 100vh;
+}
+.hero-index {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px; letter-spacing: .3em; color: var(--accent);
+  margin-bottom: 4vh;
+}
+.hero-slogan {
+  font-family: 'Noto Serif JP', 'Noto Serif SC', serif;
+  font-size: clamp(38px, 5.6vw, 72px);
   font-weight: 900;
-  letter-spacing: -.02em;
-  color: var(--accent);
-  opacity: .28;
-  line-height: 1;
-}
-
-.pull-quote-section {
-  max-width: 960px;
-  margin-inline: auto;
-  padding: 6vh 5vw;
-  border-bottom: 1px solid var(--rule);
-}
-.tracing-card {
-  position: relative;
-  padding: 36px 44px 32px;
-  background: var(--tracing-bg);
-  backdrop-filter: blur(1px);
-  border: 1px solid rgba(128,120,100,.28);
-  box-shadow:
-    2px 4px 12px rgba(0,0,0,.07),
-    4px 8px 28px rgba(0,0,0,.05),
-    inset 0 0 0 1px rgba(255,255,255,.5);
-  background-image: linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
-}
-.tracing-card::after {
-  content: '';
-  position: absolute;
-  top: 0; right: 0;
-  width: 0; height: 0;
-  border-style: solid;
-  border-width: 0 24px 24px 0;
-  border-color: transparent var(--tracing-fold) transparent transparent;
-  filter: drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
-}
-.pq-small-text {
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 11px;
-  line-height: 1.8;
-  color: var(--ink-2);
-  max-width: 52ch;
-  margin: 0 auto 24px;
-  text-align: center;
-}
-.pq-script {
-  font-family: 'Dancing Script', cursive;
-  font-size: clamp(30px, 4.4vw, 52px);
-  font-weight: 700;
-  line-height: 1.28;
+  line-height: 1.18;
+  letter-spacing: .04em;
   color: var(--ink);
-  text-align: center;
-  margin-bottom: 20px;
-  letter-spacing: -.01em;
 }
-.pq-cite {
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 10px;
-  letter-spacing: .2em;
-  color: var(--ink-3);
-  text-align: center;
-  text-transform: uppercase;
-  display: block;
-}
-.pq-below {
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 11px;
-  line-height: 1.82;
-  color: var(--ink-2);
-  max-width: 52ch;
-  margin: 20px auto 0;
-  text-align: center;
-}
-
-.zine-body {
-  max-width: 960px;
-  margin-inline: auto;
-  padding: 5.5vh 5vw;
-  border-bottom: 1px solid var(--rule);
-}
-.zine-body.two-col {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 4.5vw;
-  align-items: start;
-}
-.col-narrow { position: sticky; top: 56px; }
-
-.sidebar-block {
-  border-left: 2px solid var(--rule);
-  padding-left: 14px;
-  margin-bottom: 2.8vh;
-}
-.sidebar-label {
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 6px;
-}
-.sidebar-block p {
-  font-family: 'Noto Sans SC', sans-serif;
-  font-size: 12.5px;
+.hero-slogan .em { color: var(--accent); font-weight: 400; }
+.hero-sub {
+  margin-top: 4vh;
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans SC', sans-serif;
   font-weight: 300;
+  font-size: clamp(13px, 1.4vw, 16px);
   color: var(--ink-2);
-  line-height: 1.72;
+  max-width: 40ch;
 }
-.sidebar-tag {
-  display: inline-block;
+.hero-meta {
+  margin-top: 7vh;
+  display: flex; align-items: center; gap: 12px;
   font-family: 'Noto Sans Mono', monospace;
-  font-size: 9.5px;
-  padding: 2px 7px;
-  margin: 2px 2px 2px 0;
-  border: 1px solid var(--rule);
-  color: var(--ink-3);
-  letter-spacing: .1em;
+  font-size: 10px; letter-spacing: .2em; color: var(--ink-3);
+}
+.hero-meta::before { content: ''; width: 34px; height: 1px; background: var(--accent); }
+
+/* 竖排侧标（日系杂志元素） */
+.hero-vert {
+  position: absolute; z-index: 3;
+  right: 2.4vw; top: 50%; transform: translateY(-50%);
+  writing-mode: vertical-rl;
+  font-family: 'Noto Serif JP', serif;
+  font-size: 13px; letter-spacing: .5em;
+  color: rgba(42,58,69,.5);
+  text-transform: uppercase;
+  user-select: none;
 }
 
-.article-eyebrow {
-  display: flex;
+/* ── SECTION ── */
+.section { padding: 9vh 6vw; max-width: 1500px; margin-inline: auto; border-bottom: 1px solid var(--rule); }
+.section:last-of-type { border-bottom: none; }
+.section-title {
+  font-family: 'Noto Serif JP', 'Noto Serif SC', serif;
+  font-size: clamp(22px, 2.6vw, 34px);
+  font-weight: 700;
+  letter-spacing: .06em;
+  color: var(--ink);
+  display: flex; align-items: baseline; gap: 16px;
+}
+.section-title .jp {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px; letter-spacing: .24em;
+  color: var(--ink-3);
+  font-weight: 400;
+}
+.section-title::after { content: ''; flex: 1; height: 1px; background: var(--rule); margin-left: 8px; }
+
+/* ── DOMAIN · 分类 ── */
+.domain-list { margin-top: 6vh; border-top: 1px solid var(--ink); }
+.domain-item {
+  display: grid;
+  grid-template-columns: 72px 1fr 120px;
+  gap: 24px;
   align-items: center;
-  gap: 12px;
+  padding: 3.2vh 0;
+  border-bottom: 1px solid var(--bg-rule);
+  text-decoration: none;
+  transition: background .3s;
+}
+.domain-item:hover { background: var(--bg-warm); }
+.domain-num {
   font-family: 'Noto Sans Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 10px;
+  font-size: 11px; letter-spacing: .2em; color: var(--accent);
 }
-.article-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
-
-.article-title {
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(22px, 2.8vw, 32px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -.015em;
-  color: var(--ink);
-  margin-bottom: 2vh;
-  padding-top: 1.2vh;
-  border-top: 2px solid var(--accent);
+.domain-main { display: flex; align-items: baseline; gap: 18px; flex-wrap: wrap; }
+.domain-name { font-size: clamp(18px, 2vw, 26px); font-weight: 700; letter-spacing: .04em; }
+.domain-tags { display: flex; gap: 8px; flex-wrap: wrap; }
+.domain-tags span {
+  font-family: 'Zen Kaku Gothic New', 'Noto Sans SC', sans-serif;
+  font-size: 11px; letter-spacing: .08em;
+  color: var(--ink-2); border: 1px solid var(--rule);
+  padding: 2px 10px; border-radius: 0;
 }
-.article-lede {
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(14.5px, 1.6vw, 17px);
-  font-style: italic;
-  font-weight: 300;
-  color: var(--ink-2);
-  line-height: 1.72;
-  margin-bottom: 2vh;
-}
-
-.col-wide p {
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(14px, 1.3vw, 15.5px);
-  color: var(--ink-2);
-  line-height: 1.92;
-  margin-bottom: 0;
-}
-.col-wide p + p { text-indent: 2em; }
-
-.col-wide h3 {
-  font-family: 'Noto Serif SC', serif;
-  font-size: clamp(15px, 1.5vw, 18px);
-  font-weight: 700;
-  color: var(--ink);
-  margin: 3.2vh 0 1.2vh;
-  letter-spacing: -.01em;
-}
-.col-wide strong { font-weight: 600; color: var(--ink); }
-.col-wide mark { background: var(--accent-dim); color: var(--accent); padding: 1px 3px; }
-
-.col-wide blockquote {
-  margin: 20px 0;
-  padding: 14px 20px;
-  background: var(--bg-warm);
-  border-left: 3px solid var(--rule);
-  font-family: 'Noto Sans SC', sans-serif;
-  font-size: 13.5px;
-  font-weight: 300;
-  color: var(--ink-2);
-  line-height: 1.82;
-}
-
-.tracing-appendix {
-  position: relative;
-  max-width: 900px;
-  margin: 52px auto 0;
-  padding: 32px 40px 28px;
-  background: var(--tracing-bg);
-  backdrop-filter: blur(2px);
-  border: 1px solid rgba(128,120,100,.3);
-  box-shadow:
-    1px 3px 8px rgba(0,0,0,.06),
-    3px 6px 20px rgba(0,0,0,.07),
-    inset 0 0 0 1px rgba(255,255,255,.5);
-  background-image: linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
-  transform: rotate(-.45deg);
-  transform-origin: top left;
-}
-.tracing-appendix::before {
-  content: 'APPENDIX · 附页';
-  position: absolute;
-  top: -11px; left: 20px;
+.domain-count {
   font-family: 'Noto Sans Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .24em;
-  color: var(--ink-3);
-  text-transform: uppercase;
-  background: var(--bg);
-  padding: 0 8px;
+  font-size: 11px; letter-spacing: .16em; color: var(--ink-3);
+  text-align: right;
 }
-.tracing-appendix::after {
-  content: '';
-  position: absolute;
-  bottom: 0; right: 0;
-  width: 0; height: 0;
-  border-style: solid;
-  border-width: 0 0 20px 20px;
-  border-color: transparent transparent var(--tracing-fold) transparent;
-  filter: drop-shadow(-1px -1px 2px rgba(0,0,0,.08));
-}
-.appendix-inner {
-  transform: rotate(.45deg);
-  transform-origin: top left;
-}
-.appendix-title {
-  font-family: 'Dancing Script', cursive;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--ink);
-  margin-bottom: 22px;
-  letter-spacing: -.01em;
-  line-height: 1.2;
-}
-.appendix-grid {
+
+/* ── TIMELINE ── */
+.tl-list { margin-top: 6vh; border-top: 1px solid var(--ink); }
+.tl-row {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px 36px;
+  grid-template-columns: 90px 130px 1fr 110px;
+  gap: 20px;
+  align-items: baseline;
+  padding: 2.6vh 0;
+  border-bottom: 1px solid var(--bg-rule);
+  text-decoration: none; color: inherit;
+  transition: background .3s;
 }
-.appendix-label {
+.tl-row:hover { background: var(--bg-warm); }
+.tl-date { font-family: 'Noto Sans Mono', monospace; font-size: 11px; color: var(--ink-3); }
+.tl-show { font-family: 'Zen Kaku Gothic New', 'Noto Sans SC', sans-serif; font-size: 11.5px; color: var(--accent); letter-spacing: .08em; }
+.tl-title { font-size: clamp(13.5px, 1.3vw, 16px); font-weight: 400; }
+.tl-domain { font-family: 'Noto Sans Mono', monospace; font-size: 10px; color: var(--ink-3); text-align: right; }
+
+/* ── CONCEPT ── */
+.concept-grid {
+  margin-top: 6vh;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--rule);
+  border: 1px solid var(--rule);
+}
+.concept-card {
+  background: var(--bg);
+  padding: 4vh 1.6vw;
+  min-height: 170px;
+  text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; justify-content: space-between;
+  transition: background .3s;
+}
+.concept-card:hover { background: var(--bg-warm); }
+.concept-card.wide { grid-column: span 2; }
+.concept-name { font-size: clamp(15px, 1.5vw, 19px); font-weight: 700; letter-spacing: .03em; }
+.concept-src {
   font-family: 'Noto Sans Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .24em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 6px;
-  padding-bottom: 5px;
-  border-bottom: 1px dashed var(--rule);
-}
-.appendix-block p {
-  font-family: 'Noto Sans SC', sans-serif;
-  font-size: 12px;
-  font-weight: 300;
-  color: var(--ink-2);
-  line-height: 1.78;
-  margin-bottom: 0;
-}
-.appendix-block p + p { margin-top: 6px; }
-.appendix-rule { height: 1px; background: rgba(128,120,100,.25); margin: 20px 0 12px; }
-.appendix-fine {
-  font-family: 'Noto Sans Mono', monospace;
-  font-size: 9px;
-  letter-spacing: .18em;
-  color: var(--ink-3);
-  text-transform: uppercase;
-  opacity: .7;
+  font-size: 10px; letter-spacing: .1em; color: var(--ink-3);
+  margin-top: 2vh;
 }
 
-.colophon { background: var(--colophon-bg); padding: 6vh 5vw 7vh; margin-top: 6vh; }
-.colophon-inner { max-width: 960px; margin-inline: auto; }
-.colophon-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4vw; margin-bottom: 4vh; }
-.colophon h5 {
+/* ── CODA ── */
+.coda { padding: 8vh 6vw 10vh; max-width: 1500px; margin-inline: auto; }
+.coda-rule { height: 2px; background: var(--ink); margin-bottom: 5vh; }
+.coda-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 6vw; }
+.coda h5 {
   font-family: 'Noto Sans Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  color: var(--colophon-acc);
-  margin-bottom: 10px;
+  font-size: 10px; letter-spacing: .24em; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 16px;
 }
-.colophon p {
-  font-family: 'Noto Sans SC', sans-serif;
-  font-size: 12.5px;
-  font-weight: 300;
-  color: var(--colophon-fg);
-  line-height: 1.78;
-}
-.colophon-rule { height: 1px; background: rgba(128,120,100,.2); margin-bottom: 2.5vh; }
-.colophon-fine {
+.coda p { font-size: 13.5px; font-weight: 300; color: var(--ink-2); line-height: 1.95; }
+.coda-fine {
+  margin-top: 7vh; padding-top: 3vh;
+  border-top: 1px solid var(--rule);
   font-family: 'Noto Sans Mono', monospace;
-  font-size: 9.5px;
-  letter-spacing: .18em;
-  color: var(--colophon-fg);
-  opacity: .35;
+  font-size: 10px; letter-spacing: .2em; color: var(--ink-3);
   text-transform: uppercase;
 }
 
-@media (max-width: 640px) {
-  .zine-body.two-col  { grid-template-columns: 1fr; }
-  .col-narrow         { position: static; }
-  .colophon-grid      { grid-template-columns: 1fr; gap: 3vh; }
-  .appendix-grid      { grid-template-columns: 1fr; }
-  .tracing-appendix   { margin: 40px 0 0; }
-}
-@media print {
-  .zine-masthead { display: none; }
-  .col-narrow    { position: static; }
-  .stamp         { opacity: .15; }
-  body           { font-size: 11pt; }
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; }
+  .hero-content { grid-column: 1; padding: 20vh 8vw 8vh; }
+  .hero-bg::after { background: linear-gradient(180deg, rgba(242,244,246,.9) 0%, rgba(242,244,246,.75) 45%, rgba(242,244,246,.15) 100%); }
+  .hero-vert { display: none; }
+  .domain-item { grid-template-columns: 48px 1fr; }
+  .domain-count { display: none; }
+  .tl-row { grid-template-columns: 1fr; gap: 4px; }
+  .tl-domain { display: none; }
+  .concept-grid { grid-template-columns: 1fr; }
+  .concept-card.wide { grid-column: span 1; }
+  .coda-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
 }
 </style>
 </head>
+<body>
 
-<body class="t-a">
+<nav class="site-nav">
+  <span class="nav-brand">声 · ARCHIVE</span>
+  <div class="nav-links">
+    <a href="#domains">分類</a>
+    <a href="#timeline">時系列</a>
+    <a href="#concepts">概念</a>
+    <a href="#about">について</a>
+  </div>
+</nav>
 
-<header class="zine-masthead">
-  <span class="masthead-name">新生PLUS · 播客摘</span>
-  <span class="masthead-issue">Vol.01 · 2026.08</span>
+<header class="hero">
+  <div class="hero-bg"></div>
+  <span class="hero-vert">声 音 落 成 文 字</span>
+  <div class="hero-content">
+    <div class="hero-index">PODCAST ARCHIVE · 2026</div>
+    <h1 class="hero-slogan">
+      声音落成文字，<br><span class="em">思考继续发生</span>
+    </h1>
+    <p class="hero-sub">
+      把听过的播客，变成真正留得下来的个人笔记。
+    </p>
+    <div class="hero-meta">五类领域 · 十五期归档 · 十张概念卡片</div>
+  </div>
 </header>
 
-<section class="zine-cover">
-  <div class="cover-meta">
-    <span>PODCAST ZINE</span>
-    <span class="issue-rule"></span>
-    <span class="issue-theme">蔡康永 × 詹青云</span>
-  </div>
-
-  <h1 class="cover-title">
-    40岁找到的是<br><em>原则</em>，而不是答案
-  </h1>
-
-  <p class="cover-sub">
-    「新生PLUS」首期。两位久未相见的朋友，从表达创作、身份选择，聊到成长和可能。
-    面对 AI 热潮，蔡康永说：AI 可以给我们很多答案，但那并不是人生的真实状况。
-  </p>
-
-  <div class="cover-image-slot">
-    <img src="cover-newplus.png" alt="新生PLUS 节目封面">
-  </div>
-
-  <div class="cover-footer">
-    <span>2026.08.12 · 48 MIN · 小宇宙首发</span>
-    <span class="stamp">NO.01</span>
+<section class="section" id="domains">
+  <h2 class="section-title">分類档案 <span class="jp">DOMAINS</span></h2>
+  <div class="domain-list">
+    <a class="domain-item" href="#">
+      <span class="domain-num">01</span>
+      <div class="domain-main">
+        <span class="domain-name">認知与方法</span>
+        <div class="domain-tags"><span>卡住的权利</span><span>好奇心驱动</span><span>沙盘推演</span><span>提问协议</span></div>
+      </div>
+      <span class="domain-count">06 期</span>
+    </a>
+    <a class="domain-item" href="#">
+      <span class="domain-num">02</span>
+      <div class="domain-main">
+        <span class="domain-name">関係与情感</span>
+        <div class="domain-tags"><span>友情没有绑架</span><span>木兰心</span><span>话语权争夺</span></div>
+      </div>
+      <span class="domain-count">04 期</span>
+    </a>
+    <a class="domain-item" href="#">
+      <span class="domain-num">03</span>
+      <div class="domain-main">
+        <span class="domain-name">自我与成長</span>
+        <div class="domain-tags"><span>命与运</span><span>仪式感边界</span><span>原则≠答案</span></div>
+      </div>
+      <span class="domain-count">03 期</span>
+    </a>
+    <a class="domain-item" href="#">
+      <span class="domain-num">04</span>
+      <div class="domain-main">
+        <span class="domain-name">商業与社会</span>
+        <div class="domain-tags"><span>热点慢点喝</span><span>起朱楼</span></div>
+      </div>
+      <span class="domain-count">02 期</span>
+    </a>
+    <a class="domain-item" href="#">
+      <span class="domain-num">05</span>
+      <div class="domain-main">
+        <span class="domain-name">咖啡与生活</span>
+        <div class="domain-tags"><span>老王手冲哲学</span></div>
+      </div>
+      <span class="domain-count">01 期</span>
+    </a>
+    <a class="domain-item" href="#">
+      <span class="domain-num">··</span>
+      <div class="domain-main">
+        <span class="domain-name">待归档</span>
+        <div class="domain-tags"><span>新节目</span><span>新概念</span><span>新连接</span></div>
+      </div>
+      <span class="domain-count">成長中</span>
+    </a>
   </div>
 </section>
 
-<section class="pull-quote-section">
-  <div class="tracing-card">
-    <p class="pq-small-text">
-      面对 AI 热潮，观点一贯的温柔但犀利。所谓真实的人生，往往不是被解答的。
-    </p>
-    <div class="pq-script">
-      AI 永远捕捉不到<br>正在成为的我
-    </div>
-    <span class="pq-cite">—— 詹青云 · 34:30</span>
-    <p class="pq-below">
-      关于成长，有一句更狠的：你是成为自己，你是塑造自己，你是打造自己，做出自己，
-      而不是只是当你自己而已。
-    </p>
+<section class="section" id="timeline">
+  <h2 class="section-title">最近归档 <span class="jp">TIMELINE</span></h2>
+  <div class="tl-list">
+    <a class="tl-row" href="#">
+      <span class="tl-date">08.14</span>
+      <span class="tl-show">新生PLUS</span>
+      <span class="tl-title">蔡康永×詹青云：40岁找到的是原则，而不是答案</span>
+      <span class="tl-domain">自我与成长</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">08.14</span>
+      <span class="tl-show">出逃在即</span>
+      <span class="tl-title">为什么你很难找到 deeptalk 的人</span>
+      <span class="tl-domain">关系与情感</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">08.12</span>
+      <span class="tl-show">展开讲讲</span>
+      <span class="tl-title">100.心声特辑：只要你学得足够慢，你就可以不用学</span>
+      <span class="tl-domain">认知与方法</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">08.08</span>
+      <span class="tl-show">初九小依</span>
+      <span class="tl-title">EP13 当所有人都在谈爱情，我们想认真聊聊友情</span>
+      <span class="tl-domain">关系与情感</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">07.14</span>
+      <span class="tl-show">西西弗高速</span>
+      <span class="tl-title">#28 女性与叙事</span>
+      <span class="tl-domain">关系与情感</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">07.08</span>
+      <span class="tl-show">鲁豫慢谈</span>
+      <span class="tl-title">姜思达：被理解是一种运气</span>
+      <span class="tl-domain">关系与情感</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">07.07</span>
+      <span class="tl-show">Seesaw</span>
+      <span class="tl-title">一号员工 Lema：眼看它起朱楼</span>
+      <span class="tl-domain">商业与社会</span>
+    </a>
+    <a class="tl-row" href="#">
+      <span class="tl-date">07.06</span>
+      <span class="tl-show">半拿铁</span>
+      <span class="tl-title">No.41 热点慢点喝</span>
+      <span class="tl-domain">商业与社会</span>
+    </a>
   </div>
 </section>
 
-<section class="zine-body two-col">
-  <aside class="col-narrow">
-    <div class="sidebar-block">
-      <h4 class="sidebar-label">摘要</h4>
-      <p>两位「新生」的朋友围绕 AI、年龄、成就感与自我塑造展开的一席谈。关键词是原则、校准与无限新生。</p>
-    </div>
-    <div class="sidebar-block">
-      <h4 class="sidebar-label">关键词</h4>
-      <p>
-        <span class="sidebar-tag">原则≠答案</span>
-        <span class="sidebar-tag">AI与自我</span>
-        <span class="sidebar-tag">社会时钟</span>
-        <span class="sidebar-tag">成就感</span>
-        <span class="sidebar-tag">无限新生</span>
-      </p>
-    </div>
-    <div class="sidebar-block">
-      <h4 class="sidebar-label">节目信息</h4>
-      <p>新生PLUS 首期 · Swisse PLUS 出品<br>时长 48 分钟<br>完整音频在小宇宙首发</p>
-    </div>
-  </aside>
-
-  <article class="col-wide">
-    <div class="article-eyebrow">Section 01 · 25:01</div>
-    <h2 class="article-title">人生可以继续探索嘛，我也才 36 岁</h2>
-    <p class="article-lede">打破社会时钟去探索——这是詹青云回应年龄的方式。</p>
-
-    <p>对话从「身份」开始。一个被贴满标签的人——律师、辩手、内容创作者——如何面对「你到底是谁」的问题。詹青云的答案是轻巧的：人生可以继续探索嘛，我也才 36 岁。</p>
-    <p>这句话的锋利藏在「才」字里。它不是否认年龄，而是拒绝让年龄替自己作决定。社会时钟说 36 岁该稳定了，她偏说人生还有的是探索空间。<strong>打破社会时钟，人生就可以有更多的可能性。</strong></p>
-
-    <h3>成就感，而不是成功</h3>
-    <p>三十八分钟处，两人谈到了「成功」这个词的毒。詹青云希望大家感受的是<mark>成就感，而不是成功</mark>。成功是一个外部给出的刻度，而成就感是你自己认得出来的东西。</p>
-    <p>两者的区别是主语的区别：成功是别人的评判落在你身上，成就感是你对自己说「这件事我做得不错」。前者依赖外界，后者长在自己身上。</p>
-
-    <div class="article-eyebrow">Section 02 · 34:30</div>
-    <h2 class="article-title">AI 捕捉不到正在成为的我</h2>
-    <p class="article-lede">她的输出正在喂养 AI，但她说：AI 永远捕捉不到正在成为的我。</p>
-
-    <p>这是一个 AI 热潮下罕见的回应。大多数讨论关心 AI 能替代什么、能给出什么答案，詹青云却指出了另一层：<strong>人是在不断「成为」的过程中。</strong>AI 捕捉到的，永远只是你此刻已经输出的、已经完成的那部分你。</p>
-    <p>蔡康永的观点一贯温柔但犀利：<mark>AI 可以给我们很多答案，但那并不是人生的真实状况</mark>。人生的真实状况往往是——40 岁找到的是原则，而不是一个答案。</p>
-    <blockquote>
-      40 岁既有一种校准的自由，又有一种校准的压力。—— 35:38
-    </blockquote>
-    <p>答案是静止的，原则是活着的。答案告诉你「该做什么」，原则告诉你「为什么这么做」。找到答案的人停下来，找到原则的人继续走。</p>
-
-    <div class="article-eyebrow">Section 03 · 37:47</div>
-    <h2 class="article-title">你是成为自己，不是当你自己</h2>
-    <p class="article-lede">「当你自己」是被动语态，「成为自己」是主动语态。</p>
-
-    <p>这句话是全篇最重的：「你是成为自己，你是塑造自己，你是打造自己，做出自己，而不是只是当你自己而已。」</p>
-    <p>「当」是默认状态——你已经是了，不必费力。但蔡康永把动词从「当」换成了「成为、塑造、打造、做出」，四个动词排下来，强调的是<strong>主动的参与</strong>。自我不是被发现的东西，是被做出来的东西。</p>
-
-    <div class="article-eyebrow">Section 04 · 45:58</div>
-    <h2 class="article-title">活着唯一的乐趣，就是无限新生</h2>
-    <p class="article-lede">收尾处，蔡康永给出本期最亮的句子。</p>
-
-    <p>「我认为活着唯一的乐趣就是无限新生。」不断迭代崭新的自己，持续创造无限可能——这既是两个人聊了四十八分钟的落点，也是这期节目想传递的东西。</p>
-    <p>四十六分四十六秒，题目点破：<strong>40 岁找到的是原则，而不是答案。</strong>没有标准答案的人生，也可以活得很有原则。</p>
-  </article>
+<section class="section" id="concepts">
+  <h2 class="section-title">概念网络 <span class="jp">CONCEPTS</span></h2>
+  <div class="concept-grid">
+    <a class="concept-card wide" href="#">
+      <span class="concept-name">卡住的权利</span>
+      <span class="concept-src">展開講講 × 陶哲軒 / 金愛爛</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">木兰心 · 非二元叙事</span>
+      <span class="concept-src">西西弗高速</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">命与运 · 叙事认同</span>
+      <span class="concept-src">知行小酒馆 × 施展</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">友情是没有绑架的爱</span>
+      <span class="concept-src">初九小依 EP13</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">沙盘推演</span>
+      <span class="concept-src">鲁豫漫谈 × 张泉灵</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">好奇心驱动</span>
+      <span class="concept-src">鲁豫漫谈 × 张泉灵</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">提问协议</span>
+      <span class="concept-src">展開講講 × 康總</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">返利人生</span>
+      <span class="concept-src">鲁豫漫谈 × 张泉灵</span>
+    </a>
+    <a class="concept-card wide" href="#">
+      <span class="concept-name">仪式感的边界 · 情感止损与伤痛修复</span>
+      <span class="concept-src">CoffeePlus × 老王</span>
+    </a>
+    <a class="concept-card" href="#">
+      <span class="concept-name">话语权与解释权的争夺</span>
+      <span class="concept-src">跨节目</span>
+    </a>
+  </div>
 </section>
 
-<div class="tracing-appendix">
-  <div class="appendix-inner">
-    <div class="appendix-title">附言 · Afterword</div>
-    <div class="appendix-grid">
-      <div class="appendix-block">
-        <div class="appendix-label">总结</div>
-        <p>这是一期关于「怎么活」的对话：用原则替代答案，用成为替代当，用成就感替代成功，用无限新生替代社会时钟。AI 时代的自我，不是被捕捉的对象，而是持续创作中的作品。</p>
-      </div>
-      <div class="appendix-block">
-        <div class="appendix-label">适合人群</div>
-        <p>正在经历三十到四十岁转换期的人；对 AI 与自我关系感到困惑的人；反感社会时钟、想要「打破年龄定义」的人。</p>
-      </div>
-      <div class="appendix-block">
-        <div class="appendix-label">延伸阅读</div>
-        <p>蔡康永《蔡康永的情商课》——关于「做自己」的另一种讲法。詹青云辩论「时间使徒」相关经典赛段——「成为」的现场示范。</p>
-      </div>
-      <div class="appendix-block">
-        <div class="appendix-label">备注</div>
-        <p>本期由 Swisse PLUS 出品，为品牌播客。观点归嘉宾，商业归商业，读起来仍自有其光。视频版可在小红书 @Swisse PLUS 观看。</p>
-      </div>
+<footer class="coda" id="about">
+  <div class="coda-rule"></div>
+  <div class="coda-grid">
+    <div>
+      <h5>ABOUT</h5>
+      <p>把听过的播客，变成真正留得下来的个人笔记。声音是流，文字是网。这里存放的不是节目本身，而是被听完之后继续生长的思考。</p>
     </div>
-    <div class="appendix-rule"></div>
-    <div class="appendix-fine">本附页以硫酸纸印刷 · Vol.01 · 2026.08</div>
-  </div>
-</div>
-
-<footer class="colophon">
-  <div class="colophon-inner">
-    <div class="colophon-grid">
-      <div>
-        <h5>关于本期</h5>
-        <p>将《新生PLUS》首期（蔡康永 × 詹青云）的七处金句时间戳，编排为档案风电子杂志。刊名暂定「新生PLUS · 播客摘」。</p>
-      </div>
-      <div>
-        <h5>出版信息</h5>
-        <p>2026.08.17 · 由 Venues 制作<br>原始素材：小宇宙《新生PLUS》EP.01</p>
-      </div>
-      <div>
-        <h5>设计信息</h5>
-        <p>Noto Serif SC / Dancing Script<br>Zine Skill v2 · 牛皮纸档案主题</p>
-      </div>
+    <div>
+      <h5>STRUCTURE</h5>
+      <p>分類档案（領域）→ 单集归档（笔记）→ 概念卡片（网络）。每一期包含：结构化笔记、核心观点、金句、我的思考、关联旧知、案例参考。</p>
     </div>
-    <div class="colophon-rule"></div>
-    <p class="colophon-fine">© 2026 · PODCAST ZINE · Vol.01</p>
   </div>
+  <div class="coda-fine">声 · ARCHIVE · 2026 · 声音落成文字，思考继续发生</div>
 </footer>
 
 </body>
