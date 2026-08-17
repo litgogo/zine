@@ -179,13 +179,18 @@ body {{
   .appendix-grid {{ grid-template-columns:1fr; }}
   .tracing-appendix {{ margin:40px 0 0; }}
 }}
+
+.back-home {{ margin-left: 18px; font-size: 10px; letter-spacing: .1em; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }}
+.back-home:hover {{ opacity: .7; }}
+.back-home-footer {{ display: inline-block; margin: 0 0 14px; font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--colophon-acc); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }}
+.back-home-footer:hover {{ opacity: .7; }}
 </style>
 </head>
 <body class="{theme_class}">
 
 <header class="zine-masthead">
   <span class="masthead-name">{esc(show)}</span>
-  <span class="masthead-issue">{vol} · {date}</span>
+  <span class="masthead-issue">{vol} · {date}<a class="back-home" href="../index.html">← 返回首页</a></span>
 </header>
 
 <section class="zine-cover">
@@ -283,6 +288,7 @@ body {{
       </div>
     </div>
     <div class="colophon-rule"></div>
+    <a class="back-home-footer" href="../index.html">← 返回档案首页</a>
     <p class="colophon-fine">© 2026 · PODCAST ZINE · {vol}</p>
   </div>
 </footer>
