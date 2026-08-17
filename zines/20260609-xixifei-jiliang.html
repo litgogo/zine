@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zine · 致命剂量</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+:root, body.t-a {
+  --bg:#f5f0e8; --bg-warm:#ede8dc; --bg-rule:#d6ceb8; --ink:#2a2018; --ink-2:#4a3828;
+  --ink-3:#8a7060; --accent:#8b2e1a; --accent-dim:rgba(139,46,26,.10); --rule:#c4b89a;
+  --mono-bg:#e8e2d4; --tracing-bg:rgba(248,245,235,.55); --tracing-fold:#d8d0bc;
+  --colophon-bg:#2a2018; --colophon-fg:rgba(245,240,232,.65); --colophon-acc:#d4916a;
+}
+body.t-b {
+  --bg:#0d1b2a; --bg-warm:#112233; --bg-rule:#1e3a5f; --ink:#d4e5f7; --ink-2:#a8c8e8;
+  --ink-3:#6898c0; --accent:#5bc0f8; --accent-dim:rgba(91,192,248,.12); --rule:#1e3a5f;
+  --mono-bg:#0a1520; --tracing-bg:rgba(13,40,70,.55); --tracing-fold:#1a3050;
+  --colophon-bg:#060e18; --colophon-fg:rgba(180,210,240,.65); --colophon-acc:#5bc0f8;
+}
+body.t-c {
+  --bg:#fafaf5; --bg-warm:#f2f2ec; --bg-rule:#e0e0d8; --ink:#1a1a1a; --ink-2:#3a3a3a;
+  --ink-3:#888888; --accent:#c0392b; --accent-dim:rgba(192,57,43,.08); --rule:#cccccc;
+  --mono-bg:#f0f0ea; --tracing-bg:rgba(250,250,245,.6); --tracing-fold:#ddddd5;
+  --colophon-bg:#1a1a1a; --colophon-fg:rgba(245,245,240,.65); --colophon-acc:#c0392b;
+}
+body.t-d {
+  --bg:#f2f4ee; --bg-warm:#e8ece0; --bg-rule:#d0d8c4; --ink:#1e2818; --ink-2:#3a4830;
+  --ink-3:#7a8a6a; --accent:#3a6e28; --accent-dim:rgba(58,110,40,.09); --rule:#c0caa8;
+  --mono-bg:#e4ecd8; --tracing-bg:rgba(240,244,234,.55); --tracing-fold:#c8d4b4;
+  --colophon-bg:#1e2818; --colophon-fg:rgba(232,236,224,.65); --colophon-acc:#7ab858;
+}
+body {
+  background:var(--bg); color:var(--ink); font-family:'Noto Serif SC', Georgia, serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.zine-masthead {
+  position:sticky; top:0; z-index:100; background:var(--ink); color:var(--bg);
+  display:flex; justify-content:space-between; align-items:center; padding:0 5vw; height:44px;
+  font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+}
+.masthead-name { flex:1; } .masthead-issue { color:var(--accent); }
+.zine-cover {
+  max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
+  display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
+}
+.cover-meta {
+  display:flex; align-items:center; gap:16px; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4vh;
+}
+.issue-rule { flex:1; height:1px; background:var(--rule); }
+.issue-theme { padding:3px 10px; border:1px solid var(--rule); color:var(--accent); }
+.cover-title {
+  font-family:'Noto Serif SC', serif; font-size:clamp(32px,5.2vw,64px); font-weight:900;
+  line-height:1.12; letter-spacing:-.02em; color:var(--ink); margin-bottom:3vh;
+}
+.cover-title em { font-style:italic; color:var(--accent); }
+.cover-sub {
+  font-family:'Noto Sans SC', sans-serif; font-size:clamp(13px,1.5vw,16px); font-weight:300;
+  color:var(--ink-2); line-height:1.72; max-width:52ch; padding-left:18px;
+  border-left:3px solid var(--accent); margin-bottom:4vh;
+}
+.cover-image-slot {
+  background:var(--bg-warm); border:1px solid var(--rule); display:flex; align-items:center;
+  justify-content:center; min-height:32vh; margin-bottom:3vh; overflow:hidden;
+}
+.cover-image-slot img { width:100%; height:100%; object-fit:cover; filter:saturate(.8) contrast(1.02); }
+.cover-footer {
+  display:flex; justify-content:space-between; align-items:flex-end; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--ink-3); border-top:1px solid var(--rule);
+  padding-top:2vh; text-transform:uppercase;
+}
+.stamp { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:900; letter-spacing:-.02em; color:var(--accent); opacity:.28; }
+.pull-quote-section { max-width:960px; margin-inline:auto; padding:6vh 5vw; border-bottom:1px solid var(--rule); }
+.tracing-card {
+  position:relative; padding:36px 44px 32px; background:var(--tracing-bg); backdrop-filter:blur(1px);
+  border:1px solid rgba(128,120,100,.28); box-shadow:2px 4px 12px rgba(0,0,0,.07), 4px 8px 28px rgba(0,0,0,.05), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
+}
+.tracing-card::after {
+  content:''; position:absolute; top:0; right:0; width:0; height:0; border-style:solid;
+  border-width:0 24px 24px 0; border-color:transparent var(--tracing-fold) transparent transparent;
+  filter:drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
+}
+.pq-small-text { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.8; color:var(--ink-2); max-width:52ch; margin:0 auto 24px; text-align:center; }
+.pq-script { font-family:'Dancing Script',cursive; font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.28; color:var(--ink); text-align:center; margin-bottom:20px; }
+.pq-cite { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--ink-3); text-align:center; text-transform:uppercase; display:block; }
+.pq-below { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.82; color:var(--ink-2); max-width:52ch; margin:20px auto 0; text-align:center; }
+.zine-body { max-width:960px; margin-inline:auto; padding:5vh 5vw; border-bottom:1px solid var(--rule); }
+.zine-body.two-col { display:grid; grid-template-columns:200px 1fr; gap:4.5vw; align-items:start; }
+.col-narrow { position:sticky; top:56px; }
+.sidebar-block { border-left:2px solid var(--rule); padding-left:14px; margin-bottom:2.8vh; }
+.sidebar-label { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+.sidebar-block p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--ink-2); line-height:1.72; }
+.sidebar-tag { display:inline-block; font-family:'Noto Sans Mono',monospace; font-size:9.5px; padding:2px 7px; margin:2px 2px 2px 0; border:1px solid var(--rule); color:var(--ink-3); letter-spacing:.1em; }
+.article-eyebrow { display:flex; align-items:center; gap:12px; font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.article-eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+.article-title { font-family:'Noto Serif SC',serif; font-size:clamp(21px,2.6vw,30px); font-weight:700; line-height:1.2; letter-spacing:-.015em; color:var(--ink); margin-bottom:2vh; padding-top:1.2vh; border-top:2px solid var(--accent); }
+.article-lede { font-family:'Noto Serif SC',serif; font-size:clamp(14px,1.5vw,16.5px); font-style:italic; font-weight:300; color:var(--ink-2); line-height:1.72; margin-bottom:2vh; }
+.col-wide p { font-family:'Noto Serif SC',serif; font-size:clamp(13.5px,1.3vw,15px); color:var(--ink-2); line-height:1.92; }
+.col-wide p.spacer { height:1.6vh; }
+.col-wide blockquote { margin:20px 0; padding:14px 20px; background:var(--bg-warm); border-left:3px solid var(--rule); font-family:'Noto Sans SC',sans-serif; font-size:13.5px; font-weight:300; color:var(--ink-2); line-height:1.82; }
+.tracing-appendix {
+  position:relative; max-width:900px; margin:52px auto 0; padding:32px 40px 28px; background:var(--tracing-bg);
+  backdrop-filter:blur(2px); border:1px solid rgba(128,120,100,.3);
+  box-shadow:1px 3px 8px rgba(0,0,0,.06), 3px 6px 20px rgba(0,0,0,.07), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
+  transform:rotate(-.45deg); transform-origin:top left;
+}
+.tracing-appendix::before {
+  content:'APPENDIX · 附页'; position:absolute; top:-11px; left:20px; font-family:'Noto Sans Mono',monospace;
+  font-size:9px; letter-spacing:.24em; color:var(--ink-3); text-transform:uppercase; background:var(--bg); padding:0 8px;
+}
+.appendix-inner { transform:rotate(.45deg); transform-origin:top left; }
+.appendix-title { font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--ink); margin-bottom:22px; letter-spacing:-.01em; }
+.appendix-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; }
+.appendix-label { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; padding-bottom:5px; border-bottom:1px dashed var(--rule); }
+.appendix-block p { font-family:'Noto Sans SC',sans-serif; font-size:12px; font-weight:300; color:var(--ink-2); line-height:1.78; }
+.appendix-rule { height:1px; background:rgba(128,120,100,.25); margin:20px 0 12px; }
+.appendix-fine { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase; opacity:.7; }
+.colophon { background:var(--colophon-bg); padding:6vh 5vw 7vh; margin-top:5vh; }
+.colophon-inner { max-width:960px; margin-inline:auto; }
+.colophon-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4vw; margin-bottom:4vh; }
+.colophon h5 { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--colophon-acc); margin-bottom:10px; }
+.colophon p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--colophon-fg); line-height:1.78; }
+.colophon-rule { height:1px; background:rgba(128,120,100,.2); margin-bottom:2.5vh; }
+.colophon-fine { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.18em; color:var(--colophon-fg); opacity:.35; text-transform:uppercase; }
+@media (max-width:640px) {
+  .zine-body.two-col { grid-template-columns:1fr; }
+  .col-narrow { position:static; }
+  .colophon-grid { grid-template-columns:1fr; gap:3vh; }
+  .appendix-grid { grid-template-columns:1fr; }
+  .tracing-appendix { margin:40px 0 0; }
+}
+</style>
+</head>
+<body class="t-b">
+
+<header class="zine-masthead">
+  <span class="masthead-name">西西弗高速 #27</span>
+  <span class="masthead-issue">VOL.07 · 2026.06.09</span>
+</header>
+
+<section class="zine-cover">
+  <div class="cover-meta">
+    <span>PODCAST ZINE</span>
+    <span class="issue-rule"></span>
+    <span class="issue-theme">蓝图档案</span>
+  </div>
+  <h1 class="cover-title">致命剂量</h1>
+  <p class="cover-sub">瓦斯与麻醉药，一个是自然产物，一个是人类造物，它们的力量与剂量成正相关。滥用与盗用，都会带来巨大的恶果。</p>
+  <div class="cover-image-slot">
+    <img src="../posters/20260609-xixifei-jiliang.png" alt="致命剂量 封面">
+  </div>
+  <div class="cover-footer">
+    <span>2026.06.09 · J / 康</span>
+    <span class="stamp">VOL.07</span>
+  </div>
+</section>
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">西西弗高速 #27 · 致命剂量</p>
+    <div class="pq-script">这是一张嘴巴，空洞而阴冷——矿工的身体记忆</div>
+    <span class="pq-cite">—— 金句</span>
+    <p class="pq-below">资源诅咒：矿工是能源链条最底端；资源富集区反而陷入越挖越穷的悖论。AI 时代的能源压力：AI 算力暴增→电力需求→化石能源回潮。</p>
+  </div>
+</section>
+
+<section class="zine-body two-col">
+  <aside class="col-narrow">
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">摘要</h4>
+      <p>瓦斯与麻醉药，一个是自然产物，一个是人类造物，它们的力量与剂量成正相关。滥用与盗用，都会带来巨大的恶果。…</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">嘉宾</h4>
+      <p>J / 康</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">关联</h4>
+      <p>书籍：《炸裂志》《煤老板自述30年》《血酬定律》《致命药瘾》；影视：《盲井》。…</p>
+    </div>
+  </aside>
+  <article class="col-wide">
+    
+    <div class="article-eyebrow">Section 01</div>
+    <h2 class="article-title">瓦斯：山西留神峪矿难</h2>
+    <p>5月22日瓦斯爆炸，82人遇难。煤层本身就是瓦斯储层，挖煤等于主动释放炸弹。井下黑面（未经安全验收的工作面）是行业潜规则——技术问题背后是激励结构问题。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 02</div>
+    <h2 class="article-title">麻醉药：跨国迷奸网络</h2>
+    <p>高学历旅德男子组建加密群组，跨国迷奸华人女性。GHB、氯胺酮、苯二氮卓类——顺行性遗忘加呼吸抑制风险，无医疗监测即致命剂量。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 03</div>
+    <h2 class="article-title">共同逻辑</h2>
+    <p>力量与剂量成正相关。人类能做的：发展控制和制约这种力量的机制，去与附着在其上的、不断膨胀的人类欲望做斗争。</p>
+    <p class="spacer"></p>
+    
+    <blockquote>这是一张嘴巴，空洞而阴冷——矿工的身体记忆</blockquote>
+    <div class="article-eyebrow">Gogo 的思考</div>
+    <h2 class="article-title">共振与提炼</h2>
+    <p>用平静的语气讲沉重的事，信听众不需要被情绪调拨也能判断轻重——与信件体写作同源：不喊口号、让事实本身传递力量。</p>
+    <p class="spacer"></p>
+    <p>资源诅咒：矿工是能源链条最底端；资源富集区反而陷入越挖越穷的悖论。AI 时代的能源压力：AI 算力暴增→电力需求→化石能源回潮。</p>
+  </article>
+</section>
+
+<div class="tracing-appendix">
+  <div class="appendix-inner">
+    <div class="appendix-title">附言 · Afterword</div>
+    <div class="appendix-grid">
+      <div class="appendix-block">
+        <div class="appendix-label">总结</div>
+        <p>瓦斯与麻醉药，一个是自然产物，一个是人类造物，它们的力量与剂量成正相关。滥用与盗用，都会带来巨大的恶果。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">关联旧知</div>
+        <p>书籍：《炸裂志》《煤老板自述30年》《血酬定律》《致命药瘾》；影视：《盲井》。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">我的思考</div>
+        <p>用平静的语气讲沉重的事，信听众不需要被情绪调拨也能判断轻重——与信件体写作同源：不喊口号、让事实本身传递力量。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">备注</div>
+        <p>素材归档自 Gogo 的播客知识库（podcast-kb），本期由 Venues 排版。</p>
+      </div>
+    </div>
+    <div class="appendix-rule"></div>
+    <div class="appendix-fine">本附页以硫酸纸印刷 · VOL.07 · 2026.06.09</div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <h5>关于本期</h5>
+        <p>西西弗高速 #27 · J / 康</p>
+      </div>
+      <div>
+        <h5>出版信息</h5>
+        <p>2026.06.09 · 由 Venues 制作<br>素材：podcast-kb 归档</p>
+      </div>
+      <div>
+        <h5>设计信息</h5>
+        <p>Noto Serif SC / Dancing Script<br>Zine Skill v2 · 蓝图档案</p>
+      </div>
+    </div>
+    <div class="colophon-rule"></div>
+    <p class="colophon-fine">© 2026 · PODCAST ZINE · VOL.07</p>
+  </div>
+</footer>
+
+</body>
+</html>
