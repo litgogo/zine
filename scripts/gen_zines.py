@@ -309,6 +309,9 @@ body {{
 
 if __name__ == "__main__":
     for i, ep in enumerate(EPISODES):
-        theme_class, theme_name = THEMES[i % 4]
+        if ep.get("theme"):
+            theme_class, theme_name = ep["theme"], dict(THEMES)[ep["theme"]]
+        else:
+            theme_class, theme_name = THEMES[i % 4]
         p = build(ep, theme_class, theme_name)
         print(f"wrote {p} [{theme_name}]")
