@@ -215,6 +215,135 @@ body {
   text-transform: uppercase;
 }
 
+/* ── 书架(g┊ 检索墙) ── */
+.shelf-slogan {
+  margin: 5vh 0 3vh; font-family:'Noto Serif JP','Noto Serif SC',serif;
+  font-size: clamp(20px,2.4vw,30px); font-weight:700; letter-spacing:.04em; color:var(--ink); line-height:1.35;
+}
+.tools {
+  max-width:1500px; margin-inline:auto; padding: 2vh 0 1vh;
+  display:flex; flex-wrap:wrap; gap:14px 18px; align-items:center;
+}
+.search-wrap { position:relative; flex:1 1 240px; }
+.search-wrap input {
+  width:100%; padding:11px 14px 11px 34px;
+  background:var(--bg); border:1px solid var(--rule);
+  font-family:'Noto Serif SC',serif; font-size:13px; color:var(--ink);
+  outline:none; transition:border-color .2s;
+}
+.search-wrap input::placeholder { color:var(--ink-3); }
+.search-wrap input:focus { border-color:var(--ink); }
+.search-ico { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-family:'Noto Sans Mono'; font-size:11px; }
+.ctrl-group { display:flex; align-items:center; gap:10px; font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:11px; letter-spacing:.08em; color:var(--ink-2); }
+.chips { display:flex; gap:6px; flex-wrap:wrap; }
+.chip {
+  font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif;
+  font-size:11px; letter-spacing:.1em; color:var(--ink-2);
+  background:var(--bg); border:1px solid var(--rule); padding:5px 14px; cursor:pointer;
+  transition:all .2s; user-select:none;
+}
+.chip:hover { border-color:var(--ink); }
+.chip.on { background:var(--ink); color:var(--bg); border-color:var(--ink); }
+select {
+  padding:8px 12px; background:var(--bg); border:1px solid var(--rule);
+  font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:11px; letter-spacing:.08em;
+  color:var(--ink); outline:none; cursor:pointer;
+}
+select:focus { border-color:var(--ink); }
+.summary {
+  max-width:1500px; margin-inline:auto; padding:1.5vh 0 0;
+  font-family:'Noto Sans Mono',monospace; font-size:10.5px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase;
+  display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;
+}
+.summary .s-mono { font-size:10px; color:var(--ink-3); }
+.shelf-grid {
+  margin-top:3.5vh;
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap:40px 22px; align-items:start;
+}
+.book { cursor:pointer; text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.book-cover {
+  position:relative; width:100%; aspect-ratio: 2/3;
+  overflow:hidden; background:var(--mono-bg);
+  border:1px solid var(--rule);
+  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 6px 16px rgba(0,0,0,.05);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.book:hover .book-cover { transform: translateY(-4px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 14px 30px rgba(0,0,0,.10); }
+.book-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+.book-cover.fallback {
+  background:var(--mono-bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+  padding:14% 12%;
+}
+.book-cover.fallback .fb-eyebrow {
+  font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; color:var(--ink-3); align-self:flex-start;
+}
+.book-cover.fallback .fb-name {
+  font-family:'Noto Serif JP','Noto Serif SC',serif; font-weight:700; letter-spacing:.08em;
+  writing-mode: vertical-rl; text-orientation: upright;
+  font-size: clamp(15px,1.4vw,20px); line-height:1.2; color:var(--ink); text-align:center;
+  max-height:70%; overflow:hidden;
+}
+.book-cover.fallback .fb-foot {
+  font-family:'Noto Sans Mono',monospace; font-size:8px; letter-spacing:.2em; color:var(--ink-3);
+  align-self:flex-end; background:var(--bg); padding:1px 6px;
+}
+.book-cover .cover-count {
+  position:absolute; top:8px; right:8px;
+  font-family:'Noto Serif JP',serif; font-size:9px; letter-spacing:.08em;
+  background:rgba(26,26,26,.78); color:#fff; padding:1px 7px;
+}
+.star-overlay { position:absolute; left:8px; top:6px; color:var(--star,#c75146); font-size:14px; text-shadow:0 1px 2px rgba(0,0,0,.4); }
+.book-cap { margin-top:12px; }
+.book-cap .b-name { font-size:clamp(12px,1.05vw,14px); font-weight:500; letter-spacing:.03em; }
+.book-cap .b-meta { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.12em; color:var(--ink-3); margin-top:2px; }
+.b-dim { opacity:.38; }
+.w-row {
+  display:grid; grid-template-columns:84px 1fr auto;
+  gap:22px; align-items:baseline; padding:2.2vh 0;
+  border-bottom:1px solid var(--bg-rule); text-decoration:none; color:inherit;
+  transition:background .25s;
+}
+.w-row:hover { background:var(--bg-warm); }
+.w-date { font-family:'Noto Sans Mono',monospace; font-size:10.5px; color:var(--ink-3); letter-spacing:.06em; }
+.w-main { min-width:0; }
+.w-show { font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:10.5px; color:var(--accent); letter-spacing:.1em; }
+.w-title { margin-top:3px; font-size:clamp(13.5px,1.3vw,16px); font-weight:400; }
+.w-title .badge { font-family:'Noto Serif JP',serif; font-size:9.5px; border:1px solid var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink); }
+.w-title .star { color:var(--star,#c75146); font-size:12px; margin-left:8px; }
+.w-meta { display:flex; gap:14px; margin-top:5px; font-family:'Noto Sans Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:.05em; }
+.w-meta .ep:empty { display:none; }
+.w-right { display:flex; align-items:center; gap:14px; }
+.st-badge { font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:9.5px; letter-spacing:.12em; padding:3px 10px; white-space:nowrap; }
+.st-zine, .st-transcript { border:1px solid var(--ink); color:var(--ink); }
+.st-pending { border:1px dashed var(--ink-3); color:var(--ink-2); }
+.st-saved { border:1px solid var(--rule); color:var(--ink-3); }
+.w-arrow { color:var(--ink-3); font-family:'Noto Sans Mono'; font-size:12px; }
+.flat-list { max-width:1500px; margin-inline:auto; }
+.empty { padding:12vh 0; text-align:center; color:var(--ink-3); font-family:'Zen Kaku Gothic New','Noto Sans SC'; font-size:12px; letter-spacing:.15em; }
+.flat-head { max-width:1500px; margin:2vh auto 0; font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:11px; letter-spacing:.1em; color:var(--ink-2); }
+.modal-mask {
+  position:fixed; inset:0; z-index:200; background:rgba(20,20,20,.42);
+  display:none; align-items:flex-end; justify-content:center;
+}
+.modal-mask.show { display:flex; }
+.modal {
+  background:var(--bg); width:100%; max-width:760px; max-height:86vh; overflow-y:auto;
+  border-top:1px solid var(--rule);
+  box-shadow:0 -10px 40px rgba(0,0,0,.18);
+  padding:0 7vw 6vh;
+  animation:sheetUp .22s ease;
+}
+@keyframes sheetUp { from{ transform:translateY(24px); opacity:.4;} to{ transform:none; opacity:1;} }
+.modal-head { position:sticky; top:0; background:var(--bg); padding:4vh 0 2vh; border-bottom:1px solid var(--rule); display:flex; align-items:baseline; gap:16px; }
+.modal-head .m-title { font-family:'Noto Serif JP','Noto Serif SC',serif; font-size:clamp(20px,3vw,30px); font-weight:700; letter-spacing:.05em; }
+.modal-head .m-count { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.18em; color:var(--ink-3); }
+.modal-close { margin-left:auto; cursor:pointer; font-family:'Noto Sans Mono'; font-size:20px; color:var(--ink-2); background:none; border:none; padding:4px 10px; }
+.modal-close:hover { color:var(--ink); }
+.modal-body .w-row:first-of-type { border-top:1px solid var(--bg-rule); }
+
 /* ── RESPONSIVE ── */
 @media (max-width: 900px) {
   .hero { padding: 16vh 0 8vh; }
@@ -227,6 +356,9 @@ body {
   .concept-card.wide { grid-column: span 1; }
   .coda-grid { grid-template-columns: 1fr; }
   .nav-links { display: none; }
+  .shelf-grid { grid-template-columns: repeat(auto-fill, minmax(104px,1fr)); gap:30px 16px; }
+  .w-row { grid-template-columns:1fr; gap:5px; }
+  .w-right { display:none; }
 }
 </style>
 </head>
@@ -236,9 +368,8 @@ body {
   <span class="nav-brand">声 · ARCHIVE</span>
   <div class="nav-links">
     <a href="#domains">分類</a>
-    <a href="#timeline">時系列</a>
+    <a href="#shelf">書架</a>
     <a href="#concepts">概念</a>
-    <a href="archive.html">検索壁</a>
     <a href="#about">について</a>
   </div>
 </nav>
@@ -309,124 +440,45 @@ body {
   </div>
 </section>
 
-<section class="section" id="timeline">
-  <h2 class="section-title">最近归档 <span class="jp">TIMELINE</span></h2>
-  <div class="tl-list">
-    <a class="tl-row" href="zines/20260901-wurenzhixiao-weicengkanjian.html">
-      <span class="tl-date">09.01</span>
-      <span class="tl-show">无人知晓 E46</span>
-      <span class="tl-title">我们从未看见彼此 <span class="tl-star">★</span></span>
-      <span class="tl-domain">20260901-wurenzhixiao-weicengkanjian</span>
-    </a>
-    <a class="tl-row" href="zines/20260819-yingxiangli-qitiao.html">
-      <span class="tl-date">08.19</span>
-      <span class="tl-show">自习室 STUDY ROOM</span>
-      <span class="tl-title">影响力｜用七条法则拿捏人性</span>
-      <span class="tl-domain">20260819-yingxiangli-qitiao</span>
-    </a>
-    <a class="tl-row" href="zines/20260814-newplus-principle.html">
-      <span class="tl-date">08.14</span>
-      <span class="tl-show">新生PLUS</span>
-      <span class="tl-title">蔡康永×詹青云：40岁找到的是原则，而不是答案 <span class="tl-badge">誌</span></span>
-      <span class="tl-domain">自我与成长</span>
-    </a>
-    <a class="tl-row" href="zines/20260814-chutao-deeptalk.html">
-      <span class="tl-date">08.14</span>
-      <span class="tl-show">出逃在即</span>
-      <span class="tl-title">为什么你很难找到 deeptalk 的人</span>
-      <span class="tl-domain">20260814-chutao-deeptalk</span>
-    </a>
-    <a class="tl-row" href="zines/20260812-zhankai-100.html">
-      <span class="tl-date">08.12</span>
-      <span class="tl-show">展开讲讲 第100期</span>
-      <span class="tl-title">只要你学得足够慢</span>
-      <span class="tl-domain">20260812-zhankai-100</span>
-    </a>
-    <a class="tl-row" href="zines/20260806-shengdong-jia-yangqing.html">
-      <span class="tl-date">08.06</span>
-      <span class="tl-show">声东击西 #399（十周年特别节目）</span>
-      <span class="tl-title">从「AI 已死」到「AI 颠覆世界」</span>
-      <span class="tl-domain">20260806-shengdong-jia-yangqing</span>
-    </a>
-    <a class="tl-row" href="zines/20260730-xinshixiang-jinjing.html">
-      <span class="tl-date">07.30</span>
-      <span class="tl-show">新世相</span>
-      <span class="tl-title">活下来，然后为彼此鼓掌</span>
-      <span class="tl-domain">20260730-xinshixiang-jinjing</span>
-    </a>
-    <a class="tl-row" href="zines/20260714-xixifei-nvxing-xushi.html">
-      <span class="tl-date">07.14</span>
-      <span class="tl-show">西西弗高速 No.28</span>
-      <span class="tl-title">谁在讲述，又为了什么而讲述？</span>
-      <span class="tl-domain">20260714-xixifei-nvxing-xushi</span>
-    </a>
-    <a class="tl-row" href="zines/20260708-luyu-jiangsida.html">
-      <span class="tl-date">07.08</span>
-      <span class="tl-show">鲁豫慢谈</span>
-      <span class="tl-title">两个高敏感文艺青年</span>
-      <span class="tl-domain">20260708-luyu-jiangsida</span>
-    </a>
-    <a class="tl-row" href="zines/20260707-seesaw-lema.html">
-      <span class="tl-date">07.07</span>
-      <span class="tl-show">Coffee Plus</span>
-      <span class="tl-title">眼看它起朱楼 <span class="tl-badge">誌</span></span>
-      <span class="tl-domain">20260707-seesaw-lema</span>
-    </a>
-    <a class="tl-row" href="zines/20260706-bannatie.html">
-      <span class="tl-date">07.06</span>
-      <span class="tl-show">半拿铁 No.41</span>
-      <span class="tl-title">热点慢点喝</span>
-      <span class="tl-domain">20260706-bannatie</span>
-    </a>
-    <a class="tl-row" href="zines/20260611-luyu-zhangquanling.html">
-      <span class="tl-date">06.11</span>
-      <span class="tl-show">陈鲁豫漫谈</span>
-      <span class="tl-title">AI 时代，人往哪放？</span>
-      <span class="tl-domain">20260611-luyu-zhangquanling</span>
-    </a>
-    <a class="tl-row" href="zines/20260609-xixifei-jiliang.html">
-      <span class="tl-date">06.09</span>
-      <span class="tl-show">西西弗高速 #27</span>
-      <span class="tl-title">致命剂量</span>
-      <span class="tl-domain">20260609-xixifei-jiliang</span>
-    </a>
-    <a class="tl-row" href="zines/20260603-coffeeplus-wang.html">
-      <span class="tl-date">06.03</span>
-      <span class="tl-show">Coffee Plus</span>
-      <span class="tl-title">不卖只送的手冲哲学</span>
-      <span class="tl-domain">20260603-coffeeplus-wang</span>
-    </a>
-    <a class="tl-row" href="zines/20260428-xiesaining.html">
-      <span class="tl-date">04.28</span>
-      <span class="tl-show">张小珺商业访谈录 #133</span>
-      <span class="tl-title">世界模型与人生梯度 <span class="tl-badge">誌</span></span>
-      <span class="tl-domain">20260428-xiesaining</span>
-    </a>
-    <a class="tl-row" href="zines/20260418-xixifei-nvxing.html">
-      <span class="tl-date">04.18</span>
-      <span class="tl-show">西西弗高速 #25</span>
-      <span class="tl-title">女性心灵史</span>
-      <span class="tl-domain">20260418-xixifei-nvxing</span>
-    </a>
-    <a class="tl-row" href="zines/20260414-shengdong-xi-vibe.html">
-      <span class="tl-date">04.14</span>
-      <span class="tl-show">声东击西 #384</span>
-      <span class="tl-title">Vibe Coding 与龙虾</span>
-      <span class="tl-domain">20260414-shengdong-xi-vibe</span>
-    </a>
-    <a class="tl-row" href="zines/20260413-zhixing-zhanshi.html">
-      <span class="tl-date">04.13</span>
-      <span class="tl-show">知行小酒馆 E231</span>
-      <span class="tl-title">宏大叙事与个人命运</span>
-      <span class="tl-domain">20260413-zhixing-zhanshi</span>
-    </a>
-    <a class="tl-row" href="zines/20260318-jingbuxialai-chelu.html">
-      <span class="tl-date">03.18</span>
-      <span class="tl-show">你，静不下来</span>
-      <span class="tl-title">稳住身体，就是稳住你人生的底盘</span>
-      <span class="tl-domain">20260318-jingbuxialai-chelu</span>
-    </a>
+<section class="section" id="shelf">
+  <h2 class="section-title">检索墙 <span class="jp">LISTENING WALL</span></h2>
+  <p class="shelf-slogan">每一段值得记录的声音<br>都值得被看见</p>
+  <div class="tools">
+    <div class="search-wrap">
+      <span class="search-ico">&#8985;</span>
+      <input id="q" type="text" placeholder="搜索 节目 / 单集 / 期号…" autocomplete="off">
+    </div>
+    <div class="ctrl-group">視图
+      <div class="chips" id="viewSel">
+        <button class="chip on" data-view="shelf">書架</button>
+        <button class="chip" data-view="flat">按日期</button>
+      </div>
+    </div>
+    <div class="ctrl-group">状态
+      <div class="chips" id="statusChips">
+        <button class="chip on" data-status="">全部</button>
+        <button class="chip" data-status="zine">已转zine</button>
+        <button class="chip" data-status="pending">待筛选</button>
+        <button class="chip" data-status="transcript">逐字稿</button>
+        <button class="chip" data-status="saved">仅收藏</button>
+      </div>
+    </div>
+    <div class="ctrl-group">
+      <label for="showSel">節目</label>
+      <select id="showSel"><option value="">全部节目</option></select>
+    </div>
+    <div class="ctrl-group">
+      <label for="sortSel">排序</label>
+      <select id="sortSel">
+        <option value="dateDesc">日期 · 新→旧</option>
+        <option value="dateAsc">日期 · 旧→新</option>
+        <option value="durDesc">时长 · 长→短</option>
+      </select>
+    </div>
   </div>
+  <div class="summary" id="summary"></div>
+  <div id="shelfView"><div class="shelf-grid" id="shelfGrid"></div></div>
+  <div id="flatView" style="display:none"><div class="flat-list" id="flatList"></div></div>
 </section>
 
 <section class="section" id="concepts">
@@ -490,5 +542,215 @@ body {
   <div class="coda-fine">声 · ARCHIVE · 2026 · 声音落成文字，思考继续发生</div>
 </footer>
 
+<div class="modal-mask" id="mask">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="m-title" id="mShow"></span>
+      <span class="m-count" id="mCount"></span>
+      <button class="modal-close" id="mClose">×</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
+<script>
+
+/* =========================================================================
+ *  检索墙数据 —— 新增收听：在此往下加一条即可。
+ *  字段：date(YYYY.MM.DD) / show(一档节目,只存基名) / title(单集)
+ *        ep(期号,可空) / duration(时:分:秒,可空) / link(落地页,可空)
+ *        status: zine待筛选/transcript=已转逐字稿/saved=仅收藏 · star:特藏
+ *  书目封面：BOOK_COVER 里按节目名给封面路径（有图加，无图用素净书封占位）。
+ * ========================================================================= */
+var WALL = [
+  {"date":"2026.09.01","show":"无人知晓","title":"我们从未看见彼此","ep":"E46","duration":"1:15:47","status":"zine","link":"zines/20260901-wurenzhixiao-weicengkanjian.html","star":true},
+  {"date":"2026.08.19","show":"自习室 STUDY ROOM","title":"影响力｜用七条法则拿捏人性","duration":"1:25:25","status":"zine","link":"zines/20260819-yingxiangli-qitiao.html"},
+  {"date":"2026.08.14","show":"新生PLUS","title":"蔡康永×詹青云：40岁找到的是原则，而不是答案","status":"zine","link":"zines/20260814-newplus-principle.html"},
+  {"date":"2026.08.14","show":"出逃在即","title":"为什么你很难找到 deeptalk 的人","status":"zine","link":"zines/20260814-chutao-deeptalk.html"},
+  {"date":"2026.08.12","show":"展开讲讲","title":"只要你学得足够慢","ep":"第100期","status":"zine","link":"zines/20260812-zhankai-100.html"},
+  {"date":"2026.08.06","show":"声东击西","title":"从「AI 已死」到「AI 颠覆世界」","ep":"#399(十周年)","status":"zine","link":"zines/20260806-shengdong-jia-yangqing.html"},
+  {"date":"2026.07.30","show":"新世相","title":"活下来，然后为彼此鼓掌","duration":"0:26:14","status":"zine","link":"zines/20260730-xinshixiang-jinjing.html"},
+  {"date":"2026.07.14","show":"西西弗高速","title":"谁在讲述，又为了什么而讲述？","ep":"No.28","status":"zine","link":"zines/20260714-xixifei-nvxing-xushi.html"},
+  {"date":"2026.07.08","show":"鲁豫慢谈","title":"两个高敏感文艺青年","status":"zine","link":"zines/20260708-luyu-jiangsida.html"},
+  {"date":"2026.07.07","show":"Coffee Plus","title":"眼看它起朱楼","ep":"#110","duration":"1:38:59","status":"zine","link":"zines/20260707-seesaw-lema.html"},
+  {"date":"2026.07.06","show":"半拿铁","title":"热点慢点喝","ep":"No.41","status":"zine","link":"zines/20260706-bannatie.html"},
+  {"date":"2026.06.11","show":"鲁豫慢谈","title":"AI 时代，人往哪放？","status":"zine","link":"zines/20260611-luyu-zhangquanling.html"},
+  {"date":"2026.06.09","show":"西西弗高速","title":"致命剂量","ep":"#27","status":"zine","link":"zines/20260609-xixifei-jiliang.html"},
+  {"date":"2026.06.03","show":"Coffee Plus","title":"不卖只送的手冲哲学","status":"zine","link":"zines/20260603-coffeeplus-wang.html"},
+  {"date":"2026.04.28","show":"张小珺商业访谈录","title":"世界模型与人生梯度","ep":"#133","status":"zine","link":"zines/20260428-xiesaining.html"},
+  {"date":"2026.04.18","show":"西西弗高速","title":"女性心灵史","ep":"#25","status":"zine","link":"zines/20260418-xixifei-nvxing.html"},
+  {"date":"2026.04.14","show":"声东击西","title":"Vibe Coding 与龙虾","ep":"#384","status":"zine","link":"zines/20260414-shengdong-xi-vibe.html"},
+  {"date":"2026.04.13","show":"知行小酒馆","title":"宏大叙事与个人命运","ep":"E231","status":"zine","link":"zines/20260413-zhixing-zhanshi.html"},
+  {"date":"2026.03.18","show":"你，静不下来","title":"稳住身体，就是稳住你人生的底盘","duration":"1:00:21","status":"zine","link":"zines/20260318-jingbuxialai-chelu.html"}
+];
+
+/* 书名 = 封面图（贴节目 logo 时在此登记路径；无则用素净书封占位） */
+var BOOK_COVER = {
+  "无人知晓": "covers/logo-wurenzhixiao-xhs.jpg",
+  "自习室 STUDY ROOM": "covers/logo-zixishi-xhs.jpg",
+  "声东击西": "covers/logo-shengdong-jixi-xhs.jpg",
+  "新世相": "covers/logo-xinshixiang-xhs.jpg",
+  "你，静不下来": "covers/logo-nijingbuxialai-xhs.jpg",
+  "知行小酒馆": "covers/logo-zhixing-xiaojiuguan-xhs.jpg",
+  "半拿铁": "covers/logo-bannatie-xhs.jpg",
+  "展开讲讲": "covers/logo-zhankai-jiangjiang-xhs.jpg",
+  "西西弗高速": "covers/logo-xixifu-gaosu-xhs.jpg",
+  "Coffee Plus": "covers/logo-coffeeplus-xhs.jpg",
+  "张小珺商业访谈录": "covers/logo-zhangxiaojun-xhs.jpg"
+};
+
+var STATUS_LABEL = { zine:"已转zine", pending:"待筛选", transcript:"逐字稿", saved:"仅收藏" };
+var STATUS_CLASS = { zine:"st-zine", pending:"st-pending", transcript:"st-transcript", saved:"st-saved" };
+
+(function(){
+  var seen={};
+  WALL.forEach(function(w){ seen[w.show]=1; });
+  var sel=document.getElementById('showSel');
+  Object.keys(seen).sort().forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
+})();
+
+function durToSec(d){ if(!d) return -1; var p=d.split(':').map(Number); if(p.length===1) return p[0]; if(p.length===2) return p[0]*60+p[1]; return p[0]*3600+p[1]*60+(p[2]||0); }
+function fmtMin(m){ var h=Math.floor(m/60); var mm=Math.floor(m%60); return h>0? h+'h'+ (mm<10?'0'+mm:mm)+'m' : mm+'m'; }
+function stale(html){ var d=document.createElement('div'); d.innerHTML=html; return d.textContent; }
+
+function rowHTML(w, showInRow){
+  var badge='';
+  if(w.star) badge+='<span class="star">★</span>';
+  var link = w.link ? w.link : 'javascript:void(0)';
+  var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
+  return '<a class="w-row" href="'+link+'">'
+    +'<span class="w-date">'+(w.date||'----.--.--')+'</span>'
+    +'<span class="w-main">'+sh
+    +'<div class="w-title">'+w.title+badge
+    + (w.status==='zine'?'<span class="badge">誌</span>':'')
+    +'</div>'
+    +'<div class="w-meta"><span class="ep">'+ (w.ep?w.ep:'') +'</span><span class="dur">'+(w.duration? w.duration+' 时长':'时长 —')+'</span></div></span>'
+    +'<span class="w-right"><span class="st-badge '+STATUS_CLASS[w.status]+'">'+STATUS_LABEL[w.status]+'</span>'
+    +'<span class="w-arrow">→</span></span>'
+    +'</a>';
+}
+
+/* 过滤后的当前命中集 */
+function currentRows(){
+  var q = stale(document.getElementById('q').value).trim().toLowerCase();
+  var st = document.querySelector('#statusChips .chip.on').getAttribute('data-status');
+  var show = document.getElementById('showSel').value;
+  return WALL.filter(function(w){
+    if(st && w.status !== st) return false;
+    if(show && w.show !== show) return false;
+    if(q){ var hay=(w.show+' '+w.title+' '+(w.ep||'')+' '+(w.date||'')).toLowerCase(); if(hay.indexOf(q)===-1) return false; }
+    return true;
+  });
+}
+function booksOf(rows){
+  var map={}, order=[];
+  rows.forEach(function(w){
+    if(!map[w.show]){ map[w.show]=[]; order.push(w.show); }
+    map[w.show].push(w);
+  });
+  order.sort(function(a,b){ return (map[b][0].date||'').localeCompare(map[a][0].date||''); });
+  return order.map(function(s){ return {show:s, eps:map[s].sort(function(x,y){return (y.date||'').localeCompare(x.date||'');})}; });
+}
+
+function updateSummary(rows){
+  var totalMin = WALL.reduce(function(s,w){return s+(w.duration?durToSec(w.duration)/60:0);},0);
+  var st = document.querySelector('#statusChips .chip.on').getAttribute('data-status');
+  var el=document.getElementById('summary');
+  el.innerHTML = '<span>共 '+WALL.length+' 集 · 累计约 '+fmtMin(totalMin)+' · 当前 '+rows.length+' 集'+(st?' · '+STATUS_LABEL[st]:'')+'</span>'
+    +'<span class="s-mono">点一本书 → 翻开它的单集</span>';
+}
+
+function bookCoverHTML(book, hit){
+  var cover = BOOK_COVER[book.show];
+  var booksClass = hit ? '' : ' b-dim';
+  var star = book.eps.some(function(w){return w.star;});
+  var html='<a class="book'+booksClass+'" href="javascript:void(0)" data-show="'+book.show+'">'
+    +'<div class="book-cover">';
+  if(cover){
+    html+='<img src="'+cover+'" alt="'+book.show+'" loading="lazy">';
+  } else {
+    html+='<div class="book-cover fallback">'
+      +'<span class="fb-eyebrow">PODCAST</span>'
+      +'<span class="fb-name">'+book.show+'</span>'
+      +'<span class="fb-foot">'+book.eps.length+' EP</span></div>';
+  }
+  if(star) html+='<span class="star-overlay">★</span>';
+  if(book.eps.length>1) html+='<span class="cover-count">'+book.eps.length+'</span>';
+  var gmin=book.eps.reduce(function(s,w){return s+(w.duration?durToSec(w.duration)/60:0);},0);
+  html+='</div>'
+    +'<div class="book-cap">'
+    +'<div class="b-name">'+book.show+'</div>'
+    +'<div class="b-meta">'+book.eps.length+' 集 · '+(gmin>0? fmtMin(gmin):'时长 —')+'</div>'
+    +'</div></a>';
+  return html;
+}
+
+function renderShelf(){
+  var rows=currentRows();
+  var q = stale(document.getElementById('q').value).trim().toLowerCase();
+  var books=booksOf(rows);
+  // 若有关键词，书按是否命中显隐（命中=节目或任一期号/标题命中）
+  var grid=document.getElementById('shelfGrid');
+  if(!books.length){ grid.innerHTML='<div class="empty" style="grid-column:1/-1">這一層還沒有。换个筛选看看。</div>'; updateSummary(rows); return; }
+  grid.innerHTML = books.map(function(b){
+    var hit = true;
+    if(q){ hit = (b.show.toLowerCase().indexOf(q)>=0) || b.eps.some(function(w){ return ((w.title||'')+(w.ep||'')).toLowerCase().indexOf(q)>=0; }); }
+    return bookCoverHTML(b, hit);
+  }).join('');
+  updateSummary(rows);
+  document.getElementById('shelfView').style.display='';
+  document.getElementById('flatView').style.display='none';
+}
+
+function renderFlat(){
+  var rows=currentRows();
+  var sort=document.getElementById('sortSel').value;
+  rows.sort(function(a,b){ var d=(b.date||'').localeCompare(a.date||''); if(sort==='dateAsc') return -d; if(sort==='durDesc') return durToSec(b.duration)-durToSec(a.duration); return d; });
+  document.getElementById('flatList').innerHTML = rows.length
+    ? '<div class="flat-list">'+rows.map(function(w){return rowHTML(w);}).join('')+'</div>'
+    : '<div class="empty">這一層還沒有。</div>';
+  updateSummary(rows);
+  document.getElementById('flatView').style.display='';
+  document.getElementById('shelfView').style.display='none';
+}
+
+function render(){
+  var view=document.querySelector('#viewSel .chip.on').getAttribute('data-view');
+  if(view==='shelf') renderShelf(); else renderFlat();
+}
+
+/* 书本详情 */
+function openBook(show){
+  var eps = WALL.filter(function(w){ return w.show===show; })
+    .sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+  document.getElementById('mShow').textContent=show;
+  document.getElementById('mCount').textContent=eps.length+' 集';
+  document.getElementById('mBody').innerHTML = eps.map(function(w){ return rowHTML(w,false); }).join('');
+  document.getElementById('mask').classList.add('show');
+}
+document.getElementById('shelfGrid').addEventListener('click', function(e){
+  var a=e.target.closest('a.book'); if(a) openBook(a.getAttribute('data-show'));
+});
+document.getElementById('mClose').addEventListener('click', function(){ document.getElementById('mask').classList.remove('show'); });
+document.getElementById('mask').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('show'); });
+
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('showSel').addEventListener('change', render);
+document.getElementById('sortSel').addEventListener('change', render);
+document.querySelectorAll('#statusChips .chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('#statusChips .chip').forEach(function(x){x.classList.remove('on');});
+    c.classList.add('on'); render();
+  });
+});
+document.querySelectorAll('#viewSel .chip').forEach(function(c){
+  c.addEventListener('click', function(){
+    document.querySelectorAll('#viewSel .chip').forEach(function(x){x.classList.remove('on');});
+    c.classList.add('on'); render();
+  });
+});
+render();
+
+</script>
 </body>
 </html>
