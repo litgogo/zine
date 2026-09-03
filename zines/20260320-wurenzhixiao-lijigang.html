@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zine · 人何以自处</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+:root, body.t-a {
+  --bg:#f5f0e8; --bg-warm:#ede8dc; --bg-rule:#d6ceb8; --ink:#2a2018; --ink-2:#4a3828;
+  --ink-3:#8a7060; --accent:#8b2e1a; --accent-dim:rgba(139,46,26,.10); --rule:#c4b89a;
+  --mono-bg:#e8e2d4; --tracing-bg:rgba(248,245,235,.55); --tracing-fold:#d8d0bc;
+  --colophon-bg:#2a2018; --colophon-fg:rgba(245,240,232,.65); --colophon-acc:#d4916a;
+}
+body.t-b {
+  --bg:#0d1b2a; --bg-warm:#112233; --bg-rule:#1e3a5f; --ink:#d4e5f7; --ink-2:#a8c8e8;
+  --ink-3:#6898c0; --accent:#5bc0f8; --accent-dim:rgba(91,192,248,.12); --rule:#1e3a5f;
+  --mono-bg:#0a1520; --tracing-bg:rgba(13,40,70,.55); --tracing-fold:#1a3050;
+  --colophon-bg:#060e18; --colophon-fg:rgba(180,210,240,.65); --colophon-acc:#5bc0f8;
+}
+body.t-c {
+  --bg:#fafaf5; --bg-warm:#f2f2ec; --bg-rule:#e0e0d8; --ink:#1a1a1a; --ink-2:#3a3a3a;
+  --ink-3:#888888; --accent:#c0392b; --accent-dim:rgba(192,57,43,.08); --rule:#cccccc;
+  --mono-bg:#f0f0ea; --tracing-bg:rgba(250,250,245,.6); --tracing-fold:#ddddd5;
+  --colophon-bg:#1a1a1a; --colophon-fg:rgba(245,245,240,.65); --colophon-acc:#c0392b;
+}
+body.t-d {
+  --bg:#f2f4ee; --bg-warm:#e8ece0; --bg-rule:#d0d8c4; --ink:#1e2818; --ink-2:#3a4830;
+  --ink-3:#7a8a6a; --accent:#3a6e28; --accent-dim:rgba(58,110,40,.09); --rule:#c0caa8;
+  --mono-bg:#e4ecd8; --tracing-bg:rgba(240,244,234,.55); --tracing-fold:#c8d4b4;
+  --colophon-bg:#1e2818; --colophon-fg:rgba(232,236,224,.65); --colophon-acc:#7ab858;
+}
+body {
+  background:var(--bg); color:var(--ink); font-family:'Noto Serif SC', Georgia, serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.zine-masthead {
+  position:sticky; top:0; z-index:100; background:var(--ink); color:var(--bg);
+  display:flex; justify-content:space-between; align-items:center; padding:0 5vw; height:44px;
+  font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+}
+.masthead-name { flex:1; } .masthead-issue { color:var(--accent); }
+.zine-cover {
+  max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
+  display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
+}
+.cover-meta {
+  display:flex; align-items:center; gap:16px; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4vh;
+}
+.issue-rule { flex:1; height:1px; background:var(--rule); }
+.issue-theme { padding:3px 10px; border:1px solid var(--rule); color:var(--accent); }
+.cover-title {
+  font-family:'Noto Serif SC', serif; font-size:clamp(32px,5.2vw,64px); font-weight:900;
+  line-height:1.12; letter-spacing:-.02em; color:var(--ink); margin-bottom:3vh;
+}
+.cover-title em { font-style:italic; color:var(--accent); }
+.cover-sub {
+  font-family:'Noto Sans SC', sans-serif; font-size:clamp(13px,1.5vw,16px); font-weight:300;
+  color:var(--ink-2); line-height:1.72; max-width:52ch; padding-left:18px;
+  border-left:3px solid var(--accent); margin-bottom:4vh;
+}
+.cover-image-slot {
+  background:var(--bg-warm); border:1px solid var(--rule); display:flex; align-items:center;
+  justify-content:center; min-height:32vh; margin-bottom:3vh; overflow:hidden;
+}
+.cover-image-slot img { width:100%; height:100%; object-fit:cover; filter:saturate(.8) contrast(1.02); }
+.cover-footer {
+  display:flex; justify-content:space-between; align-items:flex-end; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--ink-3); border-top:1px solid var(--rule);
+  padding-top:2vh; text-transform:uppercase;
+}
+.stamp { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:900; letter-spacing:-.02em; color:var(--accent); opacity:.28; }
+.pull-quote-section { max-width:960px; margin-inline:auto; padding:6vh 5vw; border-bottom:1px solid var(--rule); }
+.tracing-card {
+  position:relative; padding:36px 44px 32px; background:var(--tracing-bg); backdrop-filter:blur(1px);
+  border:1px solid rgba(128,120,100,.28); box-shadow:2px 4px 12px rgba(0,0,0,.07), 4px 8px 28px rgba(0,0,0,.05), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
+}
+.tracing-card::after {
+  content:''; position:absolute; top:0; right:0; width:0; height:0; border-style:solid;
+  border-width:0 24px 24px 0; border-color:transparent var(--tracing-fold) transparent transparent;
+  filter:drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
+}
+.pq-small-text { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.8; color:var(--ink-2); max-width:52ch; margin:0 auto 24px; text-align:center; }
+.pq-script { font-family:'Dancing Script',cursive; font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.28; color:var(--ink); text-align:center; margin-bottom:20px; }
+.pq-cite { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--ink-3); text-align:center; text-transform:uppercase; display:block; }
+.pq-below { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.82; color:var(--ink-2); max-width:52ch; margin:20px auto 0; text-align:center; }
+.zine-body { max-width:960px; margin-inline:auto; padding:5vh 5vw; border-bottom:1px solid var(--rule); }
+.zine-body.two-col { display:grid; grid-template-columns:200px 1fr; gap:4.5vw; align-items:start; }
+.col-narrow { position:sticky; top:56px; }
+.sidebar-block { border-left:2px solid var(--rule); padding-left:14px; margin-bottom:2.8vh; }
+.sidebar-label { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+.sidebar-block p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--ink-2); line-height:1.72; }
+.sidebar-tag { display:inline-block; font-family:'Noto Sans Mono',monospace; font-size:9.5px; padding:2px 7px; margin:2px 2px 2px 0; border:1px solid var(--rule); color:var(--ink-3); letter-spacing:.1em; }
+.article-eyebrow { display:flex; align-items:center; gap:12px; font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.article-eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+.article-title { font-family:'Noto Serif SC',serif; font-size:clamp(21px,2.6vw,30px); font-weight:700; line-height:1.2; letter-spacing:-.015em; color:var(--ink); margin-bottom:2vh; padding-top:1.2vh; border-top:2px solid var(--accent); }
+.article-lede { font-family:'Noto Serif SC',serif; font-size:clamp(14px,1.5vw,16.5px); font-style:italic; font-weight:300; color:var(--ink-2); line-height:1.72; margin-bottom:2vh; }
+.col-wide p { font-family:'Noto Serif SC',serif; font-size:clamp(13.5px,1.3vw,15px); color:var(--ink-2); line-height:1.92; }
+.col-wide p.spacer { height:1.6vh; }
+.col-wide blockquote { margin:20px 0; padding:14px 20px; background:var(--bg-warm); border-left:3px solid var(--rule); font-family:'Noto Sans SC',sans-serif; font-size:13.5px; font-weight:300; color:var(--ink-2); line-height:1.82; }
+.col-wide .chapter-line { margin:4px 0; padding:3px 0 3px 12px; border-left:2px solid var(--rule); font-family:'Noto Sans Mono',monospace; font-size:12px; color:var(--ink-3); }
+.tracing-appendix {
+  position:relative; max-width:900px; margin:52px auto 0; padding:32px 40px 28px; background:var(--tracing-bg);
+  backdrop-filter:blur(2px); border:1px solid rgba(128,120,100,.3);
+  box-shadow:1px 3px 8px rgba(0,0,0,.06), 3px 6px 20px rgba(0,0,0,.07), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
+  transform:rotate(-.45deg); transform-origin:top left;
+}
+.tracing-appendix::before {
+  content:'APPENDIX · 附页'; position:absolute; top:-11px; left:20px; font-family:'Noto Sans Mono',monospace;
+  font-size:9px; letter-spacing:.24em; color:var(--ink-3); text-transform:uppercase; background:var(--bg); padding:0 8px;
+}
+.appendix-inner { transform:rotate(.45deg); transform-origin:top left; }
+.appendix-title { font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--ink); margin-bottom:22px; letter-spacing:-.01em; }
+.appendix-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; }
+.appendix-label { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; padding-bottom:5px; border-bottom:1px dashed var(--rule); }
+.appendix-block p { font-family:'Noto Sans SC',sans-serif; font-size:12px; font-weight:300; color:var(--ink-2); line-height:1.78; }
+.appendix-rule { height:1px; background:rgba(128,120,100,.25); margin:20px 0 12px; }
+.appendix-fine { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase; opacity:.7; }
+.colophon { background:var(--colophon-bg); padding:6vh 5vw 7vh; margin-top:5vh; }
+.colophon-inner { max-width:960px; margin-inline:auto; }
+.colophon-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4vw; margin-bottom:4vh; }
+.colophon h5 { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--colophon-acc); margin-bottom:10px; }
+.colophon p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--colophon-fg); line-height:1.78; }
+.colophon-rule { height:1px; background:rgba(128,120,100,.2); margin-bottom:2.5vh; }
+.colophon-fine { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.18em; color:var(--colophon-fg); opacity:.35; text-transform:uppercase; }
+@media (max-width:640px) {
+  .zine-body.two-col { grid-template-columns:1fr; }
+  .col-narrow { position:static; }
+  .colophon-grid { grid-template-columns:1fr; gap:3vh; }
+  .appendix-grid { grid-template-columns:1fr; }
+  .tracing-appendix { margin:40px 0 0; }
+}
+.back-home { margin-left: 18px; font-size: 10px; letter-spacing: .1em; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.back-home:hover { opacity: .7; }
+.back-home-footer { display: inline-block; margin: 0 0 14px; font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--colophon-acc); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.back-home-footer:hover { opacity: .7; }
+</style>
+</head>
+<body class="t-a">
+
+<header class="zine-masthead">
+  <span class="masthead-name">无人知晓 E45 · 李继刚</span>
+  <span class="masthead-issue">VOL. — · 发布 2026-03-20<a class="back-home" href="../index.html">← 返回首页</a></span>
+</header>
+
+<section class="zine-cover">
+  <div class="cover-meta">
+    <span>PODCAST ZINE · 逐字稿精编</span>
+    <span class="issue-rule"></span>
+    <span class="issue-theme">牛皮纸档案</span>
+  </div>
+  <h1 class="cover-title">人何以<br>自处</h1>
+  <p class="cover-sub">孟岩对话李继刚。AI 拿走了「脑」（干·知识·算力），把「心」（湿·起心动念·意志性）留给做人。李继刚从理性的尽头走向心灵，他的底层是一套「取景框 + 结构 + 秩 + 三大定律（贝叶斯/奥卡姆/万有理论）」，由此推演出三个世界、时间不存在、干与湿、脑与心、环与链。</p>
+  <div class="cover-image-slot">
+    <img src="../posters/20260320-wurenzhixiao-lijigang.jpg" alt="无人知晓 E45 人何以自处 封面">
+  </div>
+  <div class="cover-footer">
+    <span>无人知晓 E45 · 孟岩 × 李继刚 · 3:26</span>
+    <span class="stamp">心</span>
+  </div>
+</section>
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">无人知晓 E45 · 孟岩 × 李继刚</p>
+    <div class="pq-script">脑交给模型，心交给人。</div>
+    <span class="pq-cite">—— 本期核心</span>
+    <p class="pq-below">脑力和心力是两种力量。AI 是放大器，放大的是你的意志性——你要先立在那儿。</p>
+  </div>
+</section>
+
+<section class="zine-body two-col">
+  <aside class="col-narrow">
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">本期索引</h4>
+      <p>取景框与结构<br>秩与三大定律<br>三个世界 · 时间不存在<br>读书的算力反转<br>人与 AI 两种姿态<br>干与湿 · 脑与心<br>AI 公司=井，不是网<br>记忆之环 · 知识本体<br>我在 vs 他在 · 表达即存在<br>人何以自处</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">嘉宾</h4>
+      <p>李继刚 · 自诩「读书人」<br>一级+二级市场投资人<br>每天大量读纸质书</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">关注</h4>
+      <p>取景框、求知方法论、人与 AI 的意志性之争、长尾 vs 马太。</p>
+    </div>
+  </aside>
+  <article class="col-wide">
+    <div class="article-eyebrow">Chapter 01 · 开场</div>
+    <h2 class="article-title">取景框与结构：把观点和「我」分开</h2>
+    <p>每个人都用一套框架理解世界，经碰撞、bad case 搏斗、打磨而固化沉淀，那就是你的「取景框」。真实的东西（道/真理/本体）是一个高维投射，每个取景框只是其中一个片面——「每个人都是错的，但在自己的取景框里又是对的」，所以动作变成：尽可能收集更多取景框。「我的观点和我是分得很开的」，若有人能用更好的取景框把我破而后立，我感激且开心。被批判的是取景框，不是我。</p>
+    <p>结构 = 约束条件构成的可能性空间。公司的边界、愿景、价值观、文化、组织原则都是「原材料」，拼凑出的骨架叫「结构」——信息流过不同结构，自有不同输出。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 02 · 求质</div>
+    <h2 class="article-title">秩与三大底层定律</h2>
+    <p>1000 个变量里往往只有 3 个是「维度级」的，构成坐标系，其余 997 个只是其上的位置与呈现。从复杂中看简单，找的就是那个「秩」。三大底层定律：贝叶斯（先验片面→谦卑与开放是底色而非表演）、奥卡姆剃刀（剥离表象找那 3 个）、万有理论（找一个能以一驭万统一下层的公式）。那种发现底层变量的爽感，是「站在山顶往下俯视」。真正难得的是在茫茫变量中找到 MA，而不是看到 F=MA 后说一句「不过如此」。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 03 · 三个世界</div>
+    <h2 class="article-title">空间不存在，时间不存在</h2>
+    <p>我们同时活在三个世界：原子世界（位置稀缺，工业革命 200 年，世界变丰饶）→ 比特/互联网世界（空间不存在，任意两点距离为零，马太效应，注意力稀缺，世界变平）→ AI/向量世界（时间不存在，过去现在未来同在，人类知识被烧成晶体，长尾效应，世界变快）。互联网公司在编织一张网，价值 = 节点数的平方；AI 世界里，那本 500 页的书不用读完，模型瞬间调用它的内核。</p>
+    <div class="chapter-line">时间不存在：过去几千年的智慧被模型烧成晶体，我们直接对话即可调用</div>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 04 · 读书</div>
+    <h2 class="article-title">算力的反转：把书读薄与读厚</h2>
+    <p>现实人是「有限算力」，同一信息提取出什么因人而异；AI 是无穷算力。于是读书从「提取结构」变成「启发思考、提问题」，提取交给 AI。书读薄（提炼结构）与书读厚（跨域延伸、制造冲突涟漪）不是二选一，是光谱两端，让 AI 同时跑两头。读书用杠铃策略：只读经典（100 年前还在的书）+ 最前沿论文，中间畅销书少读。taste 即权重——大量训练后神经网络里沉淀出的那个东西；feed 即命运——信息源种下的因，化成念头、化成行为、化成命运。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 05 · 协作</div>
+    <h2 class="article-title">人与 AI 的两种姿态</h2>
+    <p>第一种：左手 control C、右手 control V——被穿透、大脑停滞、「变负」。第二种：先立自己的 50-80 字初稿再交给 AI 放大——AI 放大的是你的「意志性」，被乘法放大。这是路线问题：谁是谁的爹。判断力的难点不在设备的提示词，而在心里的起点（在哪）、思维的形状（怎么限制）、要去哪——AI 放大你已有的判断力，不生产它。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 06 · 人之为人的所在</div>
+    <h2 class="article-title">干与湿，脑与心</h2>
+    <p>社会像烘干机把人当耗材、统一化焚烧，这是「干」（知识、技能）；你的情感、波动、恋爱时的能量涌动，是「湿」（起心动念）。旧世界干值钱、湿被压缩成「不必要」；AI 时代干被 AI 碾压，于是湿成为真正稀缺的所在——一场招魂式回归。脑力和心力是两种力量：脑交给模型，心交给人。体力→机器，脑力→AI，剩的是心力（湿）。</p>
+    <div class="chapter-line">「脑算不过来的事情不如交给心」——但那是心里愿意为之过意不去的东西</div>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 07 · 商业</div>
+    <h2 class="article-title">AI 时代的公司=井，不是网</h2>
+    <p>互联网是马太效应的网（节点数平方）；AI 是长尾效应的一口井——井的深度 = 对用户的理解 / 向量密度 / context / memory+soul 的刻画。一人公司、一人带 agent 军团；需要「AI 时代的德鲁克」（一人管理一万个 agent）与「AI 时代的存在主义哲学」。当让渡出去的对象的智能水平决定你的产出价值时，「模型之战不是商战，是国战」。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 08 · 记忆</div>
+    <h2 class="article-title">记忆之环：把开放的链变成环</h2>
+    <p>记忆是闭环（环），链是开放的、射出去就忘了。读一本书提炼出的更高维抽象就是一个环（如「金字塔原理」那座发光的三角形）；模型预训练冲刷权重，本质是在训练一个个「知识本体结构」的环。写一条 prompt、得到结果、结束——是一条链；要把它变成环：用 memory（AI 对你记忆的刻画）+ soul（对你灵魂的刻画）+ 15 条原则（对关系的刻画），配暗号触发写入、每周结构总结、skill 连接任意两篇笔记找同构性——让每次对话沉淀成可生长的本地系统。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 09 · 存在的坐标</div>
+    <h2 class="article-title">我在 vs 他在，表达即存在</h2>
+    <p>社会的叙事叫「他在」（IT IS），自己独一份的起心动念叫「我在」。用剃刀审视每个念头的来源——「我在」的舒张是利，「他在」的侵蚀是害。面对那个「你什么都知道的高山」，要承认差异，但仍要发出自己的声音——「表达即存在，如果不表达，在某种程度上就不存在了」。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 10 · 时代之问</div>
+    <h2 class="article-title">人何以自处</h2>
+    <p>人来世间走这一趟，到底干嘛来的？李继刚的答案会变，但他正一次次剥离社会强加的东西，让主体性慢慢凸显。AI 带来的是生产力的极大解放，也是旧叙事（水库教育、工厂螺丝）的崩塌。一个从理性尽头走向心灵，一个从心灵出发走向结构——两人在人何以自处这个问题上，会合了。</p>
+    <blockquote>我的观点和我是分得开的——若有人能用更好的取景框把我破而后立，我是非常感激和开心的。</blockquote>
+
+    <div class="article-eyebrow">Gogo 的共鸣</div>
+    <h2 class="article-title">AI 放大你已有的判断力，不生产它</h2>
+    <p>取景框即解放：把「观点」和「我」分开，是面对分歧与焦虑最好的技术——被批判的是取景框，不是我。干与湿的分类点破了无数内耗：用「干」去解决「湿」的问题，是错位。而那句「AI 放大的是你已有的判断力，不生产它」——和投资里「公式人人会、参数无人知（G 是艺术）」同构：难点在代码背后的部分，在心里知道起点、思维的形状、要去哪。</p>
+  </article>
+</section>
+
+<div class="tracing-appendix">
+  <div class="appendix-inner">
+    <div class="appendix-title">附言 · Afterword</div>
+    <div class="appendix-grid">
+      <div class="appendix-block">
+        <div class="appendix-label">一人</div>
+        <p>李继刚：自诩读书人、一级+二级市场投资人。取景框收集者，以「求真」为大道。从理性的尽头走向心灵。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">十个把手</div>
+        <p>取景框与结构 · 秩与三大定律 · 三个世界（时间/空间不存在）· 读书算力反转 · 两种协作姿态 · 干与湿 脑与心 · AI=井非网 · 记忆之环 · 我在vs他在 · 人何以自处。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">Gogo 的思考</div>
+        <p>AI 放大已有的判断力，不生产它。取景框把「我」和「观点」分开——反拿捏的技术手柄。不要用干去解决湿的问题。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">备注</div>
+        <p>无人知晓 E45 · 孟岩 × 李继刚逐字稿精编。素材来自 podcast-kb（含取景框与结构/干与湿·脑与心/知识本体·环与链 三张概念卡）。</p>
+      </div>
+    </div>
+    <div class="appendix-rule"></div>
+    <div class="appendix-fine">本附页以硫酸纸印刷 · 无人知晓 E45 · 发布 2026-03-20</div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <h5>关于本期</h5>
+        <p>无人知晓 E45<br>孟岩对话李继刚：人何以自处 · 3:26</p>
+      </div>
+      <div>
+        <h5>来源</h5>
+        <p>逐字稿精编自 podcast-kb<br>发布 2026-03-20 · Venues 整理</p>
+      </div>
+      <div>
+        <h5>设计信息</h5>
+        <p>Noto Serif SC / Dancing Script<br>Zine Skill v2 · 牛皮纸档案</p>
+      </div>
+    </div>
+    <div class="colophon-rule"></div>
+    <a class="back-home-footer" href="../index.html">← 返回档案首页</a>
+    <p class="colophon-fine">© 2026 · PODCAST ZINE · 心</p>
+  </div>
+</footer>
+
+</body>
+</html>

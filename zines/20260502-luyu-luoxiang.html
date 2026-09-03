@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zine · 在命运的剧本揭晓前</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+:root, body.t-a {
+  --bg:#f5f0e8; --bg-warm:#ede8dc; --bg-rule:#d6ceb8; --ink:#2a2018; --ink-2:#4a3828;
+  --ink-3:#8a7060; --accent:#8b2e1a; --accent-dim:rgba(139,46,26,.10); --rule:#c4b89a;
+  --mono-bg:#e8e2d4; --tracing-bg:rgba(248,245,235,.55); --tracing-fold:#d8d0bc;
+  --colophon-bg:#2a2018; --colophon-fg:rgba(245,240,232,.65); --colophon-acc:#d4916a;
+}
+body.t-b {
+  --bg:#0d1b2a; --bg-warm:#112233; --bg-rule:#1e3a5f; --ink:#d4e5f7; --ink-2:#a8c8e8;
+  --ink-3:#6898c0; --accent:#5bc0f8; --accent-dim:rgba(91,192,248,.12); --rule:#1e3a5f;
+  --mono-bg:#0a1520; --tracing-bg:rgba(13,40,70,.55); --tracing-fold:#1a3050;
+  --colophon-bg:#060e18; --colophon-fg:rgba(180,210,240,.65); --colophon-acc:#5bc0f8;
+}
+body.t-c {
+  --bg:#fafaf5; --bg-warm:#f2f2ec; --bg-rule:#e0e0d8; --ink:#1a1a1a; --ink-2:#3a3a3a;
+  --ink-3:#888888; --accent:#c0392b; --accent-dim:rgba(192,57,43,.08); --rule:#cccccc;
+  --mono-bg:#f0f0ea; --tracing-bg:rgba(250,250,245,.6); --tracing-fold:#ddddd5;
+  --colophon-bg:#1a1a1a; --colophon-fg:rgba(245,245,240,.65); --colophon-acc:#c0392b;
+}
+body.t-d {
+  --bg:#f2f4ee; --bg-warm:#e8ece0; --bg-rule:#d0d8c4; --ink:#1e2818; --ink-2:#3a4830;
+  --ink-3:#7a8a6a; --accent:#3a6e28; --accent-dim:rgba(58,110,40,.09); --rule:#c0caa8;
+  --mono-bg:#e4ecd8; --tracing-bg:rgba(240,244,234,.55); --tracing-fold:#c8d4b4;
+  --colophon-bg:#1e2818; --colophon-fg:rgba(232,236,224,.65); --colophon-acc:#7ab858;
+}
+body {
+  background:var(--bg); color:var(--ink); font-family:'Noto Serif SC', Georgia, serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.zine-masthead {
+  position:sticky; top:0; z-index:100; background:var(--ink); color:var(--bg);
+  display:flex; justify-content:space-between; align-items:center; padding:0 5vw; height:44px;
+  font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+}
+.masthead-name { flex:1; } .masthead-issue { color:var(--accent); }
+.zine-cover {
+  max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
+  display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
+}
+.cover-meta {
+  display:flex; align-items:center; gap:16px; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4vh;
+}
+.issue-rule { flex:1; height:1px; background:var(--rule); }
+.issue-theme { padding:3px 10px; border:1px solid var(--rule); color:var(--accent); }
+.cover-title {
+  font-family:'Noto Serif SC', serif; font-size:clamp(32px,5.2vw,64px); font-weight:900;
+  line-height:1.12; letter-spacing:-.02em; color:var(--ink); margin-bottom:3vh;
+}
+.cover-title em { font-style:italic; color:var(--accent); }
+.cover-sub {
+  font-family:'Noto Sans SC', sans-serif; font-size:clamp(13px,1.5vw,16px); font-weight:300;
+  color:var(--ink-2); line-height:1.72; max-width:52ch; padding-left:18px;
+  border-left:3px solid var(--accent); margin-bottom:4vh;
+}
+.cover-image-slot {
+  background:var(--bg-warm); border:1px solid var(--rule); display:flex; align-items:center;
+  justify-content:center; min-height:30vh; margin-bottom:3vh; overflow:hidden; padding:5vh 6vw;
+}
+.cover-image-slot img { width:100%; height:100%; object-fit:cover; filter:saturate(.8) contrast(1.02); }
+.cover-quote {
+  font-family:'Noto Serif SC',serif; font-size:clamp(22px,3vw,34px); font-weight:700; text-align:center; line-height:1.5; color:var(--ink);
+}
+.cover-quote .cq-sub { display:block; margin-top:2.5vh; font-family:'Noto Sans Mono',monospace; font-size:11px; letter-spacing:.2em; color:var(--ink-3); font-weight:400; }
+.cover-footer {
+  display:flex; justify-content:space-between; align-items:flex-end; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--ink-3); border-top:1px solid var(--rule);
+  padding-top:2vh; text-transform:uppercase;
+}
+.stamp { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:900; letter-spacing:-.02em; color:var(--accent); opacity:.28; }
+.pull-quote-section { max-width:960px; margin-inline:auto; padding:6vh 5vw; border-bottom:1px solid var(--rule); }
+.tracing-card {
+  position:relative; padding:36px 44px 32px; background:var(--tracing-bg); backdrop-filter:blur(1px);
+  border:1px solid rgba(128,120,100,.28); box-shadow:2px 4px 12px rgba(0,0,0,.07), 4px 8px 28px rgba(0,0,0,.05), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
+}
+.tracing-card::after {
+  content:''; position:absolute; top:0; right:0; width:0; height:0; border-style:solid;
+  border-width:0 24px 24px 0; border-color:transparent var(--tracing-fold) transparent transparent;
+  filter:drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
+}
+.pq-small-text { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.8; color:var(--ink-2); max-width:52ch; margin:0 auto 24px; text-align:center; }
+.pq-script { font-family:'Dancing Script',cursive; font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.28; color:var(--ink); text-align:center; margin-bottom:20px; }
+.pq-cite { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--ink-3); text-align:center; text-transform:uppercase; display:block; }
+.pq-below { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.82; color:var(--ink-2); max-width:52ch; margin:20px auto 0; text-align:center; }
+.zine-body { max-width:960px; margin-inline:auto; padding:5vh 5vw; border-bottom:1px solid var(--rule); }
+.zine-body.two-col { display:grid; grid-template-columns:200px 1fr; gap:4.5vw; align-items:start; }
+.col-narrow { position:sticky; top:56px; }
+.sidebar-block { border-left:2px solid var(--rule); padding-left:14px; margin-bottom:2.8vh; }
+.sidebar-label { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+.sidebar-block p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--ink-2); line-height:1.72; }
+.sidebar-tag { display:inline-block; font-family:'Noto Sans Mono',monospace; font-size:9.5px; padding:2px 7px; margin:2px 2px 2px 0; border:1px solid var(--rule); color:var(--ink-3); letter-spacing:.1em; }
+.article-eyebrow { display:flex; align-items:center; gap:12px; font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.article-eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+.article-title { font-family:'Noto Serif SC',serif; font-size:clamp(21px,2.6vw,30px); font-weight:700; line-height:1.2; letter-spacing:-.015em; color:var(--ink); margin-bottom:2vh; padding-top:1.2vh; border-top:2px solid var(--accent); }
+.article-lede { font-family:'Noto Serif SC',serif; font-size:clamp(14px,1.5vw,16.5px); font-style:italic; font-weight:300; color:var(--ink-2); line-height:1.72; margin-bottom:2vh; }
+.col-wide p { font-family:'Noto Serif SC',serif; font-size:clamp(13.5px,1.3vw,15px); color:var(--ink-2); line-height:1.92; }
+.col-wide p.spacer { height:1.6vh; }
+.col-wide blockquote { margin:20px 0; padding:14px 20px; background:var(--bg-warm); border-left:3px solid var(--rule); font-family:'Noto Sans SC',sans-serif; font-size:13.5px; font-weight:300; color:var(--ink-2); line-height:1.82; }
+.col-wide .chapter-line { margin:4px 0; padding:3px 0 3px 12px; border-left:2px solid var(--rule); font-family:'Noto Sans Mono',monospace; font-size:12px; color:var(--ink-3); }
+.tracing-appendix {
+  position:relative; max-width:900px; margin:52px auto 0; padding:32px 40px 28px; background:var(--tracing-bg);
+  backdrop-filter:blur(2px); border:1px solid rgba(128,120,100,.3);
+  box-shadow:1px 3px 8px rgba(0,0,0,.06), 3px 6px 20px rgba(0,0,0,.07), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
+  transform:rotate(-.45deg); transform-origin:top left;
+}
+.tracing-appendix::before {
+  content:'APPENDIX · 附页'; position:absolute; top:-11px; left:20px; font-family:'Noto Sans Mono',monospace;
+  font-size:9px; letter-spacing:.24em; color:var(--ink-3); text-transform:uppercase; background:var(--bg); padding:0 8px;
+}
+.appendix-inner { transform:rotate(.45deg); transform-origin:top left; }
+.appendix-title { font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--ink); margin-bottom:22px; letter-spacing:-.01em; }
+.appendix-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; }
+.appendix-label { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; padding-bottom:5px; border-bottom:1px dashed var(--rule); }
+.appendix-block p { font-family:'Noto Sans SC',sans-serif; font-size:12px; font-weight:300; color:var(--ink-2); line-height:1.78; }
+.appendix-rule { height:1px; background:rgba(128,120,100,.25); margin:20px 0 12px; }
+.appendix-fine { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase; opacity:.7; }
+.colophon { background:var(--colophon-bg); padding:6vh 5vw 7vh; margin-top:5vh; }
+.colophon-inner { max-width:960px; margin-inline:auto; }
+.colophon-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4vw; margin-bottom:4vh; }
+.colophon h5 { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--colophon-acc); margin-bottom:10px; }
+.colophon p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--colophon-fg); line-height:1.78; }
+.colophon-rule { height:1px; background:rgba(128,120,100,.2); margin-bottom:2.5vh; }
+.colophon-fine { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.18em; color:var(--colophon-fg); opacity:.35; text-transform:uppercase; }
+@media (max-width:640px) {
+  .zine-body.two-col { grid-template-columns:1fr; }
+  .col-narrow { position:static; }
+  .colophon-grid { grid-template-columns:1fr; gap:3vh; }
+  .appendix-grid { grid-template-columns:1fr; }
+  .tracing-appendix { margin:40px 0 0; }
+}
+.back-home { margin-left: 18px; font-size: 10px; letter-spacing: .1em; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.back-home:hover { opacity: .7; }
+.back-home-footer { display: inline-block; margin: 0 0 14px; font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--colophon-acc); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.back-home-footer:hover { opacity: .7; }
+</style>
+</head>
+<body class="t-a">
+
+<header class="zine-masthead">
+  <span class="masthead-name">陈鲁豫漫谈 · 罗翔</span>
+  <span class="masthead-issue">VOL. — · 收听 2026.05.02<a class="back-home" href="../index.html">← 返回首页</a></span>
+</header>
+
+<section class="zine-cover">
+  <div class="cover-meta">
+    <span>PODCAST ZINE · 逐字稿精编</span>
+    <span class="issue-rule"></span>
+    <span class="issue-theme">牛皮纸档案</span>
+  </div>
+  <h1 class="cover-title">在命运的剧本揭晓前<br>尽力扮演好<br>自己的角色</h1>
+  <p class="cover-sub">B 站 3200 万粉法律人罗翔，与鲁豫的一场对谈。他从「被个高和口音定义起来的少年」讲起，穿过田忌赛马、为什么学法律，抵达全篇的哲学枢纽：宿命是消极等待，命定是在未揭晓的天命里尽力而为。掌控不了剧本，但能掌控态度。</p>
+  <div class="cover-image-slot">
+    <div class="cover-quote">
+      命定是积极有为的<br>在努力之后，再去追寻神秘莫测的天命
+      <span class="cq-sub">罗翔 · 尽人事，听天命</span>
+    </div>
+  </div>
+  <div class="cover-footer">
+    <span>陈鲁豫漫谈 · 罗翔 · ~3 小时</span>
+    <span class="stamp">命</span>
+  </div>
+</section>
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">陈鲁豫慢谈 × 罗翔 · 逐字稿精编</p>
+    <div class="pq-script">真正的清醒不是掌控剧本，而是选那条向上的道路。</div>
+    <span class="pq-cite">—— 本期核心</span>
+    <p class="pq-below">在狂妄与虚无间奔跑，向上既可以是 up，也可以是 good。</p>
+  </div>
+</section>
+
+<section class="zine-body two-col">
+  <aside class="col-narrow">
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">本期索引</h4>
+      <p>00:00 被个高定义起来<br>10:30 田忌赛马与被推着走<br>25:30 洞穴外的完美圆<br>27:31 命定 vs 宿命<br>44:59 法律选「最不坏」<br>23:31 职业正当性 ≠ 正义<br>02:11 声名与评价体系<br>03:00 up vs good</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">嘉宾</h4>
+      <p>罗翔 · 中国政法大学教授<br>刑法学者 · B 站 3200 万粉<br>自谦「法学殿堂的门童」</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">关注</h4>
+      <p>命与运的态度层、法律的「最不坏」、反评价体系、向内求。</p>
+    </div>
+  </aside>
+  <article class="col-wide">
+    <div class="article-eyebrow">Chapter 01 · 00:00–10:30</div>
+    <h2 class="article-title">一个被「个高」定义起来的少年</h2>
+    <p>童年困惑源于「大家对你的期待」——个高就该打篮球好，结果什么运动都不会，于是被嘲笑、被取绰号（竹竿、瘸子），最后刻意含胸驼背，泯灭个性融入群体。他引 procrustes 铁床的典故：不管高矮都要被拉到床的尺寸，为了不被排斥主动削足适履。从耒阳到北京的口音困惑，同样是「从众」——在群体中感到安全，害怕被排斥。</p>
+    <div class="chapter-line">05:53 · 「妖怪之船」procrustes 铁床</div>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 02 · 10:30–20:40</div>
+    <h2 class="article-title">田忌赛马，与被推着走的人生</h2>
+    <p>就业与专业的选择并非自己权衡，而是「父母灌输」：读书是唯一的路，考不上就去广东打工。班主任用田忌赛马劝他选文科——数学在文科班有绝对优势，在理科班只算平庸。为什么学法律？是港台片熏陶的模糊印象（律师帅、法官戴假发），文科生当年只剩法律与新闻这条路——不是热爱，而是没得选。罗翔自我注解：「你觉得是你选的，其实不是你选的，一切都是命中注定。」</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 03 · 25:30–27:03</div>
+    <h2 class="article-title">洞穴外的完美圆</h2>
+    <p>理想在洞穴之外——正因为有洞穴外的理想，才能忍受洞穴内的不完美。公平正义是一个画不出的完美圆：现实画不出完美的圆，不代表正义不存在；接受它的不完美，并努力让它更完美。这是罗翔的现实主义：既警惕全盘妥协，也警惕虚无主义的现实。</p>
+    <blockquote>公平正义是洞穴之外的一个完美的圆。现实画不出完美的圆，所以要接受它的不完美性，并努力让它变得完美。</blockquote>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 04 · 27:31–28:36 · 哲学枢纽</div>
+    <h2 class="article-title">命定 vs 宿命：你只能在神秘的天命里尽力而为</h2>
+    <p>宿命是消极被动、等待性的——「你什么都不用干」。命定是积极有为——「尽人事，听天命」是努力之后再追寻天命，而不是反过来的「听天命，尽人事」。命定里天命尚未揭示，所以你只能「在神秘的天命中尽力而为」，也许终其一生都不知道天命具体是什么。被命运推着走、关键时刻有贵人相助——很多选择看似自由，实则是命定的水流在带。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 05 · 44:56–47:39</div>
+    <h2 class="article-title">信息越多，选择越差</h2>
+    <p>个体选择永远发生在理性有限之下；信息越充沛往往越选不出——「各种选择似乎都挺好，又都不好」。命运一定遮蔽一些信息，不可能给你全知全貌，所以面对命运盲猜，未必比精挑细选差。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 06 · 44:59–50:10</div>
+    <h2 class="article-title">法律：追逐「最不坏」，而非「最好」</h2>
+    <p>法律思维不是追求最好的选择，而是避免出现最坏的选择——因为好的价值互相冲突，只能选「相对更不坏」。法治是悖论性精神，既要又要：既要用法律惩罚不法，又要限制惩罚不法的权力本身。「刑不可知，则威不可测」——宁可允许钻漏洞，也要公布法律（这是更不坏的选项）。法律人天然被误解，是不讨喜的职业。</p>
+    <div class="chapter-line">48:58 · 人皆曰可杀，我意独怜之</div>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 07 · 23:31–24:28</div>
+    <h2 class="article-title">职业正当性 ≠ 追逐正义</h2>
+    <p>从事正当职业的人并不必然追逐正义。职业正当性反而给他强烈的道德自信，让他「为达目的不择手段」。理查德·朱维尔的悲歌是最好的提醒——不要对从事高尚职业的人带一丝神圣感，他们和我们一样都是有缺陷的人。人的权利如果不受限制，都会去滥用。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 08 · 02:11–03:05</div>
+    <h2 class="article-title">声名之后：评价体系与愚人的游戏</h2>
+    <p>警惕任何评价体系——一旦把自己放进新的评价体系（涨粉、点赞、职称），就永远处于焦虑崩溃状态。「乡人皆好之」不可能，没有人能获得全部掌声。一夜成名是诚惶诚恐的：这到底是生命的绽放，还是愚人的游戏？「先意识到是愚人的游戏，才可能变成生命的绽放。」向内求而非向外显，真正的成功是内在的泰然若素。</p>
+    <p class="spacer"></p>
+
+    <div class="article-eyebrow">Chapter 09 · 02:59–03:05 · 终点</div>
+    <h2 class="article-title">失望也是盼望，up 与 good</h2>
+    <p>失望 = 矢志不渝的盼望——认为人生毫无意义这句话本身有意义。理想国最终句「走向上的道路」：向上既可以是 up 也可以是 good，罗翔选 good。人总在狂妄与虚无间来回奔跑。认识你自己——人不是把自己想得太重要，就是想得太卑微。他自我定位：三流四流学者之间、「法学殿堂的门童」。</p>
+    <blockquote>人不能狂妄，人又不能虚无，因为人总是在狂妄和虚无中来回奔跑。</blockquote>
+
+    <div class="article-eyebrow">Gogo 的共鸣</div>
+    <h2 class="article-title">向内求，是命定落地的样子</h2>
+    <p>宿命是消极的，命定是有所为的——戳中「躺平」与「内耗」的拉扯：掌控不了剧本，但能掌控态度。写作的本质是表达、懂得越多越谦卑、信息越多选择越差、文科生不必着急——罗翔把「命」从施展那里的「约束/诠释权」推进了一步：不是认命，而是在未揭晓的天命里尽力扮演当下的角色。这种「先演好现有剧本」恰是向内求最落地的样子。</p>
+  </article>
+</section>
+
+<div class="tracing-appendix">
+  <div class="appendix-inner">
+    <div class="appendix-title">附言 · Afterword</div>
+    <div class="appendix-grid">
+      <div class="appendix-block">
+        <div class="appendix-label">一人</div>
+        <p>罗翔，刑法学者。宿命论躺着等，命定论在努力中待天命揭晓——他把命和运，推进到「面对命的态度」这一层。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">九个把手</div>
+        <p>被定义起的少年 · 田忌赛马 · 洞穴外的圆 · 命定vs宿命 · 最不坏 · 职业≠正义 · 评价体系 · 愚人游戏 · up与good。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">Gogo 的思考</div>
+        <p>命定的姿态 = 先演好现有剧本 = 向内求落地。Contextual Truth 有了极硬的实例：法律在冲突价值间只能选「最不坏」。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">备注</div>
+        <p>陈鲁豫漫谈 · 罗翔逐字稿精编。素材来自 Gogo 播客知识库（podcast-kb），收听 2026-05-02。</p>
+      </div>
+    </div>
+    <div class="appendix-rule"></div>
+    <div class="appendix-fine">本附页以硫酸纸印刷 · 陈鲁豫漫谈 × 罗翔 · 收听 2026.05.02</div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <h5>关于本期</h5>
+        <p>陈鲁豫漫谈 · 罗翔<br>在命运的剧本揭晓前，尽力扮演好自己的角色 · ~3 小时</p>
+      </div>
+      <div>
+        <h5>来源</h5>
+        <p>逐字稿精编自 podcast-kb<br>收听归档 2026-05-02 · Venues 整理</p>
+      </div>
+      <div>
+        <h5>设计信息</h5>
+        <p>Noto Serif SC / Dancing Script<br>Zine Skill v2 · 牛皮纸档案</p>
+      </div>
+    </div>
+    <div class="colophon-rule"></div>
+    <a class="back-home-footer" href="../index.html">← 返回档案首页</a>
+    <p class="colophon-fine">© 2026 · PODCAST ZINE · 命</p>
+  </div>
+</footer>
+
+</body>
+</html>
