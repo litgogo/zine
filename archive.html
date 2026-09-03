@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>检索墙 · 收听档案</title>
+<title>检索墙 · 收听书架</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500;700;900&family=Noto+Serif+SC:wght@300;400;500;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Zen+Kaku+Gothic+New:wght@300;400;500&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@ html { font-size: 16px; scroll-behavior: smooth; }
   --bg: #f2f4f6; --bg-warm: #e9edf0; --bg-rule: #d7dde2;
   --ink: #1a1a1a; --ink-2: #333; --ink-3: #666;
   --accent: #1a1a1a; --accent-dim: rgba(26,26,26,.08);
-  --rule: #c9d1d8; --mono-bg: #e4e9ec; --star: #c75146;
+  --rule: #c9d1d8; --mono-bg: #e4e9ec; --star: #c75146; --shelf: #e4e9ec;
 }
 body { background: var(--bg); color: var(--ink); font-family: 'Noto Serif SC','Noto Serif JP',Georgia,serif; line-height: 1.9; -webkit-font-smoothing: antialiased; }
 .site-nav {
@@ -31,16 +31,16 @@ body { background: var(--bg); color: var(--ink); font-family: 'Noto Serif SC','N
 .nav-links a { color: var(--ink-2); text-decoration:none; transition:color .25s; }
 .nav-links a:hover, .nav-links a.on { color: var(--accent); }
 
-.wall-header { padding: 20vh 8vw 7vh; border-bottom:1px solid var(--rule); }
+.wall-header { padding: 19vh 8vw 6vh; border-bottom:1px solid var(--rule); }
 .wall-eyebrow { font-family:'Noto Sans Mono',monospace; font-size:11px; letter-spacing:.3em; color:var(--accent); margin-bottom:3.5vh; }
 .wall-title { font-family:'Noto Serif JP','Noto Serif SC',serif; font-size: clamp(30px,4.6vw,54px); font-weight:900; letter-spacing:.05em; }
-.wall-sub { margin-top:2.5vh; font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-weight:300; font-size:clamp(12px,1.2vw,14px); color:var(--ink-2); max-width:46ch; }
+.wall-sub { margin-top:2.5vh; font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-weight:300; font-size:clamp(12px,1.2vw,14px); color:var(--ink-2); max-width:52ch; }
 
 .tools {
   max-width:1500px; margin-inline:auto; padding: 3vh 6vw 1vh;
   display:flex; flex-wrap:wrap; gap:14px 18px; align-items:center;
 }
-.search-wrap { position:relative; flex:1 1 260px; }
+.search-wrap { position:relative; flex:1 1 240px; }
 .search-wrap input {
   width:100%; padding:11px 14px 11px 34px;
   background:var(--bg); border:1px solid var(--rule);
@@ -49,7 +49,7 @@ body { background: var(--bg); color: var(--ink); font-family: 'Noto Serif SC','N
 }
 .search-wrap input::placeholder { color:var(--ink-3); }
 .search-wrap input:focus { border-color:var(--ink); }
-.search-ico { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-family:'Noto Sans Mono'; font-size:11px; letter-spacing:.05em; }
+.search-ico { position:absolute; left:12px; top:50%; transform:translateY(-50%); color:var(--ink-3); font-family:'Noto Sans Mono'; font-size:11px; }
 .ctrl-group { display:flex; align-items:center; gap:10px; font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:11px; letter-spacing:.08em; color:var(--ink-2); }
 .chips { display:flex; gap:6px; flex-wrap:wrap; }
 .chip {
@@ -69,9 +69,61 @@ select:focus { border-color:var(--ink); }
 .summary {
   max-width:1500px; margin-inline:auto; padding:2vh 6vw 0;
   font-family:'Noto Sans Mono',monospace; font-size:10.5px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase;
+  display:flex; align-items:baseline; gap:18px; flex-wrap:wrap;
 }
+.summary .s-mono { font-size:10px; color:var(--ink-3); }
 
-.wall-list { max-width:1500px; margin-inline:auto; padding:2vh 6vw 10vh; }
+/* ── 书架 ── */
+.shelf-section { max-width:1500px; margin-inline:auto; padding:3vh 6vw 9vh; }
+.shelf-grid {
+  display:grid;
+  grid-template-columns: repeat(auto-fill, minmax(126px, 1fr));
+  gap: 40px 22px;
+  align-items:start;
+}
+.book { cursor:pointer; text-decoration:none; color:inherit; display:flex; flex-direction:column; }
+.book-cover {
+  position:relative; width:100%; aspect-ratio: 2/3;
+  overflow:hidden; background:var(--mono-bg);
+  border:1px solid var(--rule);
+  box-shadow: 0 1px 3px rgba(0,0,0,.06), 0 6px 16px rgba(0,0,0,.05);
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.book:hover .book-cover { transform: translateY(-4px); box-shadow: 0 4px 10px rgba(0,0,0,.08), 0 14px 30px rgba(0,0,0,.10); }
+.book-cover img { width:100%; height:100%; object-fit:cover; display:block; }
+/* 占位书封 */
+.book-cover.fallback {
+  background:var(--mono-bg);
+  display:flex; flex-direction:column; align-items:center; justify-content:space-between;
+  padding:14% 12%;
+}
+.book-cover.fallback .fb-eyebrow {
+  font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; color:var(--ink-3);
+  align-self:flex-start;
+}
+.book-cover.fallback .fb-name {
+  font-family:'Noto Serif JP','Noto Serif SC',serif; font-weight:700; letter-spacing:.08em;
+  writing-mode: vertical-rl; text-orientation: upright;
+  font-size: clamp(15px,1.4vw,20px); line-height:1.2; color:var(--ink); text-align:center;
+  max-height:70%; overflow:hidden;
+}
+.book-cover.fallback .fb-foot {
+  font-family:'Noto Sans Mono',monospace; font-size:8px; letter-spacing:.2em; color:var(--ink-3);
+  align-self:flex-end; background:var(--bg); padding:1px 6px;
+}
+.book-cover .cover-count {
+  position:absolute; top:8px; right:8px;
+  font-family:'Noto Serif JP',serif; font-size:9px; letter-spacing:.08em;
+  background:rgba(26,26,26,.78); color:#fff; padding:1px 7px;
+}
+.star-overlay { position:absolute; left:8px; top:6px; color:var(--star); font-size:14px; text-shadow:0 1px 2px rgba(0,0,0,.4); }
+.book-cap { margin-top:12px; }
+.book-cap .b-name { font-size:clamp(12px,1.05vw,14px); font-weight:500; letter-spacing:.03em; }
+.book-cap .b-meta { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.12em; color:var(--ink-3); margin-top:2px; }
+.b-dim { opacity:.38; }
+
+/* ── 扁平列表 ── */
+.flat-wrap { max-width:1500px; margin-inline:auto; padding:2vh 6vw 10vh; }
 .w-row {
   display:grid; grid-template-columns: 84px 1fr auto;
   gap:22px; align-items:baseline;
@@ -84,20 +136,37 @@ select:focus { border-color:var(--ink); }
 .w-show { font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:10.5px; color:var(--accent); letter-spacing:.1em; }
 .w-title { margin-top:3px; font-size:clamp(13.5px,1.3vw,16px); font-weight:400; }
 .w-title .badge { font-family:'Noto Serif JP',serif; font-size:9.5px; border:1px solid var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink); }
-.w-title .star { color:var(--star); font-size:12px; margin-left:8px; vertical-align:1px; letter-spacing:0; }
+.w-title .star { color:var(--star); font-size:12px; margin-left:8px; vertical-align:1px; }
 .w-meta { display:flex; gap:14px; margin-top:5px; font-family:'Noto Sans Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:.05em; }
-.w-meta .dur { white-space:nowrap; }
+.w-meta .ep:empty { display:none; }
 .w-right { display:flex; align-items:center; gap:14px; }
-.st-badge {
-  font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif;
-  font-size:9.5px; letter-spacing:.12em; padding:3px 10px; white-space:nowrap;
-}
+.st-badge { font-family:'Zen Kaku Gothic New','Noto Sans SC',sans-serif; font-size:9.5px; letter-spacing:.12em; padding:3px 10px; white-space:nowrap; }
 .st-zine, .st-transcript { border:1px solid var(--ink); color:var(--ink); }
 .st-pending { border:1px dashed var(--ink-3); color:var(--ink-2); }
 .st-saved { border:1px solid var(--rule); color:var(--ink-3); }
 .w-arrow { color:var(--ink-3); font-family:'Noto Sans Mono'; font-size:12px; }
+.empty { padding:12vh 0; text-align:center; color:var(--ink-3); font-family:'Zen Kaku Gothic New','Noto Sans SC'; font-size:12px; letter-spacing:.15em; }
 
-.empty { padding:10vh 0; text-align:center; color:var(--ink-3); font-family:'Zen Kaku Gothic New','Noto Sans SC'; font-size:12px; letter-spacing:.15em; }
+/* ── 书本详情弹层 ── */
+.modal-mask {
+  position:fixed; inset:0; z-index:200; background:rgba(20,20,20,.42);
+  display:none; align-items:flex-end; justify-content:center;
+}
+.modal-mask.show { display:flex; }
+.modal {
+  background:var(--bg); width:100%; max-width:760px; max-height:86vh; overflow-y:auto;
+  border-top:1px solid var(--rule);
+  box-shadow:0 -10px 40px rgba(0,0,0,.18);
+  padding:0 7vw 6vh;
+  animation:sheetUp .22s ease;
+}
+@keyframes sheetUp { from{ transform:translateY(24px); opacity:.4;} to{ transform:none; opacity:1;} }
+.modal-head { position:sticky; top:0; background:var(--bg); padding:4.5vh 0 2vh; border-bottom:1px solid var(--rule); display:flex; align-items:baseline; gap:16px; }
+.modal-head .m-title { font-family:'Noto Serif JP','Noto Serif SC',serif; font-size:clamp(20px,3vw,30px); font-weight:700; letter-spacing:.05em; }
+.modal-head .m-count { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.18em; color:var(--ink-3); }
+.modal-close { margin-left:auto; cursor:pointer; font-family:'Noto Sans Mono'; font-size:20px; color:var(--ink-2); background:none; border:none; padding:4px 10px; }
+.modal-close:hover { color:var(--ink); }
+.modal-body .w-row:first-of-type { border-top:1px solid var(--bg-rule); }
 
 .foot {
   padding:6vh 6vw 8vh; max-width:1500px; margin-inline:auto;
@@ -108,33 +177,10 @@ select:focus { border-color:var(--ink); }
 .foot a { color:var(--ink-3); text-decoration:none; }
 .foot a:hover { color:var(--accent); }
 
-/* ── 按节目分组视图 ── */
-.group-head {
-  display:flex; align-items:baseline; gap:16px;
-  padding:4.5vh 0 1.2vh;
-  margin-top:1vh;
-  border-bottom:1px solid var(--ink);
-  font-family:'Noto Serif JP','Noto Serif SC',serif;
-  font-size:clamp(15px,1.6vw,20px); font-weight:700; letter-spacing:.05em;
-}
-.group-head:first-of-type { margin-top:0; }
-.group-head .gh-count {
-  font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.18em;
-  color:var(--ink-3); font-weight:400;
-}
-.group-head .gh-dur {
-  font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.1em;
-  color:var(--ink-3); font-weight:400; margin-left:auto;
-}
-.group-list .w-show { display:none; }
-.group-list .w-title { font-size:clamp(13px,1.15vw,15px); }
-
-/* ── 按日期扁平视图间距 ── */
-.flat-list .w-row { padding:2.4vh 0; }
-
 @media (max-width:900px) {
   .nav-links { display:none; }
   .wall-header { padding:16vh 8vw 6vh; }
+  .shelf-grid { grid-template-columns: repeat(auto-fill, minmax(104px,1fr)); gap:30px 16px; }
   .w-row { grid-template-columns:1fr; gap:5px; }
   .w-right { display:none; }
   .summary { padding-top:1vh; }
@@ -154,20 +200,20 @@ select:focus { border-color:var(--ink); }
 </nav>
 
 <header class="wall-header">
-  <div class="wall-eyebrow">LISTENING WALL · 收听墙</div>
-  <h1 class="wall-title">听过的每一集，<br>排成一面墙</h1>
-  <p class="wall-sub">全量可筛可搜的收听档案。节目、单集、时长、状态都是字段——按节目归拢、按时长排，这几年到底听了什么一眼看完。真正的归档是筛选：合适做杂志，特别喜欢的留逐字稿。</p>
+  <div class="wall-eyebrow">LISTENING WALL · 收听书架</div>
+  <h1 class="wall-title">听过的每一集，<br>收进一面书架</h1>
+  <p class="wall-sub">一档播客，一本立在架上的书。点开一本，是它下面你听过的所有单集。节目、单集、时长、状态都是字段——按节目归拢、随时长排，这几年到底听了什么，一墙看完。</p>
 </header>
 
 <section class="tools">
   <div class="search-wrap">
     <span class="search-ico">⌕</span>
-    <input id="q" type="text" placeholder="搜索 节目 / 单集 / 一句笔记…" autocomplete="off">
+    <input id="q" type="text" placeholder="搜索 节目 / 单集 / 期号…" autocomplete="off">
   </div>
 
-  <div class="ctrl-group">观视图
+  <div class="ctrl-group">視图
     <div class="chips" id="viewSel">
-      <button class="chip on" data-view="group">按節目</button>
+      <button class="chip on" data-view="shelf">書架</button>
       <button class="chip" data-view="flat">按日期</button>
     </div>
   </div>
@@ -197,21 +243,38 @@ select:focus { border-color:var(--ink); }
   </div>
 </section>
 
-<div class="summary" id="summary">—</div>
+<div class="summary" id="summary"></div>
 
-<section class="wall-list" id="list"><div class="empty">…</div></section>
+<section class="shelf-section" id="shelfView">
+  <div class="shelf-grid" id="shelfGrid"></div>
+</section>
+<section class="flat-wrap" id="flatView" style="display:none">
+  <div class="flat-list" id="flatList"></div>
+</section>
 
 <footer class="foot">
   <span>声音落成文字 · 思考继续发生</span>
   <a href="index.html">← 返回主站</a>
 </footer>
 
+<div class="modal-mask" id="mask">
+  <div class="modal">
+    <div class="modal-head">
+      <span class="m-title" id="mShow"></span>
+      <span class="m-count" id="mCount"></span>
+      <button class="modal-close" id="mClose">×</button>
+    </div>
+    <div class="modal-body" id="mBody"></div>
+  </div>
+</div>
+
 <script>
 /* =========================================================================
  *  检索墙数据 —— 新增收听：在此往下加一条即可。
- *  字段：date(YYYY.MM.DD) / show(节目) / title(单集) / duration(时:分:秒,可留空)
- *        status: zine=已转zine · pending=待筛选 · transcript=已转逐字稿 · saved=仅收藏
- *        link  (有落地页时填相对路径,无则留空) / star(特藏标true)
+ *  字段：date(YYYY.MM.DD) / show(一档节目,只存基名) / title(单集)
+ *        ep(期号,可空) / duration(时:分:秒,可空) / link(落地页,可空)
+ *        status: zine待筛选/transcript=已转逐字稿/saved=仅收藏 · star:特藏
+ *  书目封面：BOOK_COVER 里按节目名给封面路径（有图加，无图用素净书封占位）。
  * ========================================================================= */
 var WALL = [
   {"date":"2026.09.01","show":"无人知晓","title":"我们从未看见彼此","ep":"E46","duration":"1:15:47","status":"zine","link":"zines/20260901-wurenzhixiao-weicengkanjian.html","star":true},
@@ -233,97 +296,152 @@ var WALL = [
   {"date":"2026.04.18","show":"西西弗高速","title":"女性心灵史","ep":"#25","status":"zine","link":"zines/20260418-xixifei-nvxing.html"},
   {"date":"2026.04.14","show":"声东击西","title":"Vibe Coding 与龙虾","ep":"#384","status":"zine","link":"zines/20260414-shengdong-xi-vibe.html"},
   {"date":"2026.04.13","show":"知行小酒馆","title":"宏大叙事与个人命运","ep":"E231","status":"zine","link":"zines/20260413-zhixing-zhanshi.html"},
-  {"date":"2026.03.18","show":"你，静不下来","title":"稳住身体，就是稳住你人生的底盘","duration":"1:00:21","status":"zine","link":"zines/20260318-jingbuxialai-chelu.html"},
+  {"date":"2026.03.18","show":"你，静不下来","title":"稳住身体，就是稳住你人生的底盘","duration":"1:00:21","status":"zine","link":"zines/20260318-jingbuxialai-chelu.html"}
 ];
 
-/* ---- 状态标签映射 ---- */
+/* 书名 = 封面图（贴节目 logo 时在此登记路径；无则用素净书封占位） */
+var BOOK_COVER = {
+  "无人知晓": "covers/20260901-wurenzhixiao-weicengkanjian.jpg",
+  "自习室 STUDY ROOM": "covers/20260819-yingxiangli-qitiao.jpg",
+  "声东击西": "covers/20260806-shengdong-jia-yangqing.jpg",
+  "新世相": "covers/20260730-xinshixiang-jinjing.jpg",
+  "你，静不下来": "covers/20260318-jingbuxialai-chelu.png"
+};
+
 var STATUS_LABEL = { zine:"已转zine", pending:"待筛选", transcript:"逐字稿", saved:"仅收藏" };
 var STATUS_CLASS = { zine:"st-zine", pending:"st-pending", transcript:"st-transcript", saved:"st-saved" };
 
-/* ---- 节目下拉 ---- */
 (function(){
-  var shows = []; var seen = {};
-  WALL.forEach(function(w){ var k=w.show; if(!seen[k]){ seen[k]=1; shows.push(k); } });
-  shows.sort();
-  var sel = document.getElementById('showSel');
-  shows.forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
+  var seen={};
+  WALL.forEach(function(w){ seen[w.show]=1; });
+  var sel=document.getElementById('showSel');
+  Object.keys(seen).sort().forEach(function(s){ var o=document.createElement('option'); o.value=s; o.textContent=s; sel.appendChild(o); });
 })();
 
 function durToSec(d){ if(!d) return -1; var p=d.split(':').map(Number); if(p.length===1) return p[0]; if(p.length===2) return p[0]*60+p[1]; return p[0]*3600+p[1]*60+(p[2]||0); }
+function fmtMin(m){ var h=Math.floor(m/60); var mm=Math.floor(m%60); return h>0? h+'h'+ (mm<10?'0'+mm:mm)+'m' : mm+'m'; }
 function stale(html){ var d=document.createElement('div'); d.innerHTML=html; return d.textContent; }
 
-function rowHTML(w){
+function rowHTML(w, showInRow){
   var badge='';
   if(w.star) badge+='<span class="star">★</span>';
   var link = w.link ? w.link : 'javascript:void(0)';
+  var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
   return '<a class="w-row" href="'+link+'">'
     +'<span class="w-date">'+(w.date||'----.--.--')+'</span>'
-    +'<span class="w-main"><span class="w-show">'+w.show+'</span>'
+    +'<span class="w-main">'+sh
     +'<div class="w-title">'+w.title+badge
     + (w.status==='zine'?'<span class="badge">誌</span>':'')
     +'</div>'
-    +'<div class="w-meta"><span class="ep">'+(w.ep?w.ep:'')+'</span><span class="dur">'+(w.duration? w.duration+" 时长":'时长 —')+'</span></div></span>'
+    +'<div class="w-meta"><span class="ep">'+ (w.ep?w.ep:'') +'</span><span class="dur">'+(w.duration? w.duration+' 时长':'时长 —')+'</span></div></span>'
     +'<span class="w-right"><span class="st-badge '+STATUS_CLASS[w.status]+'">'+STATUS_LABEL[w.status]+'</span>'
     +'<span class="w-arrow">→</span></span>'
     +'</a>';
 }
 
-function render(){
+/* 过滤后的当前命中集 */
+function currentRows(){
   var q = stale(document.getElementById('q').value).trim().toLowerCase();
   var st = document.querySelector('#statusChips .chip.on').getAttribute('data-status');
   var show = document.getElementById('showSel').value;
-  var sort = document.getElementById('sortSel').value;
-  var view = document.querySelector('#viewSel .chip.on').getAttribute('data-view');
-
-  var rows = WALL.filter(function(w){
+  return WALL.filter(function(w){
     if(st && w.status !== st) return false;
     if(show && w.show !== show) return false;
-    if(q){ var hay=(w.show+' '+w.title+' '+(w.date||'')).toLowerCase(); if(hay.indexOf(q)===-1) return false; }
+    if(q){ var hay=(w.show+' '+w.title+' '+(w.ep||'')+' '+(w.date||'')).toLowerCase(); if(hay.indexOf(q)===-1) return false; }
     return true;
   });
-
-  var totalMin = WALL.filter(function(w){return w.duration;}).reduce(function(s,w){return s+durToSec(w.duration)/60;},0);
-  var hh=Math.floor(totalMin/60), mm=Math.floor(totalMin%60);
-  document.getElementById('summary').textContent = '共 '+ WALL.length +' 集 · 累计约 '+hh+'h'+ (mm<10?'0'+mm:mm) +'m · 当前 '+ rows.length +' 集' + (st?' · '+STATUS_LABEL[st]:'');
-
-  var list=document.getElementById('list');
-  if(!rows.length){ list.innerHTML='<div class="empty">這一層還沒有。</div>'; return; }
-
-  /* 按日期排序（分组内 & 扁平共用的基准） */
-  rows.sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
-
-  if(view==='group'){
-    /* 按节目归拢：组内按日期新→旧，组本身按最近收听日排序 */
-    var map={}, order=[];
-    rows.forEach(function(w){
-      if(!map[w.show]){ map[w.show]=[]; order.push(w.show); }
-      map[w.show].push(w);
-    });
-    order.sort(function(a,b){
-      var na=map[a][0].date||'', nb=map[b][0].date||'';
-      return nb.localeCompare(na);
-    });
-    var html='<div class="group-list">';
-    order.forEach(function(showKey){
-      var eps=map[showKey];
-      var gmin=eps.reduce(function(s,w){return s+(w.duration?durToSec(w.duration)/60:0);},0);
-      var gd = gmin? Math.floor(gmin)+'m' : '';
-      html+='<div class="group-head"><span>'+showKey+'</span>'
-        +'<span class="gh-count">'+eps.length+' 集</span>'
-        +'<span class="gh-dur">'+(gd?gd+'':'')+'</span></div>';
-      eps.forEach(function(w){ html+=rowHTML(w); });
-    });
-    html+='</div>';
-    list.innerHTML=html;
-  } else {
-    /* 扁平按日期（新→旧 或 旧→新） */
-    if(sort==='dateAsc') rows.reverse();
-    var h='<div class="flat-list">';
-    rows.forEach(function(w){ h+=rowHTML(w); });
-    h+='</div>';
-    list.innerHTML=h;
-  }
 }
+function booksOf(rows){
+  var map={}, order=[];
+  rows.forEach(function(w){
+    if(!map[w.show]){ map[w.show]=[]; order.push(w.show); }
+    map[w.show].push(w);
+  });
+  order.sort(function(a,b){ return (map[b][0].date||'').localeCompare(map[a][0].date||''); });
+  return order.map(function(s){ return {show:s, eps:map[s].sort(function(x,y){return (y.date||'').localeCompare(x.date||'');})}; });
+}
+
+function updateSummary(rows){
+  var totalMin = WALL.reduce(function(s,w){return s+(w.duration?durToSec(w.duration)/60:0);},0);
+  var st = document.querySelector('#statusChips .chip.on').getAttribute('data-status');
+  var el=document.getElementById('summary');
+  el.innerHTML = '<span>共 '+WALL.length+' 集 · 累计约 '+fmtMin(totalMin)+' · 当前 '+rows.length+' 集'+(st?' · '+STATUS_LABEL[st]:'')+'</span>'
+    +'<span class="s-mono">点一本书 → 翻开它的单集</span>';
+}
+
+function bookCoverHTML(book, hit){
+  var cover = BOOK_COVER[book.show];
+  var booksClass = hit ? '' : ' b-dim';
+  var star = book.eps.some(function(w){return w.star;});
+  var html='<a class="book'+booksClass+'" href="javascript:void(0)" data-show="'+book.show+'">'
+    +'<div class="book-cover">';
+  if(cover){
+    html+='<img src="'+cover+'" alt="'+book.show+'" loading="lazy">';
+  } else {
+    html+='<div class="book-cover fallback">'
+      +'<span class="fb-eyebrow">PODCAST</span>'
+      +'<span class="fb-name">'+book.show+'</span>'
+      +'<span class="fb-foot">'+book.eps.length+' EP</span></div>';
+  }
+  if(star) html+='<span class="star-overlay">★</span>';
+  if(book.eps.length>1) html+='<span class="cover-count">'+book.eps.length+'</span>';
+  var gmin=book.eps.reduce(function(s,w){return s+(w.duration?durToSec(w.duration)/60:0);},0);
+  html+='</div>'
+    +'<div class="book-cap">'
+    +'<div class="b-name">'+book.show+'</div>'
+    +'<div class="b-meta">'+book.eps.length+' 集 · '+(gmin>0? fmtMin(gmin):'时长 —')+'</div>'
+    +'</div></a>';
+  return html;
+}
+
+function renderShelf(){
+  var rows=currentRows();
+  var q = stale(document.getElementById('q').value).trim().toLowerCase();
+  var books=booksOf(rows);
+  // 若有关键词，书按是否命中显隐（命中=节目或任一期号/标题命中）
+  var grid=document.getElementById('shelfGrid');
+  if(!books.length){ grid.innerHTML='<div class="empty" style="grid-column:1/-1">這一層還沒有。换个筛选看看。</div>'; updateSummary(rows); return; }
+  grid.innerHTML = books.map(function(b){
+    var hit = true;
+    if(q){ hit = (b.show.toLowerCase().indexOf(q)>=0) || b.eps.some(function(w){ return ((w.title||'')+(w.ep||'')).toLowerCase().indexOf(q)>=0; }); }
+    return bookCoverHTML(b, hit);
+  }).join('');
+  updateSummary(rows);
+  document.getElementById('shelfView').style.display='';
+  document.getElementById('flatView').style.display='none';
+}
+
+function renderFlat(){
+  var rows=currentRows();
+  var sort=document.getElementById('sortSel').value;
+  rows.sort(function(a,b){ var d=(b.date||'').localeCompare(a.date||''); if(sort==='dateAsc') return -d; if(sort==='durDesc') return durToSec(b.duration)-durToSec(a.duration); return d; });
+  document.getElementById('flatList').innerHTML = rows.length
+    ? '<div class="flat-list">'+rows.map(function(w){return rowHTML(w);}).join('')+'</div>'
+    : '<div class="empty">這一層還沒有。</div>';
+  updateSummary(rows);
+  document.getElementById('flatView').style.display='';
+  document.getElementById('shelfView').style.display='none';
+}
+
+function render(){
+  var view=document.querySelector('#viewSel .chip.on').getAttribute('data-view');
+  if(view==='shelf') renderShelf(); else renderFlat();
+}
+
+/* 书本详情 */
+function openBook(show){
+  var eps = WALL.filter(function(w){ return w.show===show; })
+    .sort(function(a,b){ return (b.date||'').localeCompare(a.date||''); });
+  document.getElementById('mShow').textContent=show;
+  document.getElementById('mCount').textContent=eps.length+' 集';
+  document.getElementById('mBody').innerHTML = eps.map(function(w){ return rowHTML(w,false); }).join('');
+  document.getElementById('mask').classList.add('show');
+}
+document.getElementById('shelfGrid').addEventListener('click', function(e){
+  var a=e.target.closest('a.book'); if(a) openBook(a.getAttribute('data-show'));
+});
+document.getElementById('mClose').addEventListener('click', function(){ document.getElementById('mask').classList.remove('show'); });
+document.getElementById('mask').addEventListener('click', function(e){ if(e.target===this) this.classList.remove('show'); });
 
 document.getElementById('q').addEventListener('input', render);
 document.getElementById('showSel').addEventListener('change', render);
