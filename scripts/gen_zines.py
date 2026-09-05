@@ -22,6 +22,9 @@ def esc(s):
 def build(ep, theme_class, theme_name):
     slug = ep["slug"]
     date = ep["date"]; vol = ep["vol"]; show = ep["show"]; guest = ep["guest"]
+    episode = ep.get("episode", "")
+    guest_short = guest.split("（", 1)[0].strip()
+    episode_mark = f" · {episode}" if episode else ""
     title = ep["title"]; core = ep["core"]
     points = ep["points"]; insight = ep.get("insight",""); quotes = ep["quotes"]
     connect = ep.get("connect",""); resonance = ep.get("resonance","")
@@ -196,7 +199,7 @@ body {{
 
 <header class="zine-masthead">
   <span class="masthead-name">{esc(show)}</span>
-  <span class="masthead-issue">{vol} · {date}<a class="back-home" href="../index.html">← 返回首页</a></span>
+  <span class="masthead-issue">{vol} · {date}{episode_mark}<a class="back-home" href="../index.html">← 返回首页</a></span>
 </header>
 
 <section class="zine-cover">
@@ -211,7 +214,7 @@ body {{
     <img src="{cover_src}" alt="{esc(title)} 封面">
   </div>
   <div class="cover-footer">
-    <span>{date} · {esc(guest)}</span>
+    <span>{date}{episode_mark} · {esc(guest_short)}</span>
     <span class="stamp">{vol}</span>
   </div>
 </section>
