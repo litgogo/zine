@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zine · 让我换个说法：活得哲学一点</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+:root, body.t-a {
+  --bg:#f5f0e8; --bg-warm:#ede8dc; --bg-rule:#d6ceb8; --ink:#2a2018; --ink-2:#4a3828;
+  --ink-3:#8a7060; --accent:#8b2e1a; --accent-dim:rgba(139,46,26,.10); --rule:#c4b89a;
+  --mono-bg:#e8e2d4; --tracing-bg:rgba(248,245,235,.55); --tracing-fold:#d8d0bc;
+  --colophon-bg:#2a2018; --colophon-fg:rgba(245,240,232,.65); --colophon-acc:#d4916a;
+}
+body.t-b {
+  --bg:#0d1b2a; --bg-warm:#112233; --bg-rule:#1e3a5f; --ink:#d4e5f7; --ink-2:#a8c8e8;
+  --ink-3:#6898c0; --accent:#5bc0f8; --accent-dim:rgba(91,192,248,.12); --rule:#1e3a5f;
+  --mono-bg:#0a1520; --tracing-bg:rgba(13,40,70,.55); --tracing-fold:#1a3050;
+  --colophon-bg:#060e18; --colophon-fg:rgba(180,210,240,.65); --colophon-acc:#5bc0f8;
+}
+body.t-c {
+  --bg:#fafaf5; --bg-warm:#f2f2ec; --bg-rule:#e0e0d8; --ink:#1a1a1a; --ink-2:#3a3a3a;
+  --ink-3:#888888; --accent:#c0392b; --accent-dim:rgba(192,57,43,.08); --rule:#cccccc;
+  --mono-bg:#f0f0ea; --tracing-bg:rgba(250,250,245,.6); --tracing-fold:#ddddd5;
+  --colophon-bg:#1a1a1a; --colophon-fg:rgba(245,245,240,.65); --colophon-acc:#c0392b;
+}
+body.t-d {
+  --bg:#f2f4ee; --bg-warm:#e8ece0; --bg-rule:#d0d8c4; --ink:#1e2818; --ink-2:#3a4830;
+  --ink-3:#7a8a6a; --accent:#3a6e28; --accent-dim:rgba(58,110,40,.09); --rule:#c0caa8;
+  --mono-bg:#e4ecd8; --tracing-bg:rgba(240,244,234,.55); --tracing-fold:#c8d4b4;
+  --colophon-bg:#1e2818; --colophon-fg:rgba(232,236,224,.65); --colophon-acc:#7ab858;
+}
+body {
+  background:var(--bg); color:var(--ink); font-family:'Noto Serif SC', Georgia, serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.zine-masthead {
+  position:sticky; top:0; z-index:100; background:var(--ink); color:var(--bg);
+  display:flex; justify-content:space-between; align-items:center; padding:0 5vw; height:44px;
+  font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+}
+.masthead-name { flex:1; } .masthead-issue { color:var(--accent); }
+.zine-cover {
+  max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
+  display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
+}
+.cover-meta {
+  display:flex; align-items:center; gap:16px; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4vh;
+}
+.issue-rule { flex:1; height:1px; background:var(--rule); }
+.issue-theme { padding:3px 10px; border:1px solid var(--rule); color:var(--accent); }
+.cover-title {
+  font-family:'Noto Serif SC', serif; font-size:clamp(32px,5.2vw,64px); font-weight:900;
+  line-height:1.12; letter-spacing:-.02em; color:var(--ink); margin-bottom:3vh;
+}
+.cover-title em { font-style:italic; color:var(--accent); }
+.cover-sub {
+  font-family:'Noto Sans SC', sans-serif; font-size:clamp(13px,1.5vw,16px); font-weight:300;
+  color:var(--ink-2); line-height:1.72; max-width:52ch; padding-left:18px;
+  border-left:3px solid var(--accent); margin-bottom:4vh;
+}
+.cover-image-slot {
+  background:var(--bg-warm); border:1px solid var(--rule); display:flex; align-items:center;
+  justify-content:center; min-height:32vh; margin-bottom:3vh; overflow:hidden;
+}
+.cover-image-slot img { width:100%; height:100%; object-fit:cover; filter:saturate(.8) contrast(1.02); }
+.cover-footer {
+  display:flex; justify-content:space-between; align-items:flex-end; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--ink-3); border-top:1px solid var(--rule);
+  padding-top:2vh; text-transform:uppercase;
+}
+.stamp { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:900; letter-spacing:-.02em; color:var(--accent); opacity:.28; }
+.pull-quote-section { max-width:960px; margin-inline:auto; padding:6vh 5vw; border-bottom:1px solid var(--rule); }
+.tracing-card {
+  position:relative; padding:36px 44px 32px; background:var(--tracing-bg); backdrop-filter:blur(1px);
+  border:1px solid rgba(128,120,100,.28); box-shadow:2px 4px 12px rgba(0,0,0,.07), 4px 8px 28px rgba(0,0,0,.05), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
+}
+.tracing-card::after {
+  content:''; position:absolute; top:0; right:0; width:0; height:0; border-style:solid;
+  border-width:0 24px 24px 0; border-color:transparent var(--tracing-fold) transparent transparent;
+  filter:drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
+}
+.pq-small-text { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.8; color:var(--ink-2); max-width:52ch; margin:0 auto 24px; text-align:center; }
+.pq-script { font-family:'Dancing Script',cursive; font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.28; color:var(--ink); text-align:center; margin-bottom:20px; }
+.pq-cite { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--ink-3); text-align:center; text-transform:uppercase; display:block; }
+.pq-below { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.82; color:var(--ink-2); max-width:52ch; margin:20px auto 0; text-align:center; }
+.zine-body { max-width:960px; margin-inline:auto; padding:5vh 5vw; border-bottom:1px solid var(--rule); }
+.zine-body.two-col { display:grid; grid-template-columns:200px 1fr; gap:4.5vw; align-items:start; }
+.col-narrow { position:sticky; top:56px; }
+.sidebar-block { border-left:2px solid var(--rule); padding-left:14px; margin-bottom:2.8vh; }
+.sidebar-label { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+.sidebar-block p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--ink-2); line-height:1.72; }
+.sidebar-tag { display:inline-block; font-family:'Noto Sans Mono',monospace; font-size:9.5px; padding:2px 7px; margin:2px 2px 2px 0; border:1px solid var(--rule); color:var(--ink-3); letter-spacing:.1em; }
+.article-eyebrow { display:flex; align-items:center; gap:12px; font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.article-eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+.article-title { font-family:'Noto Serif SC',serif; font-size:clamp(21px,2.6vw,30px); font-weight:700; line-height:1.2; letter-spacing:-.015em; color:var(--ink); margin-bottom:2vh; padding-top:1.2vh; border-top:2px solid var(--accent); }
+.article-lede { font-family:'Noto Serif SC',serif; font-size:clamp(14px,1.5vw,16.5px); font-style:italic; font-weight:300; color:var(--ink-2); line-height:1.72; margin-bottom:2vh; }
+.col-wide p { font-family:'Noto Serif SC',serif; font-size:clamp(13.5px,1.3vw,15px); color:var(--ink-2); line-height:1.92; }
+.col-wide p.spacer { height:1.6vh; }
+.col-wide blockquote { margin:20px 0; padding:14px 20px; background:var(--bg-warm); border-left:3px solid var(--rule); font-family:'Noto Sans SC',sans-serif; font-size:13.5px; font-weight:300; color:var(--ink-2); line-height:1.82; }
+.tracing-appendix {
+  position:relative; max-width:900px; margin:52px auto 0; padding:32px 40px 28px; background:var(--tracing-bg);
+  backdrop-filter:blur(2px); border:1px solid rgba(128,120,100,.3);
+  box-shadow:1px 3px 8px rgba(0,0,0,.06), 3px 6px 20px rgba(0,0,0,.07), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
+  transform:rotate(-.45deg); transform-origin:top left;
+}
+.tracing-appendix::before {
+  content:'APPENDIX · 附页'; position:absolute; top:-11px; left:20px; font-family:'Noto Sans Mono',monospace;
+  font-size:9px; letter-spacing:.24em; color:var(--ink-3); text-transform:uppercase; background:var(--bg); padding:0 8px;
+}
+.appendix-inner { transform:rotate(.45deg); transform-origin:top left; }
+.appendix-title { font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--ink); margin-bottom:22px; letter-spacing:-.01em; }
+.appendix-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; }
+.appendix-label { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; padding-bottom:5px; border-bottom:1px dashed var(--rule); }
+.appendix-block p { font-family:'Noto Sans SC',sans-serif; font-size:12px; font-weight:300; color:var(--ink-2); line-height:1.78; }
+.appendix-rule { height:1px; background:rgba(128,120,100,.25); margin:20px 0 12px; }
+.appendix-fine { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase; opacity:.7; }
+.colophon { background:var(--colophon-bg); padding:6vh 5vw 7vh; margin-top:5vh; }
+.colophon-inner { max-width:960px; margin-inline:auto; }
+.colophon-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4vw; margin-bottom:4vh; }
+.colophon h5 { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--colophon-acc); margin-bottom:10px; }
+.colophon p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--colophon-fg); line-height:1.78; }
+.colophon-rule { height:1px; background:rgba(128,120,100,.2); margin-bottom:2.5vh; }
+.colophon-fine { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.18em; color:var(--colophon-fg); opacity:.35; text-transform:uppercase; }
+@media (max-width:640px) {
+  .zine-body.two-col { grid-template-columns:1fr; }
+  .col-narrow { position:static; }
+  .colophon-grid { grid-template-columns:1fr; gap:3vh; }
+  .appendix-grid { grid-template-columns:1fr; }
+  .tracing-appendix { margin:40px 0 0; }
+}
+
+.back-home { margin-left: 18px; font-size: 10px; letter-spacing: .1em; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.back-home:hover { opacity: .7; }
+.back-home-footer { display: inline-block; margin: 0 0 14px; font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--colophon-acc); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.back-home-footer:hover { opacity: .7; }
+</style>
+</head>
+<body class="t-d">
+
+<header class="zine-masthead">
+  <span class="masthead-name">长谈·脱不花</span>
+  <span class="masthead-issue">VOL.23 · 2026.09.07<a class="back-home" href="../index.html">← 返回首页</a></span>
+</header>
+
+<section class="zine-cover">
+  <div class="cover-meta">
+    <span>PODCAST ZINE</span>
+    <span class="issue-rule"></span>
+    <span class="issue-theme">森林墨水</span>
+  </div>
+  <h1 class="cover-title">让我换个说法：活得哲学一点</h1>
+  <p class="cover-sub">脱不花对谈北大哲学系系主任程乐松。他不劝你和解，也不劝你上进，只做一件事——每次你要下全称判断时，他停下来说「让我换个说法」。什么是过度反思？没有与伟大心灵对话过、没有生命经验、没有自觉有限性就急着反思；「反思应该是生活的调味剂，不是生活方式」。为什么不敢停？因为把「自我实现」错置成「生存需求」。「人间不值得」和「恕我配不上」之间反复横跳，是用看似深刻的方式给怠惰找一个合理的借口。真正的出路不在筹划里：对外部环境远期筹划极强、对当下行动零筹划，是年轻人最大的错觉——目标性筹划要换成步骤性筹划。内心的召唤不是宏大口号，而是「不得不然的日常」，跟吃饭一样；哪一天觉得它比吃饭重要得多得多，那就不是召唤，还是利益的算计。</p>
+  <div class="cover-image-slot">
+    <img src="../covers/20260907-changtan-chenglesong.jpg" alt="让我换个说法：活得哲学一点 封面">
+  </div>
+  <div class="cover-footer">
+    <span>2026.09.07 · 程乐松（北京大学哲学系·宗教学系系主任 · 长江学者 · 研究早期道教与两汉思想史 · 著有《身体、不死与神秘主义》《留白》）</span>
+    <span class="stamp">VOL.23</span>
+  </div>
+</section>
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">长谈·脱不花 · 让我换个说法</p>
+    <div class="pq-script">反思应该是生活很少使用到的调味剂，而不是生活方式。</div>
+    <span class="pq-cite">—— 金句</span>
+    <p class="pq-below">这期真正的命题，不是「如何不内耗」，而是把「活着」从公共评价标准里赎回来。过度反思是把自我交给外部尺度去审判；「人间不值得」和「恕我配不上」的横跳，是用深刻的姿</p>
+  </div>
+</section>
+
+<section class="zine-body two-col">
+  <aside class="col-narrow">
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">摘要</h4>
+      <p>脱不花对谈北大哲学系系主任程乐松。他不劝你和解，也不劝你上进，只做一件事——每次你要下全称判断时，他停下来说「让我换个说…</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">嘉宾</h4>
+      <p>程乐松（北京大学哲学系·宗教学系系主任 · 长江学者 · 研究早期道教与两汉思想史 · 著有《身体、不死与神秘主义》《留白》）</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">关联</h4>
+      <p>与同一嘉宾的前置场「知本论 vol.170 · 过度追求人生确定性是个陷阱」构成一次连续思考：留白_确定性陷阱讲的是「焦虑源于把自我实现错置成生存需求」，这期往…</p>
+    </div>
+  </aside>
+  <article class="col-wide">
+    
+    <div class="article-eyebrow">Section 01</div>
+    <h2 class="article-title">00:02:01 他为什么火：一次自我对象化分析</h2>
+    <p>三层归因：北大、哲学系、系主任的标签自带期待（注意力是这时代最稀缺的东西）；社会叙事从「why not me」转向关注一日三餐与洒扫应对；毕业致辞变成新赛道是社交媒体的产物。把这些梳理完，他说：「用理性的方式分析完，你大概就不会出现自我认知的偏差。」</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 02</div>
+    <h2 class="article-title">00:19:19 被当读者文摘用，一个学者的不适</h2>
+    <p>金句一旦脱离论证与视角，就只剩下话术。受过严格哲学训练的人对论证有强迫症式的需求——「给我一个结论时没有之前的论证，我会很成问题」。他更怕的是：致词里的话被当成哲学本身。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 03</div>
+    <h2 class="article-title">00:26:31 人文学科凭什么要社会给资源</h2>
+    <p>数学物理能从科学到技术、到工程、到器物，用器物的有效性反证知识的有效性；人文学科不产生器物，如果它不能为这个时代的精神提供一种表达方式，它凭什么说服社会为它提供资源支撑。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 04</div>
+    <h2 class="article-title">00:29:41 过度反思的三个定义</h2>
+    <p>第一，没有与人类历史上最伟大的心灵对话过就开始反思——在意义这件事上，人类两千年进步最慢；第二，没有足够的生命经验（中学一次考试没考好，不值得反思）；第三，没有意识到自身的有限性，反思就不可能纯客观。所以：反思应该是生活很少使用到的调味剂，不是生活方式。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 05</div>
+    <h2 class="article-title">00:34:43 人间不值得 × 恕我配不上</h2>
+    <p>在两端之间反复横跳，是为了持续待在一个能自我说服的怠惰状态里——人间不值得，所以不必做；我配不上，所以做不到。这等于用一种看起来极具反思性、否定辩证性的方式，给自己的怠惰做「合理性奠基」。它比天天给自己打鸡血，对生活的破坏性大得多。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 06</div>
+    <h2 class="article-title">00:42:08 小镇做题家进北大：听力吃亏与自卑</h2>
+    <p>英语分级考试，他前十道题只有选项没有题干，第二段对话又说蒙了。对北京四中的羡慕嫉妒恨，他说是人之常情，「不用反思」。而小学语文戴老师反复说这个孩子「很聪明」——一个八九岁小孩被自己尊敬的人反复这么说，真的会信，这种信「至今为止还有一些残余留在我的自我认知里」，是人生惊险一跃时那份来自心底的勇气。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 07</div>
+    <h2 class="article-title">00:44:56 每个人只能被个体化地评价</h2>
+    <p>自己的起点和现状，只能从自己的起点来评价，绝不能用别人的起点和别人的现状来评价你。当年成绩最好的一批同学去读了中专，你不能说他们不优秀。内卷的来源，就是把前辈的高点当成了后辈的起点。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 08</div>
+    <h2 class="article-title">01:00:41 四大根本问题：真实、意义、秩序、死亡</h2>
+    <p>引同事李猛的话：「哲学家永远关心最根本的问题，而不是最急迫的问题。」哲学不提供答案——有确凿答案的是信仰；哲学只负责把这个时代的问题重新提出来，给它一个新的表述。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 09</div>
+    <h2 class="article-title">01:05:25 焦虑不来自不确定，而来自确定性过剩</h2>
+    <p>真正的不确定，传统中国和传统世界的人承受得比我们多得多，所以他们需要信仰提供确定性。我们觉得焦虑，恰恰是这四十年拥有的确定性和向上通道过于确定了。赛博永生很严肃、炼丹很可笑——只因为你接受了哪一套知识模式。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 010</div>
+    <h2 class="article-title">01:14:10 活得哲学一点的两个形式</h2>
+    <p>第一是阅读：没有比阅读更好的精神生活方式，也没有比阅读更好的让生活平和下来的方式，越古典的阅读越经得起时间筛选。第二是不要太快接受任何意义上的断言和全称判断——稍微保留一点怀疑，才不至于太快滑向偏激。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 011</div>
+    <h2 class="article-title">01:21:18 表达优先权 ≠ 合理性</h2>
+    <p>郎平从不回应离婚的追问，直到熟人问起才说：我会坐在这儿被采访，而我的前夫不会。程乐松说这叫自觉——一个人要意识到自己在什么意义上获得了社会建制意义上的优先性，而优先性并不代表合理性。把表达优先权当合理性，就是「爹味」。对下一代最好的方式是提供可能性、最多提供建议，任何时候都不要给出价值评价。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 012</div>
+    <h2 class="article-title">01:23:25 讲故事与过日子</h2>
+    <p>《讲故事与过日子：在观念与行动之间的日常性》的核心：叙事是我们对生活经验的秩序化本能，永远在做两件事——以叙事与自己和解，以叙事为未来的行动做筹划。我们不掌握全部真实，也不完全掌控自己的情绪，所以只能做一种自洽的自我建构。而经验世界是浑然一体的，切多少切片都不代表真实——要警惕那些把解释当作权利的人。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 013</div>
+    <h2 class="article-title">01:37:59 ⭐ 奥德赛时期与过度筹划</h2>
+    <p>给状态命名本身就是一种「讲故事」——命名之后，你才知道这是个正常状态、是所有人都要经历的状态，才能安然与它共处。但命名也有副作用：它会让人误以为后面有一个不用反思的轻松日子。更关键的是年轻人的筹划结构：对外部环境的远期筹划特别有远见，对当下的行动却完全缺乏筹划力——远期筹划其实是在给自己提供底线安慰，而那个底线恰恰是不甘心的、不被接纳的。于是有了那句话：这不是行动中的奥德赛，而是在奥德赛中的奥德赛。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 014</div>
+    <h2 class="article-title">01:45:42 目标性筹划 → 步骤性筹划</h2>
+    <p>不要给自己定一个两三年后的目标就完了，要把筹划细节化、路线化：要保研，那就先把身体搞好，再看需要哪些课程，再去目标老师的课堂上晃一晃——聊得来就聊，聊不来就换一个。具体的生活最不需要假手他人（把家里收拾干净、东西归位）；打卡的行动必须有，打卡的心态不能有。「不积跬步，无以至千里。」</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 015</div>
+    <h2 class="article-title">01:47:42 让他听到此生最好听的敲门声</h2>
+    <p>创业最艰难的一次，命运攥在别人手里，焦虑到生理指标都不正常。车停在对方楼下时他想明白了：所有担心和目标都跟对方没关系，此刻唯一能施加影响的事，只有敲门——「我当时给自己定的目标是我要让他听到此生最好听的敲门声」。禅宗公案也是这个逻辑：得道前砍柴挑水，得道后砍柴挑水，不同在于从前砍柴时想着挑水，现在砍柴就想砍柴。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 016</div>
+    <h2 class="article-title">01:52:33 ⭐ 内心的召唤，就是不得不然的日常</h2>
+    <p>任何一种内心的召唤，在你眼里实际上就是不得不然的日常，就跟吃饭一样。哪一天你觉得它比吃饭重要得多得多，那就不是内心的召唤，还是利益的算计。宗教学里有个词叫 conversion、叫归一——接纳之后一切都变了，但感观上仍是日常。他真正赞赏的是从不宣布召唤、却用整个生命完成了它的人（比如去敦煌的樊锦诗）。奔着感动他人去做，那就成了表演。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 017</div>
+    <h2 class="article-title">01:56:10 道教是中国文化的基因库</h2>
+    <p>施舟人 1969 年向欧洲科学院提交道教研究计划书时用了这个词。道教至少负责三件事：用最行动化的方式把中国人共有的宇宙观（阴阳五行、通天下一气、身体是小宇宙）落实在行动里；负责中国人关于生命超越的想象力（游仙诗、外丹）；至今仍留在底层心理结构里（择日、看风水——他会告诉你「这下你出门踩到狗屎都觉得是走狗屎运了，这才是真正的话语的霸权」）。今天觉得它陌生，是因为基层社会结构断裂、知识结构被自然科学取代、以及 1900 年后知识界的持续负面评价。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 018</div>
+    <h2 class="article-title">02:12:42 从哲学史出发的中国哲学</h2>
+    <p>哲学在中国是两希传统舶来的学科，只能回到老祖宗的思想里抽取「被认为具有哲学性的东西」，于是哲学史成了中国哲学的出发点——这是中国式困境，也是特殊性。但今天必须「再做中国哲学」，而不只是做中国哲学史。老先生们的勇气大于技术，我们今天是技术大于勇气；分科之学让人习惯说「我不是这个问题的专家」，这其实是自我保护。人文学者要比「谁是今天最有说服力的人」——只有众生喧哗的时代才需要理论勇气。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 019</div>
+    <h2 class="article-title">02:22:15 我不是哲学家，我是哲学工作者</h2>
+    <p>他自认最大的勇气是「打补丁」：两汉思想史研究仍是薄弱环节，就去补它；另一部分研究纯粹因为好玩。「学我者生，似我者死」，他让学生别读自己的东西，有时间去读更好的。而北大哲学系系主任这个光环，在他的评价体系里是减分项——人文学科需要稳定阅读、与日常疏离，不像经管可以边观察现实边思考（钱颖一先生荣休时，大家纪念的都是他担任院长后暂停了自己的学术工作）。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 020</div>
+    <h2 class="article-title">02:31:04 快乐只能被遇见，不能被找到</h2>
+    <p>当年写「生活的根本任务在于找到属于你的适当且愉快的生活方式」，他现在觉得「快乐」这个词用得随意了：快乐和所有的美好一样，只能被遇见，你不能去 search for。他找到的是平衡与稳定的生活状态——「仔细观察我的日常生活，都是一地鸡毛，但这一地鸡毛其实就是我的稳定的一地鸡毛」。他也承认自己是个相对脆弱的人、是个话痨，跟公众贴的「反内耗、反内卷、高冷」标签根本不像。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 021</div>
+    <h2 class="article-title">02:41:55 普通人亲近哲学的次第</h2>
+    <p>先读历史（获得观察的视角），再读哲学史（知道每个哲学家的时代语境），然后进入经典——去啃第一遍读不懂的东西：他床头放的是《四书章句集注》，庄子，睡眠障碍可以读《精神现象学》或《纯粹理性批判》。此外一定要读心理学和社会批判理论：马尔库塞、鲍德里亚读起来很解压；弗洛伊德、荣格、埃里克森、温尼科特都对自己理解很有用；《资本论》的修辞密度和中文翻译的精确度，在白话文里很少被超过。对不做理论工作的人来说，不需要建构的勇气，需要的是敞开的勇气。</p>
+    <p class="spacer"></p>
+    
+    <blockquote>反思应该是生活很少使用到的调味剂，而不是生活方式。</blockquote>
+    <blockquote>很多人是在「人间不值得」和「恕我配不上」之间反复横跳，用看似深刻的方式，替自己的怠惰找一个合理的借口。</blockquote>
+    <blockquote>所有人的生命状态和他的生活成就，只能以个体化的方式进行评价，而且不应该受到任何公共性标准的影响。</blockquote>
+    <blockquote>别跟社会要说法，社会也给不了你说法。</blockquote>
+    <blockquote>在行动的时候你是很怠惰的，但筹划的时候你是很积极的——这不是行动中的奥德赛，而是在奥德赛中的奥德赛。</blockquote>
+    <blockquote>任何一种内心的召唤，在你眼里实际上就是不得不然的日常，就跟吃饭一样。</blockquote>
+    <blockquote>快乐和所有的美好一样，都只能被遇见，你不能去 search for，你只能遇见它。</blockquote>
+    <blockquote>世界如此复杂且浑然一体，我们怎么能够拿着一片切片，就认为自己掌握了某种生活的真理？</blockquote>
+    <div class="article-eyebrow">Gogo 的思考</div>
+    <h2 class="article-title">共振与提炼</h2>
+    <p>这期的核心对 Gogo 而言是「命名的机制」被说透了：奥德赛时期之所以有效，是因为命名把迷茫正常化，让人可以安然与它共处——这正是她所说的心理胜肽的作用层。但程乐松补了一个她一直守着的边界：命名会把状态封闭成一个「会过去的阶段」，而实际上人生每一段都迷茫；并且他给出了那句可以当概念卡注脚的话——生活上可以永远处在奥德赛，心灵上必须始终处在回乡的状态。另一个直接可用的是筹划颗粒度：目标性筹划换成步骤性筹划，把「两年后成为什么」拆成「下一步做什么」。以及那句被朋友纠正过来的提醒：纵身一跃不必先给事情排出三六九等，按回报率挑选本身就是油腻的算计——内心的召唤如果比吃饭重要得多得多，那就还不是召唤。</p>
+    <p class="spacer"></p>
+    <p>这期真正的命题，不是「如何不内耗」，而是把「活着」从公共评价标准里赎回来。过度反思是把自我交给外部尺度去审判；「人间不值得」和「恕我配不上」的横跳，是用深刻的姿态替怠惰做合理性奠基。程乐松给的不是态度，是方法：先承认每个人的生命只能被个体化地评价，再停止为未来过度筹划——把目标性筹划换成步骤性筹划，把注意力交还给「马上要采取的行动」。而他判断一个人是否真的活出自己的方式，也很朴素：如果一件事变成了像吃饭一样不得不然的日常，它就是内心的召唤；如果它比吃饭重要得多得多，那还是利益算计。他全篇最高频的一句是「让我换个说法」——这不是犹疑，而是一个哲学工作者对全称判断的终身警戒：世界如此浑然一体，我们不能拿着一片切片就认为自己掌握了真理。</p>
+  </article>
+</section>
+
+<div class="tracing-appendix">
+  <div class="appendix-inner">
+    <div class="appendix-title">附言 · Afterword</div>
+    <div class="appendix-grid">
+      <div class="appendix-block">
+        <div class="appendix-label">总结</div>
+        <p>脱不花对谈北大哲学系系主任程乐松。他不劝你和解，也不劝你上进，只做一件事——每次你要下全称判断时，他停下来说「让我换个说法」。什么是过度反思？没有与伟大心灵对话过、没有生命经验、没有自觉有限性就急着反思；「反思应该是生活的调味剂，不是生活方式」。为什么不敢停？因为把「自我实现」错置成「生存需求」。「人间不值得」和「恕我配不上」之间反复横跳，是用看似深刻的方式给怠惰找一个合理的借口。真正的出路不在筹划里：对外部环境远期筹划极强、对当下行动零筹划，是年轻人最大的错觉——目标性筹划要换成步骤性筹划。内心的召唤不是宏大口号，而是「不得不然的日常」，跟吃饭一样；哪一天觉得它比吃饭重要得多得多，那就不是召唤，还是利益的算计。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">关联旧知</div>
+        <p>与同一嘉宾的前置场「知本论 vol.170 · 过度追求人生确定性是个陷阱」构成一次连续思考：留白_确定性陷阱讲的是「焦虑源于把自我实现错置成生存需求」，这期往下走一步，给出解药——阅读、慢判断、步骤性筹划、回到具体。与 Gogo 的 Contextual Truth 直接同构：反全称判断、反切片当真理、反对把表达优先权当合理性，「让我换个说法」就是语境真理的日常操作。与她的具体/抽象框架共振：具体的生活最不需要假手他人。与「卡住的权利」（展开讲讲）、八月刊《慢放键》相连：允许停滞，但心灵要有锚——「在生活意义上我们永远处在奥德赛的状态，但心灵上必须始终处在回乡的状态」。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">我的思考</div>
+        <p>这期的核心对 Gogo 而言是「命名的机制」被说透了：奥德赛时期之所以有效，是因为命名把迷茫正常化，让人可以安然与它共处——这正是她所说的心理胜肽的作用层。但程乐松补了一个她一直守着的边界：命名会把状态封闭成一个「会过去的阶段」，而实际上人生每一段都迷茫；并且他给出了那句可以当概念卡注脚的话——生活上可以永远处在奥德赛，心灵上必须始终处在回乡的状态。另一个直接可用的是筹划颗粒度：目标性筹划换成步骤性筹划，把「两年后成为什么」拆成「下一步做什么」。以及那句被朋友纠正过来的提醒：纵身一跃不必先给事情排出三六九等，按回报率挑选本身就是油腻的算计——内心的召唤如果比吃饭重要得多得多，那就还不是召唤。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">备注</div>
+        <p>素材归档自 Gogo 的播客知识库（podcast-kb），本期由 Venues 排版。</p>
+      </div>
+    </div>
+    <div class="appendix-rule"></div>
+    <div class="appendix-fine">本附页以硫酸纸印刷 · VOL.23 · 2026.09.07</div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <h5>关于本期</h5>
+        <p>长谈·脱不花 · 程乐松（北京大学哲学系·宗教学系系主任 · 长江学者 · 研究早期道教与两汉思想史 · 著有《身体、不死与神秘主义》《留白》）</p>
+      </div>
+      <div>
+        <h5>出版信息</h5>
+        <p>2026.09.07 · 由 Venues 制作<br>素材：podcast-kb 归档</p>
+      </div>
+      <div>
+        <h5>设计信息</h5>
+        <p>Noto Serif SC / Dancing Script<br>Zine Skill v2 · 森林墨水</p>
+      </div>
+    </div>
+    <div class="colophon-rule"></div>
+    <a class="back-home-footer" href="../index.html">← 返回档案首页</a>
+    <p class="colophon-fine">© 2026 · PODCAST ZINE · VOL.23</p>
+  </div>
+</footer>
+
+</body>
+</html>
