@@ -309,6 +309,10 @@ body {{
 
 if __name__ == "__main__":
     for i, ep in enumerate(EPISODES):
+        # 备选风格 E · 康奈尔笔记：由 gen_cornell.py 独立生成，跳过轮换式档案风
+        if ep.get("style") == "cornell":
+            print(f"skip {ep['slug']} [康奈尔笔记风格 → gen_cornell.py]")
+            continue
         if ep.get("theme"):
             theme_class, theme_name = ep["theme"], dict(THEMES)[ep["theme"]]
         else:

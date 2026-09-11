@@ -313,6 +313,7 @@ select:focus { border-color:var(--ink); }
 .w-title { margin-top:3px; font-size:clamp(13.5px,1.3vw,16px); font-weight:400; }
 .w-title .badge { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px solid var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink); }
 .w-title .star { color:var(--star,#c75146); font-size:12px; margin-left:8px; }
+.w-title .style-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px dashed var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink-2,#55544f); opacity:.85; }
 .w-meta { display:flex; gap:14px; margin-top:5px; font-family:'Noto Sans Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:.05em; }
 .w-meta .ep:empty { display:none; }
 .w-right { display:flex; align-items:center; gap:14px; }
@@ -460,7 +461,9 @@ select:focus { border-color:var(--ink); }
  *        status: zine待筛选/transcript=已转逐字稿/saved=仅收藏 · star:特藏
  *  书目封面：BOOK_COVER 里按节目名给封面路径（有图加，无图用素净书封占位）。
  * ========================================================================= */
+var STYLE_LABEL = { cornell: '康奈尔笔记' };
 var WALL = [
+  {"date":"2026.09.11","show":"自习室 STUDY ROOM","guest":"Casey Means","title":"好能量：把细胞作为方法","ep":"105","duration":"1:19:00","status":"zine","style":"cornell","link":"zines/20260911-zixishi-105-hao-nengliang.html"},
   {"date":"2026.09.08","show":"岩中花述","guest":"庆山","title":"从前要如我所愿，现在接受如其所是","ep":"S9E8","duration":"1:55:00","status":"zine","link":"zines/20260908-yanzhonghuashu-qingshan.html"},
   {"date":"2026.09.07","show":"长谈","guest":"程乐松","title":"让我换个说法：活得哲学一点","ep":"Ep64","duration":"2:55:25","status":"zine","link":"zines/20260907-changtan-chenglesong.html"},
   {"date":"2026.09.05","show":"Coffee Plus","guest":"郭晓妍","title":"谁说是「老登的灯」？重新认识虹吸咖啡","ep":"#114","duration":"1:36:00","status":"zine","link":"zines/20260905-coffeeplus-hongxi.html"},
@@ -523,6 +526,7 @@ function stale(html){ var d=document.createElement('div'); d.innerHTML=html; ret
 function rowHTML(w, showInRow){
   var badge='';
   if(w.star) badge+='<span class="star">★</span>';
+  if(w.style && STYLE_LABEL[w.style]) badge+='<span class="style-tag">'+STYLE_LABEL[w.style]+'</span>';
   var link = w.link ? w.link : 'javascript:void(0)';
   var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
   return '<a class="w-row" href="'+link+'">'

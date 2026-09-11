@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cornell Notes · 好能量</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1c1c1c;
+  --ink-2: #55544f;
+  --ink-3: #8d8b84;
+  --rule: #cfcdc5;
+  --rule-2: #e6e4dd;
+  --paper: #ffffff;
+  --tint: #f4f3ef;
+  --accent: #6b5842;
+}
+html { background: #dedcd6; }
+body {
+  font-family: "Noto Sans SC", -apple-system, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  padding: 28px 0;
+}
+.page {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 22px;
+  padding: 14mm 15mm 16mm;
+  background: var(--paper);
+  box-shadow: 0 3px 18px rgba(0,0,0,.16);
+  display: flex;
+  flex-direction: column;
+}
+/* ---------- 顶部栏目带 ---------- */
+.band {
+  display: grid;
+  grid-template-columns: 26% 24% 26% 24%;
+  border-bottom: 1.6px solid var(--rule);
+  padding-bottom: 3px;
+  margin-bottom: 9mm;
+}
+.band-c {
+  font-size: 10.5px;
+  letter-spacing: .28em;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.p-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 6mm;
+  color: var(--ink);
+}
+/* ---------- 双栏 ---------- */
+.grid { display: grid; grid-template-columns: 27% 73%; column-gap: 8mm; flex: 1; }
+.col-cue { border-right: 1px solid var(--rule-2); padding-right: 5mm; }
+.cue { margin-bottom: 7mm; }
+.cue-h { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.5; letter-spacing: .02em; }
+.cue-b { font-size: 10.5px; color: var(--ink-2); line-height: 1.72; margin-top: 2px; }
+.col-note { }
+.dlg { font-size: 12.4px; line-height: 1.95; color: #2c2b28; margin-bottom: 3.4mm; text-align: justify; }
+.who { font-weight: 700; color: var(--accent); margin-right: .5em; letter-spacing: .02em; }
+/* ---------- 金句框 ---------- */
+.callout {
+  margin: 7mm 0 6mm;
+  padding: 6mm 8mm;
+  background: var(--tint);
+  border-left: 2.5px solid var(--accent);
+  font-family: "Noto Serif SC", serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.75;
+  letter-spacing: .06em;
+  color: var(--ink);
+  text-align: center;
+}
+/* ---------- 总结带 ---------- */
+.sum {
+  margin-top: auto;
+  border-top: 1.6px solid var(--rule);
+  padding-top: 3.5mm;
+  display: grid;
+  grid-template-columns: 26% 74%;
+  column-gap: 8mm;
+}
+.sum-label { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--ink-3); }
+.sum-text { font-size: 11px; line-height: 1.85; color: var(--ink-2); }
+/* ---------- 页码 ---------- */
+.pno {
+  position: absolute;
+  right: 15mm;
+  bottom: 7mm;
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+/* ---------- 封面 ---------- */
+.cover { justify-content: space-between; padding: 22mm 18mm 16mm; }
+.cover-top { text-align: center; }
+.cover-brand {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .42em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.cover-mark {
+  display: inline-block;
+  margin-top: 6mm;
+  padding: 4px 16px;
+  border: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: .3em;
+  color: var(--ink-3);
+}
+.cover-mid { text-align: center; margin: 0; }
+.cover-num {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 13px;
+  letter-spacing: .4em;
+  color: var(--ink-3);
+  margin-bottom: 4mm;
+}
+.cover-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 62px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.cover-en {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .52em;
+  color: var(--ink-3);
+  margin-top: 5mm;
+}
+.cover-sub {
+  font-family: "Noto Serif SC", serif;
+  font-size: 19px;
+  letter-spacing: .22em;
+  color: var(--ink-2);
+  margin-top: 11mm;
+}
+.cover-line {
+  font-size: 12.5px;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  margin-top: 6mm;
+}
+.cover-rule { width: 44px; height: 1.5px; background: var(--accent); margin: 9mm auto 0; }
+.cover-bottom { text-align: center; }
+.cover-foot {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .28em;
+  color: var(--ink-3);
+  line-height: 2.1;
+}
+/* ---------- 导航页 ---------- */
+.nav-h {
+  font-family: "Noto Serif SC", serif;
+  font-size: 17px;
+  letter-spacing: .2em;
+  font-weight: 700;
+  margin-bottom: 9mm;
+}
+.nav-i {
+  display: grid;
+  grid-template-columns: 12mm 1fr;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 2.5;
+  border-bottom: 1px solid var(--rule-2);
+  padding: 1.6mm 0;
+}
+.nav-n { font-family: "Noto Sans Mono", monospace; color: var(--ink-3); font-size: 11px; }
+/* ---------- 金句回顾页 ---------- */
+.quote-list { margin-top: 2mm; }
+.quote-row {
+  font-family: "Noto Serif SC", serif;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink);
+  padding: 3.6mm 0 3.6mm 8mm;
+  position: relative;
+  border-bottom: 1px solid var(--rule-2);
+}
+.quote-row::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 3.6mm;
+  color: var(--accent);
+  font-size: 10px;
+}
+/* ---------- 尾页 ---------- */
+.end-page { justify-content: center; text-align: center; }
+.end-big {
+  font-family: "Noto Serif SC", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.end-small { font-size: 13px; color: var(--ink-2); margin-top: 8mm; letter-spacing: .12em; }
+.end-rule { width: 60px; height: 1.5px; background: var(--accent); margin: 12mm auto; }
+.end-meta {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .26em;
+  color: var(--ink-3);
+  line-height: 2.2;
+}
+.back-home {
+  display: inline-block;
+  margin-top: 10mm;
+  font-size: 11px;
+  letter-spacing: .16em;
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+}
+.back-home:hover { color: var(--accent); }
+
+@media print {
+  html { background: #fff; }
+  body { padding: 0; }
+  .page { box-shadow: none; margin: 0; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  @page { size: A4; margin: 0; }
+}
+</style>
+</head>
+<body>
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-brand">Study Room</div>
+    <div class="cover-mark">Cornell Notes Series</div>
+  </div>
+  <div class="cover-mid">
+    <div class="cover-num">105 | GOOD ENERGY</div>
+    <div class="cover-title">好能量</div>
+    <div class="cover-en">GOOD ENERGY</div>
+    <div class="cover-sub">把细胞作为方法</div>
+    <div class="cover-line">先出发，一切都会准备好的</div>
+    <div class="cover-rule"></div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-foot">自习室 STUDY ROOM · Guxi × Weiya<br>GOGO 收听 2026.09.11</div>
+  </div>
+</section><section class="page">
+  <header class="band"><div class="band-c">本期导航</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">本期导航</div>
+  <div class="nav-i"><span class="nav-n">一</span><span>开篇：Casey的故事与好能量</span></div><div class="nav-i"><span class="nav-n">二</span><span>反直觉一：没能量反而该少吃 + 消耗</span></div><div class="nav-i"><span class="nav-n">三</span><span>反直觉二：体检正常 ≠ 健康</span></div><div class="nav-i"><span class="nav-n">四</span><span>反直觉三：衰老是疾病但可逆</span></div><div class="nav-i"><span class="nav-n">五</span><span>反直觉四：嘴馋 ≠ 意志力问题</span></div><div class="nav-i"><span class="nav-n">六</span><span>Casey 的饮食建议</span></div><div class="nav-i"><span class="nav-n">七</span><span>反直觉五：跑 45min 也是久坐</span></div><div class="nav-i"><span class="nav-n">八</span><span>反直觉六：睡不好解法在早上</span></div><div class="nav-i"><span class="nav-n">九</span><span>反直觉七：恒温 = 另一种久坐</span></div><div class="nav-i"><span class="nav-n">十</span><span>体检加项 + 总结推荐</span></div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">一、开篇：Casey 的故事与好能量</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">Casey Means</div><div class="cue-b">斯坦福医学博士<br>耳鼻喉外科住院医<br>辞职创办代谢健康公司</div></div><div class="cue"><div class="cue-h">Casey 妈妈的故事</div><div class="cue-b">巨大儿出生 → 三高<br>指标压回正常<br>72 岁胰腺癌 13 天去世</div></div><div class="cue"><div class="cue-h">现代人饮食数据</div><div class="cue-b">多吃 20% 热量<br>多吃 700% 果糖<br>少睡 25%</div></div><div class="cue"><div class="cue-h">核心隐喻</div><div class="cue-b">几十种毛病不是独立的病<br>是同一棵树的枝条<br>树根 = 细胞能量</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> Hello，大家好，欢迎到自习室。我是 WEIYA。</p><p class="dlg"><span class="who">Guxi</span> 我是 GUXI。</p><p class="dlg"><span class="who">Weiya</span> 我们的 slogan 是「进步是最性感的事」。今天这一期我们要回到这个跟健康有关系的话题。我觉得咱俩都快变成生物极客了。</p><p class="dlg"><span class="who">Guxi</span> 你觉得，我们可不就是 biohacker。而且我想多插一句，提前剧透一下：今天这本书里讲的所有的内容，你要细拆开，每一个支柱我们在过去的节目里面其实都覆盖、展开讲过。</p><p class="dlg"><span class="who">Weiya</span> 还真是。但是今天因为有一本书叫做 Good Energy《好能量》，我现在手里拿的是它刚出的中文版本，大家阅读起来就更方便。</p><p class="dlg"><span class="who">Guxi</span> 如果要给它去命名的话，我读这本书的阅读体验就是——一场从根源处发现并解决我们身体各种问题的健康自查。</p><p class="dlg"><span class="who">Weiya</span> 我在准备这一期大纲的时候想换一个思路。我们不顺着这本书的目录来讲，我选了一些这本书让我觉得最反直觉的那些事儿，一件一件拎出来，让大家看看是不是——我一直以为这样做更健康，但其实现在发现好像不一定是这么回事儿。</p><p class="dlg"><span class="who">Weiya</span> 我想从一个小的故事讲起。1987 年 9 月 24 号，发生在华盛顿特区。那天有一家医院里有一个女孩出生了，她出生时的体重达到了 11 斤。超过八斤的小孩就叫做巨大儿了。其实巨大儿是一个信号，就是证明这个妈妈在孕期的时候，她的血糖已经失控了。</p><p class="dlg"><span class="who">Weiya</span> 几年以后，当这个妈妈五十多岁的时候，她就已经集齐了像我们传统说的老年病——高血压、高胆固醇和高血糖。其实每个科室的大夫都尽心尽力了，所以她后来每个指标也都回到了正常的范围之内。但是 2021 年 1 月，这个妈妈在 72 岁的时候因为肚子疼去医院，经检查发现她是胰腺癌，并且一查出来就是晚期。从确诊到去世，只用了 13 天。</p><p class="dlg"><span class="who">Weiya</span> 刚才我说的那个女孩，其实就是本书的作者之一 Casey Means。刚才我说的那个母亲，就是 Casey 的妈妈。</p><p class="dlg"><span class="who">Guxi</span> 这也触发她去重新思考，到底生命的意义是什么。「我妈妈这么健康，比同龄人明显要活泼很多，而且非常关心生活质量，但依然出现这么多三高的问题，然后最后发现胰腺癌的时候为时已晚。」</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">Casey Means 从外科医生转向代谢健康：妈妈巨大儿 → 三高 → 胰腺癌的故事触发她重新思考。所有现代病可能是同一棵树，树根是细胞能量。</div>
+</footer>
+<div class="pno">1/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">二、反直觉一：没能量反而该少吃 + 消耗</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉一</div><div class="cue-b">没能量反而该<br>少吃 + 消耗能量</div></div><div class="cue"><div class="cue-h">代谢问题本质</div><div class="cue-b">不在供给端<br>在转化端<br>胰岛素锁死脂肪<br>恶性循环</div></div><div class="cue"><div class="cue-h">胰岛素高 → 锁死脂肪</div><div class="cue-b">饿也吃 → 越吃越胖<br>低血糖 → 更想吃</div></div><div class="cue"><div class="cue-h">线粒体</div><div class="cue-b">1 份糖酵解 → 2 份 ATP<br>经线粒体 → 36 份 ATP<br>＝高效发电厂</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Guxi</span> 它会导致的一个症状叫「慢性炎症」。你别看带了「慢性」这个字儿，我觉得我在创业的前三年，其实一直处于她书里描述的各种症状里面，非常典型。</p><p class="dlg"><span class="who">Guxi</span> 根源也在于你的细胞——你发不出 ATP 之后，你不是堵着吗？堵着细胞就很着急，它就会发出求救、恐惧这样的信号。身体里面有一个很神奇的东西叫免疫系统，它一看到信号——完了，细胞在呼救了——它就会赶来。但是它赶来之后，它解决不了根本的问题，也没有改变任何的局面，就会进入到第三步——「氧化应激」。</p><p class="dlg"><span class="who">Guxi</span> 氧化应激也是当我们那些糖、果糖、加工食品、毒素、酒精，包括压力、睡眠不足，会让我们的身体产生大量的自由基。</p><p class="dlg"><span class="who">Weiya</span> 第一个我觉得最反直觉的地方就是——你觉得没有能量的时候，也许我们反而应该少吃、加剧消耗能量。比如说「我吃顿好的、我喝点咖啡或者我周末补补觉」，这个直觉背后其实是有一个假设：能量不够是因为燃料不够了。</p><p class="dlg"><span class="who">Weiya</span> 代谢不好的人就是吃得多但没有能量。所以它的问题不出在供给端，而出在转化端。如果你体内胰岛素比较高，它会牢牢地锁住这个脂肪。所以你在外面就算饿得已经低血糖了，你的身体也不肯把细胞刚存储的脂肪拿出来当热量。</p><p class="dlg"><span class="who">Guxi</span> 其实就有点理解了，为什么在我们压力特别大的时候，我和我当时的合伙人晚上就会吃夜宵。为什么人一到压力特别大的时候容易暴饮暴食？</p></div>
+</div>
+<div class="callout">总是饿 不代表你该多吃<br>总是累 也不代表你该歇</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉一：没能量不该猛补而该少吃 + 消耗。代谢问题不在供给端在转化端。胰岛素锁死脂肪形成恶性循环。线粒体 1 份糖酵解只产 2 份 ATP，经线粒体产 36 份。</div>
+</footer>
+<div class="pno">2/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">二（续）、线粒体与恶性循环</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">线粒体何时不工作</div></div><div class="cue"><div class="cue-h">来不及：高强度运动</div></div><div class="cue"><div class="cue-h">功能变差：不保养</div><div class="cue-b">→ 发动机冒黑烟</div></div><div class="cue"><div class="cue-h">冒黑烟 ＝ 自由基</div><div class="cue-b">正常燃烧只有 2% 烟<br>老旧发动机烟大量<br>开始腐蚀发动机</div></div><div class="cue"><div class="cue-h">间歇性断食</div><div class="cue-b">给系统自我修复时间<br>不要再硬塞东西</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Guxi</span> 我再深入地解释一下。你吃进去一份葡萄糖，如果在细胞里不经过线粒体，它直接进行糖酵解的话，它只能放出两份能量。但是经过糖酵解放出这个能量之后，你再把这些能量放到线粒体里去烧，它会再放出 30 份的细胞能量。发电厂其实给它拆得更细，爆发的能量更多了。</p><p class="dlg"><span class="who">Weiya</span> 线粒体如果无时无刻不在工作，它什么时候不会工作呢？第一个就是它来不及的时候。比如说你提特别重的重物、你在做力量训练的时候，为什么会堆积乳酸呢？其实就是因为它供能来不及了，线粒体来不及产生 ATP。</p><p class="dlg"><span class="who">Guxi</span> 所以其实我们运动完了之后，不应该把你身体酸酸的、第二天完全挪不动步当成是你彻底训练的一个标志。</p><p class="dlg"><span class="who">Weiya</span> 第二个是什么时候呢？就是你线粒体功能变差。当你这个发动机变差的时候，你又不保养它，它就会越来越来不及去燃烧。</p><p class="dlg"><span class="who">Weiya</span> 线粒体功能差会发生什么？它相当于你的燃烧不充分，你的整个发电机开始冒黑烟了。冒黑烟其实就是自由基。</p><p class="dlg"><span class="who">Weiya</span> 但是如果你的发动机很老了、它的烟冒得很多的话，它就会开始来不及处理，然后就会开始腐蚀你的发动机。所以发动机越破，它烧得越不透；而且你进来的燃料就会越堆越多，越堆越多你越烧不动，所以它就变成了一个恶性循环。</p><p class="dlg"><span class="who">Weiya</span> 然后这个时候细胞发现它没有能量用，它就会向大脑发出信号——就是「我饿，我需要能量」。然后这个时候你还在不停地吃，然后就陷入到一个非常恶性的循环。这也就是为什么间歇性断食和辟谷在我们这个时下非常流行，它真的是有道理的。</p><p class="dlg"><span class="who">Guxi</span> 其实就是给你的系统去自我修复的时间，不要再硬塞给它东西了。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">线粒体不工作的两种情况：来不及（高强度运动）和功能变差（不保养 → 冒黑烟＝自由基）。发动机越破烧得越不透，燃料越堆越多，陷入恶性循环。间歇性断食给系统自我修复时间。</div>
+</footer>
+<div class="pno">3/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">二（续）、用进废退与可逆</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">用进废退</div></div><div class="cue"><div class="cue-h">肌肉收缩 ＝ 升级信号</div><div class="cue-b">「这里需要更多能量」</div></div><div class="cue"><div class="cue-h">躺着 ＝ 线粒体缩小</div></div><div class="cue"><div class="cue-h">可逆性</div><div class="cue-b">一次运动 → 胰岛素敏感 48h</div></div><div class="cue"><div class="cue-h">规律训练 → 线粒体增多</div><div class="cue-b">65-80 岁也能逆转</div></div><div class="cue"><div class="cue-h">海绵效应</div><div class="cue-b">肌肉收缩一下<br>明天线粒体就开始改善<br>几周后数量和效率提升</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 为什么有的时候你没能量的时候，也许不应该着急补能量；还有一个就是为什么你累的时候反而要多动。</p><p class="dlg"><span class="who">Weiya</span> 线粒体它跟其他的肌肉一样，它是用进废退的。所以肌肉的每一次收缩其实都是像在向身体发一个信号——「这里需要更多的能量，所以请你升级改造我们的发动机。」</p><p class="dlg"><span class="who">Guxi</span> 这就是「躺废了」的原理。</p><p class="dlg"><span class="who">Weiya</span> 但是这里面我想告诉大家一个好消息——就是这个循环是完全可逆的，并且这个消息比你想像的还要好。</p><p class="dlg"><span class="who">Weiya</span> 首先，线粒体的可塑性是终身的。有研究表明一次运动就能提高胰岛素的敏感性，并且这个效果可以持续 24 到 48 个小时。就是你今天稍微动一下，你在接下来的两天之内，你的胰岛素的敏感性都会提升。</p><p class="dlg"><span class="who">Weiya</span> 第二，肌肉收缩是有海绵效应的。当你肌肉收缩一下的时候，明天你的线粒体就开始改善。如果你在几周时间内进行规律的有氧训练，它可以让肌肉线粒体的数量和效率可观测地被提升。</p><p class="dlg"><span class="who">Guxi</span> 就肉眼可见地多了。</p><p class="dlg"><span class="who">Weiya</span> 然后第三个就是多大都来得及。2017 年《细胞代谢》的研究——证明让 65 到 80 岁的老人去做高强度的间歇训练，结果他们的线粒体的功能提升幅度比年轻人还大。当你没能量不一定吃；当你累的时候不一定是需要躺着，可能会需要更多动一点。</p></div>
+</div>
+<div class="callout">每一种吃进去的食物<br>都是在跟细胞发信息</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">线粒体用进废退，终身可逆。一次运动提升胰岛素敏感性 48h。65-80 岁老人高强度间歇训练后线粒体提升超过年轻人。肌肉收缩有海绵效应，明天就改善。</div>
+</footer>
+<div class="pno">4/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">三、反直觉二：体检正常 ≠ 健康</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉二</div><div class="cue-b">体检正常 ≠ 健康<br>指标正常不代表没事</div></div><div class="cue"><div class="cue-h">时间差</div><div class="cue-b">胰岛素异常 → 血糖异常<br>间隔 &gt; 10 年<br>＝冒烟到着火</div></div><div class="cue"><div class="cue-h">检查建议</div><div class="cue-b">空腹胰岛素（必加）<br>空腹血糖不够<br>几十块钱但体检没有</div></div><div class="cue"><div class="cue-h">共生关系</div><div class="cue-b">胰岛素抵抗 ↔ 慢性炎症<br>有一个就有另一个<br>鼻炎 / 胃炎 / 哮喘可能都是</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 下面看第二个反直觉——就是体检正常不等于你健康。</p><p class="dlg"><span class="who">Guxi</span> 这点我想先听你讲原理，然后我来分享我自己的案例。</p><p class="dlg"><span class="who">Weiya</span> 在我开头讲的那个案例就是一个非常好的证明——就是 Casey 妈妈的案子。她这个血糖可能不太正常，血脂也不太正常，靠吃药、各种药的叠加，把所有指标都压回了正常。但这并不代表你人没事儿。</p><p class="dlg"><span class="who">Weiya</span> 就是拿胰岛素抵抗举例——当你已经出现胰岛素抵抗的时候，如果你去医院只查空腹血糖，你会发现你的血糖是正常的。但是其实你的胰岛素分泌已经超过了之前的好几倍。</p><p class="dlg"><span class="who">Weiya</span> 所以你知道吗？从胰岛素出现异常到血糖出现异常，中间的间隔一般是十年以上。</p><p class="dlg"><span class="who">Guxi</span> 我想说我是因为读了这本书，我第一次在去体检之前这么理直气壮地去跟医生坐下来、非常指名道姓地说我要加哪五个项。我人生从来没有这样的体验。</p><p class="dlg"><span class="who">Weiya</span> 然后我想说的就是英国有一项持续几十年的研究，发现到你确认二型糖尿病的那一天，其实你分泌胰岛素的这些细胞已经丢失一半了。</p><p class="dlg"><span class="who">Guxi</span> 你这样一说，我如果去倒推的话，我很难以想象我们现在这些你我这样看似的正常人，是不是我们体内的胰岛素、血糖各种问题其实已经开始冒烟了，但是我们没有发现。</p><p class="dlg"><span class="who">Weiya</span> 从来没有去侦查过。因为大夫只关心你的这个指标是不是在正常范围之内，只要没有箭头，大夫是不会管你的。</p><p class="dlg"><span class="who">Weiya</span> 还有一个就是，胰岛素抵抗和大多数身体的慢性炎症，它是共生的关系。2019 年《自然·医学》发表了一篇 22 个权威学者联名的文章，它的结论是：慢性低度炎症是心血管疾病、癌症、糖尿病、阿尔茨海默这些主要致死疾病的「共同土壤」。</p></div>
+</div>
+<div class="callout">测血糖 ＝ 火烧起来才报警<br>测胰岛素 ＝ 冒烟时就报警<br>中间间隔十年</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉二：体检正常 ≠ 健康。胰岛素异常到血糖异常间隔超过 10 年。必加查空腹胰岛素。胰岛素抵抗与慢性炎症是共生关系，鼻炎 / 胃炎 / 哮喘都可能是表征。</div>
+</footer>
+<div class="pno">5/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">四、反直觉三：衰老是疾病但可逆</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉三</div><div class="cue-b">衰老是一种疾病<br>但可逆</div></div><div class="cue"><div class="cue-h">黄灯表征</div><div class="cue-b">大脑 → 抑郁 / 脑雾<br>卵巢 → 多囊 / 不孕<br>本质都是代谢问题</div></div><div class="cue"><div class="cue-h">抑郁与代谢</div><div class="cue-b">胰岛素抵抗者<br>抑郁风险高 2 倍多<br>大脑耗全身 20% 能量</div></div><div class="cue"><div class="cue-h">多囊</div><div class="cue-b">6-7 成多囊有胰岛素抵抗<br>与胖瘦无关<br>过量胰岛素 → 雄激素 ↑</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 然后第三个反直觉——就是衰老是一种疾病。</p><p class="dlg"><span class="who">Guxi</span> 你这句话你知道我想反驳，但我又觉得它有道理。</p><p class="dlg"><span class="who">Weiya</span> 其实长皱纹也是因为你细胞复制能力变差了。比如说我们容易累、脑雾、过敏，或者有一些你原来没有的毛病。但是其实这本书给了完全不同的解读。她说这些可能是代谢系统亮出的黄灯。</p><p class="dlg"><span class="who">Weiya</span> 斯坦福大学的一个团队用了荷兰一个 600 人的队列，他们都是没有抑郁史的成年人，随访了九年的时间。结果是有胰岛素抵抗的人，他新发的重症抑郁的风险是没有的人的两倍。</p><p class="dlg"><span class="who">Weiya</span> 然后大脑占体重的百分比很少，但是它的消耗是全身 20% 的能量。所以它是耗电大户。一旦你的供电系统出了问题，你的大脑是最先有感觉的。</p><p class="dlg"><span class="who">Guxi</span> 你知道这个让我想到的就是叫什么——「身体不好的人脾气不好」。</p><p class="dlg"><span class="who">Weiya</span> 大约 6 到 7 成的多囊卵巢综合征的患者有胰岛素抵抗。包括那些并不胖的患者。因为过量的胰岛素会刺激卵巢，让雄激素过多。</p><p class="dlg"><span class="who">Weiya</span> 如果你抑郁的话，你会挂精神科；如果你多囊的话，你会挂内分泌科；如果你过敏的话，你会挂风湿科。但这三个科室、三张处方，底下垫着的其实是同一个机理。</p><p class="dlg"><span class="who">Guxi</span> 我之前看了一个研究报告——人在拔牙之后会伤心难过。其实是因为拔牙之后带来的发炎的症状。</p><p class="dlg"><span class="who">Weiya</span> 所以有的时候我们觉得衰老是没有办法的事儿，但是代谢是可逆的。我们的生物年龄是可以被逆转的。所以「衰老是一种疾病」的另一个反直觉就是——衰老是可逆的。</p><p class="dlg"><span class="who">Guxi</span> 综合你的各种指标，你现在代谢年龄是 19 岁。</p><p class="dlg"><span class="who">Weiya</span> 太羡慕了。</p><p class="dlg"><span class="who">Guxi</span> 从实际年龄上来说我们确实什么都不能做。但是代谢是一个你立竿见影就能见影的事儿。「焕发活力」这四个字儿，我也是从代谢指标上面有了这样一种切身的感受。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉三：衰老是疾病但可逆。抑郁可能是大脑缺能量（胰岛素抵抗者抑郁风险高 2 倍多），6-7 成多囊有胰岛素抵抗（与胖瘦无关）。代谢年龄可以被逆转。</div>
+</footer>
+<div class="pno">6/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">五、反直觉四：嘴馋 ≠ 意志力问题</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉四</div><div class="cue-b">嘴馋 ≠ 意志力问题<br>是食欲系统被 hacked</div></div><div class="cue"><div class="cue-h">超加工食物</div><div class="cue-b">糖 + 油 + 盐 + 脆感<br>老祖宗没见过的组合</div></div><div class="cue"><div class="cue-h">NIH 实验</div><div class="cue-b">日均多吃 500 卡</div></div><div class="cue"><div class="cue-h">Omega-3 vs 6</div><div class="cue-b">3 → 收兵信号<br>6 → 继续打信号<br>比例失衡 ＝ 慢性炎症</div></div><div class="cue"><div class="cue-h">草饲牛</div><div class="cue-b">Omega-3 是谷饲的 5 倍<br>但中国难寻认证</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 第四个反直觉——嘴馋。你老是嘴馋想吃零食，或者你吃的就是比你需要的多。这件事儿不是因为意志力。</p><p class="dlg"><span class="who">Weiya</span> 在咱们老祖宗的食物和现在的食物之间有一个最本质的区别——原生食物，真的从树上长出来的。咱们祖母见过的食物里面，很少有既有好多脂肪又有好多糖的。</p><p class="dlg"><span class="who">Guxi</span> 所以我们老祖宗从来没有享受过糖油混合物的快乐。</p><p class="dlg"><span class="who">Weiya</span> 美国国立卫生研究院做了一个非常大的研究。让两组人：一组吃超加工的食物，一组吃原生食物。蛋白质、脂肪和碳水的总量一样，热量也一样。结果发现吃超加工食物的那组，他们平均每天多摄入了 508 大卡。</p><p class="dlg"><span class="who">Guxi</span> 然后我还看到这个实验他们还做了一个收尾的实验——就是同样这组人把它换回到那些未加工的原型饮食的时候，你发现这帮人全收回去了。</p><p class="dlg"><span class="who">Weiya</span> 所有的书里面最终的解决方案只有一个：就是不吃超加工的食物。你会发现你吃得饱饱的、你的饱腹感很强。</p><p class="dlg"><span class="who">Weiya</span> Omega-6 和 Omega-3 的比例现在是很夸张的。正常的比例应该是 1:1。但你知道咱们现在 Omega-6 比 Omega-3 的比例能达到 20:1。</p><p class="dlg"><span class="who">Guxi</span> Omega-3 抓到了就是「收兵」的信号，Omega-6 抓到了就是「要继续打下去」。所以你身体的这种发炎战争是不消停的。</p><p class="dlg"><span class="who">Guxi</span> 从数据上来说，草饲牛的 Omega-3 是谷饲的五倍。</p><p class="dlg"><span class="who">Weiya</span> 但是你知道吗？在中国你上淘宝上搜什么草饲——首先非常贵，其次你都不是特别敢相信。</p><p class="dlg"><span class="who">Guxi</span> 我们本质上吃的东西就是玉米。一切皆玉米。</p><p class="dlg"><span class="who">Weiya</span> 咱们是「米饲人」。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉四：嘴馋不是意志力问题。超加工食物 hacked 了食欲系统，糖油混合物是老祖宗没见过的。Omega-3 给收兵信号，Omega-6 给继续打信号，比例失衡导致慢性炎症。</div>
+</footer>
+<div class="pno">7/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">六、Casey 的饮食建议</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">Casey 饮食原则</div><div class="cue-b">吃一道彩虹<br>Omega-3 + 纤维<br>发酵食物 + 蛋白质</div></div><div class="cue"><div class="cue-h">微量营养素</div><div class="cue-b">抗氧化物 ＝ 抗衡自由基<br>十字花科 + 莓果</div></div><div class="cue"><div class="cue-h">发酵食物</div><div class="cue-b">酸奶 / 泡菜 / 康普茶<br>改善肠道菌群<br>膳食纤维 ＝ 益生元</div></div><div class="cue"><div class="cue-h">砖来了盖房子</div><div class="cue-b">蛋白质 ＝ 砖<br>氨基酸 ＝ 构建材料<br>运动后补充更有效</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 首先就是要多吃微量营养素和抗氧化物多的食物。你吃的东西就是在给你的身体发信号。而你吃这些微量营养素和抗氧化物给身体发的信号就是「你很有韧性」。也就是最后的结论就是「吃一道彩虹」。</p><p class="dlg"><span class="who">Guxi</span> 十字花科、莓果这些东西多吃，它有更好的抗氧化物。而抗氧化就是帮你抗衡自由基氧化应激这个过程。</p><p class="dlg"><span class="who">Weiya</span> 我觉得抗氧化剂的作用就是帮你——比如说发动机一边运转着，它一边帮你打扫着、一边帮你抽着这黑烟。</p><p class="dlg"><span class="who">Guxi</span> 然后第二个是多吃 Omega-3。它传递的信号就是「你现在身体是安全的，所以你不用去打仗」。这些食物含量主要就是脂肪鱼、深海鱼类，还有像沙丁鱼、奇亚籽儿、亚麻籽、还有核桃。</p><p class="dlg"><span class="who">Guxi</span> 还有第三是多吃纤维。这个纤维的食物语言——对你的肠道菌群说的。就是你把纤维吃进去之后，其实它在帮你喂养你的肠道菌群。</p><p class="dlg"><span class="who">Weiya</span> 比如说你像吃那个大芹菜——那些丝儿——那不都是粗纤维，其实你的身体是消化不了的。但为什么你要吃呢？就是因为你的那个肠道菌群、它们是吃这些东西的。</p><p class="dlg"><span class="who">Guxi</span> 而且 gut feeling——你的 gut、你的肠胃还是要有感受——它是有 feeling 的。如果你要让这个 gut feeling 更敏锐，记得要喂养它喜欢的东西。</p><p class="dlg"><span class="who">Guxi</span> 然后下一个是多吃发酵食物。比如说像酸奶、像味噌、还有像纳豆。</p><p class="dlg"><span class="who">Weiya</span> 对，纳豆还有像天贝。</p><p class="dlg"><span class="who">Guxi</span> 我之前觉得天贝好难吃，但是想了想我是在喂我的肠子，我也忍了。</p><p class="dlg"><span class="who">Weiya</span> 然后最后就是蛋白质。这个太重要了。我觉得强调蛋白质——再怎么强调蛋白质都不为过。来，开始搭建干活了——砖来了，可以盖房子了。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">吃一道彩虹（微量营养素 + 抗氧化物）、Omega-3、膳食纤维（益生元）、发酵食物（益生菌）、优质蛋白质。每一种食物都在跟细胞发信息。</div>
+</footer>
+<div class="pno">8/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">七、反直觉五：跑 45min 也是久坐</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉五</div><div class="cue-b">每天跑 45min<br>也可能是久坐人群</div></div><div class="cue"><div class="cue-h">23 小时法则</div><div class="cue-b">决定代谢的不是那 1h<br>是另外 23h 怎么过</div></div><div class="cue"><div class="cue-h">餐后散步</div><div class="cue-b">三餐后各走 15min<br>＞ 一次练 45min<br>全天血糖控制更好</div></div><div class="cue"><div class="cue-h">关键词</div><div class="cue-b">运动要「均摊」<br>贯穿全天<br>不要集中突击</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 「你每天就算跑步 45 分钟，你也可能是久坐人群」。</p><p class="dlg"><span class="who">Guxi</span> 你知道我昨天看到你写的大纲，我「腾」的一下整个人他就站起来了。</p><p class="dlg"><span class="who">Weiya</span> 如果你每天都坚持运动 45 分钟，你会觉得你超级健康。但是如果你一旦坐下来，一坐坐三四个小时，一天别的时间段你其实是一点都不 active 的。其实咱们真的就属于久坐人群。</p><p class="dlg"><span class="who">Weiya</span> 在医学上——哪怕你每天训练 1 个小时，你剩下的时间如果你是几乎不动的——因为决定你代谢状态的不是那 1 个小时，是另外那 23 个小时你是怎么过的。</p><p class="dlg"><span class="who">Guxi</span> 对于我来说帮助最大的——我看完这一点我就想到其实每天我早上和晚上各遛一次狗，无形之中帮我完成了这样的目标。</p><p class="dlg"><span class="who">Guxi</span> 俩关键词给大家总结一下——就是运动和动起来是要「均摊」和「贯穿」。</p><p class="dlg"><span class="who">Guxi</span> 我一开始我是先鄙视你的——因为我发现你居然是一个会打车去健身房、打车去操场跑步的人，然后练完之后又打车回家。</p><p class="dlg"><span class="who">Weiya</span> 但是也让我意识到了——当我养成这样的习惯之后，我观察两周之后，我发现我每天的步数真的是垂直下降。你会发现你坐地铁过去比走过去步数还多——因为地铁里面真的太绕了。</p><p class="dlg"><span class="who">Guxi</span> 其实这些运动量千万不要去忽视它。你给它积累起来之后，它就能实现我们刚刚说到的「贯穿」。</p></div>
+</div>
+<div class="callout">三餐后各走 15 分钟<br>比一次练 45 分钟<br>全天血糖控制更好</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉五：每天跑 45min 也可能是久坐。决定代谢的是另外 23 小时。三餐后各走 15 分钟比一次练 45 分钟血糖控制更好。运动要「均摊」和「贯穿」全天。</div>
+</footer>
+<div class="pno">9/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">八、反直觉六：睡不好解法在早上</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉六</div><div class="cue-b">睡不好的解法<br>不在晚上而在早上</div></div><div class="cue"><div class="cue-h">光 ＝ 信号系统</div><div class="cue-b">不是照明是生物钟信号<br>感光细胞直连大脑主时钟</div></div><div class="cue"><div class="cue-h">夜间光照</div><div class="cue-b">100 勒克斯床头灯<br>→ 胰岛素抵抗 ↑<br>心率 ↑ HRV ↓</div></div><div class="cue"><div class="cue-h">户外晒太阳</div><div class="cue-b">起床 1h 内 5-10min<br>晴天树荫 12000 勒克斯<br>阴天户外也有 10000</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 我发现这个反直觉就是——你越睡越晚。晚上睡不好的症结其实是在早上。人体对光的反应比我们想象的要大很多。</p><p class="dlg"><span class="who">Weiya</span> 光它不只是照明，它是身体的一个信号系统——它是对生物钟的信号。你的眼睛里或者你的皮肤身上，都有一类专门感光的细胞，它会把光的信号直接报给大脑的主时钟去校对。</p><p class="dlg"><span class="who">Weiya</span> 2022 年有一个实验。他找了 20 个健康的年轻人，第一晚上睡全黑的房间；第二晚上换到了一个 100 勒克斯的房间。第二天早上来测，发现睡在有光房间里的人——他的胰岛素的抵抗性显著地升高了。</p><p class="dlg"><span class="who">Guxi</span> 小橘灯——就是床头灯。</p><p class="dlg"><span class="who">Weiya</span> 床头灯——但是也不是特别暗的，就是中等、很普通的这么一个灯。</p><p class="dlg"><span class="who">Weiya</span> 日本的一个团队做过一个非常著名的剂量实验。给受试者早上起来 1 个小时开始照 3 个小时的光，强度分别是 3000、6000 和 12000 勒克斯。结果发现只照了一次——照 12000 勒克斯的那一组，他们的褪黑素分泌时间提前了 27 分钟。</p><p class="dlg"><span class="who">Weiya</span> 晴天的树荫底下，你大概会有 12000 勒克斯。</p></div>
+</div>
+<div class="callout">起床 1 小时内<br>户外晒 5-10 分钟<br>重设你的生物钟</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉六：睡不好解法在早上。光是信号系统不是照明。100 勒克斯夜间光照就升高胰岛素抵抗。起床 1 小时内户外晒 5-10 分钟可重设生物钟。</div>
+</footer>
+<div class="pno">10/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">八（续）、生物钟与阳光</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">室内晒太阳无效</div><div class="cue-b">靠窗只有几百勒克斯<br>隔玻璃效果大打折扣<br>必须到户外</div></div><div class="cue"><div class="cue-h">露营实验</div><div class="cue-b">1 周 → 褪黑素提前 2h<br>1 个周末 → 提前 1.5h</div></div><div class="cue"><div class="cue-h">生物钟</div><div class="cue-b">人体周期约 24.5h<br>每天需要阳光校准</div></div><div class="cue"><div class="cue-h">熬夜 ＝ 人为制造时差</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 阴天户外可以达到 1 万。差异大的是——紧挨着大窗户的室内只有 1000 到 3000 勒克斯。</p><p class="dlg"><span class="who">Guxi</span> 就是在那三档里面的最低档还不到。</p><p class="dlg"><span class="who">Weiya</span> 这说明在室内晒太阳——对于你改善褪黑素的分泌——一点作用都没有。</p><p class="dlg"><span class="who">Guxi</span> 而且你这个还是贴近窗户、靠近阳光的地方了。但凡是隔了一层玻璃窗，它的效果都会有这么大差别。</p><p class="dlg"><span class="who">Weiya</span> Huberman 每次都说「你必须到户外、必须到户外」。哪怕你是阴天下雨什么的，你到户外的室外强度也是唯一能帮你重设生物钟的。</p><p class="dlg"><span class="who">Weiya</span> 科罗拉多大学在 2013 年发表了一个重磅的研究。一群人从城市生活去落基山脉露营一周以后——他们每个人的褪黑素分泌的时间提前了差不多 2 个小时。</p><p class="dlg"><span class="who">Guxi</span> 怪不得我之前去徒步露营、在山里那六天，每天晚上九点就能睡着。</p><p class="dlg"><span class="who">Weiya</span> 2017 年同一个团队的后续实验——你只露营一个周末，你的褪黑素会提前约 1.5 个小时。</p><p class="dlg"><span class="who">Weiya</span> 人的这个生物钟它都不是 24 个小时整——它是 24.7 小时或者 24.6 小时。意味着你每天都推迟 0.6 小时。所以人越睡越晚——不是因为我们的不自律——是因为人体的生物钟就是这样的。</p><p class="dlg"><span class="who">Guxi</span> 所以我们越来越晚睡是一种自然的身体现象的漂移。但我们之所以还能保持这样的作息，其实真的是纯靠晒太阳。</p><p class="dlg"><span class="who">Weiya</span> 你就想象你身体是一个走不准的手表，然后你每天早上需要跟它对一下——这样你每天就是准的了。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">室内晒太阳无效（靠窗仅几百勒克斯），户外阴天也有 10000 勒克斯。露营 1 周褪黑素提前 2 小时。人体生物钟约 24.5h，每天需要阳光对表。</div>
+</footer>
+<div class="pno">11/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">八（续）、晒太阳的讲究</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">晒太阳细节</div><div class="cue-b">眼睛必须进光<br>墨镜不管用<br>隐形眼镜可以<br>5-10min 就够</div></div><div class="cue"><div class="cue-h">维 D vs 生物钟</div><div class="cue-b">维 D 要裸露皮肤<br>不防晒晒 15 分钟<br>生物钟要眼睛进光</div></div><div class="cue"><div class="cue-h">规律作息</div><div class="cue-b">同一时间睡起<br>比睡够时长更重要<br>一致性最重要</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Guxi</span> 但是晒其实也是有讲究的对吧？</p><p class="dlg"><span class="who">Weiya</span> 晒太阳其实有两个主要功效——之前我们强调的是它可以补充维生素 D。如果你想补充维生素 D 的话，你一定需要裸露的皮肤、而且不能擦防晒——然后在室外晒 15 分钟以上。</p><p class="dlg"><span class="who">Weiya</span> 但是对于重设生物钟——你必须要眼睛进光。如果你是戴着墨镜的话是不管用的。隐形眼镜的透光率是足够的。所以一定要让你在晴天把墨镜摘掉的情况下凑够 5 到 10 分钟。</p><p class="dlg"><span class="who">Guxi</span> 那美瞳呢？美瞳……</p><p class="dlg"><span class="who">Weiya</span> 现在我每天早上送纠纠上学——我要坚持步行——并且我不戴墨镜、也不允许纠纠戴墨镜。</p><p class="dlg"><span class="who">Guxi</span> 这妈当的就是……</p><p class="dlg"><span class="who">Weiya</span> 但是你不用太久、你也不用直视太阳。你只需要 5 到 10 分钟其实就足够了。</p><p class="dlg"><span class="who">Guxi</span> 与其在睡前做一大堆的焚香沐浴——不如第二天一早一咬牙直接起床、赶紧出去五分钟解决事儿。</p><p class="dlg"><span class="who">Weiya</span> 一年到头按同一个时间睡觉、同一个时间起床——比你睡够多少个小时其实更加重要。就是这个一致性、这个规律生物钟是最重要的。</p><p class="dlg"><span class="who">Guxi</span> 你熬夜其实是人为制造了一个时差。而如果你老是给自己制造时差，其实也是你很多慢性病的一个根源。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">晒太阳重设生物钟要让眼睛进光：墨镜阻光，隐形眼镜可以，5-10 分钟即可；补维 D 则需裸露皮肤、不防晒晒 15 分钟。固定作息比睡够时长更重要。</div>
+</footer>
+<div class="pno">12/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">九、反直觉七：恒温 ＝ 另一种久坐</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">反直觉七</div><div class="cue-b">恒温 ＝ 另一种久坐<br>永远舒适 ＝ 失去刺激</div></div><div class="cue"><div class="cue-h">冷适应</div><div class="cue-b">14-15 度十天<br>胰岛素敏感性 +43%<br>唯一变量 ＝ 环境变冷</div></div><div class="cue"><div class="cue-h">关键变量 ＝ 哆嗦</div><div class="cue-b">轻微冷没用<br>必须冷到起鸡皮疙瘩<br>哆嗦 ＝ 肌肉收缩 ＝ 用糖</div></div><div class="cue"><div class="cue-h">棕色脂肪</div><div class="cue-b">带线粒体的脂肪<br>会自己燃脂 + 保温<br>冷刺激激活 / 保存</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 恒温是另一种久坐。美国人最典型——一年四季 12 个月都开空调。她叫「热中性」——就是你永远是恒温的。但是温度波动本来是非常可以刺激能量系统的一个古老的信号。</p><p class="dlg"><span class="who">Guxi</span> 这个也让我如芒在背、如鲠在喉。</p><p class="dlg"><span class="who">Weiya</span> 2015 年有一个研究：八名二型糖尿病的患者，让他们在 14 到 15 度环境里做冷适应，一共十天。结果他们的胰岛素敏感性提高了 43%。</p><p class="dlg"><span class="who">Guxi</span> 而唯一的变量就只是环境变冷了。</p><p class="dlg"><span class="who">Weiya</span> 还有就是——当他们冷的时候会浑身起鸡皮疙瘩、会冷哆嗦。有人用更温和的温度但没有冷到哆嗦——发现没有用。2024 年又有一个研究——直接让患者发抖——连续十天，发现血糖和甘油三酯都改善了，血压还降了十个毫米汞柱。</p><p class="dlg"><span class="who">Guxi</span> 所以那个变量就是「抖」——就是哆嗦是吗？</p><p class="dlg"><span class="who">Weiya</span> 变量就是哆嗦。哆嗦——所有你浑身的肌肉都在收缩。</p><p class="dlg"><span class="who">Guxi</span> 所以它就在用糖。怪不得 Huberman 最推崇——哆嗦。「哆嗦能让你不知不觉每天消耗特别多的热量」。</p><p class="dlg"><span class="who">Weiya</span> 棕色脂肪——是婴儿体内很多的——带线粒体的脂肪。它既能自己燃脂，并且还能保温。如果你身体就没觉得冷过，那它的棕色脂肪就越来越少。</p><p class="dlg"><span class="who">Weiya</span> 最长寿的人往往居住在四季分明的地方。</p><p class="dlg"><span class="who">Guxi</span> 然后我还想明白——日本女生喜欢在大冬天下雪的时候穿短裙。原来这也是一种刻意的冷暴露。然后为什么俄罗斯人每家院子里都有一个桑拿房——离住的地方最远——故意设计温度切换的过山车。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">反直觉七：恒温 ＝ 另一种久坐。冷适应 10 天胰岛素敏感性 +43%，关键变量是哆嗦（肌肉收缩用糖 + 改善线粒体）。棕色脂肪是自带线粒体的燃脂脂肪，冷刺激可保存。</div>
+</footer>
+<div class="pno">13/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">九（续）、桑拿与温差</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">桑拿</div><div class="cue-b">4-7 次/周<br>心源性猝死 -63%<br>芬兰 2300 人追踪 20 年</div></div><div class="cue"><div class="cue-h">Huberman 剂量</div><div class="cue-b">每周 11min 冷刺激<br>+ 57min 桑拿<br>洗澡最后 30s 冷水</div></div><div class="cue"><div class="cue-h">四季分明</div><div class="cue-b">最长寿者住在<br>四季分明的地方<br>每天有温差也行</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 芬兰有一个调查——跟踪了 2300 名男性、一跟 20 年——每周蒸 4 到 7 次的人——心源性猝死少 63%、全因死亡少 40%、痴呆风险少 66%。</p><p class="dlg"><span class="who">Weiya</span> Huberman 也是非常推荐桑拿的——他有一个非常明确的剂量：每周给身体 11 分钟的冷刺激加上 57 分钟的桑拿。57 分钟相当于蒸 1 个小时的桑拿。</p><p class="dlg"><span class="who">Guxi</span> 其实咱普通人行动起来也简单——就是你洗完澡最后那一分钟，你就一咬牙——</p><p class="dlg"><span class="who">Weiya</span> 一狠心把冷水冲一冲。</p><p class="dlg"><span class="who">Guxi</span> 用一分钟冲一冲适应一下——或者你就冲个 30 秒。</p><p class="dlg"><span class="who">Weiya</span> 但是你知道吗？现在冲冷水澡很困难。因为你把这个水开到最那头——它也是热水温水。</p><p class="dlg"><span class="who">Weiya</span> 最后我总结一下——就是刚才做冷适应、让你的胰岛素敏感性增加 43% 的那个非常著名的实验室——在 2017 年正式发了一篇文章。它是说：现代建筑里恒定的 21 到 22 度的舒适温度，可能是肥胖和 2 型糖尿病的环境推手之一。</p><p class="dlg"><span class="who">Guxi</span> 这够扎心的。</p><p class="dlg"><span class="who">Weiya</span> 所以这就是我为什么起的标题就是「恒温是另一种久坐」。</p></div>
+</div>
+<div class="callout">你的身体其实是需要刺激它<br>才会进行代谢的</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">桑拿 4-7 次/周心源性猝死 -63%。Huberman 建议每周 11min 冷刺激 + 57min 桑拿，洗澡最后 30 秒冷水即可。最长寿者住在四季分明之地，每天有温差也行。</div>
+</footer>
+<div class="pno">14/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">九（续）、现代舒适的代价</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">进化错配</div><div class="cue-b">细胞进化了几十万年<br>却不适应现代舒适<br>线粒体是古老机制</div></div><div class="cue"><div class="cue-h">核心结论</div><div class="cue-b">不要总追求舒适<br>多刺激身体适应环境<br>恒温 ＝ 另一种久坐</div></div><div class="cue"><div class="cue-h">幕后推手</div><div class="cue-b">现代生活的舒适便利<br>搞垮了线粒体<br>身体需要刺激才代谢</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Guxi</span> 你说这其实也让我很想感慨和总结一下——就是我们当下自以为给自己制造的很多所谓舒适的环境、我们所谓的现代生活，其实它真的是我们现在身体不健康的一个幕后推手。或者说——就是现代生活我们所谓制造出来的舒适和便利搞垮了我们身体里面的线粒体。</p><p class="dlg"><span class="who">Weiya</span> 可以这么说。因为线粒体是一个古老的机制——它非常不适应现在的社会。</p><p class="dlg"><span class="who">Guxi</span> 不要总是追求「我们要活得舒适」——还是需要多刺激身体去适应环境。因为我们出现了这么多现代生活的陷阱。梳理作者给出的观点——就是我们是一种「进化错配」——这是它的一个核心逻辑。因为我们的细胞是几十万年进化出来的。但是你看看我们当下处的这些环境——我们吃的、动的、睡的、光的、还有这些化学用品——其实是在近几十年到 100 年里面发生了巨变。而这些巨变——我们这种古老的身体细胞是跟不上的。</p><p class="dlg"><span class="who">Guxi</span> 一定程度上要做到还原——去做得更原始一点：吃原生的食物、吃祖母的食物，以及生活方式要更跟着太阳走。这些其实都是在做还原。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">现代生活制造的舒适和便利是身体不健康的幕后推手：细胞经几十万年进化，却不适应恒温、久坐、超加工食物，线粒体这个古老机制需要刺激才会代谢。</div>
+</footer>
+<div class="pno">15/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十、体检加项建议（上）</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">必加体检项 ①</div><div class="cue-b">空腹胰岛素<br>血糖正常 ≠ 胰岛素正常<br>几十块钱</div></div><div class="cue"><div class="cue-h">必加体检项 ②</div><div class="cue-b">TG / HDL 比值<br>&lt; 2 安全<br>＝最便宜的胰岛素抵抗指标</div></div><div class="cue"><div class="cue-h">必加体检项 ③</div><div class="cue-b">hs-CRP 超敏 C 反应蛋白<br>全身慢性炎症探测器</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 最后我想说的就是回到之前非常重要的一个话题——就是我们下一次体检的时候应该多查哪些东西。</p><p class="dlg"><span class="who">Weiya</span> 第一条其实就是空腹胰岛素。有可能血糖都是一样的——咱们都是 5——但是我的胰岛素分泌是你的三倍。这其实已经代表我不太正常了。但是它其实并不贵——几十块钱就可以。</p><p class="dlg"><span class="who">Guxi</span> 这个真的是我强烈建议大家在勾选自己的那个体检包的时候、要跟医生去勾选的。</p><p class="dlg"><span class="who">Weiya</span> 然后第二个就是甘油三酯除以高密度胆固醇的比值。体检的体脂套餐里面其实都是有的。首先高密度胆固醇高是好事儿；其次低密度胆固醇高也不一定是坏事。你要看——首先低密度胆固醇里面的「小而密低密度胆固醇」高不高。</p><p class="dlg"><span class="who">Guxi</span> 我已经先天就亏了。</p><p class="dlg"><span class="who">Weiya</span> 华山医院的那个大夫就跟我说：「你看你的甘油三酯是非常低的——这就说明你的高胆固醇这事儿更多的是可能一种遗传或者代谢问题。」</p><p class="dlg"><span class="who">Weiya</span> 这个书里面就是说让你用甘油三酯除以你的高密度胆固醇（就是 HDL）——你看一下这个比值——它是判断胰岛素抵抗最便宜的替代指标。它建议比值如果超过 2.5 就该警惕。然后大夫是说最健康的是把它压到 1 以下。</p><p class="dlg"><span class="who">Weiya</span> 然后第三个加项就是叫 hs-CRP——超敏 C 反应蛋白。然后它是全身慢性炎症的一个探测器。但是我发现常规体检里也没有，也是需要你加项。</p><p class="dlg"><span class="who">Guxi</span> 我能说这是我的老朋友了吗？</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">体检加项（上）：空腹胰岛素（血糖正常也可能异常，预警提前十年）、TG/HDL 比值（&gt; 2.5 需警惕，&lt; 1 最理想）、hs-CRP 超敏 C 反应蛋白（慢性炎症探测器）。</div>
+</footer>
+<div class="pno">16/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十、体检加项建议（下）</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">必加体检项 ④</div><div class="cue-b">尿酸：含糖饮料痕迹<br>静息心率越低越好<br>HRV 看趋势不比较</div></div><div class="cue"><div class="cue-h">女性加项</div><div class="cue-b">铁蛋白<br>维生素 D<br>有运动习惯更易缺铁</div></div><div class="cue"><div class="cue-h">居家可测</div><div class="cue-b">静息心率<br>HRV 趋势<br>不用去医院</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 因为你自从上次那个事儿，然后你就老查这个超敏 C 反应蛋白。</p><p class="dlg"><span class="who">Guxi</span> 前兆发出的时候我查的就是这个。这个指标确实是最重要的指标——就是看你体内的慢性炎症。</p><p class="dlg"><span class="who">Weiya</span> 还有一个尿酸。我原来知道要查尿酸——我知道就是判断你什么会不会痛风。但是它其实是含糖饮料或者含糖的东西在血液里留下的信息。</p><p class="dlg"><span class="who">Guxi</span> 你知道我多少吗？我 468。就是很高——就是在女性里面很高。女性尿酸如果我们尿酸高的话，不是那么容易出现症状。但同时它也跟你的生活有关系——比如说如果你是高运动量人群，你可能体内的尿酸就会比别人多。</p><p class="dlg"><span class="who">Weiya</span> 每个人身上他都不是完美的——他都有自己的家族的那一套东西。</p><p class="dlg"><span class="who">Weiya</span> 一个是静息心率。对于健康人来讲——静息心率是越低越好的。而且静息心率会随着你年龄的增长越来越高——说明你的心脏功能越来越差。</p><p class="dlg"><span class="who">Guxi</span> 对，这个难道不是两颗心脏一起在跳动？</p><p class="dlg"><span class="who">Weiya</span> 对，因为你蹦的血你还需要多一个人用嘛。</p><p class="dlg"><span class="who">Weiya</span> 还有 HRV——你的心率变异性——非常重要。然后你不要跟别人比——你就看你的趋势。如果你的 HRV 突然一下低了很多——一般都说明你要生病了，或者你的免疫系统在非常抓紧工作。</p><p class="dlg"><span class="who">Guxi</span> 我每次看我的 HRV 升高了，我都会有一种「过去一段时间的努力给了我一个阶段性成果报告」的感觉。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">体检加项（下）：尿酸是含糖饮料在血液中留下的痕迹；静息心率越低越好；HRV 看自身趋势，突然下降是警报。女性建议加查铁蛋白和维生素 D。</div>
+</footer>
+<div class="pno">17/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十一、补充指标与七个反直觉总结</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">CGM 动态血糖仪</div><div class="cue-b">实时看血糖反应<br>配合体感与运动</div></div><div class="cue"><div class="cue-h">七个反直觉</div><div class="cue-b">1. 没能量该少吃<br>2. 体检正常 ≠ 健康<br>3. 衰老可逆<br>4. 嘴馋不是意志力</div></div><div class="cue"><div class="cue-h">七个反直觉（续）</div><div class="cue-b">5. 跑 45min 也久坐<br>6. 睡不好解法在早上<br>7. 恒温 ＝ 另一种久坐</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 然后还有一个 Casey 她特别推崇的就是带这个动态血糖仪（CGM）。但是我要先说——因为 Casey Means 她本身就是一个 CGM 公司的创始人，所以她非常推崇这个。</p><p class="dlg"><span class="who">Weiya</span> 但是你就是可以看到：原来 Guxi 吃一个苹果——苹果对她来讲不怎么升糖——但是苹果对我来讲非常升糖。你会发现原来我自己的血糖——然后再配合我的体感、配合我的运动——你会打开一个新的世界的大门。</p><p class="dlg"><span class="who">Guxi</span> 如果听我们这期节目的女性朋友们——那我会建议你在体检的时候多增加一个铁蛋白的检测。</p><p class="dlg"><span class="who">Weiya</span> 铁蛋白和维生素 D——我觉得尤其是作为女性——尤其是如果你日常也有一些运动习惯的话——女性会更容易缺铁。</p><p class="dlg"><span class="who">Weiya</span> OK，我再把今天说过的所有的反直觉再给大家念一遍。</p><p class="dlg"><span class="who">Weiya</span> 觉得没能量的时候，也许我们应该做的是少吃 + 消耗能量；体检正常不等于没事儿；衰老是一种疾病（但可逆）；嘴馋不是因为意志力，是因为我们的食欲系统被超加工食物 hack 了；每天练 45 分钟，也有可能是久坐人群；睡眠质量不好的解法可能在早上；恒温是另一种久坐。</p><p class="dlg"><span class="who">Guxi</span> 人想要去健康生活的这颗心，它也是有「肌肉记忆」的。哪怕我后面我懈怠了、我松弛了——但是我曾经这段时间这么努力过——当我重新想要拽来的时候，我相信也比我重新去冷启动会更容易。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">CGM 可帮助看见个人血糖反应，但需注意创始人立场；女性建议加查铁蛋白和维生素 D。七个反直觉总览：少吃 + 消耗、体检正常 ≠ 健康、衰老可逆、嘴馋非意志力、久坐、晨光、温差刺激。</div>
+</footer>
+<div class="pno">18/19</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十二、阅读推荐与下期再见</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">推荐书目 ①</div><div class="cue-b">《我们为什么吃太多》<br>Why We Eat (Too Much)<br>减重外科医生视角</div></div><div class="cue"><div class="cue-h">推荐书目 ②</div><div class="cue-b">《我们为什么要睡觉》<br>Why We Sleep<br>重整睡眠系统</div></div><div class="cue"><div class="cue-h">推荐书目 ③</div><div class="cue-b">《控糖革命》<br>Glucose Revolution<br>实用操作手册</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">Weiya</span> 所以这里也呼应了我们这一期的阅读推荐。因为接下来这三本书我们都讲过——而且这三本书的理论基础也是构筑了我们这一期以代谢的角度切入的内容。但是代谢的本质其实是吃、是睡觉、是控制血糖。</p><p class="dlg"><span class="who">Guxi</span> 这一本叫《我们为什么吃太多》——英文原名叫 Why We Eat (Too Much)。作者是一位减重外科医生——他也去以生理学和医学的角度去拆解了到底人的这个食欲是个什么玩意儿。</p><p class="dlg"><span class="who">Weiya</span> 第二本叫《我们为什么要睡觉》——Why We Sleep。</p><p class="dlg"><span class="who">Guxi</span> 如果你想要去改善你的睡眠体系、好好地重整你的睡眠系统——这一定是我推荐你要去读的书。</p><p class="dlg"><span class="who">Guxi</span> 然后第三本就是刚刚说的《控糖革命》——其实也是关于如何控制血糖的。它是一本很实用的操作手册。</p><p class="dlg"><span class="who">Weiya</span> 好的，那我们今天的节目就到这儿，下期节目见。</p><p class="dlg"><span class="who">Guxi</span> 拜拜。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">阅读推荐：《我们为什么吃太多》《我们为什么要睡觉》《控糖革命》。代谢的本质是吃、睡、控血糖。把知识聊成肌肉记忆，先出发，一切都会准备好的。</div>
+</footer>
+<div class="pno">19/19</div>
+</section><section class="page">
+  <header class="band"><div class="band-c">本期金句回顾</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">本期金句回顾</div>
+  <div class="quote-list"><div class="quote-row">每一种你吃进去的食物，它其实都是在跟细胞发信息</div><div class="quote-row">体检正常不等于你健康</div><div class="quote-row">衰老是一种疾病</div><div class="quote-row">现代生活我们所谓制造出来的舒适和便利搞垮了我们身体里面的线粒体</div><div class="quote-row">你的身体其实是需要刺激它才会进行代谢的</div><div class="quote-row">总是饿不代表你应该多吃，你总是累也不代表你该歇</div></div>
+</section><section class="page end-page">
+  <div class="end-big">现代生活制造的舒适和便利搞垮了我们的线粒体，<br>但好消息是——代谢年龄可以被逆转。</div>
+  <div class="end-small">先出发，一切都会准备好的</div>
+  <div class="end-rule"></div>
+  <div class="end-meta">
+    自习室学习委员课堂笔记<br>
+    好能量 × 把细胞作为方法<br>
+    进步是最性感的事
+  </div>
+  <a class="back-home" href="../index.html">← 返回档案首页</a>
+</section>
+</body>
+</html>
