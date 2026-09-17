@@ -16,12 +16,14 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date":"2026.09.14","show":"西西弗高速","title":"一个人要消化多少信息，才能成为一个社会人？","ep":"#30","duration":"1:51:00","status":"zine","style":"cornell","link":"zines/20260914-xixifei-e30.html"},
 {"date":"2026.09.11","show":"自习室 STUDY ROOM","guest":"Casey Means","title":"好能量：把细胞作为方法","ep":"105","duration":"1:19:00","status":"zine","style":"cornell","link":"zines/20260911-zixishi-105-hao-nengliang.html"},
 {"date":"2026.09.08","show":"岩中花述","guest":"庆山","title":"从前要如我所愿，现在接受如其所是","ep":"S9E8","duration":"1:55:00","status":"zine","link":"zines/20260908-yanzhonghuashu-qingshan.html"},
 {"date":"2026.09.07","show":"长谈","guest":"程乐松","title":"让我换个说法：活得哲学一点","ep":"Ep64","duration":"2:55:25","status":"zine","link":"zines/20260907-changtan-chenglesong.html"},
 {"date":"2026.09.05","show":"Coffee Plus","guest":"郭晓妍","title":"谁说是「老登的灯」？重新认识虹吸咖啡","ep":"#114","duration":"1:36:00","status":"zine","link":"zines/20260905-coffeeplus-hongxi.html"},
 {"date":"2026.09.04","show":"知本论","guest":"程乐松","title":"过度追求人生确定性，是个陷阱","ep":"vol.170","duration":"1:06:00","status":"zine","link":"zines/20260904-zhibenlun-liubai.html"},
 {"date":"2026.09.01","show":"无人知晓","guest":"孟岩","title":"我们从未看见彼此","ep":"E46","duration":"1:15:47","status":"zine","link":"zines/20260901-wurenzhixiao-weicengkanjian.html","star":true},
+{"date":"2026.08.24","show":"西西弗高速","title":"无人叫停的基因编辑试验，与席卷印度的蟑螂党运动","ep":"#29","duration":"2:25:25","status":"pending"},
 {"date":"2026.08.19","show":"自习室 STUDY ROOM","guest":"花卷 × 自习室","title":"影响力｜用七条法则拿捏人性","duration":"1:25:25","status":"zine","link":"zines/20260819-yingxiangli-qitiao.html"},
 {"date":"2026.08.14","show":"新生PLUS","guest":"蔡康永 × 詹青云","title":"蔡康永×詹青云：40岁找到的是原则，而不是答案","status":"zine","link":"zines/20260814-newplus-principle.html"},
 {"date":"2026.08.14","show":"出逃在即","guest":"出逃studio","title":"为什么你很难找到 deeptalk 的人","status":"zine","link":"zines/20260814-chutao-deeptalk.html"},
