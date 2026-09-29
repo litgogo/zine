@@ -16,7 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
-{"date":"2026.09.29","show":"可能性褶皱","guest":"哈梨","title":"温和而坚定地构建个人边界，是成年人的必修课","ep":"18","duration":"0:55:00","status":"zine","link":"zines/20260929-kenengxingzhezhou-bianjie.html"},
+{"date":"2026.09.29","show":"可能性褶皱","guest":"哈梨","title":"温和而坚定地构建个人边界，是成年人的必修课","ep":"18","duration":"0:55:00","status":"zine","style":"cornell","link":"zines/20260929-kenengxingzhezhou-bianjie.html"},
 {"date":"2026.09.14","show":"西西弗高速","title":"一个人要消化多少信息，才能成为一个社会人？","ep":"#30","duration":"1:51:00","status":"zine","style":"cornell","link":"zines/20260914-xixifei-e30.html"},
 {"date":"2026.09.11","show":"自习室 STUDY ROOM","guest":"Casey Means","title":"好能量：把细胞作为方法","ep":"105","duration":"1:19:00","status":"zine","style":"cornell","link":"zines/20260911-zixishi-105-hao-nengliang.html"},
 {"date":"2026.09.08","show":"岩中花述","guest":"庆山","title":"从前要如我所愿，现在接受如其所是","ep":"S9E8","duration":"1:55:00","status":"zine","link":"zines/20260908-yanzhonghuashu-qingshan.html"},

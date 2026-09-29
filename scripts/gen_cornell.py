@@ -317,8 +317,8 @@ def build(ep):
     # 封面
     pages += f"""<section class="page cover">
   <div class="cover-top">
-    <div class="cover-brand">Study Room</div>
-    <div class="cover-mark">Cornell Notes Series</div>
+    <div class="cover-brand">{esc(ep.get('cover_brand', 'Study Room'))}</div>
+    <div class="cover-mark">{esc(ep.get('cover_mark', 'Cornell Notes Series'))}</div>
   </div>
   <div class="cover-mid">
     <div class="cover-num">{esc(ep['num'])} | {esc(ep['num_en'])}</div>
@@ -347,6 +347,22 @@ def build(ep):
     for i, pg in enumerate(ep["pages"], 1):
         pages += page_html(pg, i, total)
 
+    # 我的共振（可选：Gogo 的原话层，原样收录）
+    if ep.get("resonance"):
+        res = ep["resonance"]
+        label = res.get("label", "我的共振")
+        rrows = "".join(f'<div class="quote-row">{esc(q)}</div>' for q in res["lines"])
+        foot = f"""  <footer class="sum">
+    <div class="sum-label">落款</div>
+    <div class="sum-text">{esc(res.get('foot', ''))}</div>
+  </footer>
+""" if res.get("foot") else ""
+        pages += f"""<section class="page">
+  <header class="band"><div class="band-c">{esc(label)}</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">{esc(label)}</div>
+  <div class="quote-list">{rrows}</div>
+{foot}</section>"""
+
     # 金句回顾
     qs = "".join(f'<div class="quote-row">{esc(q)}</div>' for q in ep["quotes"])
     pages += f"""<section class="page">
@@ -361,9 +377,9 @@ def build(ep):
   <div class="end-small">{esc(ep['tagline'])}</div>
   <div class="end-rule"></div>
   <div class="end-meta">
-    自习室学习委员课堂笔记<br>
+    {esc(ep.get('end_meta', '自习室学习委员课堂笔记'))}<br>
     {esc(ep['title'])} × {esc(ep['subtitle'])}<br>
-    进步是最性感的事
+    {esc(ep.get('end_note', '进步是最性感的事'))}
   </div>
   <a class="back-home" href="../index.html">← 返回档案首页</a>
 </section>"""
