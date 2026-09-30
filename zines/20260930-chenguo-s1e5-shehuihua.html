@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cornell Notes · 人在社会化的过程中，如何成为更好的自己</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #1c1c1c;
+  --ink-2: #55544f;
+  --ink-3: #8d8b84;
+  --rule: #cfcdc5;
+  --rule-2: #e6e4dd;
+  --paper: #ffffff;
+  --tint: #f4f3ef;
+  --accent: #6b5842;
+}
+html { background: #dedcd6; }
+body {
+  font-family: "Noto Sans SC", -apple-system, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  padding: 28px 0;
+}
+.page {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 22px;
+  padding: 14mm 15mm 16mm;
+  background: var(--paper);
+  box-shadow: 0 3px 18px rgba(0,0,0,.16);
+  display: flex;
+  flex-direction: column;
+}
+/* ---------- 顶部栏目带 ---------- */
+.band {
+  display: grid;
+  grid-template-columns: 26% 24% 26% 24%;
+  border-bottom: 1.6px solid var(--rule);
+  padding-bottom: 3px;
+  margin-bottom: 9mm;
+}
+.band-c {
+  font-size: 10.5px;
+  letter-spacing: .28em;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.p-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 6mm;
+  color: var(--ink);
+}
+/* ---------- 双栏 ---------- */
+.grid { display: grid; grid-template-columns: 27% 73%; column-gap: 8mm; flex: 1; }
+.col-cue { border-right: 1px solid var(--rule-2); padding-right: 5mm; }
+.cue { margin-bottom: 7mm; }
+.cue-h { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.5; letter-spacing: .02em; }
+.cue-b { font-size: 10.5px; color: var(--ink-2); line-height: 1.72; margin-top: 2px; }
+.col-note { }
+.dlg { font-size: 12.4px; line-height: 1.95; color: #2c2b28; margin-bottom: 3.4mm; text-align: justify; }
+.who { font-weight: 700; color: var(--accent); margin-right: .5em; letter-spacing: .02em; }
+/* ---------- 金句框 ---------- */
+.callout {
+  margin: 7mm 0 6mm;
+  padding: 6mm 8mm;
+  background: var(--tint);
+  border-left: 2.5px solid var(--accent);
+  font-family: "Noto Serif SC", serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.75;
+  letter-spacing: .06em;
+  color: var(--ink);
+  text-align: center;
+}
+/* ---------- 总结带 ---------- */
+.sum {
+  margin-top: auto;
+  border-top: 1.6px solid var(--rule);
+  padding-top: 3.5mm;
+  display: grid;
+  grid-template-columns: 26% 74%;
+  column-gap: 8mm;
+}
+.sum-label { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--ink-3); }
+.sum-text { font-size: 11px; line-height: 1.85; color: var(--ink-2); }
+/* ---------- 页码 ---------- */
+.pno {
+  position: absolute;
+  right: 15mm;
+  bottom: 7mm;
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+/* ---------- 封面 ---------- */
+.cover { justify-content: space-between; padding: 22mm 18mm 16mm; }
+.cover-top { text-align: center; }
+.cover-brand {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .42em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.cover-mark {
+  display: inline-block;
+  margin-top: 6mm;
+  padding: 4px 16px;
+  border: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: .3em;
+  color: var(--ink-3);
+}
+.cover-mid { text-align: center; margin: 0; }
+.cover-num {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 13px;
+  letter-spacing: .4em;
+  color: var(--ink-3);
+  margin-bottom: 4mm;
+}
+.cover-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 62px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.cover-en {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .52em;
+  color: var(--ink-3);
+  margin-top: 5mm;
+}
+.cover-sub {
+  font-family: "Noto Serif SC", serif;
+  font-size: 19px;
+  letter-spacing: .22em;
+  color: var(--ink-2);
+  margin-top: 11mm;
+}
+.cover-line {
+  font-size: 12.5px;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  margin-top: 6mm;
+}
+.cover-rule { width: 44px; height: 1.5px; background: var(--accent); margin: 9mm auto 0; }
+.cover-bottom { text-align: center; }
+.cover-foot {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .28em;
+  color: var(--ink-3);
+  line-height: 2.1;
+}
+/* ---------- 导航页 ---------- */
+.nav-h {
+  font-family: "Noto Serif SC", serif;
+  font-size: 17px;
+  letter-spacing: .2em;
+  font-weight: 700;
+  margin-bottom: 9mm;
+}
+.nav-i {
+  display: grid;
+  grid-template-columns: 12mm 1fr;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 2.5;
+  border-bottom: 1px solid var(--rule-2);
+  padding: 1.6mm 0;
+}
+.nav-n { font-family: "Noto Sans Mono", monospace; color: var(--ink-3); font-size: 11px; }
+/* ---------- 金句回顾页 ---------- */
+.quote-list { margin-top: 2mm; }
+.quote-row {
+  font-family: "Noto Serif SC", serif;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink);
+  padding: 3.6mm 0 3.6mm 8mm;
+  position: relative;
+  border-bottom: 1px solid var(--rule-2);
+}
+.quote-row::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 3.6mm;
+  color: var(--accent);
+  font-size: 10px;
+}
+/* ---------- 尾页 ---------- */
+.end-page { justify-content: center; text-align: center; }
+.end-big {
+  font-family: "Noto Serif SC", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.end-small { font-size: 13px; color: var(--ink-2); margin-top: 8mm; letter-spacing: .12em; }
+.end-rule { width: 60px; height: 1.5px; background: var(--accent); margin: 12mm auto; }
+.end-meta {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .26em;
+  color: var(--ink-3);
+  line-height: 2.2;
+}
+.back-home {
+  display: inline-block;
+  margin-top: 10mm;
+  font-size: 11px;
+  letter-spacing: .16em;
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+}
+.back-home:hover { color: var(--accent); }
+
+@media print {
+  html { background: #fff; }
+  body { padding: 0; }
+  .page { box-shadow: none; margin: 0; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  @page { size: A4; margin: 0; }
+}
+</style>
+</head>
+<body>
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-brand">Haode, Life</div>
+    <div class="cover-mark">Cornell Notes Series</div>
+  </div>
+  <div class="cover-mid">
+    <div class="cover-num">S1E5 | SOCIALIZATION</div>
+    <div class="cover-title">人在社会化的过程中，如何成为更好的自己</div>
+    <div class="cover-en">HOW TO BECOME A BETTER SELF</div>
+    <div class="cover-sub">既尊重社会规则，又保全自己</div>
+    <div class="cover-line">好的社会化，是让你成为一个频道更宽的你。</div>
+    <div class="cover-rule"></div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-foot">陈果的播客｜好的，生活 · 陈果 / 小岳 / 西西<br>GOGO 收听 2026.09.30</div>
+  </div>
+</section><section class="page">
+  <header class="band"><div class="band-c">本期导航</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">本期导航</div>
+  <div class="nav-i"><span class="nav-n">一</span><span>开篇：连猫狗都要社会化，人为什么抗拒</span></div><div class="nav-i"><span class="nav-n">二</span><span>好的社会化与坏的社会化</span></div><div class="nav-i"><span class="nav-n">三</span><span>软碰壁：真心话落空</span></div><div class="nav-i"><span class="nav-n">四</span><span>硬碰壁：说真话要付代价</span></div><div class="nav-i"><span class="nav-n">五</span><span>原因一：立场与利益冲突</span></div><div class="nav-i"><span class="nav-n">六</span><span>原因二：认知局限性</span></div><div class="nav-i"><span class="nav-n">七</span><span>原因三：你刺痛了他的自我防御</span></div><div class="nav-i"><span class="nav-n">八</span><span>现场自白：我屏蔽过一个朋友</span></div><div class="nav-i"><span class="nav-n">九</span><span>倾听：放空自己来听你</span></div><div class="nav-i"><span class="nav-n">十</span><span>明示取代暗示</span></div><div class="nav-i"><span class="nav-n">十一</span><span>原因四：混淆与情绪宣泄</span></div><div class="nav-i"><span class="nav-n">十二</span><span>情绪的本质是需求</span></div><div class="nav-i"><span class="nav-n">十三</span><span>表达与被认同是两件事</span></div><div class="nav-i"><span class="nav-n">十四</span><span>成熟与世故：外圆内方</span></div><div class="nav-i"><span class="nav-n">十五</span><span>边界和分寸，会不会让人难以靠近</span></div><div class="nav-i"><span class="nav-n">十六</span><span>高敏感：看你有没有开关</span></div><div class="nav-i"><span class="nav-n">十七</span><span>价值排序：热气球实验</span></div><div class="nav-i"><span class="nav-n">十八</span><span>落点：找到你内在的那个方</span></div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">一、开篇：连猫狗都要社会化，人为什么抗拒</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">本期阵容</div><div class="cue-b">陈果 · 小岳 · 西西<br>选题：什么是社会化</div></div><div class="cue"><div class="cue-h">要回答的问题</div><div class="cue-b">社会化是坏事吗<br>世故与成熟差在哪<br>能不能既讲规则又做自己</div></div><div class="cue"><div class="cue-h">切入角度</div><div class="cue-b">宠物界先说社会化的<br>社会化你的猫 你的狗<br>人要不要</div></div><div class="cue"><div class="cue-h">与驯化的区别</div><div class="cue-b">自然人 → 社会人<br>想哭就哭 → 先判断再反应</div></div><div class="cue"><div class="cue-h">小岳的童年记忆</div><div class="cue-b">饭桌上说错话<br>回家被叫起来纠正</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 大家好，我是陈果。</p><p class="dlg"><span class="who">小岳</span> 我是小岳。</p><p class="dlg"><span class="who">西西</span> 我是西西。</p><p class="dlg"><span class="who">陈果</span> 今天我们讨论的话题是关于社会化。也许在我们的生活当中，在职场工作的场合，很多时候会讨论到社会化，但到底什么是社会化？社会化是一件坏事吗？所谓的世故圆滑跟人格的成熟有着怎样本质的区别？我们是否可能做到既尊重社会规则，同时又能够保全自己、做自己？</p><p class="dlg"><span class="who">小岳</span> 第一次听到这个词，我只在宠物界听到，就是你要社会化你的猫、社会化你的狗。那人是不是也有一个需要社会化的过程？它和驯化又有什么区别？</p><p class="dlg"><span class="who">陈果</span> 社会化很多时候是相对于自然属性来展开的。我们从一个自然的人变成一个社会的人，从一个想哭就哭、想笑就笑的自然状态，进入一个可能要考虑诸多综合因素之后才能作出判断、作出反应的状态。</p><p class="dlg"><span class="who">小岳</span> 我感觉好像从小就这样。父母经常说，你不能这样说，你要那样说。有些话在饭桌上说了，或者在亲戚家说了，回家之后还是会被父母叫醒说，你怎么能这样说话呢？</p><p class="dlg"><span class="who">西西</span> 酒桌的礼仪也是社会化程度很高的地方。对我们的一生来说，除了童年无忌的阶段之外，很多时候就是在进入社会化的过程。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">从宠物界的「社会化」切入，把词义拉回人身上：社会化是从自然人变成社会人的必经过程，本身不是贬义。这一期的三个问题贯穿始终：社会化是不是坏事、世故与成熟差在哪里、能不能既尊重规则又保全自己。</div>
+</footer>
+<div class="pno">1/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">二、好的社会化与坏的社会化</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">小岳的旧印象</div><div class="cue-b">「社会化程度高」曾是贬义<br>约等于圆滑、世故、被驯化</div></div><div class="cue"><div class="cue-h">换了几家公司之后</div><div class="cue-b">有人社会化程度很高<br>但不圆滑、不油腻<br>相处起来是被照顾的舒服</div></div><div class="cue"><div class="cue-h">分野</div><div class="cue-b">好的社会化：滋养 · 互相关照<br>坏的社会化：侵压 · 恶性竞争</div></div><div class="cue"><div class="cue-h">判据</div><div class="cue-b">你在这段关系里<br>拿到的是滋养还是损耗</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">小岳</span> 在职场当中，根据我的观察，有一些社会化程度比较高的人，在我看来都是比较世故的那种。这其实并不是很中性或者很客观的一个评价，反而有点类似于贬义。你们有这种感受吗？</p><p class="dlg"><span class="who">小岳</span> 我之前有这种感受，但后来换了几家公司之后，我发现有的人可以把自己的社会化程度做得很高。做得很高的意思是他已经可以很好地融入这个集体，但他不会给你圆滑或者世故的感觉，反倒会让你觉得很舒服，跟他相处起来你被照顾了。</p><p class="dlg"><span class="who">陈果</span> 社会化也要分好的社会化和坏的社会化。好的社会化，你会发现你在这里面得到的是一种好的社会关系，这个社会关系给你带来滋养，使你学会成长，你们互相关照、互相扶持。坏的社会化可能就是相互侵压、恶性竞争、彼此打压、彼此伤害。</p><p class="dlg"><span class="who">西西</span> 所以这个标签本身不成立，得看它把人带向哪里。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">「社会化程度高」在职场里常被当成贬义，小岳用自己换公司的经历把它翻了过来：程度高不等于圆滑，也可以是让人舒服的能力。陈果给出分野的唯一判据：这段关系给你的，是滋养还是损耗。</div>
+</footer>
+<div class="pno">2/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">三、软碰壁：真心话落空</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">问题起点</div><div class="cue-b">真实的自我表达<br>为什么不总被欢迎</div></div><div class="cue"><div class="cue-h">碰壁分两种</div><div class="cue-b">软碰壁 / 硬碰壁<br>先讲软的</div></div><div class="cue"><div class="cue-h">软碰壁的定义</div><div class="cue-b">言之谆谆，听之藐藐<br>真心话落空，被敷衍</div></div><div class="cue"><div class="cue-h">四种形态</div><div class="cue-b">曲解 + 扣帽子<br>贴标签（杠精）<br>假装在听的姿态</div></div><div class="cue"><div class="cue-h">代价</div><div class="cue-b">表达欲被磨掉<br>朋友圈从全公开到三天可见</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 我们是从什么时候开始意识到，真实地表达自己并不总是被这个世界欢迎？说到底就是你不被对方接纳，你碰壁了。碰壁也分两种，第一种是软碰壁：你跟对方讲了很多真心话，但是你没有得到认真的对待，也没有得到有效的回应。我们古话说叫言之谆谆，听之藐藐。</p><p class="dlg"><span class="who">陈果</span> 你跟他说了半天，他就是在敷衍了事、转移话题。或者你跟对方掏心掏肺地说了很多东西，但是对方曲解你真实的意思，然后给你扣个帽子，给你贴个标签。你跟对方说了你曾经得到过怎么样的荣誉，他直接得出一个结论：哦，你不就是在炫耀嘛。</p><p class="dlg"><span class="who">陈果</span> 还有一种情况，对方假装在听取你的意见，但他只是一个倾听的姿态，实际上他并没有真正打开他自己的观念、放空他自己的成见来接收你的信息。所以很多时候你没有被真正地听见，你的那些真心话在他这里就碰了个软钉子。</p><p class="dlg"><span class="who">西西</span> 现在很多人非常喜欢贴标签，尤其是语意的窄化、定义的窄化。你不管说什么，可能在解释你希望表达真实自我，他就说，哎，看你急了，你就是杠精。他不去理解你，只要给你一个很戏剧化的定义，然后把这个事情非常戏剧地绕过去。</p><p class="dlg"><span class="who">西西</span> 刚有朋友圈的时候我是很爱发朋友圈的，而且完全公开，可以翻到很早很早之前。现在大部分人都是一条杠，或者三天可见。你不想再过度地表达自己，因为你的表达可能导向就是曲解，要么曲解，要么误解。</p><p class="dlg"><span class="who">小岳</span> 听完之后我觉得好累，一点都不想沟通了，每个人都变成一个独立的小单元去生活算了，不想社会化了。</p><p class="dlg"><span class="who">陈果</span> 那你要做好准备，因为还有硬碰壁。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">软碰壁不止是被敷衍，还包括被曲解、被扣帽子、被贴标签，以及那种没有真正打开自己的假装倾听。它的代价在表达欲上：从全公开的朋友圈，到三天可见。</div>
+</footer>
+<div class="pno">3/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">四、硬碰壁：说真话要付代价</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">硬碰壁（一）</div><div class="cue-b">明确的反对与否定<br>反驳 · 批评 · 指责 · 冷嘲热讽<br>针尖对麦芒</div></div><div class="cue"><div class="cue-h">硬碰壁（二）</div><div class="cue-b">更隐蔽的一种<br>没有言语冲突<br>但在行动上一直拒绝你</div></div><div class="cue"><div class="cue-h">代价的两种形态</div><div class="cue-b">经济上的损失<br>精神上的打压</div></div><div class="cue"><div class="cue-h">提醒</div><div class="cue-b">不要因为一次两次碰壁<br>就断定说真话是错的</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 硬碰壁是什么意思呢？就是你的真实表达遭到了对方明确的反对和否定。对方直接反驳你、批评你、指责你，或者对你冷嘲热讽，针尖对麦芒。</p><p class="dlg"><span class="who">陈果</span> 还有一种更隐蔽的硬碰壁。你表达了真实意见之后，你们双方并没有言语上的冲突，但对方在后续的行动当中一直在拒绝你、反对你、惩罚你，因为你当时的这句实话，它可能要让你付出代价。这个代价有可能是经济上的损失，也有可能是精神上的打压。他是用行动的方式，给你制造一个实际的困境。</p><p class="dlg"><span class="who">陈果</span> 碰到硬碰壁的时候，你瞬间就能够感觉到，你的真话没有得到接纳和欢迎。但这里也要提醒各位，不要因为一次两次的软碰壁、硬碰壁，你就觉得说真话就是错的，或者觉得真诚就是一句道德的口号，以后还是收回真心吧。这个又偏激了。</p><p class="dlg"><span class="who">西西</span> 两种碰壁捋清楚之后，更重要的是搞清楚原因。因为搞清楚原因，你才能区分对待：什么样的情况下应该直话直说、直言不讳，什么样的情况下可以直话弯说，或者一定程度上的沉默也是可以的。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">硬碰壁有两种：一种是当场被反驳、被冷嘲热讽；另一种更隐蔽，对方不吵，但用后续的行动让你付出经济或精神上的代价。捋清原因的目的不是讨好对方，是决定这次该直说、该弯说，还是该沉默到合适的时机。</div>
+</footer>
+<div class="pno">4/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">五、原因一：立场与利益冲突</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">归因两分</div><div class="cue-b">要么主要原因在对方<br>要么主要原因在自己</div></div><div class="cue"><div class="cue-h">对方原因①</div><div class="cue-b">立场不同 · 利益冲突<br>他接纳你的话<br>就要付出实际损失</div></div><div class="cue"><div class="cue-h">典型场景</div><div class="cue-b">会议上指出分配制度不合理<br>对面是既得利益者</div></div><div class="cue"><div class="cue-h">推论</div><div class="cue-b">这种反对是必然的<br>不是你表达方式的问题</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 这个原因非常重要，原因也无外乎两个部分：要么主要原因在对方，要么主要原因在自己。</p><p class="dlg"><span class="who">陈果</span> 在对方这一侧，第一种情况就是对方跟你立场不同，他就是利益冲突的那一方。这个时候你所说的真实的表达内容，他一旦接纳之后会对他造成实际的损失，这是最直接的反对。</p><p class="dlg"><span class="who">陈果</span> 比如说，你在公司的会议上面指出现行的分配制度很不合理，但对方又是这个现行分配制度的既得利益者，他当然会反对你。</p><p class="dlg"><span class="who">小岳</span> 所以有些反对从一开始就不是冲着你这个人来的，是冲着你的话带来的后果来的。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">归因的第一步，是把「对方的原因」和「自己的原因」分开。利益冲突型的反对是结构性的：你的话一旦被接纳，对方就要付出实际损失。遇到这一类，改表达方式没有用。</div>
+</footer>
+<div class="pno">5/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">六、原因二：认知局限性</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">对方原因②</div><div class="cue-b">认知局限性<br>他在一个更低的维度</div></div><div class="cue"><div class="cue-h">二元对立的世界观</div><div class="cue-b">非黑即白 · 非此即彼<br>要么好人 要么坏人</div></div><div class="cue"><div class="cue-h">维度不同</div><div class="cue-b">他关心物质得失<br>你谈精神追求与无用之用<br>在他眼里就是假大空</div></div><div class="cue"><div class="cue-h">庄子两句</div><div class="cue-b">夏虫不可语冰（时间的局限）<br>井蛙不可语海（空间的局限）</div></div><div class="cue"><div class="cue-h">老子三士</div><div class="cue-b">上士闻道 勤而行之<br>下士闻道 大笑之</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 另外一种情况是对方存在认知局限性，他处在一个思维上更低的维度，他真的理解不了你的想法。比如说生活当中有部分人的世界观就是非黑即白、非此即彼的二元对立，要么是好人，要么是坏人。当你跟他说要全面、要辩证地从各个角度去看这个问题的时候，对这种世界观的人来说，你就是一个把简单问题复杂化的人，他会特别不耐烦。</p><p class="dlg"><span class="who">陈果</span> 再比如，对方可能只关心物质上的得失利弊，但你去跟对方讲精神追求、讲无用之用是大用、讲人不能够被物质所奴役，那你们就是在两个维度上。从他的角度来理解，你这个人绝对假大空，绝对是不切实际的。</p><p class="dlg"><span class="who">陈果</span> 所以《庄子》当中有两句名言。第一句，夏虫不可语冰。你不要跟一个只活一个夏天的虫子谈论春秋冬，他理解不了。还有一句，井蛙不可语海。你不要跟一个狭窄的人去讨论海阔天空。夏虫不可语冰是时间上的认知局限性，井蛙不可语海是空间上的认知局限性。你们生活在两个不同的时空之中，你们彼此的世界是不相同的。</p><p class="dlg"><span class="who">陈果</span> 《老子》里面还有一句名言：上士闻道，勤而行之；中士闻道，若存若亡；下士闻道，大笑之。不笑不足以为道。真正上乘智慧的人听到真理，赶紧躬身力行。中乘智慧的人听到真理，觉得好像有点道理，我要不试试，但过了一会儿他又忘了。对于认知维度比较低的人，他听到真理，第一反应是大声地嘲笑。</p><p class="dlg"><span class="who">陈果</span> 最后一句话很有意思：不笑不足以为道。如果下乘智慧的人不嘲笑这个真理，这个真理都不成其为真正的真理。所以认知的差距导致你和对方可能根本没办法同频，你真实的自我表达在对方那里就是无稽之谈。</p></div>
+</div>
+<div class="callout">不笑不足以为道。</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">第二种在对方的原因是认知局限性。庄子给了两句判词：夏虫不可语冰是时间上的局限，井蛙不可语海是空间的局限；老子给了三士的分层，并留下一句安慰：不笑不足以为道。这类碰壁无法通过沟通技巧解决。</div>
+</footer>
+<div class="pno">6/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">七、原因三：你刺痛了他的自我防御</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">对方原因③</div><div class="cue-b">你的表达刺痛了他<br>他的自我防御系统被启动</div></div><div class="cue"><div class="cue-h">关键判断</div><div class="cue-b">你的话不被接纳<br>不代表你不好、你不对<br>也可能是你太对了</div></div><div class="cue"><div class="cue-h">机制</div><div class="cue-b">你的大凸显了他的小<br>你的高映衬了他的低<br>他的优越感需求落空</div></div><div class="cue"><div class="cue-h">他的游戏</div><div class="cue-b">人比人 赛道上跑第一<br>要占上风 要做赢家</div></div><div class="cue"><div class="cue-h">你做的事</div><div class="cue-b">按自己的审美穿衣<br>按自己的理解生活<br>给自己另开一条赛道</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 第三种情况，主要原因在对方是什么呢？你的这些真心话刺痛了他，让他不爽了，所以他的自我防御系统被你启动了。很多时候，你的自我表达在对方那里不被接纳、还遭到强烈反对，不代表你不好，不代表你不对，也有一种可能：你很好，你比他好；可能是你太正确了，你太对了，你活出了他理解不了的对。</p><p class="dlg"><span class="who">陈果</span> 他感觉到心态的一种不平衡，自信心动摇了，他产生了自我怀疑，所以这个时候他会反对你。他的这种反对你，很多时候其实是为了捍卫他自己，那是他的一个自我防卫战。</p><p class="dlg"><span class="who">陈果</span> 比如说对方认为所谓成功就是做人上人，就是要超过周围的人，要比周围的人拥有更多，在每一次的比较当中要占上风、要做赢家。所以他前半生都在竭尽全力地让自己拥有更多、拥有更好，让自己在芸芸众生当中脱颖而出。</p><p class="dlg"><span class="who">陈果</span> 但是你根本不在乎这些。你不玩人比人的这个游戏。你对成功的理解是按照自己的审美穿衣，按照自己的理解生活，按照自己的节奏做事。他所认为的成功就是在同一个赛道上跑第一，而你所做的是你自己给自己另开了一条赛道，然后你活出了另一种他之前没有想过的可能性，而且你活得也还不错。</p><p class="dlg"><span class="who">陈果</span> 这件事情深深地伤害了他。你的整个真实的自我表达其实毫无恶意，在他看来是对他的一种冒犯。他向你赛豪车、赛豪宅，然后你说，哎，真的挺好的，这一瞬间的秒过让他非常不舒服，因为他那种想要在你这里占据上风、获得优越感的需求完全落空了。所以他最后的评价会是认为你好傲慢，你很装，你以为你很清高吗。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">第三种在对方的原因最容易被误读成「我错了」：他反对的不是内容，是你的存在本身带来的对照。他要在同一条赛道上跑第一，你另开了一条赛道还活得不错，这套比较体系就失效了，于是自我防御启动。</div>
+</footer>
+<div class="pno">7/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">八、现场自白：我屏蔽过一个朋友</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">小岳的自述</div><div class="cue-b">认识一位特立独行<br>同时发自内心幸福的 朋友</div></div><div class="cue"><div class="cue-h">当时的动作</div><div class="cue-b">认识很久之后<br>我把他屏蔽了</div></div><div class="cue"><div class="cue-h">当时的自我判词</div><div class="cue-b">觉得自己渺小、阴暗<br>为什么看不得人家好</div></div><div class="cue"><div class="cue-h">更准确的词</div><div class="cue-b">破防<br>防御破了 不是为了生气</div></div><div class="cue"><div class="cue-h">多年之后</div><div class="cue-b">重新点开 心态变了<br>开始觉得真的很好</div></div><div class="cue"><div class="cue-h">见面后说开</div><div class="cue-b">「不是你表达的问题<br>是我接收的问题」</div></div><div class="cue"><div class="cue-h">留下的原则</div><div class="cue-b">别人对你愤怒<br>可能是他的课题</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">小岳</span> 我可能在社会生活当中也遇到过类似的事情。我认识一个朋友，他完全过的人生就和其他人都不一样，非常特立独行，同时又发自内心很幸福快乐。当时我认识他很长一段时间之后，我做了一件事情，我把他屏蔽了。因为我看到他过得太好了，我所有在追求的事情好像他都唾手可及地得到了，或者他可能都不在乎我努力去追求的那些东西。</p><p class="dlg"><span class="who">小岳</span> 屏蔽完之后我当时觉得自己比较渺小阴暗，为什么我就看不得人家好呢？但在当时的我，一时是想不通这个心理环节的，我选择了一种比较简单的方式，就是屏蔽不看，暂时可以把这个事情缓过去。不然我就一定会口不择言，或者破防、震怒之类更加丑陋的东西。</p><p class="dlg"><span class="who">小岳</span> 大家经常说破防，我觉得这个词还是挺精妙的。它不是说生气、愤怒什么之类的，它就是我的防御破了，我破防了，我破大防了。所以我为了避免自己破大防，就把他屏蔽了。</p><p class="dlg"><span class="who">小岳</span> 后来过了很多年，突然想起这个人，我又点开看他还是这样的生活，但是我的心态变了，我开始觉得真的很好、很祝福，甚至想要跟他交流。然后我试探地给他发了信息，他也很开心地回复我。后来我们在上海见面聊了天，我跟他说了这件事情。他说真的没有想到，他的表达会刺痛任何人。</p><p class="dlg"><span class="who">小岳</span> 我当时就跟他说，我跟你说这个故事并不是说让你不要表达，就是我觉得你不要改变自己。你都不知道什么时候别人就破防了。所以那不是你表达的问题，是我接收的问题。当时可能就是小小的我，还接受不了大大的你，还接受不了你的自由。</p><p class="dlg"><span class="who">陈果</span> 所以后来我倒过来想，如果有人对我的一些行为或者我说的一些话愤怒了，我可能不会第一时间再想是不是我说话的问题，或者是不是我社会化程度太低，可能会想，可能那是你的课题，你还有一段路要走。</p><p class="dlg"><span class="who">陈果</span> 在这种情况下，你的表达没有问题，问题在对方，对方的接收器是扭曲的，所以他无法接受你那些非常坦诚的、非常正向的、非常自由的信息。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">这一页是全场最有分量的一段自白：小岳承认自己当年屏蔽了那位朋友，并给出了准确的诊断词，破防。多年后他重新点开，见面说开，得到一句「不是我表达的问题，是我接收的问题」。由此推出一条处理原则：别人对你愤怒，可能是他的课题。</div>
+</footer>
+<div class="pno">8/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">九、倾听：放空自己来听你</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">判断</div><div class="cue-b">倾听是现代社会<br>罕见的品质 珍贵的能力</div></div><div class="cue"><div class="cue-h">定义</div><div class="cue-b">用空杯的状态理解你<br>投入你的逻辑<br>不是用我的逻辑判断你</div></div><div class="cue"><div class="cue-h">假倾听长什么样</div><div class="cue-b">你跟我一致 我有品位<br>你不一致 我找你的漏洞</div></div><div class="cue"><div class="cue-h">两个前提</div><div class="cue-b">倾听的意愿<br>状态好 才有空杯的余地</div></div><div class="cue"><div class="cue-h">空杯是刻意练习</div><div class="cue-b">跟反思一样<br>不是一出生就有的</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 倾听在现代社会，我觉得是一个非常罕见的品质，和一种非常珍贵的能力。倾听是什么意思？就是放空自己来听你。我尝试着用空杯的状态来理解你所说的东西。理解是指我要投入我自己，投入到你的逻辑当中，而不是用我的逻辑来判断你。</p><p class="dlg"><span class="who">陈果</span> 所以当你有一个很大的自我，当你已经有一个很大的主意，其实我所做的是 judge，就是你的这个表达跟我一致不一致。跟我一致，我就觉得你很有品位、你的想法很正确；而当你的想法跟我的想法不一致的时候，很多时候我就会找你的漏洞，然后来印证自己的正确。这不是真正的倾听。</p><p class="dlg"><span class="who">陈果</span> 真正的倾听是我站在你的立场，我从你的利益角度出发，我来理解你的逻辑，我来理解你的感受。这个时候只有你，没有我。然后听完之后我理解了你的感受，也许这个时候我才用我的想法来给你一些参考意见和建议。</p><p class="dlg"><span class="who">西西</span> 听陈老师讲完，我想我好像从来没有听别人说过话，都是一直在用别人的话来印证自己的想法，或者听到有反对意见自己跑到一边去沉默。</p><p class="dlg"><span class="who">小岳</span> 清空自己的茶杯这件事情，是需要刻意练习的，就跟反思一样。它不是说我一生下来就是个空杯，而且这要看自己的状态的。当我状态不好的时候，我其实很难倾听。两个人在吵架的时候，很难先倾听，因为倾听是需要意愿的。</p><p class="dlg"><span class="who">陈果</span> 倾听的意愿是我真的想理解你。我对你说的话、我对你的心理活动是真的感兴趣，我不是想要很明确地区分一个是非对错，而是我真的希望我知道你是怎么想的。</p></div>
+</div>
+<div class="callout">倾听是放空自己来听你。</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">倾听不是礼貌的沉默，是把自己的判断先腾空，进入对方的逻辑里理解他。它有两个前提：意愿和状态。空杯不靠天赋，靠刻意练习，跟反思一样，而且状态不好时确实做不到。</div>
+</footer>
+<div class="pno">9/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十、明示取代暗示</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">常见困局</div><div class="cue-b">你的真心对方没识别到<br>暗示等不来回应</div></div><div class="cue"><div class="cue-h">暗示的成本</div><div class="cue-b">对方要猜<br>猜不到就破防<br>双方都在精神内耗</div></div><div class="cue"><div class="cue-h">明示的正当性</div><div class="cue-b">我提出我的想法<br>因为我尊重自己的主体性<br>我允许你不同意<br>因为我尊重你的主体性</div></div><div class="cue"><div class="cue-h">另一种操作</div><div class="cue-b">把暗示的闸门关掉<br>重要的事要求对方明示<br>不重要的事就当不知道</div></div><div class="cue"><div class="cue-h">要避开的表达</div><div class="cue-b">被动攻击<br>「你觉得呢」「不然呢」</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 有的时候可能对方接收不到我们的暗示，而你又十分在乎对方的时候，你可能就要明示：我现在是很认真地想听听你到底是怎么想的。我相信你也有困扰，我们能不能敞开心扉聊一聊，我希望你能够实事求是、实话实说，把你的心里话告诉我。</p><p class="dlg"><span class="who">小岳</span> 在社交文化当中，暗示好像是一个很重要的事情，但我越长越大发现，明示才是很重要的事情。有话直说，或者你想要什么直说，而不是寄希望于别人能够 get 到你的意思，或者理解你的深意。你如果寄希望于别人去理解，我觉得这是个很虚空的状态，你就像踩在棉花上。</p><p class="dlg"><span class="who">陈果</span> 很多误会跟争吵，好像都是因为暗示的东西没有被对方领略到，然后你却责怪对方：你破防了，你怎么没有懂我的意思。暗示隐藏的一个需求就是猜测：我暗示了，我希望你能猜到。但对方第一没有义务去猜，第二对方未必有能力猜到。</p><p class="dlg"><span class="who">陈果</span> 所以暗示和猜测的这种交流方式，沟通成本极高，而且会引发很多的情绪波动，造成很大的精神内耗，无论是暗示方还是猜测方。为什么不能够直接了当一点呢？直接了当并不代表失礼，它其实省去了很多无谓的沟通成本。</p><p class="dlg"><span class="who">陈果</span> 我提出我的想法，是因为我尊重我自己的主体性。我允许你不同意我的想法、拒绝我的想法、背离我的想法，这是我允许你的主体性。这又回到一个主体性的问题。</p><p class="dlg"><span class="who">小岳</span> 我介于你们俩之间，我能听懂暗示，但我自己把它关掉了。我不想要听懂暗示。你如果想要什么，请你明示我。如果你不明示我，我不会去揣测你的很多潜台词，我也不会去过分解读你旁枝末节的意思。重要的事情我会让你明示，因为我要获得准确的信息；不重要的事情你暗示我，我就当不知道，它就 pass 了。</p><p class="dlg"><span class="who">西西</span> 我很讨厌被动攻击的表达，这种表达会让你觉得效率非常低。你有什么样的情绪其实可以直说，但很多人喜欢用反问，比如「你觉得呢」「不然呢」，这种其实侵略性很强，让人特别不舒服。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">暗示加猜测的沟通成本极高，而且双向内耗。明示之所以正当，是因为它同时尊重双方的主体性。小岳给出一种更硬的操作：把听懂暗示的闸门关掉，重要的事要求明示，不重要的事直接放过。</div>
+</footer>
+<div class="pno">10/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十一、原因四：混淆与情绪宣泄</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">自己这一侧</div><div class="cue-b">第一种混淆<br>场合与对象</div></div><div class="cue"><div class="cue-h">典型错误</div><div class="cue-b">在项目集思广益时<br>突然讲起家庭矛盾</div></div><div class="cue"><div class="cue-h">第二种混淆</div><div class="cue-b">情绪宣泄 ≠ 真实表达</div></div><div class="cue"><div class="cue-h">关键判断</div><div class="cue-b">被激烈情绪裹挟的你<br>不是真实的你<br>说的是未必代表本意的话</div></div><div class="cue"><div class="cue-h">真正的真实表达</div><div class="cue-b">知道在说什么 为什么说<br>并且愿意负责<br>非情绪化 清醒 准确 有力量</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 第二种情况就是主要原因在自己。可能混淆了几件事。第一个，混淆了对象和场合。我真的碰到过，在工作场合讨论项目进度、大家都在集思广益的时候，突然其中的一个小伙伴开始讨论非常私人的事情，引到他的家庭矛盾、他的情感纠纷、他的原生家庭带给他的人生困惑。他可能当时真的是真诚的，说的东西也都真的是真实的，但这跟我们现在的场景没有必然的关联性。</p><p class="dlg"><span class="who">陈果</span> 所以你会发现，当他这样真实地自我表达的时候，我们所有人都很手足无措，因为很尴尬。在这个场合，他实在是不太合时宜。所以有的时候你的真实表达没有得到别人的接纳和欢迎，很有可能是因为你混淆了场合、主题和对象，你用错地方了。</p><p class="dlg"><span class="who">陈果</span> 第二种情况是，真实的自我表达并不等同于激烈的情绪宣泄。我压抑很久了，终于找到了一个机会，然后一鼓励地、一鼓脑地这个情绪就酣畅淋漓地倾倒而出。那个时候你会把它理解为我在真实地表达我自己。但实际上这里面有一个概念的混淆。</p><p class="dlg"><span class="who">陈果</span> 为什么呢？因为被激烈情绪裹挟了的你，未必是真实的你。它可能是一个失控的你，是一个极端状态的你，但极端状态的你并不等同于真实的你。第二，你由于当时这种一时的愤怒或者满腔的悲伤，爆发出来的狠话、怨言、出辱的话，其实也未必代表你发自内心的真心话，未必符合客观事实。</p><p class="dlg"><span class="who">陈果</span> 所以为什么人很多时候发完脾气、宣泄完之后会后悔呢？你的后悔其实不就代表它其实不是你的真实意思的表达吗？你当时是被自己的情绪掌控了，你做了情绪的奴隶，这不是你真心真意的自我传递。</p><p class="dlg"><span class="who">陈果</span> 真正的、真实的表达，它恰恰很多时候需要用最清晰明确的表达方式，来表明自己最真实的态度和需求：我知道我这会儿在对你说什么，我知道我为什么要这么说，然后我愿意承担我所说的话，并且对它负责。这样的自我表达是清醒的、准确的、有力量的。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">自己这一侧的两个混淆：把私人情绪搬进不合适的场合；把情绪宣泄当成真实表达。判断标准很简单：激烈情绪里的你未必是真实的你，真正的真实表达是清醒、准确、知道自己愿意为这句话负责。</div>
+</footer>
+<div class="pno">11/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十二、情绪的本质是需求</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">提问</div><div class="cue-b">我们在表达情绪的时候<br>究竟想表达什么</div></div><div class="cue"><div class="cue-h">答案</div><div class="cue-b">每个情绪背后是一个需求<br>情绪是表面的泡沫<br>他要的是被看见 被接住</div></div><div class="cue"><div class="cue-h">应对方式</div><div class="cue-b">不要说「你不要带情绪跟我说话」<br>问「你想要什么」<br>「我能为你做点什么」</div></div><div class="cue"><div class="cue-h">狮子的刺</div><div class="cue-b">古埃及那头大吼的狮子<br>脚上扎了一根刺<br>它想有人帮它拔刺</div></div><div class="cue"><div class="cue-h">提醒</div><div class="cue-b">情绪释放过度<br>恰恰会遮蔽真实的需求</div></div><div class="cue"><div class="cue-h">情绪价值</div><div class="cue-b">安抚是表面<br>看到需求才解决</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 我们在表达情绪的时候，究竟在表达什么？其实每一个情绪背后是一个需求。当我在表达情绪的时候，其实我是希望你听到我的需求。情绪是表面的泡沫，后面隐藏的是没有被你看见、没有得到满足的那个真实的需求。</p><p class="dlg"><span class="who">陈果</span> 所以当有人对你很有情绪地表达的时候，可能你第一时间不应该说你不要带情绪跟我说话，因为这个是反人性的，他肯定会带着情绪。反倒我们应该问，就是你想要什么，是我有什么没有做到吗？或者接住他的情绪说，我知道你现在很生气，没关系，我们一起来梳理一下你的情绪。</p><p class="dlg"><span class="who">陈果</span> 光是看见没有用。如果没有解决它背后的那个核心需求，它的情绪还是会一直起伏，会反复出现，因为那个需求始终没被看见、始终没被满足。所以我现在不那么强调情绪价值。所谓的情绪价值就是安抚对方的情绪，我更看重的是你真正看到对方的需求。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">这一页给出核心命题：情绪是现象，需求是本质。回应情绪的正确动作不是要求对方收住情绪，而是问出背后那个需求；光是安抚不够，安抚完需求还在，情绪还会反复。</div>
+</footer>
+<div class="pno">12/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十二（续）、狮子的刺</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">故事</div><div class="cue-b">古埃及的狮子<br>每天在村里大吼</div></div><div class="cue"><div class="cue-h">转折</div><div class="cue-b">外乡人躲进洞穴<br>才发现狮子爪上有刺</div></div><div class="cue"><div class="cue-h">要点一</div><div class="cue-b">暴躁的背后是求助<br>它有一个正当的需求</div></div><div class="cue"><div class="cue-h">要点二</div><div class="cue-b">吼叫让人远离它<br>恰恰得不到帮助</div></div><div class="cue"><div class="cue-h">结论</div><div class="cue-b">反对情绪化表达<br>不是因为「你该稳定」</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 我在这里可以讲一个小故事，是我从一个小人书上看到的。讲的是古埃及的一头狮子，它每天都在村子里面大呼小叫，村民非常害怕，总觉得它要伤害自己，所以大家都避之不及。结果有一天一个外乡人从这里经过，他在旷野当中走的时候觉得快要下大雨了，暴风雨就要来临，所以他就躲到了村子外面的一个洞穴里面去，没想到这个洞穴就是这头暴怒的狮子的栖身之所。</p><p class="dlg"><span class="who">陈果</span> 他刚开始特别害怕，因为狮子一直在那里大吼小叫。结果他仔细看的时候才发现，狮子的爪子上其实扎了一根刺。那根刺如此刺痛这头狮子，以至于它一直在寻求帮助。所以他突然顿悟：狮子之所以到村子里面去骚扰村民，不是恶意的，它也不是想要吃人，而是希望有人帮它除掉脚上的这根刺。</p><p class="dlg"><span class="who">陈果</span> 这里有两个点值得注意。第一，我们之所以暴躁、大呼小叫、有情绪的表达，其实我们没有恶意，我们不想伤害对方，也不想破坏关系，但我们有一个正当的需求，我们希望对方能够看到、能够接住。第二，狮子大吼小叫极其暴躁，本质上是希望有人帮他拔除脚上的这根刺，但它的吼叫却恰恰使人远离它、避开它，使人对它产生种种误解。</p><p class="dlg"><span class="who">陈果</span> 所以我们在情绪化地表达自己的时候，你真的就像这头受伤的狮子一样，你有自己内心深处的某个伤口，你需要愈合，你需要帮助，但是你的大吼小叫、你的暴躁激烈恰恰会让别人远离你。我们反对情绪化的表达，不是说你应该稳定情绪、你不要制造麻烦，不是这样。从你的立场看，这其实会阻碍你自己真实、准确、清晰地表达你真正的需求。</p></div>
+</div>
+<div class="callout">情绪是表面的泡沫，后面是没有被看见的需求。</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">这一页是全场的技术核心：情绪是现象，需求是本质。回应情绪的正确动作不是要求对方收住情绪，而是问出背后那个需求。狮子的刺这个隐喻同时说了两件事：暴躁的背后是求助；而暴躁本身会把人推远。</div>
+</footer>
+<div class="pno">13/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十三、表达与被认同是两件事</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">第三种混淆</div><div class="cue-b">我表达 ≠ 你必须认同</div></div><div class="cue"><div class="cue-h">常见困局</div><div class="cue-b">我跟爸妈说了两次<br>他们完全改不了</div></div><div class="cue"><div class="cue-h">正确的期待</div><div class="cue-b">对方接受与否不可控<br>时机不到就接受不了</div></div><div class="cue"><div class="cue-h">你真正完成的动作</div><div class="cue-b">如实说出自己的想法<br>埋下一颗种子</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 第三个混淆是，我们在自我表达的过程当中，把两件事绑定在一起：我表达自己，就意味着我一定要得到对方认可。我们心太急，觉得我都把这个事情讲得那么清楚了，你为什么还不同意、为什么不改变？经常有年轻的朋友跟我讲，我跟我爸妈都说了两次了，我爸妈完全改不了。</p><p class="dlg"><span class="who">陈果</span> 你要知道，你的真实的自我表达并不意味着你就会得到对方的理解和认可。事情没有这么简单。包括你们之间也许存在一些认知的差距，一些立场的矛盾，哪有这么简单就能说服一个人。</p><p class="dlg"><span class="who">陈果</span> 所以我们要把真实的自我表达和对方是否认同你、理解你，拆成两件事。我只是如实地说出我真实的想法，至于对方是不是接受，这个东西要顺其自然。有的时候时机不到，他无论如何接受不了。但是你如实地表达你自己这个环节非常重要，因为你埋下了一个种子，埋下了一个因。有可能他现在理解不了，但后面他碰到一件事情，他就悟了，他突然觉得你当时说的好有道理。</p><p class="dlg"><span class="who">小岳</span> 就不要把我表达我自己和对方一定要认同接受绑定在一起。对方是不是能够理解接受，那是不可控的事，没法强求。我们能做的就是在自己的能力范围当中，找到合适的时机，用合适的方式，去跟对方说清楚自己的所思所想。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">表达和被认同是两条独立的线。把「我说了」当成「他必须改」，是关系里最常见的失望来源。表达能完成的动作只有一个：如实说出，并且把种子留在那里，等时间起作用。</div>
+</footer>
+<div class="pno">14/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十四、成熟与世故：外圆内方</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">社会化的方向</div><div class="cue-b">不是让你说假话<br>底子还是说真话<br>方法可以多样</div></div><div class="cue"><div class="cue-h">举例</div><div class="cue-b">对儿童用儿童的语言<br>对老板有对老板的方式<br>真话是同一句</div></div><div class="cue"><div class="cue-h">技巧的两用</div><div class="cue-b">服务于真诚<br>或服务于圆滑油腻</div></div><div class="cue"><div class="cue-h">四象限</div><div class="cue-b">外圆内方＝成熟<br>外圆内圆＝世故<br>外方内圆＝虚伪<br>外方内方＝正派但常办砸</div></div><div class="cue"><div class="cue-h">判据</div><div class="cue-b">对内有原则性<br>对外有方法论</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 社会化并不是说让你去装、让你去演，然后让你时时刻刻要做一个面具型的人格。社会化其实是你的底子还是在说真话，但是你可以让自己有多种多样的方法来说这一句真话。你对儿童有儿童的语言，你对成人有成人的语言，你对老板有跟老板沟通的方式，你对亲密的伙伴有不同的沟通方式。</p><p class="dlg"><span class="who">陈果</span> 真话是同一句真话，但是用什么样的合适的方式去说，这是个社会化。让自己变得更聪明一点，方法论上更丰富一点，没什么不好。所以有时候我们也不应该抗拒去学习一些沟通技巧。有一部分人只要一说沟通技巧、一说职场之道，他会很抗拒，觉得这又不是我了，这都是套路。其实也不能这样一刀切，没有那么非黑即白。</p><p class="dlg"><span class="who">小岳</span> 这不是「不是你」，这是一个更宽的你。当你的真实有多种表达方式的时候，这有什么不好呢？</p><p class="dlg"><span class="who">陈果</span> 技巧本身它没有什么好与不好，或者高下之分，更看我们是怎么去利用这些技巧的。技巧并不等于欺骗，技巧就是工具，就跟 AI 一样，看你怎么用。你可以用技巧服务于你的真诚，让你的真诚更容易让不同的对象接受；技巧也可以服务于你的圆滑、世故、油腻，然后让你变得更加面目可憎。关键是你是不是有自己的原则性。</p><p class="dlg"><span class="who">陈果</span> 成熟的人，对内有明确的原则性，对外有灵活的方法论。世故的人，只有充分的灵活性，没有对内的原则性。简单说，成熟就是外圆内方；世故可能就是外圆内圆，里里外外的滑头。</p><p class="dlg"><span class="who">陈果</span> 然后顺便把另外两个象限也一起放进去：外圆内方叫成熟，有稳定的内核，也有灵活的方法；外圆内圆叫世故，处事圆滑，但毫无原则；第三种是外方内圆，对内没有原则性，但对外表现得很正直，好像很有原则性，这个就叫做虚伪、伪善，是表演型人格；第四种是外方内方，这个人确实很有原则，但在方法上非常缺乏灵活性，他为人非常正派，但不懂技巧，所以每次做事情动机纯良，却常常办砸。这四大象限我们可以自己去衡量一下自己。</p><p class="dlg"><span class="who">小岳</span> 一个没有原则的人还是挺可怕的。外方内方的人可以去磨练自己的技巧，内在还是方的，你起码内在的原则性不缺失。</p></div>
+</div>
+<div class="callout">成熟的人，对内有明确的原则性，对外有灵活的方法论。</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">社会化不动你的底子，只扩你的方法：同一句真话，对不同的人有不同的说法。技巧本身中立，看它服务于真诚还是服务于油腻。陈果给出四象限作为自检工具：外圆内方是成熟，外圆内圆是世故，外方内圆是虚伪，外方内方是正派但常办砸。</div>
+</footer>
+<div class="pno">15/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十五、边界和分寸，会不会让人难以靠近</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">追问</div><div class="cue-b">大家都懂礼貌有分寸之后<br>人和人会不会难以靠近</div></div><div class="cue"><div class="cue-h">分情况</div><div class="cue-b">浅交：边界恰是适当距离<br>深交：边界挡不住真想深交的人</div></div><div class="cue"><div class="cue-h">菜根谭两句</div><div class="cue-b">落落者难合亦难分<br>欣欣者易亲亦易散</div></div><div class="cue"><div class="cue-h">一句总结</div><div class="cue-b">乍见之欢不如久处不厌</div></div><div class="cue"><div class="cue-h">边界感的定义</div><div class="cue-b">以礼相待<br>不贸然侵入私人领域<br>不贸然下批判性判断</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 每个人都变得这么懂礼貌、有分寸之后，人和人之间是不是会变得难以靠近？这要看你所谓的人跟人之间的靠近，到底是一种浅交还是深交。如果说是浅交的话，我觉得边界、分寸、礼貌刚刚好，够了，不要更近，这恰恰是人与人之间浅交的最适当的距离。</p><p class="dlg"><span class="who">陈果</span> 如果说会不会阻止人与人进入一种深交的关系，我觉得恰恰不会。因为你的这种边界、分寸、礼貌，很多时候它根本就挡不住那些真正想跟你深交的人，而且它还有可能会让别人更加尊重你、更加珍视你。</p><p class="dlg"><span class="who">陈果</span> 《菜根谭》里的两句话。第一句，落落者难合亦难分，欣欣者易亲亦易散。什么意思呢？很多时候慢热的人，你很难接近，但你接近之后，其实你们的关系反而会很长情、很长久；而快热的人、速成的人，他很容易亲近，但他也很容易分散。所以边界感强的人，你看上去他好像不太好亲近，他是有门槛的，他是需要一层一层的考验的，但你一旦跨过了这些门槛、经历了这些考验，你们是能够结成非常长久的关系的。</p><p class="dlg"><span class="who">陈果</span> 另外一句我总结下来就是，乍见之欢不如久处不厌。边界、尺寸、礼貌，它可能会阻止乍见之欢，但它很多时候恰恰能建立久处不厌的长久关系。</p><p class="dlg"><span class="who">小岳</span> 那是不是也存在大家过于有边界感的情况，就是少了一点人情味，变得有些冷漠？</p><p class="dlg"><span class="who">陈果</span> 有边界感不代表就是闭关自守、与他人隔绝、没有人情味。我们能不能把边界感具体定义一下：第一个就是以礼相待；第二个就是不贸然侵入对方的私人领域，然后不贸然对对方做出一个批判性的判断。我觉得这个东西不是没有人情味，它恰恰是在保护人情关系。所以这两条甚至都可以合并成一条，其实就是尊重对方的主体性。</p><p class="dlg"><span class="who">西西</span> 有些时候过度的关心，它其实也是一种试探，或者是一种对隐私的试探，很多人也会不舒服的。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">边界不拦深交，只拦失礼的靠近。菜根谭那两句把机制说透了：有门槛的关系难合也难分，快热的关系易亲也易散。边界感的具体定义落在三条动作上：以礼相待、不贸然侵入、不贸然评判，合成一句就是尊重对方的主体性。</div>
+</footer>
+<div class="pno">16/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十六、高敏感：看你有没有开关</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">第一种判断</div><div class="cue-b">高感知力 高敏感性<br>是能力 甚至是天赋</div></div><div class="cue"><div class="cue-h">分岔点</div><div class="cue-b">是礼物还是负担<br>看你有没有自主开关</div></div><div class="cue"><div class="cue-h">开关的两端</div><div class="cue-b">对值得的人打开<br>深度共情 善解人意<br>对不值的人关掉<br>回到钝感 自我松绑</div></div><div class="cue"><div class="cue-h">开关怎么来</div><div class="cue-b">学＝意识的获得<br>习＝实践与练习</div></div><div class="cue"><div class="cue-h">主体性的另一种体现</div><div class="cue-b">主宰自己的能力<br>不被能力主宰</div></div><div class="cue"><div class="cue-h">方向</div><div class="cue-b">让你活得更宽<br>不是更窄</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">西西</span> 如果一个人共情能力很强，我觉得总体来看还是一个能力吧。他不一定要成为一个负担，因为你可以共情别人的感受，但你不一定要让自己掉入这个情绪的深渊。你可以感受他的情绪，但你不一定要为他的情绪所累。</p><p class="dlg"><span class="who">陈果</span> 当一个人有比较高的感知力、比较强的敏感性，这当然是一种能力，甚至可能说是一种天赋。你在别人身上能够很容易捕捉到他的言外之意、他的难言之隐、他当下的处境和感受。但有了这个长处之后，它到底会成为你的一种礼物，还是你的一个负担？这就不一定了。</p><p class="dlg"><span class="who">陈果</span> 关键要看你能不能驾驭你的这种能力，你有没有那个开关，你能不能自动地进行调控。如果你的这种感知力是可以可大可小、可开可关的，那么这种敏感性对你来说就是绝对的优势。面对比较值得的对象或者重要的事件，你能够打开它，完全没有障碍地去深度共情对方、去理解他、去换位思考、去设身处地，这就是善解人意，是一种非常了不得的能力。</p><p class="dlg"><span class="who">陈果</span> 但是对于那些不值得的人或者没有必要的琐事，你可以把它关掉，然后把你的敏感性调弱、调小，让自己回归到一种钝感状态，那是一种自我保护、自我松绑。但如果你身上缺乏这种自主开关的能力，高敏感性在你这里就会是一种痛苦，会是一种负担。</p><p class="dlg"><span class="who">陈果</span> 重要的是，你是不是叠加了另一种能力，那就是对你的高感知力、高敏感性的自主开关的能力。简单点说，你要让自己能够在敏感和钝感之间自由切换。我想敏感的时候我能敏感，我不想敏感的时候我能够一键进入钝感，这个时候你就是可进可退，它就是一种天赋、一份礼物。</p><p class="dlg"><span class="who">小岳</span> 那这种开关我们能不能通过刻意练习获得呢？</p><p class="dlg"><span class="who">陈果</span> 所谓的学习，学是一种意识的获得，习其实就是一个实践、练习。对这种开关能力，它也是后天习得的。首先要掌握这样一个意识：我是可以控制它的。因为如果你不控制它，它就会控制你；如果你不做这种能力的主人，你就会成为这种能力的奴隶。这体现了你的主体性。主体性不是光面对别人的时候我是不是有自主权，主体性也体现在面对我身上的各种能力的时候，我是不是能够主宰我的能力，而不被我的能力所主宰。</p><p class="dlg"><span class="who">陈果</span> 很多时候大家喜欢给自己下定义，我是个高敏感的人，我是个钝感的人，但可能没有意识到，你的高敏感和钝感是可以练习的，你可以选择在某些方面变得敏感或者变得钝感。让自己活得更宽一点，就是你有更多的选项。当你多一种能力，你应该是比别人多一种选项，而不是比别人多一层约束、多一层局限性。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">高敏感本身不是负担，没有开关的高敏感才是。开关的两端分别是深度共情和钝感自保，而它属于后天可练的能力。这一页还给出主体性的第二种含义：不只是对外的自主权，也包括做自己能力的主人。</div>
+</footer>
+<div class="pno">17/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十七、价值排序：热气球实验</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">思维实验</div><div class="cue-b">世纪灾难前的热气球<br>能带十样最重要的东西</div></div><div class="cue"><div class="cue-h">过程</div><div class="cue-b">十样 → 丢两样 → 只留一样<br>丢到最后剩什么<br>就是你的价值观</div></div><div class="cue"><div class="cue-h">马斯洛的两个概念</div><div class="cue-b">匮乏性选择<br>成长性选择</div></div><div class="cue"><div class="cue-h">匮乏性选择</div><div class="cue-b">出于怕 焦虑 缺失<br>对现实的被动妥协</div></div><div class="cue"><div class="cue-h">成长性选择</div><div class="cue-b">出于热爱 心向往之<br>对理想生活的主动追求</div></div><div class="cue"><div class="cue-h">配比会变</div><div class="cue-b">基本安稳之后<br>成长性选择比重升高</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 在我的书里面写过这么一个思维实验，就叫做热气球实验。如果遇到了一场不可避免的世纪灾难，然后你手里面有一个热气球，你可以带上你认为最重要的十样东西和你一起远走高飞，你会带哪十样东西？</p><p class="dlg"><span class="who">陈果</span> 你带着这十样东西坐着热气球在蓝天白云当中穿梭，内心安稳，因为你保住了你最重要的东西。但是很不幸，在飞行的过程当中你发现热气球上有一个洞，它在不断地漏气，所以你需要不断地往外丢东西。好，先把两样丢掉，你会丢掉什么？</p><p class="dlg"><span class="who">小岳</span> 如果是我，我可能先把钱丢下去，因为这个时候钱已经不重要了。然后可能会把我想带的书或者电影扔下去，因为这个时候娱乐也不重要了。</p><p class="dlg"><span class="who">陈果</span> 很不幸，这个热气球还在漏气，你还得筛选，只留下一样东西，你会选择什么？这个不一定要回答，因人而异。可能有的人留下了爱人，可能有的人留下了自己的孩子，有的人也许留下了父母。我相信也有很多人最终留下的是自己。</p><p class="dlg"><span class="who">陈果</span> 你会发现在这个热气球不断地进行物品筛选的时候，它其实就是一个思维实验。你在选择什么东西对你来说更重要，什么东西在重要当中显得不那么重要，这就是一个人的价值观。真的，只有你在做选择的时候，你才能发现有的东西你以为很重要，它其实并没有你想象中的那么重要。</p><p class="dlg"><span class="who">西西</span> 在现实生活当中，但凡你不需要必须做选择的时候，谁不想什么都要。但是当你鱼与熊掌不可兼得的时候，你必须要二选一的时候，你的价值排序就开始显化了，这个就代表了你真正的价值标准、你真正的三观、你真正的底层逻辑。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">热气球实验是这期最好用的自检工具：不断往外丢的过程，就是价值排序显化的过程。丢到最后剩下什么，就是你的价值标准。</div>
+</footer>
+<div class="pno">18/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十七（续）、匮乏性选择与成长性选择</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">马斯洛的两个概念</div><div class="cue-b">匮乏性选择<br>成长性选择</div></div><div class="cue"><div class="cue-h">匮乏性选择</div><div class="cue-b">出于怕 焦虑 缺失<br>对现实的被动妥协</div></div><div class="cue"><div class="cue-h">成长性选择</div><div class="cue-b">出于热爱 心向往之<br>对理想生活的主动追求</div></div><div class="cue"><div class="cue-h">配比会变</div><div class="cue-b">基本安稳之后<br>成长性选择比重升高</div></div><div class="cue"><div class="cue-h">用来解释中年危机</div><div class="cue-b">不是人格突变<br>是选择动机换了</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 借用一下心理学家马斯洛的两个概念，人很多时候做选择无外乎两种动机。第一种是匮乏性选择：你之所以做出这个选择，是因为你存在某方面的缺失，存在心理上或物质上的赤字，你做出这个选择是为了消除你的焦虑、消除你的不安。比如说你之所以选择现在这个工作，并不是因为你喜欢它，而是因为你缺钱、缺乏生存保障，希望通过这个工作求一个稳定。</p><p class="dlg"><span class="who">陈果</span> 第二种是成长性选择。你做出这个选择，是为了让自己身心更加圆满，让自己全面发展。这个时候你所做的选择不是对现实生活的被动妥协，而是对理想生活的主动追求。你之所以找这份工作，是因为你热爱它，你希望通过它实现自身价值；你之所以找这个对象，是因为你欣赏他，你想跟他分享你的生命、跟他共同成长。</p><p class="dlg"><span class="who">陈果</span> 简单归纳一下：匮乏性选择是出于担心、出于害怕，对现实生活做出被动的妥协退让；成长性选择是为了全面而自由的自我发展，对理想生活、理想自我的主动追求。这种区分是为了分析上的简化，不代表在现实生活当中这两者截然对立。绝大多数人身上，匮乏性选择和成长性选择是并行的，只是在人生的不同发展阶段，它们的配比不同。</p><p class="dlg"><span class="who">陈果</span> 这其实能解释为什么现在有些人到三四十岁的时候会有中年危机。可能就是因为当三四十岁的时候，很多人有了一些财富上的积累，现实生活当中的一些基本需求大体进入了一个稳定状态，这个时候你就会发现你的选择动机发生了转变：匮乏性选择越来越少，成长性选择越来越多，你越来越不愿意被动妥协，越来越重视主动去追求一些心向往之的生活和状态。</p><p class="dlg"><span class="who">陈果</span> 但这也不一定。有的人前半生就很顺，物质上很丰沛，可能一直在做成长性选择，但在人生的某个阶段发生了家庭的变故、财产的损失，进入了生活困境，这个时候他的匮乏性选择又会越来越多。所以价值排序是会随着选择的配比、跟着成长和不同的境遇产生变化的。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">热气球实验是这期最好用的自检工具：不断往外丢的过程，就是价值排序显化的过程。马斯洛的两个概念给选择分了类，出于害怕的是匮乏性选择，出于热爱的是成长性选择，两者的配比随人生阶段变化。</div>
+</footer>
+<div class="pno">19/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十八、落点：找到你内在的那个方</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">平衡点</div><div class="cue-b">做自己 ≠ 与世界为敌<br>尊重规则 ≠ 被全面驯化<br>关键是找到内在的那个「方」</div></div><div class="cue"><div class="cue-h">好的社会化</div><div class="cue-b">保留本心与灵魂<br>同时变得更宽广<br>对不同的人有更丰富的方法论</div></div><div class="cue"><div class="cue-h">两个走向</div><div class="cue-b">走向更高的涵养与文明<br>或走向世故圆滑与虚伪<br>选择权在你手里</div></div><div class="cue"><div class="cue-h">给猫狗做社会化</div><div class="cue-b">是为了让它不易应激<br>人社会化程度高了<br>也不容易被小事击穿</div></div><div class="cue"><div class="cue-h">收束</div><div class="cue-b">像养狗一样养自己<br>爱人如己<br>是最高程度的社会化</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">陈果</span> 做自己和尊重社会规则的边界到底在哪里呢？所谓做自己，并不意味着你要与世界为敌、与社会规则为敌；其实尊重社会规则，也不代表你要被社会规则全面驯化，丢掉自己的原则和底线。这个平衡点在哪里？那就是我们前面所说的，找到你内在的那个方，确立你自己的原则性，在原则问题上不轻易妥协，这个就叫做自己了。</p><p class="dlg"><span class="who">西西</span> 我刚开始接到这个话题的时候，第一时间觉得社会化很负面，就在想我肯定要阐述一下我不想变成一个社会人，我想变成一个自然人。但是在经历今天和陈老师还有小岳交流的时候，我突然觉得社会化蛮好的。好的社会化不仅帮助你在社会环境、社会关系当中和他人的相处，同时也透过这些关系让你成为更好的自己。</p><p class="dlg"><span class="who">小岳</span> 它不仅保留了你自身的特点和你的灵魂，同时你变得更加宽广了。</p><p class="dlg"><span class="who">陈果</span> 社会化的过程应该是让你在保留自我本性、本心的基础之上，让自己面对不同的人有更加丰富的方法论，让自己能够应对各种不同的场合，保持自己的主体性。一方面我们不能拒绝社会化，另一方面也要找到社会化的方法。</p><p class="dlg"><span class="who">陈果</span> 社会化不一定是坏事，我们不要非常简单粗暴地给社会化贴一个标签，说它就代表庸俗、代表各种骗术、各种圆滑世故。社会化也有两个走向：它可以走向更高的涵养和文明，更会照顾别人的情绪，与不同类型的对象相处的时候你很懂方法、策略，能够让你的真实自我得到更充分的表达，避免掉很多无谓的冲突；但同时社会化还有另外一个走向，它可以走向世故圆滑，可以走向各种虚伪。这里面你仍然是有选择的。</p><p class="dlg"><span class="who">陈果</span> 我们无可避免地必将被社会化，因为没有人能够成为一块世外桃源的孤岛，我们一定会进入社会生活、进入社会关系。但是你始终是有选择的，你是要成为一个具有文明素养的社会人，还是一个非常虚伪的圆滑世故的社会人，这个选择权还是在你手里。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">落点回到那句平衡：做自己不是与世界为敌，尊重规则不是被全面驯化，中间那条线就是你自己内在的原则性。社会化有两条走向，走向涵养或走向虚伪，选择权在本人手里。</div>
+</footer>
+<div class="pno">20/21</div>
+</section><section class="page">
+<header class="band"><div class="band-c">选择</div><div class="band-c">行动</div><div class="band-c">坚持</div><div class="band-c">收获</div></header>
+<div class="p-title">十八（续）、像养狗一样养自己</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue"><div class="cue-h">类比</div><div class="cue-b">给猫狗做社会化<br>是为了让它不易应激</div></div><div class="cue"><div class="cue-h">推到人身上</div><div class="cue-b">社会化程度高<br>不容易被小事击穿</div></div><div class="cue"><div class="cue-h">开眼界见世面</div><div class="cue-b">见的是人性的多样性<br>学会跟不同类型的人打交道</div></div><div class="cue"><div class="cue-h">网上的热点</div><div class="cue-b">像养小狗一样养自己<br>散步 · 吃干净的 · 好好睡</div></div><div class="cue"><div class="cue-h">收束</div><div class="cue-b">我们不够爱自己<br>爱人如己 才是最高程度的社会化</div></div></aside>
+<div class="col-note"><p class="dlg"><span class="who">西西</span> 但是人很奇怪，我们作为人的话，你都知道要对猫狗进行社会化，轮到你自己社会化了，你就很抗拒。对于小猫小狗来说，如果一个小猫他不进行社会化，他特别容易应激，这种应激对他的身体、心灵都会造成很大伤害。</p><p class="dlg"><span class="who">陈果</span> 人也是一样的，你社会化程度高了之后，你就不容易应激了，不是一点小事你就大破防。所谓的社会化就是你开了眼界、见了世面，见的是人性的多样性和人性的复杂性。有非常文明礼貌善良友好的人，但也有很多以自我为中心、不讲道理的人。你见到了人性的宽广谱系，然后你学会了如何跟不同类型的人打交道。</p><p class="dlg"><span class="who">小岳</span> 网上有一个热点叫像养小狗一样养自己，经常出去散步，吃更多的蛋白质，吃干净的东西。其实我觉得这个例子如果翻译一下，就是我们要爱自己。</p><p class="dlg"><span class="who">陈果</span> 这又回到了我们之前谈到的一个话题。你会发现你很关心这个、很在乎那个，一会儿修房子，一会儿修车子，一会儿保养这儿，一会儿保养那儿，但是你不保养你自己。说到底就是你不够爱自己。你爱你的宠物超过爱你自己，你爱你的房子超过爱你自己。而人应该爱自己，而且用爱自己的方式去爱其他的对象。爱人如己，我觉得这才是真正的一个最高程度的社会化。</p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">总结</div>
+<div class="sum-text">落点回到那句平衡：做自己不是与世界为敌，尊重规则不是被全面驯化，中间那条线就是你自己内在的原则性。社会化有两条走向，走向涵养或走向虚伪，选择权在本人手里。最后一句收得干净：把对自己的爱由近及远推及他人，爱人如己，才是最高程度的社会化。</div>
+</footer>
+<div class="pno">21/21</div>
+</section><section class="page">
+  <header class="band"><div class="band-c">我的共振</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">我的共振</div>
+  <div class="quote-list"><div class="quote-row">这期节目对社会化的定义进行另一种解读。</div><div class="quote-row">社会化不代表就是圆滑虚伪狡黠，社会化的底线还是真诚。</div><div class="quote-row">只是懂得运用了技巧更好的表达和处理一些事情，也就是更有认知和智慧化。</div><div class="quote-row">老师说到对高敏感的态度，上升到哲学层面，是一个人如何掌控自己的生命，把敏感理解为自身感触世界的能力，而不是伤害自身的根源，太妙了！</div><div class="quote-row">究其根源，任何特质的人都要努力学习，意识上明白，行动上练习，努力让自己超越于本来的不完美，获得一种心灵的自由</div></div>
+</section><section class="page">
+  <header class="band"><div class="band-c">我的共振（续）</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">我的共振（续）</div>
+  <div class="quote-list"><div class="quote-row">从前总以为社会化就是磨掉棱角 变得世故圆滑 要把真实的自己藏起来去迎合外界</div><div class="quote-row">但这期听完才懂得：真正的社会化不是变成不是自己</div><div class="quote-row">而是成为频道更宽的自己</div><div class="quote-row">成熟与世故原来有着清晰的分界</div><div class="quote-row">成熟是内心守住原则 外在保有灵活</div><div class="quote-row">世故却是丢掉本心换取圆滑</div><div class="quote-row">印象很深的一句话：我表达我的想法是尊重我的主体性 允许你不认同 是尊重你的主体性</div><div class="quote-row">现实里太多沟通变成评判与说服</div><div class="quote-row">空杯式的倾听反而成了稀缺能力</div><div class="quote-row">也读懂了边界感 分寸不是疏远冷漠</div><div class="quote-row">恰恰是久处不厌的基础</div><div class="quote-row">曾经以为毫无保留的袒露才叫真诚</div></div>
+</section><section class="page">
+  <header class="band"><div class="band-c">我的共振（续二）</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">我的共振（续二）</div>
+  <div class="quote-list"><div class="quote-row">急于向别人全盘交付自我</div><div class="quote-row">却忽略他人的私域空间 反而让关系陷入尴尬</div><div class="quote-row">高敏感也不全是负担</div><div class="quote-row">关键在于我们能不能自主调控这份感知力</div><div class="quote-row">而不是被他人的情绪裹挟</div><div class="quote-row">社会化有两条路</div><div class="quote-row">一条通往涵养文明 一条滑向虚伪世故</div><div class="quote-row">选择权始终在自己手上</div><div class="quote-row">最好的状态大抵就是守住本心</div><div class="quote-row">习得丰富的处世方法</div><div class="quote-row">爱人如己 在融入世界的同时 也不丢失自我</div><div class="quote-row">感谢这期温柔又有力量的对话</div></div>
+  <footer class="sum">
+    <div class="sum-label">落款</div>
+    <div class="sum-text">GOGO · 2026.09.30 听后写下，原话未改一字</div>
+  </footer>
+</section><section class="page">
+  <header class="band"><div class="band-c">本期金句回顾</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">本期金句回顾</div>
+  <div class="quote-list"><div class="quote-row">倾听是放空自己来听你。我尝试着用空杯的状态来理解你所说的东西，而不是用我的逻辑来判断你。</div><div class="quote-row">情绪是表面的泡沫，后面隐藏的是没有被你看见、没有得到满足的那个真实的需求。</div><div class="quote-row">我提出我的想法，是因为我尊重我自己的主体性；我允许你不同意我的想法，因为我尊重你的主体性。</div><div class="quote-row">成熟的人，对内有明确的原则性，对外有灵活的方法论。</div><div class="quote-row">高敏感它是一种能力，它应该帮助你活得更宽，而不是让你活得更窄。</div><div class="quote-row">人应该爱自己，而且用爱自己的方式去爱其他的对象。爱人如己，这才是最高程度的社会化。</div></div>
+</section><section class="page end-page">
+  <div class="end-big">社会化不是让你变成「不是你」，<br>而是成为一个频道更宽的你。</div>
+  <div class="end-small">好的社会化，是让你成为一个频道更宽的你。</div>
+  <div class="end-rule"></div>
+  <div class="end-meta">
+    Venues 整理 · 逐字稿摘编<br>
+    人在社会化的过程中，如何成为更好的自己 × 既尊重社会规则，又保全自己<br>
+    人应该爱自己，而且用爱自己的方式去爱其他的对象。
+  </div>
+  <a class="back-home" href="../index.html">← 返回档案首页</a>
+</section>
+</body>
+</html>

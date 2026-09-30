@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date":"2026.09.30","show":"陈果的播客｜好的，生活","guest":"陈果","title":"S1E5 人在社会化的过程中，如何成为更好的自己","ep":"S1E5","duration":"1:26:02","status":"zine","style":"cornell","link":"zines/20260930-chenguo-s1e5-shehuihua.html"},
 {"date":"2026.09.29","show":"可能性褶皱","guest":"哈梨","title":"温和而坚定地构建个人边界，是成年人的必修课","ep":"18","duration":"0:55:00","status":"zine","style":"cornell","link":"zines/20260929-kenengxingzhezhou-bianjie.html"},
 {"date":"2026.09.14","show":"西西弗高速","title":"一个人要消化多少信息，才能成为一个社会人？","ep":"#30","duration":"1:51:00","status":"zine","style":"cornell","link":"zines/20260914-xixifei-e30.html"},
 {"date":"2026.09.11","show":"自习室 STUDY ROOM","guest":"Casey Means","title":"好能量：把细胞作为方法","ep":"105","duration":"1:19:00","status":"zine","style":"cornell","link":"zines/20260911-zixishi-105-hao-nengliang.html"},
@@ -61,7 +62,8 @@ var BOOK_COVER = {
   "张小珺商业访谈录": "covers/logo-zhangxiaojun-xhs.jpg",
   "知本论": "covers/logo-zhibenlun-xhs.jpg",
   "岩中花述": "covers/logo-yanzhonghuashu-xhs.png",
-  "可能性褶皱": "covers/logo-kenengxingzhezhou-xhs.png"
+  "可能性褶皱": "covers/logo-kenengxingzhezhou-xhs.png",
+  "陈果的播客｜好的，生活": "covers/logo-chenguo-xhs.jpg"
 };
 
 var STATUS_LABEL = { zine:"已转zine", pending:"待筛选", transcript:"逐字稿", saved:"仅收藏" };

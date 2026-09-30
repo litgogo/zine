@@ -347,17 +347,18 @@ def build(ep):
     for i, pg in enumerate(ep["pages"], 1):
         pages += page_html(pg, i, total)
 
-    # 我的共振（可选：Gogo 的原话层，原样收录）
+    # 我的共振（可选：Gogo 的原话层，原样收录；支持单个 dict 或 dict 列表分段）
     if ep.get("resonance"):
-        res = ep["resonance"]
-        label = res.get("label", "我的共振")
-        rrows = "".join(f'<div class="quote-row">{esc(q)}</div>' for q in res["lines"])
-        foot = f"""  <footer class="sum">
+        blocks = ep["resonance"] if isinstance(ep["resonance"], list) else [ep["resonance"]]
+        for res in blocks:
+            label = res.get("label", "我的共振")
+            rrows = "".join(f'<div class="quote-row">{esc(q)}</div>' for q in res["lines"])
+            foot = f"""  <footer class="sum">
     <div class="sum-label">落款</div>
     <div class="sum-text">{esc(res.get('foot', ''))}</div>
   </footer>
 """ if res.get("foot") else ""
-        pages += f"""<section class="page">
+            pages += f"""<section class="page">
   <header class="band"><div class="band-c">{esc(label)}</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
   <div class="nav-h">{esc(label)}</div>
   <div class="quote-list">{rrows}</div>
