@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date":"2026.10.09","show":"教育在场","guest":"成庆","title":"对谈成庆：做父母为什么这么难？","duration":"1:51:00","status":"zine","link":"zines/20261009-jiaoyuzaichang-zuofumu.html"},
 {"date":"2026.09.30","show":"陈果的播客｜好的，生活","guest":"陈果","title":"S1E5 人在社会化的过程中，如何成为更好的自己","ep":"S1E5","duration":"1:26:02","status":"zine","style":"cornell","link":"zines/20260930-chenguo-s1e5-shehuihua.html"},
 {"date":"2026.09.29","show":"可能性褶皱","guest":"哈梨","title":"温和而坚定地构建个人边界，是成年人的必修课","ep":"18","duration":"0:55:00","status":"zine","style":"cornell","link":"zines/20260929-kenengxingzhezhou-bianjie.html"},
 {"date":"2026.09.14","show":"西西弗高速","title":"一个人要消化多少信息，才能成为一个社会人？","ep":"#30","duration":"1:51:00","status":"zine","style":"cornell","link":"zines/20260914-xixifei-e30.html"},
@@ -63,7 +64,8 @@ var BOOK_COVER = {
   "知本论": "covers/logo-zhibenlun-xhs.jpg",
   "岩中花述": "covers/logo-yanzhonghuashu-xhs.png",
   "可能性褶皱": "covers/logo-kenengxingzhezhou-xhs.png",
-  "陈果的播客｜好的，生活": "covers/logo-chenguo-xhs.jpg"
+  "陈果的播客｜好的，生活": "covers/logo-chenguo-xhs.jpg",
+  "教育在场": "covers/logo-jiaoyuzaichang-xhs.jpg"
 };
 
 var STATUS_LABEL = { zine:"已转zine", pending:"待筛选", transcript:"逐字稿", saved:"仅收藏" };
