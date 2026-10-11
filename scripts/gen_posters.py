@@ -24,6 +24,10 @@ COLORS = {
     "skyblue":   ("#3a9ad0", "天蓝"),
     "leafgreen": ("#4f9a3f", "叶绿"),
     "ultramarine":("#1b3fa8", "群青"),
+    # 补齐历史条目引用的三个色名（此前缺失会让 gen_posters 整体崩溃）
+    "cream":     ("#ede0c8", "奶油"),
+    "forest":    ("#2f5a3a", "森林绿"),
+    "ink":       ("#2a2018", "墨黑"),
 }
 
 def render(ep):

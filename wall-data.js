@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date":"2026.10.11","show":"童漠男","guest":"童漠男","title":"寻找王医生：每个人都在寻找自己的北下关","duration":"1:50:00","status":"zine","link":"zines/20261011-tongmonan-xunzhaowangyisheng.html"},
 {"date":"2026.10.09","show":"教育在场","guest":"成庆","title":"对谈成庆：做父母为什么这么难？","duration":"1:51:00","status":"zine","link":"zines/20261009-jiaoyuzaichang-zuofumu.html"},
 {"date":"2026.09.30","show":"陈果的播客｜好的，生活","guest":"陈果","title":"S1E5 人在社会化的过程中，如何成为更好的自己","ep":"S1E5","duration":"1:26:02","status":"zine","style":"cornell","link":"zines/20260930-chenguo-s1e5-shehuihua.html"},
 {"date":"2026.09.29","show":"可能性褶皱","guest":"哈梨","title":"温和而坚定地构建个人边界，是成年人的必修课","ep":"18","duration":"0:55:00","status":"zine","style":"cornell","link":"zines/20260929-kenengxingzhezhou-bianjie.html"},

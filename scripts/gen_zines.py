@@ -26,6 +26,22 @@ def build(ep, theme_class, theme_name):
     points = ep["points"]; insight = ep.get("insight",""); quotes = ep["quotes"]
     connect = ep.get("connect",""); resonance = ep.get("resonance","")
     poster = ep["poster"]["line"]
+    # 可选字段：非播客内容（现场演出等）可覆盖版式标签，默认与播客一致
+    kicker = ep.get("kicker", "PODCAST ZINE")
+    cast_label = ep.get("cast_label", "嘉宾")
+    source_note = ep.get("source_note", "素材归档自 Gogo 的播客知识库（podcast-kb），本期由 Venues 排版。")
+    source_short = ep.get("source_short", "podcast-kb 归档")
+    resonance_html = "".join(f"<p>{esc(b)}</p>" for b in str(resonance).split("\n\n") if b.strip())
+    cover_fit = ep.get("cover_fit", "cover")
+    cover_min_h = ep.get("cover_min_h", "32vh")
+    _feat = ep.get("feature")
+    feature_html = ""
+    if _feat:
+        _paras = "".join(f"<p>{esc(b)}</p>" for b in str(_feat["text"]).split("\n\n") if b.strip())
+        feature_html = (f'\n    <div class="article-eyebrow">附文 · 外部视角</div>\n'
+                        f'    <h2 class="article-title">{esc(_feat["title"])}</h2>\n'
+                        f'    <p><em>{esc(_feat.get("credit",""))}</em></p>\n'
+                        f'    {_paras}\n    <p class="spacer"></p>')
 
     # 封面源：真实封面优先 (covers/<slug>.*)，没有则回退 HTML 海报 (posters/<slug>.png)
     import glob as _glob
@@ -201,14 +217,14 @@ body {{
 
 <section class="zine-cover">
   <div class="cover-meta">
-    <span>PODCAST ZINE</span>
+    <span>{esc(kicker)}</span>
     <span class="issue-rule"></span>
     <span class="issue-theme">{theme_name}</span>
   </div>
   <h1 class="cover-title">{esc(title)}</h1>
   <p class="cover-sub">{esc(core)}</p>
-  <div class="cover-image-slot">
-    <img src="{cover_src}" alt="{esc(title)} 封面">
+  <div class="cover-image-slot" style="min-height:{cover_min_h}">
+    <img src="{cover_src}" alt="{esc(title)} 封面" style="object-fit:{cover_fit}">
   </div>
   <div class="cover-footer">
     <span>{date} · {esc(guest)}</span>
@@ -232,7 +248,7 @@ body {{
       <p>{esc(core[:60])}…</p>
     </div>
     <div class="sidebar-block">
-      <h4 class="sidebar-label">嘉宾</h4>
+      <h4 class="sidebar-label">{esc(cast_label)}</h4>
       <p>{esc(guest)}</p>
     </div>
     <div class="sidebar-block">
@@ -245,9 +261,10 @@ body {{
     {quotes_html}
     <div class="article-eyebrow">Gogo 的思考</div>
     <h2 class="article-title">共振与提炼</h2>
-    <p>{esc(resonance)}</p>
+    {resonance_html}
     <p class="spacer"></p>
     <p>{esc(insight)}</p>
+    {feature_html}
   </article>
 </section>
 
@@ -265,11 +282,11 @@ body {{
       </div>
       <div class="appendix-block">
         <div class="appendix-label">我的思考</div>
-        <p>{esc(resonance)}</p>
+        {resonance_html}
       </div>
       <div class="appendix-block">
         <div class="appendix-label">备注</div>
-        <p>素材归档自 Gogo 的播客知识库（podcast-kb），本期由 Venues 排版。</p>
+        <p>{esc(source_note)}</p>
       </div>
     </div>
     <div class="appendix-rule"></div>
@@ -286,7 +303,7 @@ body {{
       </div>
       <div>
         <h5>出版信息</h5>
-        <p>{date} · 由 Venues 制作<br>素材：podcast-kb 归档</p>
+        <p>{date} · 由 Venues 制作<br>素材：{esc(source_short)}</p>
       </div>
       <div>
         <h5>设计信息</h5>
@@ -295,7 +312,7 @@ body {{
     </div>
     <div class="colophon-rule"></div>
     <a class="back-home-footer" href="../index.html">← 返回档案首页</a>
-    <p class="colophon-fine">© 2026 · PODCAST ZINE · {vol}</p>
+    <p class="colophon-fine">© 2026 · {esc(kicker)} · {vol}</p>
   </div>
 </footer>
 
