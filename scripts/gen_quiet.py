@@ -182,7 +182,12 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
   /* A5 上不要把网页字号等比缩小：用 pt 重新给一套，保证墨色与字号到位 */
   body { font-size: 11.8pt; line-height: 1.8; }
   .sheet { max-width: none; padding: 0; }
-  section.page { break-after: page; border-top: none; padding: 0 0 6mm; }
+  section.page { break-after: page; border-top: none; padding: 0; }
+  section.page > h1, section.page > .eyebrow { margin-top: 0; }
+  h1 + .sub, h1 + .q { margin-top: 1.5mm; }
+  .diagram { margin: 4mm 0 3mm; }
+  .diagram .d-title { margin-bottom: 1.5mm; }
+  footer.sources .row { padding: 5px 0; }
   section.page:last-of-type { break-after: auto; }
   h1 { font-size: 22.9pt; } h2 { font-size: 17.1pt; } h3 { font-size: 13.5pt; }
   .cover h1 { font-size: 31pt; } .cover .sub { font-size: 13pt; }
@@ -194,6 +199,7 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
   .footnav { margin-top: 10mm; }
   .coverimg { margin: 6mm 0; }
   .coverimg img { max-height: 92mm; }
+  .sitebar { display: none !important; }   /* 粘性站点条不进纸版 */
   a { color: inherit; text-decoration: none; }
 }
 """
@@ -337,15 +343,16 @@ def build(spec):
         s.append('</footer>')
         if src.get('extra'):
             s.append('<h3>制作说明</h3>' + paras(src['extra']))
+        # 页尾固定返回区（与站点 zine 页的 back-home 同一规矩：每份杂志页尾都要有回首页的键）
+        # 放在最后一节里面，跟出处页同页，不单独占一页
+        s.append('<footer class="footnav">'
+                 f'<a href="{esc(home)}">← 返回首页</a>'
+                 f'<a href="{esc(notes)}">知识笔记</a>'
+                 f'<a href="{esc(pdf)}">下载 PDF</a>'
+                 f'<span class="fine">QUIETCAST · REV {esc(str(spec.get("revision", 1)))}</span>'
+                 '</footer>')
         s.append('</section>')
     s.append('</div>')
-    # 页尾固定返回区（与站点 zine 页的 back-home 同一规矩：每份杂志页尾都要有回首页的键）
-    s.append('<footer class="footnav">'
-             f'<a href="{esc(home)}">← 返回首页</a>'
-             f'<a href="{esc(notes)}">知识笔记</a>'
-             f'<a href="{esc(pdf)}">下载 PDF</a>'
-             f'<span class="fine">QUIETCAST · REV {esc(str(spec.get("revision", 1)))}</span>'
-             '</footer>')
     body = ('<div class="sitebar"><div class="sitebar-inner">'
             f'<a href="{esc(home)}">← 播客知识库</a><span class="sep">/</span>'
             f'<a href="{esc(notes)}">知识笔记</a><span class="sep">/</span>'
@@ -381,7 +388,8 @@ def main():
                                    + base64.b64encode(src.read_bytes()).decode('ascii'))
             dst = Path(a.outdir) / 'assets'
             dst.mkdir(parents=True, exist_ok=True)
-            shutil.copy(src, dst / src.name)
+            if src.resolve() != (dst / src.name).resolve():
+                shutil.copy(src, dst / src.name)
             print(f'[IMG ] {src} -> 内联 data URI，并复制到 {dst / src.name}')
         else:
             print(f'[WARN] 封面图不存在：{src}（该页退回抽象色块）')

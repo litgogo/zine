@@ -474,7 +474,7 @@ function rowHTML(w, showInRow){
   var badge='';
   if(w.star) badge+='<span class="star">★</span>';
   if(w.style && STYLE_LABEL[w.style]) badge+='<span class="style-tag">'+STYLE_LABEL[w.style]+'</span>';
-  if(w.quiet) badge+='<span class="quiet-tag" title="打开知识杂志" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.quiet+'\',\'_blank\')">知识杂志 ↗</span>';
+  if(w.quiet) badge+='<span class="quiet-tag" title="打开'+(w.quiet_label||'知识杂志')+'" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.quiet+'\',\'_blank\')">'+(w.quiet_label||'知识杂志')+' ↗</span>';
   var link = w.link ? w.link : 'javascript:void(0)';
   var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
   return '<a class="w-row" href="'+link+'">'
