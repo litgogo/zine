@@ -58,6 +58,19 @@ blockquote cite { display: block; margin-top: 12px; font-style: normal; font-siz
 .cover { padding-top: 76px; }
 .cover h1 { font-size: 54px; }
 .cover .sub { font-size: 22px; font-weight: 500; color: var(--ink-muted); margin-bottom: 28px; }
+.sitebar { position: sticky; top: 0; z-index: 9; background: var(--paper);
+           border-bottom: 1px solid var(--rule); padding: 10px 24px; font-size: 14px; }
+.sitebar-inner { max-width: 760px; margin: 0 auto; }
+.sitebar a { color: var(--ink-muted); text-decoration: none; font-weight: 500; }
+.sitebar a:hover { color: var(--ink); }
+.sitebar .sep { margin: 0 8px; color: var(--rule); }
+.footnav { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--rule);
+           display: flex; gap: 24px; flex-wrap: wrap; align-items: baseline; }
+.footnav a { font-family: "Noto Sans Mono CJK SC", "Noto Sans Mono", monospace; font-size: 13px;
+             letter-spacing: .16em; color: var(--warning-ink); text-decoration: none;
+             border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.footnav a:hover { opacity: .7; }
+.footnav .fine { margin-left: auto; font-size: 12px; color: var(--ink-muted); }
 .coverimg { margin: 28px 0 24px; border-radius: 6px; overflow: hidden;
             background: var(--paper-alt); text-align: center; }
 .coverimg img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: contain; }
@@ -95,18 +108,11 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
   footer.sources, .cmp .k, .mapitem .h { font-size: 9.5pt; }
   .mapitem .t { font-size: 13pt; }
   .concept { height: 50mm; }
+  .footnav { margin-top: 10mm; }
   .coverimg { margin: 6mm 0; }
   .coverimg img { max-height: 92mm; }
   a { color: inherit; text-decoration: none; }
 }
-
-.sitebar { position: sticky; top: 0; z-index: 9; background: var(--paper);
-           backdrop-filter: blur(6px); border-bottom: 1px solid #D0D8C4;
-           padding: 10px 22px; font-size: 14px; }
-.sitebar-inner { max-width: 720px; margin: 0 auto; }
-.sitebar a { color: #5A6A4C; text-decoration: none; }
-.sitebar a:hover { color: #1E2818; }
-.sitebar .sep { margin: 0 8px; color: #D8D8D0; }
 </style></head><body><div class="sitebar"><div class="sitebar-inner"><a href="../../../index.html">← 播客知识库</a><span class="sep">/</span><a href="./notes.html">知识笔记</a><span class="sep">/</span><a href="./magazine.pdf">PDF</a></div></div><div class="sheet">
 <section class="page cover">
 <div class="eyebrow"><span>QUIETCAST</span><span class="cn">声音成册</span><span>REV 1</span></div>
@@ -233,4 +239,5 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
 </footer>
 <h3>制作说明</h3><p>本页为个人学习用途的编辑整理，观点与案例归节目及其讲述人所有。</p><p>未使用节目官方图文素材，封面为本站生成的抽象色块。</p><p>revision 1 · 生成于 2026-10-13</p>
 </section>
-</div></body></html>
+</div>
+<footer class="footnav"><a href="../../../index.html">← 返回首页</a><a href="./notes.html">知识笔记</a><a href="./magazine.pdf">下载 PDF</a><span class="fine">QUIETCAST · REV 1</span></footer></body></html>

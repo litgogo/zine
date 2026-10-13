@@ -141,6 +141,19 @@ blockquote cite { display: block; margin-top: 12px; font-style: normal; font-siz
 .cover { padding-top: 76px; }
 .cover h1 { font-size: 54px; }
 .cover .sub { font-size: 22px; font-weight: 500; color: var(--ink-muted); margin-bottom: 28px; }
+.sitebar { position: sticky; top: 0; z-index: 9; background: var(--paper);
+           border-bottom: 1px solid var(--rule); padding: 10px 24px; font-size: 14px; }
+.sitebar-inner { max-width: 760px; margin: 0 auto; }
+.sitebar a { color: var(--ink-muted); text-decoration: none; font-weight: 500; }
+.sitebar a:hover { color: var(--ink); }
+.sitebar .sep { margin: 0 8px; color: var(--rule); }
+.footnav { margin-top: 44px; padding-top: 24px; border-top: 1px solid var(--rule);
+           display: flex; gap: 24px; flex-wrap: wrap; align-items: baseline; }
+.footnav a { font-family: "Noto Sans Mono CJK SC", "Noto Sans Mono", monospace; font-size: 13px;
+             letter-spacing: .16em; color: var(--warning-ink); text-decoration: none;
+             border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.footnav a:hover { opacity: .7; }
+.footnav .fine { margin-left: auto; font-size: 12px; color: var(--ink-muted); }
 .coverimg { margin: 28px 0 24px; border-radius: 6px; overflow: hidden;
             background: var(--paper-alt); text-align: center; }
 .coverimg img { display: block; width: 100%; height: auto; max-height: 62vh; object-fit: contain; }
@@ -178,6 +191,7 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
   footer.sources, .cmp .k, .mapitem .h { font-size: 9.5pt; }
   .mapitem .t { font-size: 13pt; }
   .concept { height: 50mm; }
+  .footnav { margin-top: 10mm; }
   .coverimg { margin: 6mm 0; }
   .coverimg img { max-height: 92mm; }
   a { color: inherit; text-decoration: none; }
@@ -266,6 +280,9 @@ def root_css(palette):
 
 def build(spec):
     css = CSS.replace('/*__ROOT__*/', root_css(spec.get('palette', 'warm')))
+    home = spec.get('home_link', '../../../index.html')
+    notes = spec.get('notes_link', './notes.html')
+    pdf = spec.get('pdf_link', './magazine.pdf')
     s = [f'<div class="sheet">']
     cov = spec.get('cover', {})
     s.append('<section class="page cover">')
@@ -322,7 +339,17 @@ def build(spec):
             s.append('<h3>制作说明</h3>' + paras(src['extra']))
         s.append('</section>')
     s.append('</div>')
-    body = "\n".join(s)
+    # 页尾固定返回区（与站点 zine 页的 back-home 同一规矩：每份杂志页尾都要有回首页的键）
+    s.append('<footer class="footnav">'
+             f'<a href="{esc(home)}">← 返回首页</a>'
+             f'<a href="{esc(notes)}">知识笔记</a>'
+             f'<a href="{esc(pdf)}">下载 PDF</a>'
+             f'<span class="fine">QUIETCAST · REV {esc(str(spec.get("revision", 1)))}</span>'
+             '</footer>')
+    body = ('<div class="sitebar"><div class="sitebar-inner">'
+            f'<a href="{esc(home)}">← 播客知识库</a><span class="sep">/</span>'
+            f'<a href="{esc(notes)}">知识笔记</a><span class="sep">/</span>'
+            f'<a href="{esc(pdf)}">PDF</a></div></div>' + "\n".join(s))
     return (f'<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width, initial-scale=1">'
             f'<title>{esc(spec.get("title",""))}</title><style>{css}</style></head>'
