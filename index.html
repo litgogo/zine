@@ -313,6 +313,9 @@ select:focus { border-color:var(--ink); }
 .w-title { margin-top:3px; font-size:clamp(13.5px,1.3vw,16px); font-weight:400; }
 .w-title .badge { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px solid var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink); }
 .w-title .star { color:var(--star,#c75146); font-size:12px; margin-left:8px; }
+.w-title .quiet-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px solid var(--ink);
+  padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink);
+  background:var(--bg-warm); cursor:pointer; }
 .w-title .style-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px dashed var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink-2,#55544f); opacity:.85; }
 .w-meta { display:flex; gap:14px; margin-top:5px; font-family:'Noto Sans Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:.05em; }
 .w-meta .ep:empty { display:none; }
@@ -471,6 +474,7 @@ function rowHTML(w, showInRow){
   var badge='';
   if(w.star) badge+='<span class="star">★</span>';
   if(w.style && STYLE_LABEL[w.style]) badge+='<span class="style-tag">'+STYLE_LABEL[w.style]+'</span>';
+  if(w.quiet) badge+='<span class="quiet-tag" title="打开知识杂志" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.quiet+'\',\'_blank\')">知识杂志 ↗</span>';
   var link = w.link ? w.link : 'javascript:void(0)';
   var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
   return '<a class="w-row" href="'+link+'">'
