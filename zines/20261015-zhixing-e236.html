@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cornell Notes · 从时间管理
+到爱你老己</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Sans+Mono&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink: #353A37;
+  --ink-2: #626763;
+  --ink-3: #8A8F8B;
+  --rule: #DCDCD5;
+  --rule-2: #E7E6E0;
+  --paper: #F8F7F3;
+  --tint: #F1F0EA;
+  --accent: #6C6A62;
+  --c1: #DCD4E7;
+  --c2: #E8D7DB;
+  --c3: #EDE5C8;
+  --c4: #DCE7EA;
+  --c5: #DCE5DA;
+  --spk-a: #5B4A78;
+  --spk-b: #37573F;
+  --spk-c: #6E5A2E;
+}
+html { background: #dedcd6; }
+body {
+  font-family: "Noto Sans SC", -apple-system, sans-serif;
+  color: var(--ink);
+  -webkit-font-smoothing: antialiased;
+  padding: 28px 0;
+}
+.page {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  margin: 0 auto 22px;
+  padding: 14mm 15mm 16mm;
+  background: var(--paper);
+  box-shadow: 0 3px 18px rgba(0,0,0,.16);
+  display: flex;
+  flex-direction: column;
+}
+/* ---------- 顶部栏目带 ---------- */
+.band {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 1fr;
+  border-bottom: 1.6px solid var(--rule);
+  padding-bottom: 3px;
+  margin-bottom: 9mm;
+}
+.band-c {
+  font-size: 10.5px;
+  letter-spacing: .28em;
+  color: var(--ink-3);
+  font-weight: 500;
+}
+.p-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: .04em;
+  margin-bottom: 6mm;
+  color: var(--ink);
+}
+/* ---------- 双栏 ---------- */
+.grid { display: grid; grid-template-columns: 27% 73%; column-gap: 7mm; flex: 1; }
+.col-cue { border-right: 1px solid var(--rule-2); padding-right: 5mm; }
+.cue { margin-bottom: 4mm; padding: 2.6mm 3.2mm; border-radius: 3px; background: transparent; }
+.cue.c1 { background: var(--c1); }
+.cue.c2 { background: var(--c2); }
+.cue.c3 { background: var(--c3); }
+.cont { font-size: 11px; font-weight: 400; color: var(--ink-3); letter-spacing: .1em; }
+.p-ts { font-family: "Noto Sans Mono", monospace; font-size: 9.5px; color: var(--ink-3); letter-spacing: .14em; font-weight: 400; margin-left: 4mm; }
+.cue-cont { min-height: 1px; }
+.kw-wrap { display: flex; flex-wrap: wrap; gap: 1.6mm; margin-top: 4.5mm; }
+.kw { font-size: 9.5px; line-height: 1.4; padding: 1.1mm 2.4mm; border: 1px solid var(--rule);
+      border-radius: 999px; color: var(--ink-2); letter-spacing: .02em; }
+.cue-foot { margin-top: 4mm; padding-top: 2.5mm; border-top: 1px dashed var(--rule); font-size: 9.5px; color: var(--ink-3); letter-spacing: .06em; }
+.tag { font-size: 9px; letter-spacing: .1em; color: var(--ink-3); border: 1px solid var(--rule);
+       border-radius: 2px; padding: 0.3mm 1.4mm; margin-right: 2mm; vertical-align: .8px; }
+.its { font-family: "Noto Sans Mono", monospace; font-size: 9px; color: var(--ink-3); margin-left: 1.6mm; letter-spacing: .04em; }
+.recall { font-size: 10px; color: var(--ink-3); margin-top: 2.2mm; letter-spacing: .04em; }
+.cue-h { font-size: 12px; font-weight: 700; color: var(--ink); line-height: 1.5; letter-spacing: .02em; }
+.cue-b { font-size: 10.5px; color: var(--ink-2); line-height: 1.72; margin-top: 2px; }
+.col-note { }
+.dlg { font-size: 12.2px; line-height: 1.86; color: #2c2b28; margin-bottom: 2.5mm; text-align: justify; }
+.who { font-weight: 700; color: var(--accent); margin-right: .5em; letter-spacing: .02em; }
+.who.w-a { color: var(--spk-a); }
+.who.w-b { color: var(--spk-b); }
+.who.w-c { color: var(--spk-c); }
+/* ---------- 金句框 ---------- */
+.callout {
+  margin: 7mm 0 6mm;
+  padding: 6mm 8mm;
+  background: var(--tint);
+  border-left: 2.5px solid var(--accent);
+  font-family: "Noto Serif SC", serif;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.75;
+  letter-spacing: .06em;
+  color: var(--ink);
+  text-align: center;
+}
+/* ---------- 总结带 ---------- */
+.sum {
+  margin-top: auto;
+  border-top: 1.6px solid var(--rule);
+  padding-top: 3.5mm;
+  display: grid;
+  grid-template-columns: 26% 74%;
+  column-gap: 8mm;
+}
+.sum-label { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--ink-3); }
+.sum-text { font-size: 10.8px; line-height: 1.7; color: var(--ink-2); }
+/* ---------- 页码 ---------- */
+.pno {
+  position: absolute;
+  right: 15mm;
+  bottom: 7mm;
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 9.5px;
+  color: var(--ink-3);
+}
+/* ---------- 封面 ---------- */
+.cover { justify-content: space-between; padding: 22mm 18mm 16mm; }
+.cover-top { text-align: center; }
+.cover-brand {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .42em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+.cover-mark {
+  display: inline-block;
+  margin-top: 6mm;
+  padding: 4px 16px;
+  border: 1px solid var(--rule);
+  font-size: 10px;
+  letter-spacing: .3em;
+  color: var(--ink-3);
+}
+.cover-mid { text-align: center; margin: 0; }
+.cover-num {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 13px;
+  letter-spacing: .4em;
+  color: var(--ink-3);
+  margin-bottom: 4mm;
+}
+.cover-title {
+  font-family: "Noto Serif SC", serif;
+  font-size: 62px;
+  font-weight: 900;
+  letter-spacing: .16em;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.cover-en {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 11px;
+  letter-spacing: .52em;
+  color: var(--ink-3);
+  margin-top: 5mm;
+}
+.cover-sub {
+  font-family: "Noto Serif SC", serif;
+  font-size: 19px;
+  letter-spacing: .22em;
+  color: var(--ink-2);
+  margin-top: 11mm;
+}
+.cover-line {
+  font-size: 12.5px;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  margin-top: 6mm;
+}
+.cover-rule { width: 44px; height: 1.5px; background: var(--accent); margin: 9mm auto 0; }
+.cover-bottom { text-align: center; }
+.cover-foot {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .28em;
+  color: var(--ink-3);
+  line-height: 2.1;
+}
+/* ---------- 导航页 ---------- */
+.nav-h {
+  font-family: "Noto Serif SC", serif;
+  font-size: 17px;
+  letter-spacing: .2em;
+  font-weight: 700;
+  margin-bottom: 9mm;
+}
+.nav-i {
+  display: grid;
+  grid-template-columns: 12mm 1fr;
+  font-size: 13px;
+  color: var(--ink-2);
+  line-height: 2.5;
+  border-bottom: 1px solid var(--rule-2);
+  padding: 1.6mm 0;
+}
+.nav-n { font-family: "Noto Sans Mono", monospace; color: var(--ink-3); font-size: 11px; }
+/* ---------- 金句回顾页 ---------- */
+.quote-list { margin-top: 2mm; }
+.lead { font-size: 11px; line-height: 1.9; color: var(--ink-3); margin: -4mm 0 6mm; letter-spacing: .04em; }
+.quote-list.big .quote-row { font-size: 15.5px; padding: 5mm 0 5mm 9mm; }
+.quote-list.big .quote-row::before { top: 5mm; font-size: 11px; }
+.quote-list.big .quote-row:nth-child(2n) { background: var(--tint); }
+.quote-row {
+  font-family: "Noto Serif SC", serif;
+  font-size: 14px;
+  line-height: 1.9;
+  color: var(--ink);
+  padding: 3.6mm 0 3.6mm 8mm;
+  position: relative;
+  border-bottom: 1px solid var(--rule-2);
+}
+.quote-row::before {
+  content: "◆";
+  position: absolute;
+  left: 0;
+  top: 3.6mm;
+  color: var(--accent);
+  font-size: 10px;
+}
+/* ---------- 我的思考 ---------- */
+.ref {
+  margin-top: 5mm; border-top: 1px solid var(--rule); padding-top: 3.5mm;
+  display: grid; grid-template-columns: 26% 74%; column-gap: 8mm;
+}
+.ref-label { font-family: "Noto Sans Mono", monospace; font-size: 9px; letter-spacing: .16em; color: var(--ink-3); line-height: 1.6; }
+.ref-label b { display: block; font-family: "Noto Sans SC", sans-serif; font-size: 11px; letter-spacing: .1em; color: var(--ink-2); margin-top: 1.5mm; }
+.ref-body { }
+.ref-q { font-size: 11.5px; color: var(--ink-2); letter-spacing: .04em; }
+.ref-lines { margin-top: 2.6mm; }
+.ref-line { border-bottom: 1px dotted var(--rule); height: 6.6mm; }
+.ref-text { font-size: 11.5px; line-height: 1.85; color: var(--ink); margin-top: 1.6mm; }
+
+/* ---------- 全期回顾页 ---------- */
+.rv-h { font-size: 11px; font-weight: 700; letter-spacing: .18em; color: var(--ink-3); margin: 6mm 0 3mm; }
+.rv-list { display: flex; flex-direction: column; }
+.rv-i, .rv-q {
+  display: grid; grid-template-columns: 11mm 1fr; column-gap: 3mm;
+  padding: 3.4mm 0; border-bottom: 1px solid var(--rule-2);
+  font-size: 12.4px; line-height: 1.9; color: #2c2b28; text-align: justify;
+}
+.rv-i:nth-child(odd) { background: var(--tint); }
+.rv-q { font-size: 12.2px; }
+.rv-n { font-family: "Noto Sans Mono", monospace; font-size: 10px; color: var(--ink-3); letter-spacing: .08em; padding-top: 1mm; }
+
+/* ---------- 尾页 ---------- */
+.end-page { justify-content: center; text-align: center; }
+.end-big {
+  font-family: "Noto Serif SC", serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 2;
+  letter-spacing: .04em;
+  color: var(--ink);
+}
+.end-small { font-size: 13px; color: var(--ink-2); margin-top: 8mm; letter-spacing: .12em; }
+.end-rule { width: 60px; height: 1.5px; background: var(--accent); margin: 12mm auto; }
+.end-meta {
+  font-family: "Noto Sans Mono", monospace;
+  font-size: 10px;
+  letter-spacing: .26em;
+  color: var(--ink-3);
+  line-height: 2.2;
+}
+.back-home {
+  display: inline-block;
+  margin-top: 10mm;
+  font-size: 11px;
+  letter-spacing: .16em;
+  color: var(--ink-3);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+}
+.back-home:hover { color: var(--accent); }
+
+@media print {
+  html { background: #fff; }
+  body { padding: 0; }
+  .page { box-shadow: none; margin: 0; page-break-after: always; }
+  .page:last-child { page-break-after: auto; }
+  @page { size: A4; margin: 0; }
+}
+
+.chain-list { display: flex; flex-direction: column; gap: 4.5mm; margin-top: 2mm; }
+.chain-i { border-left: 2px solid var(--accent); padding-left: 4mm; }
+.chain-h { display: flex; align-items: baseline; gap: 3mm; margin-bottom: 1mm; }
+.chain-n { font-family: "Noto Sans Mono", monospace; font-size: 11px; color: var(--accent); letter-spacing: .1em; }
+.chain-ts { font-family: "Noto Sans Mono", monospace; font-size: 10px; color: var(--ink-3); }
+.chain-spk { font-size: 10px; color: var(--ink-3); letter-spacing: .08em; }
+.chain-t { font-size: 12.5px; line-height: 1.72; color: var(--ink); }
+.chain-l { font-size: 11px; line-height: 1.7; color: var(--ink-2); margin-top: 1.2mm; }
+.chain-l::before { content: "↳ "; color: var(--accent); }
+.ch-div { font-size: 11px; font-weight: 700; color: var(--ink); letter-spacing: .08em;
+          margin: 3.4mm 0 2mm; padding-top: 2mm; border-top: 1px solid var(--rule); }
+.marklink { margin: 0 0 3mm; padding: 2.2mm 3mm; background: var(--tint-a); border-left: 2px solid var(--accent);
+            font-size: 10.5px; line-height: 1.6; color: var(--ink-2); letter-spacing: .03em; }
+</style>
+</head>
+<body>
+<section class="page cover">
+  <div class="cover-top">
+    <div class="cover-brand">知行小酒馆</div>
+    <div class="cover-mark">Gogo 的手记 × Cornell Notes · v3</div>
+  </div>
+  <div class="cover-mid">
+    <div class="cover-num">E236 | ZHIXING</div>
+    <div class="cover-title" style="font-size:62px">从时间管理<br>到爱你老己</div>
+    <div class="cover-en">From Time Management to Loving Yourself</div>
+    <div class="cover-sub">我们如何停止和自己较劲</div>
+    <div class="cover-line">把「管住自己」换成「支持自己」</div>
+    <div class="cover-rule"></div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-foot">知行小酒馆 · 雨白 × Arthur（阿瑟）<br>收听 2026.10.15</div>
+  </div>
+</section><section class="page">
+  <header class="band"><div class="band-c">本期导航</div><div class="band-c"></div><div class="band-c"></div><div class="band-c"></div></header>
+  <div class="nav-h">本期导航</div>
+  <div class="nav-i"><span class="nav-n">①</span><span>时间管理只是冰山一角（p.4）</span></div><div class="nav-i"><span class="nav-n">②</span><span>人不是机器（p.4）</span></div><div class="nav-i"><span class="nav-n">③</span><span>每一个负面情绪背后，都隐藏着一个人对自己最美好的期许（p.5）</span></div><div class="nav-i"><span class="nav-n">④</span><span>「教练式对话」的意义：陪你找解法，而不是答案（p.5）</span></div><div class="nav-i"><span class="nav-n">⑤</span><span>困住我们的，除了时间管理，还有自我攻击（p.6）</span></div><div class="nav-i"><span class="nav-n">⑥</span><span>尝试在两个同样正确的选择中做出取舍，才会慢慢真正理解自己（p.6）</span></div><div class="nav-i"><span class="nav-n">⑦</span><span>所谓的时间管理，实际上是我们学会爱自己的过程（p.7）</span></div><div class="nav-i"><span class="nav-n">⑧</span><span>我们要做的其实不是「管理」时间，而是「领导」自己的时间（p.7）</span></div><div class="nav-i"><span class="nav-n">⑨</span><span>学会接纳一个不那么完美的自己（p.8）</span></div><div class="nav-i"><span class="nav-n">⑩</span><span>感受自己是所有的起点：理解自己、接纳自己、支持自己，慢慢过好这一生（p.8）</span></div>
+</section><section class="page">
+  <header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+  <div class="nav-h">她的标记链</div>
+  <div class="lead">这本书的骨架是你自己划的 8 处重点和你写的十节总结。下面是 8 处标记之间的关系，以及它们落到哪一节。</div>
+  <div class="chain-list"><div class="chain-i"><div class="chain-h"><span class="chain-n">01</span><span class="chain-ts">02:20</span><span class="chain-spk">雨白</span></div><div class="chain-t">时间管理只是冰山露出水面的那一角，藏在水面下的是欲望、能力、资源、情绪、身体和一个人跟自己相处的方式。</div><div class="chain-l">起点，落在第①节：你划的是提问方式——问题不在水面上。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">02</span><span class="chain-ts">07:26</span><span class="chain-spk">Arthur</span></div><div class="chain-t">所有这些都是欲望，跟它对峙的是我们的资源和能力；一周 7×24 是资源，怎么用是能力。</div><div class="chain-l">承接①，落在第①节：把「水面下」具体成两股力量的对峙。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">03</span><span class="chain-ts">11:34</span><span class="chain-spk">雨白</span></div><div class="chain-t">人不是机器。你要考虑到人是有情绪的耐受度的，就是人无法无限制的压榨自己。</div><div class="chain-l">落在第②节：给博弈加硬约束——加压不能解决问题。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">04</span><span class="chain-ts">13:29</span><span class="chain-spk">雨白</span></div><div class="chain-t">其实情绪也是欲望的一种反射或者投射灯。</div><div class="chain-l">落在第②节末与第③节：看不见欲望时，从情绪体会。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">05</span><span class="chain-ts">13:35</span><span class="chain-spk">Arthur</span></div><div class="chain-t">情绪是你的欲望、你的需求的一个信号。当你开心的时候，就是你的期望被满足了。</div><div class="chain-l">同一处的下一句，把上一处变成可用的判读规则。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">06</span><span class="chain-ts">23:38</span><span class="chain-spk">Arthur</span></div><div class="chain-t">教练不是替别人解决问题，而是支持别人完成限制性的突破、找到内心真实的动力、自己承担责任。</div><div class="chain-l">落在第④节：从看清自己转到看清之后做什么——支持，不是替代。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">07</span><span class="chain-ts">53:20</span><span class="chain-spk">Arthur</span></div><div class="chain-t">所谓的时间管理，它实际上就是我们怎么样学会爱自己的一个过程。</div><div class="chain-l">落在第⑦节：把第④节的结构反过来用在自己身上。</div></div><div class="chain-i"><div class="chain-h"><span class="chain-n">08</span><span class="chain-ts">01:30:27</span><span class="chain-spk">雨白</span></div><div class="chain-t">哪怕最负面的情绪里，其实也隐藏着你最正面的渴望和你真正想要追求的东西。</div><div class="chain-l">落在第③节，也是全篇收束：负面情绪里藏着最正面的渴望。</div></div></div>
+  <div class="pno">3/12</div>
+</section><section class="page">
+<header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+<div class="p-title">①·②｜冰山一角 → 人不是机器<span class="p-ts">00:05–13:35</span></div>
+<div class="marklink">她的总结 第 ①·② 节｜先看清水面下（欲望／资源／情绪），再看支持怎么落到自己身上</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue c1"><div class="cue-h">①水面之下有什么？</div><div class="cue-b">欲望、能力、资源、情绪、身体</div></div><div class="cue c1"><div class="cue-h">①真正要解决的问题是什么？</div><div class="cue-b">管理好时间之后意味着什么</div></div><div class="cue c1"><div class="cue-h">①为什么提效没有用？</div><div class="cue-b">7×24 是硬的，欲望是软的</div></div><div class="cue c2"><div class="cue-h">②为什么压榨有上限？</div><div class="cue-b">情绪耐受度不由人设定</div></div><div class="cue c2"><div class="cue-h">②「把时间榨干」追求的是什么？</div><div class="cue-b">控制感，不是产出</div></div><div class="cue c2"><div class="cue-h">②看不见欲望时怎么办？</div><div class="cue-b">从情绪体会</div></div></aside>
+<div class="col-note"><div class="ch-div">①　时间管理只是冰山一角</div><p class="dlg"><span class="tag">她的总结</span>水面之下，是一个人的欲望、能力、资源、情绪、身体，以及 TA 和自己相处的方式。真正要解决的问题到底是什么？</p><p class="dlg"><span class="tag">她的总结</span>无限膨胀的欲望 🆚 有限但已经被精细打磨的资源（每星期 7*24h）和能力（怎样有效利用时间）。无论如何提效，依然只有 7*24h；但欲望可以指数级上涨。</p><p class="dlg"><span class="tag">她划的·引语</span><span class="who w-a">雨白</span>也许时间管理它只是冰山露出水面的那一角，真正藏在下面的是一个人的欲望、能力、资源、情绪、身体以及他和自己相处的方式。<span class="its">02:20</span></p><p class="dlg"><span class="tag">机制</span><span class="who w-b">Arthur</span>第三种动力是「不能让时间浪费」；向人讲一下午干了很多事，满足的是控制感。<span class="its">09:52</span></p><div class="ch-div">②　人不是机器</div><p class="dlg"><span class="tag">她的总结</span>人无法无限制的压榨自己。很多人做时间管理，追求的是一种「把时间榨干」的控制感。</p><p class="dlg"><span class="tag">她的总结</span>如果你有更多空余的时间，安排了更少的项目，创造了更多的机会，你会做什么？情绪是欲望的一种投射。看不清欲望的时候，可以体会自己的情绪。</p><p class="dlg"><span class="tag">她划的·引语</span><span class="who w-a">雨白</span>人不是机器。你要考虑到人是有情绪的耐受度的，就是人无法无限制的压榨自己。<span class="its">11:34</span></p><p class="dlg"><span class="tag">例子</span><span class="who w-a">雨白</span>佛罗伦萨的早上，乌菲兹的门票一个月前就约好，她坐在床上不想去，说这不是我想要的生活。<span class="its">11:57</span></p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">本页小结</div>
+<div class="sum-text">① 时间管理只是水面上的一角，水面下是欲望、资源、情绪和一个人跟自己相处的方式。　② 耐受度不由人设定；减密度不是损失，是把被挤掉的需求放回来。</div>
+</footer>
+<footer class="ref"><div class="ref-label">PERSONAL REFLECTION<b>我的思考</b></div><div class="ref-body"><div class="ref-q">这段内容与我有什么关系？</div><div class="ref-lines"><div class="ref-line"></div></div></div></footer>
+<div class="pno">4/12</div>
+</section><section class="page">
+<header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+<div class="p-title">③·④｜负面情绪背后是期许 → 教练式对话<span class="p-ts">13:35–30:00</span></div>
+<div class="marklink">她的总结 第 ③·④ 节｜先看清水面下（欲望／资源／情绪），再看支持怎么落到自己身上</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue c1"><div class="cue-h">③情绪背后是什么？</div><div class="cue-b">期待，期待背后是追求</div></div><div class="cue c1"><div class="cue-h">③一样的行为背后？</div><div class="cue-b">可能是同样的动机和渴望</div></div><div class="cue c1"><div class="cue-h">③深夜编程那晚有什么？</div><div class="cue-b">兴奋、焦虑、低价值感</div></div><div class="cue c2"><div class="cue-h">④教练做什么、不做什么？</div><div class="cue-b">支持突破／不替人解决</div></div><div class="cue c2"><div class="cue-h">④经验放在什么位置？</div><div class="cue-b">当资源，不当判断</div></div><div class="cue c2"><div class="cue-h">④支持的边界在哪？</div><div class="cue-b">我的支持是她允许的</div></div></aside>
+<div class="col-note"><div class="ch-div">③　每一个负面情绪背后，都隐藏着一个人对自己最美好的期许</div><p class="dlg"><span class="tag">她的总结</span>欲望是复杂的，情绪背后是对自己的期待，期待背后是自己的追求。不一样的行为背后，有可能是同样的动机和渴望。</p><p class="dlg"><span class="tag">她划的·引语</span><span class="who w-a">雨白</span>哪怕最负面的情绪里，其实也隐藏着你最正面的渴望和你真正想要追求的东西。<span class="its">01:30:27</span></p><p class="dlg"><span class="tag">引语</span><span class="who w-b">Arthur</span>任何一个负面的情绪后面，它都是有一个所谓的正面的愿望的。<span class="its">18:44</span></p><p class="dlg"><span class="tag">例子</span><span class="who w-b">Arthur</span>裁员案例里怕丢工作而加班，恐惧背后是对家庭的责任。<span class="its">20:51</span></p><div class="ch-div">④　「教练式对话」的意义：陪你找解法，而不是答案</div><p class="dlg"><span class="tag">她的总结</span>不是替别人解决问题，而是支持别人，让他在认知上完成一些限制性的突破，以及在动力上找到自己内心真实的动力，最后自己为自己承担责任。</p><p class="dlg"><span class="tag">她的总结</span>是一种探索。在过程中，你的经验、直觉和知识都可以提供给他做资源。提供各种信息，但尊重你的判断和选择，我是在支持他。我意识到我需要体现出对她的支持，我的支持是她允许的。</p><p class="dlg"><span class="tag">她划的·引语</span><span class="who w-b">Arthur</span>教练本身是不是替别人解决问题，而是支持别人，让他在认知上完成一些可能的突破，就限制性的突破，以及在动力上找到自己真实觉得内心的这个动力，最后自己为自己承担责任。<span class="its">23:38</span></p><p class="dlg"><span class="tag">观点</span><span class="who w-a">雨白</span>这不是启发式提问而是探索：你不是向导，你是一个旅伴。<span class="its">25:37</span></p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">本页小结</div>
+<div class="sum-text">③ 情绪背后是期待，期待背后是追求；最负面的情绪背面往往是最正面的愿望。　④ 教练陪对方找到自己的动力并自己承担责任；不是向导，是旅伴。</div>
+</footer>
+<footer class="ref"><div class="ref-label">PERSONAL REFLECTION<b>我的思考</b></div><div class="ref-body"><div class="ref-q">这段内容与我有什么关系？</div><div class="ref-lines"><div class="ref-line"></div></div></div></footer>
+<div class="pno">5/12</div>
+</section><section class="page">
+<header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+<div class="p-title">⑤·⑥｜自我攻击 → 在取舍中理解自己<span class="p-ts">30:00–50:10</span></div>
+<div class="marklink">她的总结 第 ⑤·⑥ 节｜先看清水面下（欲望／资源／情绪），再看支持怎么落到自己身上</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue c1"><div class="cue-h">⑤提醒为什么变成责备？</div><div class="cue-b">等于标出「我做不到」</div></div><div class="cue c1"><div class="cue-h">⑤三动机是什么？</div><div class="cue-b">成就／影响力／亲和力</div></div><div class="cue c1"><div class="cue-h">⑤优势的背面？</div><div class="cue-b">优势背后就是短板</div></div><div class="cue c2"><div class="cue-h">⑥什么时候看见价值观？</div><div class="cue-b">取舍的时候</div></div><div class="cue c2"><div class="cue-h">⑥水下和地表的关系？</div><div class="cue-b">理解自己，行为才顺</div></div><div class="cue c2"><div class="cue-h">⑥《爱的艺术》讲了什么？</div><div class="cue-b">理解、接纳、支持</div></div></aside>
+<div class="col-note"><div class="ch-div">⑤　困住我们的，除了时间管理，还有自我攻击</div><p class="dlg"><span class="tag">她的总结</span>过度提醒，等于责备。很多人做时间管理，无力感背后是对自己的责备和对自己的不满意。</p><p class="dlg"><span class="tag">她的总结</span>这是他的事儿，我可以支持他，但我不能替代他。动机心理学：成就动机、影响力动机（控制&amp;影响）、亲和力动机。</p><p class="dlg"><span class="tag">她的总结</span>教练需要用中正的眼光看待事情，没有所谓正面的事情和负面的事情。它是你的选择，它是你的偏好。你的优势背后就是你的短板。每个人要对自己承担责任。</p><p class="dlg"><span class="tag">观点</span><span class="who w-b">Arthur</span>你一提醒，等于把她做不到的现实标了出来；她的生气是对自己的。<span class="its">32:15</span></p><div class="ch-div">⑥　尝试在两个同样正确的选择中做出取舍，才会慢慢真正理解自己</div><p class="dlg"><span class="tag">她的总结</span>只有在取舍的时候才看到你的优先级和价值观。（水下）理解自己，水面上的情绪和行为才能更顺畅，按想要的方向走。</p><p class="dlg"><span class="tag">她的总结</span>理解她，情绪背后冰山下的是什么？接纳她的不完美和能力不足的基础上，支持她做出自己的选择。《爱的艺术》爱：理解、接纳、支持。</p><p class="dlg"><span class="tag">引语</span><span class="who w-b">Arthur</span>真正让我们觉得痛苦的是往往是A和B之间的这个对立。B看似是有问题的，但是背后它隐含了一些对我们有价值的东西。<span class="its">44:55</span></p><p class="dlg"><span class="tag">引语</span><span class="who w-b">Arthur</span>爱别人就是理解别人，接纳别人，然后支持别人。其实反过来，爱自己就是理解自己，接纳自己、支持自己。<span class="its">51:57</span></p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">本页小结</div>
+<div class="sum-text">⑤ 无力感背后是自责；没有绝对的正负，优势和短板是一件事的两面。　⑥ A 和 B 都有价值才痛苦；取舍的时候，优先级和价值观才显形。</div>
+</footer>
+<footer class="ref"><div class="ref-label">PERSONAL REFLECTION<b>我的思考</b></div><div class="ref-body"><div class="ref-q">这段内容与我有什么关系？</div><div class="ref-lines"><div class="ref-line"></div></div></div></footer>
+<div class="pno">6/12</div>
+</section><section class="page">
+<header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+<div class="p-title">⑦·⑧｜时间管理＝爱自己 → 领导自己的时间<span class="p-ts">50:00–01:23:00</span></div>
+<div class="marklink">她的总结 第 ⑦·⑧ 节｜先看清水面下（欲望／资源／情绪），再看支持怎么落到自己身上</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue c1"><div class="cue-h">⑦爱自己是哪三种可能？</div><div class="cue-b">逼自己／摆烂／C</div></div><div class="cue c1"><div class="cue-h">⑦C 是什么？</div><div class="cue-b">接受做不到，依然坚持</div></div><div class="cue c1"><div class="cue-h">⑦弹性怎么来？</div><div class="cue-b">不是否定，是留出空间</div></div><div class="cue c2"><div class="cue-h">⑧管理 vs 领导差在哪？</div><div class="cue-b">先定义目标与意义</div></div><div class="cue c2"><div class="cue-h">⑧影响圈与关注圈？</div><div class="cue-b">能力／欲望</div></div><div class="cue c2"><div class="cue-h">⑧怎么算主体性？</div><div class="cue-b">成为自己行动的负责人</div></div></aside>
+<div class="col-note"><div class="ch-div">⑦　所谓的时间管理，实际上是我们学会爱自己的过程</div><p class="dlg"><span class="tag">她的总结</span>爱自己，既不是A也不是B而是C。既没有逼着自己做能力做不到的事情，也没有摆烂，而是接受自己很多做不到以后依然有坚持，希望能多做一点。这就是在支持自己。它不是否定一个东西，而是让自己的优势显得更有弹性。</p><p class="dlg"><span class="tag">她划的·引语</span><span class="who w-b">Arthur</span>所谓的时间管理，它实际上就是我们怎么样学会爱自己的一个过程。就是你的欲望是无休止的，你怎么样在有限的能力里理解自己欲望背后的东西，如何在这些不同的欲望背后的渴望和对自己的需求中间做出最好的选择，为自己承担责任。<span class="its">53:20</span></p><p class="dlg"><span class="tag">观点</span><span class="who w-b">Arthur</span>孩子考大学找工作终究是他的事，owner 是他；把别人的事当自己的事，就要承担后果。<span class="its">50:10</span></p><p class="dlg"><span class="tag">例子</span><span class="who w-b">Arthur</span>他留下来陪孩子做最难的两道题，规定时间里没做出来，被孩子嘲笑，孩子整个人反而松了。<span class="its">51:39</span></p><div class="ch-div">⑧　我们要做的其实不是「管理」时间，而是「领导」自己的时间</div><p class="dlg"><span class="tag">她的总结</span>你要定义你的时间的目标、你希望实现的意义。积极主动：对自己承担责任。</p><p class="dlg"><span class="tag">她的总结</span>影响圈（能力）：你能够影响和控制的事儿；关注圈（欲望）：你care但是你影响不了的事儿。在能力以内的事儿，多做一些；能力以外的事儿，少抱怨。成为自己所有行动的负责人。接受状态不好的时候能力下降，只要关心我今天有几分力气就干几份活，不要自己谴责自己。</p><p class="dlg"><span class="tag">她的总结</span>讨论过去是为了未来，而不是为了过去。依赖-独立-相互依赖：你要先独立才能相互依赖。对孩子：既不是放弃她，也不是控制她，是在支持她。对他人：既没有否定他，也没有否定自己，而是跟他形成了一个相互支持的结构。活出你自己。自我觉察，是一个在选择以后能够不断提升的能力。（孕妇效应）人：感性、理性、身体的直觉。不需要那么多逻辑，不需要成为一个心理学家才能了解自己。</p><p class="dlg"><span class="tag">引语</span><span class="who w-b">Arthur</span>管理是在一个确定性的目标下，用一个有效的方法高效的达成那个目标。在确定性的资源，其实我们要做的不是time management，我们要做的是time leadership，领导自己的时间。<span class="its">58:12</span></p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">本页小结</div>
+<div class="sum-text">⑦ 爱自己是第三种选择：接受很多做不到之后依然愿意多做一点。　⑧ 先定义时间的目标和意义；影响圈内多做，关心自己今天有几分力气。</div>
+</footer>
+<footer class="ref"><div class="ref-label">PERSONAL REFLECTION<b>我的思考</b></div><div class="ref-body"><div class="ref-q">这段内容与我有什么关系？</div><div class="ref-lines"><div class="ref-line"></div></div></div></footer>
+<div class="pno">7/12</div>
+</section><section class="page">
+<header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+<div class="p-title">⑨·⑩｜接纳不完美的自己 → 感受自己是起点<span class="p-ts">01:20:00–01:31:51</span></div>
+<div class="marklink">她的总结 第 ⑨·⑩ 节｜先看清水面下（欲望／资源／情绪），再看支持怎么落到自己身上</div>
+<div class="grid">
+<aside class="col-cue"><div class="cue c1"><div class="cue-h">⑨留白 20% 是什么？</div><div class="cue-b">留给不那么有追求的事</div></div><div class="cue c1"><div class="cue-h">⑨自由现金流指什么？</div><div class="cue-b">可自由支配的时间</div></div><div class="cue c1"><div class="cue-h">⑨最佳区间是多少？</div><div class="cue-b">2~5 小时／天</div></div><div class="cue c2"><div class="cue-h">⑩为什么感受是起点？</div><div class="cue-b">看到自己才能理解自己</div></div><div class="cue c2"><div class="cue-h">⑩从哪里进入？</div><div class="cue-b">情绪、身体、理性都行</div></div><div class="cue c2"><div class="cue-h">⑩被忽略的是什么？</div><div class="cue-b">你一直没看那朵花</div></div></aside>
+<div class="col-note"><div class="ch-div">⑨　学会接纳一个不那么完美的自己</div><p class="dlg"><span class="tag">她的总结</span>接纳自己是一个希望有成就的人，但是我允许在追求的过程中，只做到了我能做的部分，同时我还能空出来20%的时间，做一些不那么有追求，就是浪费时间的事儿。</p><p class="dlg"><span class="tag">她的总结</span>你可以自由支配的时间就是你的自由现金流。可支配时间不是越多越好，2~5小时/天，是一个最佳区间。这就是我做的选择，总要做取舍的。但你是无意中做的取舍，还是有思考、有感受、有考虑自己各方面条件后做的取舍？真正的选择往往是在中间的某一个状态里。</p><p class="dlg"><span class="tag">引语</span><span class="who w-b">Arthur</span>我接纳我自己是一个希望有成就的人，但是我允许在追求的过程中只做到了我能做的部分。同时我还能空出来20%的时间，能做一些不那么有追求，就是浪费时间<span class="its">01:21:25</span></p><p class="dlg"><span class="tag">例子</span><span class="who w-b">Arthur</span>知道改不了又知道它有意义，就给优势留 10%–20% 的弹性：每周打网球，每天遛弯。<span class="its">56:57</span></p><div class="ch-div">⑩　感受自己是所有的起点：理解自己、接纳自己、支持自己，慢慢过好这一生</div><p class="dlg"><span class="tag">她的总结</span>首先你要正视自己，看到自己，你才能理解自己。你看到一个花儿快干枯的时候，你会有冲动去给它浇水的。但问题是你经常忽略了，所以每个人都是有支持自己的能力的。</p><p class="dlg"><span class="tag">引语</span><span class="who w-b">Arthur</span>感受自己是所有的东西的起点。<span class="its">01:26:50</span></p><p class="dlg"><span class="tag">引语</span><span class="who w-a">雨白</span>理解一个行为的来处不等于取消一个人对行为后果的责任。<span class="its">01:31:51</span></p><p class="dlg"><span class="tag">观点</span><span class="who w-b">Arthur</span>身体感性强的人可以每天吃完饭走十分钟，不开手机、不跟人说话，走的时候感受自己的状态。<span class="its">01:26:50</span></p></div>
+</div>
+<footer class="sum">
+<div class="sum-label">本页小结</div>
+<div class="sum-text">⑨ 接纳自己只做到能做的部分，留出 20% 的时间和力气。　⑩ 感受自己是所有东西的起点；每个人都有支持自己的能力，只是常常忽略。</div>
+</footer>
+<footer class="ref"><div class="ref-label">PERSONAL REFLECTION<b>我的思考</b></div><div class="ref-body"><div class="ref-q">这段内容与我有什么关系？</div><div class="ref-lines"><div class="ref-line"></div></div></div></footer>
+<div class="pno">8/12</div>
+</section><section class="page">
+  <header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+  <div class="nav-h">本期金句回顾</div>
+  <div class="lead">以下为节目原话，括号内是该句在录音里的位置；逐字稿未逐句听校，引用前请对回音频。</div>
+  <div class="quote-list big"><div class="quote-row">也许时间管理它只是冰山露出水面的那一角，真正藏在下面的是一个人的欲望、能力、资源、情绪、身体以及他和自己相处的方式。</div><div class="quote-row">人不是机器。你要考虑到人是有情绪的耐受度的，就是人无法无限制的压榨自己。</div><div class="quote-row">其实情绪也是欲望的一种反射或者投射灯。</div><div class="quote-row">教练本身是不是替别人解决问题，而是支持别人，让他在认知上完成一些可能的突破。（转写原样：此处应为「不是」）</div><div class="quote-row">所谓的时间管理，它实际上就是我们怎么样学会爱自己的一个过程。</div><div class="quote-row">哪怕最负面的情绪里，其实也隐藏着你最正面的渴望和你真正想要追求的东西。</div><div class="quote-row">你不是不会时间管理，你只是可能还没有学会支持自己。</div></div>
+  <div class="pno">9/12</div>
+</section><section class="page">
+  <header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+  <div class="nav-h">全期回顾</div>
+  <div class="lead">按你自己总结的十节顺序过一遍。括号内是这句话在录音里的位置。</div>
+  <div class="rv-h">关键观点（括号内是这句在录音里的位置）</div>
+  <div class="rv-list"><div class="rv-i"><span class="rv-n">01</span><span>时间管理只是冰山一角，水面下是欲望、能力、资源、情绪、身体和跟自己相处的方式。（02:20）</span></div><div class="rv-i"><span class="rv-n">02</span><span>无限膨胀的欲望 🆚 有限的资源（7×24h）与能力；提效改变不了总量。（07:26）</span></div><div class="rv-i"><span class="rv-n">03</span><span>人不是机器，「把时间榨干」追求的是控制感，不是产出。（11:34）</span></div><div class="rv-i"><span class="rv-n">04</span><span>每一个负面情绪背后，都隐藏着一个人对自己最美好的期许。（01:30:27）</span></div><div class="rv-i"><span class="rv-n">05</span><span>教练式对话是陪你找解法而不是答案；经验只能当资源。（23:38）</span></div><div class="rv-i"><span class="rv-n">06</span><span>困住我们的除了时间管理，还有自我攻击：过度提醒等于责备。（32:15）</span></div><div class="rv-i"><span class="rv-n">07</span><span>在两个同样正确的选择中做取舍，才会真正理解自己。（44:55）</span></div><div class="rv-i"><span class="rv-n">08</span><span>时间管理就是学会爱自己的过程：既不是 A 也不是 B，而是 C。（53:20）</span></div><div class="rv-i"><span class="rv-n">09</span><span>要做的不是「管理」时间，而是「领导」自己的时间：影响圈多做，关注圈少抱怨。（58:12）</span></div><div class="rv-i"><span class="rv-n">10</span><span>接纳不完美的自己，留 20% 的时间；可支配时间是自由现金流，2~5 小时／天是区间。（01:21:25）</span></div><div class="rv-i"><span class="rv-n">11</span><span>感受自己是所有的起点：看到自己，才能理解自己、支持自己。（01:26:50）</span></div></div>
+  <div class="pno">10/12</div>
+</section><section class="page">
+  <header class="band"><div class="band-c">冰山</div><div class="band-c">博弈</div><div class="band-c">信号</div><div class="band-c">支持</div></header>
+  <div class="nav-h">主动回忆</div>
+  <div class="lead">先不看前面，自己答一遍；答不出来再翻回对应章节。</div>
+  <div class="rv-list"><div class="rv-q"><span class="rv-n">Q1</span><span>水面之下有哪些东西？为什么提效解决不了欲望的增长？</span></div><div class="rv-q"><span class="rv-n">Q2</span><span>为什么说很多人追求的是「把时间榨干」的控制感？</span></div><div class="rv-q"><span class="rv-n">Q3</span><span>举一件你最近的事：那个负面情绪背后，藏着什么期待？</span></div><div class="rv-q"><span class="rv-n">Q4</span><span>教练式对话和给建议的区别在哪？为什么它承担不了责任？</span></div><div class="rv-q"><span class="rv-n">Q5</span><span>「过度提醒等于责备」在你身上出现过吗？</span></div><div class="rv-q"><span class="rv-n">Q6</span><span>A 和 B 都对你有利的时候，你靠什么做取舍？</span></div><div class="rv-q"><span class="rv-n">Q7</span><span>爱自己的第三种选择（C）长什么样？</span></div><div class="rv-q"><span class="rv-n">Q8</span><span>你的影响圈里，最该多做的一件事是什么？</span></div><div class="rv-q"><span class="rv-n">Q9</span><span>你能给自己留出的 20% 时间，会用来做什么？</span></div><div class="rv-q"><span class="rv-n">Q10</span><span>你从哪里进入自我理解：情绪、身体，还是把视野拉长？</span></div></div>
+  <div class="pno">11/12</div>
+</section><section class="page end-page">
+  <div class="end-big">你不是不会时间管理，你只是可能还没有学会支持自己。<br>理解自己，接纳自己，支持自己，慢慢过好这一生。</div>
+  <div class="end-small">把「管住自己」换成「支持自己」</div>
+  <div class="end-rule"></div>
+  <div class="end-meta">
+    知行小酒馆 · 听后成笺<br>
+    从时间管理
+到爱你老己 × 我们如何停止和自己较劲<br>
+    关注投资，更关注怎样更好的生活
+  </div>
+  <a class="back-home" href="../index.html">← 返回档案首页</a>
+</section>
+</body>
+</html>

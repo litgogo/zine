@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date":"2026.10.15","show":"知行小酒馆","guest":"雨白 × Arthur","title":"从时间管理到爱你老己：我们如何停止和自己较劲？","ep":"E236","duration":"1:33:00","status":"zine","style":"cornell","link":"zines/20261015-zhixing-e236.html"},
 {"date":"2026.10.11","show":"童漠男","guest":"童漠男","title":"寻找王医生：每个人都在寻找自己的北下关","duration":"1:50:00","status":"zine","link":"zines/20261011-tongmonan-xunzhaowangyisheng.html"},
 {"date":"2026.10.09","show":"教育在场","guest":"成庆","title":"对谈成庆：做父母为什么这么难？","duration":"1:51:00","status":"zine","link":"zines/20261009-jiaoyuzaichang-zuofumu.html","quiet":"quiet/20261001-jiaoyuzaichang-chengqing/index.html"},
 {"date":"2026.09.30","show":"陈果的播客｜好的，生活","guest":"陈果","title":"S1E5 人在社会化的过程中，如何成为更好的自己","ep":"S1E5","duration":"1:26:02","status":"zine","style":"cornell","link":"zines/20260930-chenguo-s1e5-shehuihua.html"},
