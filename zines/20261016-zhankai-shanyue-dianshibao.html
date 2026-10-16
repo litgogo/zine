@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zine · 我已经不再是我，而你却依然是你</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+:root, body.t-a {
+  --bg:#f5f0e8; --bg-warm:#ede8dc; --bg-rule:#d6ceb8; --ink:#2a2018; --ink-2:#4a3828;
+  --ink-3:#8a7060; --accent:#8b2e1a; --accent-dim:rgba(139,46,26,.10); --rule:#c4b89a;
+  --mono-bg:#e8e2d4; --tracing-bg:rgba(248,245,235,.55); --tracing-fold:#d8d0bc;
+  --colophon-bg:#2a2018; --colophon-fg:rgba(245,240,232,.65); --colophon-acc:#d4916a;
+}
+body.t-b {
+  --bg:#0d1b2a; --bg-warm:#112233; --bg-rule:#1e3a5f; --ink:#d4e5f7; --ink-2:#a8c8e8;
+  --ink-3:#6898c0; --accent:#5bc0f8; --accent-dim:rgba(91,192,248,.12); --rule:#1e3a5f;
+  --mono-bg:#0a1520; --tracing-bg:rgba(13,40,70,.55); --tracing-fold:#1a3050;
+  --colophon-bg:#060e18; --colophon-fg:rgba(180,210,240,.65); --colophon-acc:#5bc0f8;
+}
+body.t-c {
+  --bg:#fafaf5; --bg-warm:#f2f2ec; --bg-rule:#e0e0d8; --ink:#1a1a1a; --ink-2:#3a3a3a;
+  --ink-3:#888888; --accent:#c0392b; --accent-dim:rgba(192,57,43,.08); --rule:#cccccc;
+  --mono-bg:#f0f0ea; --tracing-bg:rgba(250,250,245,.6); --tracing-fold:#ddddd5;
+  --colophon-bg:#1a1a1a; --colophon-fg:rgba(245,245,240,.65); --colophon-acc:#c0392b;
+}
+body.t-d {
+  --bg:#f2f4ee; --bg-warm:#e8ece0; --bg-rule:#d0d8c4; --ink:#1e2818; --ink-2:#3a4830;
+  --ink-3:#7a8a6a; --accent:#3a6e28; --accent-dim:rgba(58,110,40,.09); --rule:#c0caa8;
+  --mono-bg:#e4ecd8; --tracing-bg:rgba(240,244,234,.55); --tracing-fold:#c8d4b4;
+  --colophon-bg:#1e2818; --colophon-fg:rgba(232,236,224,.65); --colophon-acc:#7ab858;
+}
+body {
+  background:var(--bg); color:var(--ink); font-family:'Noto Serif SC', Georgia, serif;
+  line-height:1.85; -webkit-font-smoothing:antialiased;
+}
+.zine-masthead {
+  position:sticky; top:0; z-index:100; background:var(--ink); color:var(--bg);
+  display:flex; justify-content:space-between; align-items:center; padding:0 5vw; height:44px;
+  font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+}
+.masthead-name { flex:1; } .masthead-issue { color:var(--accent); }
+.zine-cover {
+  max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
+  display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
+}
+.cover-meta {
+  display:flex; align-items:center; gap:16px; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:4vh;
+}
+.issue-rule { flex:1; height:1px; background:var(--rule); }
+.issue-theme { padding:3px 10px; border:1px solid var(--rule); color:var(--accent); }
+.cover-title {
+  font-family:'Noto Serif SC', serif; font-size:clamp(32px,5.2vw,64px); font-weight:900;
+  line-height:1.12; letter-spacing:-.02em; color:var(--ink); margin-bottom:3vh;
+}
+.cover-title em { font-style:italic; color:var(--accent); }
+.cover-sub {
+  font-family:'Noto Sans SC', sans-serif; font-size:clamp(13px,1.5vw,16px); font-weight:300;
+  color:var(--ink-2); line-height:1.72; max-width:52ch; padding-left:18px;
+  border-left:3px solid var(--accent); margin-bottom:4vh;
+}
+.cover-image-slot {
+  background:var(--bg-warm); border:1px solid var(--rule); display:flex; align-items:center;
+  justify-content:center; min-height:32vh; margin-bottom:3vh; overflow:hidden;
+}
+.cover-image-slot img { width:100%; height:100%; object-fit:cover; filter:saturate(.8) contrast(1.02); }
+.cover-footer {
+  display:flex; justify-content:space-between; align-items:flex-end; font-family:'Noto Sans Mono',monospace;
+  font-size:11px; letter-spacing:.14em; color:var(--ink-3); border-top:1px solid var(--rule);
+  padding-top:2vh; text-transform:uppercase;
+}
+.stamp { font-family:'Noto Serif SC',serif; font-size:28px; font-weight:900; letter-spacing:-.02em; color:var(--accent); opacity:.28; }
+.pull-quote-section { max-width:960px; margin-inline:auto; padding:6vh 5vw; border-bottom:1px solid var(--rule); }
+.tracing-card {
+  position:relative; padding:36px 44px 32px; background:var(--tracing-bg); backdrop-filter:blur(1px);
+  border:1px solid rgba(128,120,100,.28); box-shadow:2px 4px 12px rgba(0,0,0,.07), 4px 8px 28px rgba(0,0,0,.05), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
+}
+.tracing-card::after {
+  content:''; position:absolute; top:0; right:0; width:0; height:0; border-style:solid;
+  border-width:0 24px 24px 0; border-color:transparent var(--tracing-fold) transparent transparent;
+  filter:drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
+}
+.pq-small-text { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.8; color:var(--ink-2); max-width:52ch; margin:0 auto 24px; text-align:center; }
+.pq-script { font-family:'Dancing Script',cursive; font-size:clamp(28px,4vw,48px); font-weight:700; line-height:1.28; color:var(--ink); text-align:center; margin-bottom:20px; }
+.pq-cite { font-family:'Noto Sans Mono',monospace; font-size:10px; letter-spacing:.2em; color:var(--ink-3); text-align:center; text-transform:uppercase; display:block; }
+.pq-below { font-family:'Noto Sans Mono',monospace; font-size:11px; line-height:1.82; color:var(--ink-2); max-width:52ch; margin:20px auto 0; text-align:center; }
+.zine-body { max-width:960px; margin-inline:auto; padding:5vh 5vw; border-bottom:1px solid var(--rule); }
+.zine-body.two-col { display:grid; grid-template-columns:200px 1fr; gap:4.5vw; align-items:start; }
+.col-narrow { position:sticky; top:56px; }
+.sidebar-block { border-left:2px solid var(--rule); padding-left:14px; margin-bottom:2.8vh; }
+.sidebar-label { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; }
+.sidebar-block p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--ink-2); line-height:1.72; }
+.sidebar-tag { display:inline-block; font-family:'Noto Sans Mono',monospace; font-size:9.5px; padding:2px 7px; margin:2px 2px 2px 0; border:1px solid var(--rule); color:var(--ink-3); letter-spacing:.1em; }
+.article-eyebrow { display:flex; align-items:center; gap:12px; font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--ink-3); margin-bottom:10px; }
+.article-eyebrow::after { content:''; flex:1; height:1px; background:var(--rule); }
+.article-title { font-family:'Noto Serif SC',serif; font-size:clamp(21px,2.6vw,30px); font-weight:700; line-height:1.2; letter-spacing:-.015em; color:var(--ink); margin-bottom:2vh; padding-top:1.2vh; border-top:2px solid var(--accent); }
+.article-lede { font-family:'Noto Serif SC',serif; font-size:clamp(14px,1.5vw,16.5px); font-style:italic; font-weight:300; color:var(--ink-2); line-height:1.72; margin-bottom:2vh; }
+.col-wide p { font-family:'Noto Serif SC',serif; font-size:clamp(13.5px,1.3vw,15px); color:var(--ink-2); line-height:1.92; }
+.col-wide p.spacer { height:1.6vh; }
+.col-wide blockquote { margin:20px 0; padding:14px 20px; background:var(--bg-warm); border-left:3px solid var(--rule); font-family:'Noto Sans SC',sans-serif; font-size:13.5px; font-weight:300; color:var(--ink-2); line-height:1.82; }
+.tracing-appendix {
+  position:relative; max-width:900px; margin:52px auto 0; padding:32px 40px 28px; background:var(--tracing-bg);
+  backdrop-filter:blur(2px); border:1px solid rgba(128,120,100,.3);
+  box-shadow:1px 3px 8px rgba(0,0,0,.06), 3px 6px 20px rgba(0,0,0,.07), inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image:linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
+  transform:rotate(-.45deg); transform-origin:top left;
+}
+.tracing-appendix::before {
+  content:'APPENDIX · 附页'; position:absolute; top:-11px; left:20px; font-family:'Noto Sans Mono',monospace;
+  font-size:9px; letter-spacing:.24em; color:var(--ink-3); text-transform:uppercase; background:var(--bg); padding:0 8px;
+}
+.appendix-inner { transform:rotate(.45deg); transform-origin:top left; }
+.appendix-title { font-family:'Dancing Script',cursive; font-size:28px; font-weight:700; color:var(--ink); margin-bottom:22px; letter-spacing:-.01em; }
+.appendix-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px 36px; }
+.appendix-label { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.24em; text-transform:uppercase; color:var(--ink-3); margin-bottom:6px; padding-bottom:5px; border-bottom:1px dashed var(--rule); }
+.appendix-block p { font-family:'Noto Sans SC',sans-serif; font-size:12px; font-weight:300; color:var(--ink-2); line-height:1.78; }
+.appendix-rule { height:1px; background:rgba(128,120,100,.25); margin:20px 0 12px; }
+.appendix-fine { font-family:'Noto Sans Mono',monospace; font-size:9px; letter-spacing:.18em; color:var(--ink-3); text-transform:uppercase; opacity:.7; }
+.colophon { background:var(--colophon-bg); padding:6vh 5vw 7vh; margin-top:5vh; }
+.colophon-inner { max-width:960px; margin-inline:auto; }
+.colophon-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:4vw; margin-bottom:4vh; }
+.colophon h5 { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.22em; text-transform:uppercase; color:var(--colophon-acc); margin-bottom:10px; }
+.colophon p { font-family:'Noto Sans SC',sans-serif; font-size:12.5px; font-weight:300; color:var(--colophon-fg); line-height:1.78; }
+.colophon-rule { height:1px; background:rgba(128,120,100,.2); margin-bottom:2.5vh; }
+.colophon-fine { font-family:'Noto Sans Mono',monospace; font-size:9.5px; letter-spacing:.18em; color:var(--colophon-fg); opacity:.35; text-transform:uppercase; }
+@media (max-width:640px) {
+  .zine-body.two-col { grid-template-columns:1fr; }
+  .col-narrow { position:static; }
+  .colophon-grid { grid-template-columns:1fr; gap:3vh; }
+  .appendix-grid { grid-template-columns:1fr; }
+  .tracing-appendix { margin:40px 0 0; }
+}
+
+.back-home { margin-left: 18px; font-size: 10px; letter-spacing: .1em; color: var(--accent); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; }
+.back-home:hover { opacity: .7; }
+.back-home-footer { display: inline-block; margin: 0 0 14px; font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .18em; text-transform: uppercase; color: var(--colophon-acc); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+.back-home-footer:hover { opacity: .7; }
+</style>
+</head>
+<body class="t-b">
+
+<header class="zine-masthead">
+  <span class="masthead-name">展开讲讲</span>
+  <span class="masthead-issue">VOL.31 · 2026.10.16<a class="back-home" href="../index.html">← 返回首页</a></span>
+</header>
+
+<section class="zine-cover">
+  <div class="cover-meta">
+    <span>PODCAST ZINE</span>
+    <span class="issue-rule"></span>
+    <span class="issue-theme">蓝图档案</span>
+  </div>
+  <h1 class="cover-title">我已经不再是我，而你却依然是你</h1>
+  <p class="cover-sub">十月广播电视报。一期串讲刘欢去世与电视记忆、几部电影剧集综艺，和「看老剧的生活」。她的入口是自己划的三条线：刘欢勾起的电视儿童记忆，三种媒介里的最大公约数，以及《兰香如故》让她想起自家 2022 年做过的《卿卿日常》。</p>
+  <div class="cover-image-slot" style="min-height:32vh">
+    <img src="../covers/20261016-zhankai-shanyue-dianshibao.jpg" alt="我已经不再是我，而你却依然是你 封面" style="object-fit:cover">
+  </div>
+  <div class="cover-footer">
+    <span>2026.10.16 · 洞姐、康堤、王老师（主播三人组）</span>
+    <span class="stamp">VOL.31</span>
+  </div>
+</section>
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">展开讲讲 · 我已经不再是我，而你却依然是你</p>
+    <div class="pq-script">世界是封建的，但女主不是。（《兰香如故》一节，41:49）</div>
+    <span class="pq-cite">—— 金句</span>
+    <p class="pq-below">她挑出来的三条线各占一个位置。刘欢那一条是记忆的来源。最大公约数那一条是把不同口味装进同一个容器的做法。《兰香如故》那一条是坐标，拿旧作品量今天的位置。节目表面</p>
+  </div>
+</section>
+
+<section class="zine-body two-col">
+  <aside class="col-narrow">
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">摘要</h4>
+      <p>十月广播电视报。一期串讲刘欢去世与电视记忆、几部电影剧集综艺，和「看老剧的生活」。她的入口是自己划的三条线：刘欢勾起的电…</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">嘉宾</h4>
+      <p>洞姐、康堤、王老师（主播三人组）</p>
+    </div>
+    <div class="sidebar-block">
+      <h4 class="sidebar-label">关联</h4>
+      <p>《神探之痕迹》2026-10-02 那条（她与 Yellow 在天环看的国庆中午场）｜展开讲讲 100 期（她把主播当单向认识的朋友，播客是回声）｜《卿卿日常》…</p>
+    </div>
+  </aside>
+  <article class="col-wide">
+    
+    <div class="article-eyebrow">Section 01</div>
+    <h2 class="article-title">01:26 刘欢去世：从电视剧到大舞台，他的声音塑造的国民记忆</h2>
+    <p>刘欢 1963-08-26 生于天津，2026-09-25 上午 9:52 在上海病逝，享年 63 岁，当天正是中秋；对外经济贸易大学发布讣告（他是该校退休教师），遵遗愿丧事从简。1987 年《雪城》的《心中的太阳》与《便衣警察》的《少年壮志不言愁》让他进入大众记忆，此后是《弯弯的月亮》《千万次的问》《好汉歌》《从头再来》、2008 年奥运会《我和你》与《甄嬛传》的《凤凰于飞》。最后一次公开舞台是 2025-12-31 B 站跨年，唱《我欲成仙》。来源：对外经济贸易大学讣告、维基百科。她的入口不是歌单，是电视机。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 02</div>
+    <h2 class="article-title">27:15 《神探之痕迹》：罪案播客与喜剧播客的结合</h2>
+    <p>节目把它当作两种播客气质的混合来谈。这部片她 2026-10-02 和 Yellow 在天环看过，本期又作为例子出现。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 03</div>
+    <h2 class="article-title">41:49 《兰香如故》：世界是封建的，但女主不是</h2>
+    <p>节目给的判断是女主不落在那个世界的规则里。她听完想起的是自家 2022 年做过的那期《卿卿日常》：电子麻药遮蔽不了的现实（节目第 44 期，本期参考资料里列着）。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 04</div>
+    <h2 class="article-title">01:03:15 《交锋》：第一集谍战，后面是《金秘书为何那样》</h2>
+    <p>节目给的分段判断：开局是谍战，往后换成了另一种类型的气质。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 05</div>
+    <h2 class="article-title">01:11:32 《狂怒追缉》：女性成为暴力主体，创伤与暴力的复杂关系</h2>
+    <p>节目把女性放到暴力的主体位置上谈，而不是受害者位置。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 06</div>
+    <h2 class="article-title">01:29:11 《翠鸟谋杀案》：现实交织虚构的双重体验，但仅止于「案件如何发生」</h2>
+    <p>节目给的边界很清楚：双重体验做到了，落点停在案件如何发生。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 07</div>
+    <h2 class="article-title">01:35:11 《思想验证区域2》（《社区2》）：为价值观明码标价</h2>
+    <p>节目用「为价值观明码标价」概括这档综艺的规则。她说这一类和《街头餐厅斗士》一起体现了最大公约数的力量。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 08</div>
+    <h2 class="article-title">01:57:22 《街头餐厅斗士》：餐厅经营游戏，开店原来这么好玩</h2>
+    <p>节目把它当经营类游戏来聊。她的读法是：把经营翻译成人人能上手的爽点，这也是公约数的一种。</p>
+    <p class="spacer"></p>
+    <div class="article-eyebrow">Section 09</div>
+    <h2 class="article-title">02:15:21 看老剧的生活：「欲望都市第一集是 32 岁」</h2>
+    <p>节目最后聊看老剧：用旧内容对照自己现在的位置。</p>
+    <p class="spacer"></p>
+    
+    <blockquote>世界是封建的，但女主不是。（《兰香如故》一节，41:49）</blockquote>
+    <blockquote>为价值观明码标价。（《思想验证区域2》一节，01:35:11）</blockquote>
+    <blockquote>欲望都市第一集是 32 岁。（展开生活一节，02:15:21）</blockquote>
+    <div class="article-eyebrow">Gogo 的思考</div>
+    <h2 class="article-title">共振与提炼</h2>
+    <p>这期展开讲讲，讲到了：刘欢老师的去世如何勾起了电视儿童的记忆，陷入90年代的幻梦中难以自拔；</p><p>陈思诚、思想验证区域2、街头餐厅斗士，如何体现「最大公约数」的力量，如何混合出「五彩斑斓的黑」；</p><p>《兰香如故》为什么让我们想起了2022年我们做过的《卿卿日常》那期节目；简直就是我的看剧嘴替了。</p>
+    <p class="spacer"></p>
+    <p>她挑出来的三条线各占一个位置。刘欢那一条是记忆的来源。最大公约数那一条是把不同口味装进同一个容器的做法。《兰香如故》那一条是坐标，拿旧作品量今天的位置。节目表面是一份广播电视报，她读到的是电视曾经替她认识世界这条线。</p>
+    
+  </article>
+</section>
+
+<div class="tracing-appendix">
+  <div class="appendix-inner">
+    <div class="appendix-title">附言 · Afterword</div>
+    <div class="appendix-grid">
+      <div class="appendix-block">
+        <div class="appendix-label">总结</div>
+        <p>十月广播电视报。一期串讲刘欢去世与电视记忆、几部电影剧集综艺，和「看老剧的生活」。她的入口是自己划的三条线：刘欢勾起的电视儿童记忆，三种媒介里的最大公约数，以及《兰香如故》让她想起自家 2022 年做过的《卿卿日常》。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">关联旧知</div>
+        <p>《神探之痕迹》2026-10-02 那条（她与 Yellow 在天环看的国庆中午场）｜展开讲讲 100 期（她把主播当单向认识的朋友，播客是回声）｜《卿卿日常》节目第 44 期｜topics/慢学与不可替代性.md（用旧内容对照自己的位置）</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">我的思考</div>
+        <p>这期展开讲讲，讲到了：刘欢老师的去世如何勾起了电视儿童的记忆，陷入90年代的幻梦中难以自拔；</p><p>陈思诚、思想验证区域2、街头餐厅斗士，如何体现「最大公约数」的力量，如何混合出「五彩斑斓的黑」；</p><p>《兰香如故》为什么让我们想起了2022年我们做过的《卿卿日常》那期节目；简直就是我的看剧嘴替了。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">备注</div>
+        <p>素材＝节目官方 show notes（小宇宙单集页 JSON-LD）＋ Gogo 2026-10-15 分享时的原话。刘欢去世的时间线与代表作已核（对外经济贸易大学讣告、维基百科）。本期未转写逐字稿，节目内部的具体论述没有扩写。</p>
+      </div>
+    </div>
+    <div class="appendix-rule"></div>
+    <div class="appendix-fine">本附页以硫酸纸印刷 · VOL.31 · 2026.10.16</div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <h5>关于本期</h5>
+        <p>展开讲讲 · 洞姐、康堤、王老师（主播三人组）</p>
+      </div>
+      <div>
+        <h5>出版信息</h5>
+        <p>2026.10.16 · 由 Venues 制作<br>素材：官方 show notes ＋ 她的原话</p>
+      </div>
+      <div>
+        <h5>设计信息</h5>
+        <p>Noto Serif SC / Dancing Script<br>Zine Skill v2 · 蓝图档案</p>
+      </div>
+    </div>
+    <div class="colophon-rule"></div>
+    <a class="back-home-footer" href="../index.html">← 返回档案首页</a>
+    <p class="colophon-fine">© 2026 · PODCAST ZINE · VOL.31</p>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date":"2026.10.16","show":"展开讲讲","guest":"洞姐、康堤、王老师","title":"我已经不再是我，而你却依然是你","ep":"十月广播电视报","duration":"2:27:00","status":"zine","link":"zines/20261016-zhankai-shanyue-dianshibao.html"},
 {"date":"2026.10.15","show":"知行小酒馆","guest":"雨白 × Arthur","title":"从时间管理到爱你老己：我们如何停止和自己较劲？","ep":"E236","duration":"1:33:00","status":"zine","style":"cornell","link":"zines/20261015-zhixing-e236.html"},
 {"date":"2026.10.11","show":"童漠男","guest":"童漠男","title":"寻找王医生：每个人都在寻找自己的北下关","duration":"1:50:00","status":"zine","link":"zines/20261011-tongmonan-xunzhaowangyisheng.html"},
 {"date":"2026.10.09","show":"教育在场","guest":"成庆","title":"对谈成庆：做父母为什么这么难？","duration":"1:51:00","status":"zine","link":"zines/20261009-jiaoyuzaichang-zuofumu.html","quiet":"quiet/20261001-jiaoyuzaichang-chengqing/index.html"},
