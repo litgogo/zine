@@ -4,6 +4,7 @@
 EPISODES = [
     {
         "slug": "20260318-jingbuxialai-chelu",
+        "eid": "jingbuxialai-chelu",
         "file": "20260318_静不下来_车璐_稳住身体底盘",
         "date": "2026.03.18", "vol": "VOL.02",
         "show": "你，静不下来", "guest": "车璐 × 李静 × 养鸡",
@@ -32,6 +33,7 @@ EPISODES = [
     },
     {
         "slug": "20260413-zhixing-zhanshi",
+        "eid": "zhixing-zhanshi",
         "file": "20260413_知行小酒馆_施展_宏大叙事与个人命运",
         "date": "2026.04.13", "vol": "VOL.03",
         "show": "知行小酒馆 E231", "guest": "施展（历史学者）",
@@ -53,6 +55,7 @@ EPISODES = [
     },
     {
         "slug": "20260414-shengdong-xi-vibe",
+        "eid": "shengdong-xi-vibe",
         "file": "20260414_声东击西_VibeCoding与龙虾",
         "date": "2026.04.14", "vol": "VOL.04",
         "show": "声东击西 #384", "guest": "Junyu / Justin",
@@ -71,6 +74,7 @@ EPISODES = [
     },
     {
         "slug": "20260418-xixifei-nvxing",
+        "eid": "xixifei-nvxing",
         "file": "20260418_西西弗高速_女性心灵史",
         "date": "2026.04.18", "vol": "VOL.05",
         "show": "西西弗高速 #25", "guest": "李清照 / 丁玲 / 萧红",
@@ -89,6 +93,7 @@ EPISODES = [
     },
     {
         "slug": "20260428-xiesaining",
+        "eid": "xiesaining",
         "file": "20260428_对谈谢赛宁_世界模型与人生梯度",
         "date": "2026.04.28", "vol": "VOL.06",
         "show": "对谈谢赛宁（7小时长谈）", "guest": "谢赛宁",
@@ -107,6 +112,7 @@ EPISODES = [
     },
     {
         "slug": "20260603-coffeeplus-wang",
+        "eid": "coffeeplus-wang",
         "file": "20260603_CoffeePlus_别饮居_老王的手冲哲学",
         "date": "2026.06.03", "vol": "VOL.07",
         "show": "Coffee Plus", "guest": "老王（别饮居）",
@@ -125,6 +131,7 @@ EPISODES = [
     },
     {
         "slug": "20260609-xixifei-jiliang",
+        "eid": "xixifei-jiliang",
         "file": "20260609_西西弗高速_矿难瓦斯与迷奸麻醉药",
         "date": "2026.06.09", "vol": "VOL.08",
         "show": "西西弗高速 #27", "guest": "J / 康",
@@ -143,6 +150,7 @@ EPISODES = [
     },
     {
         "slug": "20260611-luyu-zhangquanling",
+        "eid": "luyu-zhangquanling",
         "file": "20260611_鲁豫漫谈_张泉灵",
         "date": "2026.06.11", "vol": "VOL.09",
         "show": "陈鲁豫漫谈", "guest": "张泉灵 × 鲁豫",
@@ -161,6 +169,7 @@ EPISODES = [
     },
     {
         "slug": "20260706-bannatie",
+        "eid": "bannatie",
         "file": "20260706_半拿铁_No41_热点慢点喝",
         "date": "2026.07.06", "vol": "VOL.10",
         "show": "半拿铁 No.41", "guest": "热点观察",
@@ -179,6 +188,7 @@ EPISODES = [
     },
     {
         "slug": "20260707-seesaw-lema",
+        "eid": "seesaw-lema",
         "file": "20260707_Seesaw_Lema",
         "date": "2026.07.07", "vol": "VOL.11",
         "show": "Seesaw 咖啡行业播客", "guest": "Lema（一号员工）",
@@ -197,6 +207,7 @@ EPISODES = [
     },
     {
         "slug": "20260708-luyu-jiangsida",
+        "eid": "luyu-jiangsida",
         "file": "20260708_鲁豫慢谈_姜思达",
         "date": "2026.07.08", "vol": "VOL.12",
         "show": "鲁豫慢谈", "guest": "姜思达 × 鲁豫",
@@ -215,6 +226,7 @@ EPISODES = [
     },
     {
         "slug": "20260714-xixifei-nvxing-xushi",
+        "eid": "xixifei-nvxing-xushi",
         "file": "20260714_西西弗高速_28_女性与叙事",
         "date": "2026.07.14", "vol": "VOL.13",
         "show": "西西弗高速 No.28", "guest": "女性与叙事",
@@ -234,6 +246,7 @@ EPISODES = [
 
     {
         "slug": "20260730-xinshixiang-jinjing",
+        "eid": "xinshixiang-jinjing",
         "file": "20260730_新世相_金靖_女性友谊",
         "date": "2026.07.30", "vol": "VOL.14",
         "show": "新世相", "guest": "金靖",
@@ -264,6 +277,7 @@ EPISODES = [
     },
     {
         "slug": "20260806-shengdong-jia-yangqing",
+        "eid": "shengdong-jia-yangqing",
         "file": "20260806_声东击西_贾扬清_十年巨变",
         "date": "2026.08.06", "vol": "VOL.15",
         "show": "声东击西 #399（十周年特别节目）", "guest": "贾扬清 × 徐涛",
@@ -287,6 +301,7 @@ EPISODES = [
     },
     {
         "slug": "20260808-chujiu-xiaoyi",
+        "eid": "chujiu-xiaoyi",
         "file": "20260808_初九小依_EP13_友情",
         "date": "2026.08.08", "vol": "VOL.16",
         "show": "初九 & 小依 EP13", "guest": "初九 / 小依",
@@ -305,6 +320,7 @@ EPISODES = [
     },
     {
         "slug": "20260812-zhankai-100",
+        "eid": "zhankai-100",
         "file": "20260812_展开讲讲_100_心声特辑_慢学与不可替代",
         "date": "2026.08.12", "vol": "VOL.17",
         "show": "展开讲讲 第100期", "guest": "洞姐 / 康堤 / 王老师",
@@ -323,6 +339,7 @@ EPISODES = [
     },
     {
         "slug": "20260814-chutao-deeptalk",
+        "eid": "chutao-deeptalk",
         "file": "20260814_出逃在即_deeptalk与4层聊天模型",
         "date": "2026.08.14", "vol": "VOL.18",
         "show": "出逃在即", "guest": "出逃studio",
@@ -341,6 +358,7 @@ EPISODES = [
     },
     {
         "slug": "20260819-yingxiangli-qitiao",
+        "eid": "yingxiangli-qitiao",
         "file": "20260819_自习室_影响力_七条法则拿捏人性",
         "date": "2026.08.19", "vol": "VOL.19",
         "theme": "t-d",
@@ -370,6 +388,7 @@ EPISODES = [
     },
     {
         "slug": "20260901-wurenzhixiao-weicengkanjian",
+        "eid": "wurenzhixiao-weicengkanjian",
         "file": "20260901_无人知晓_我们从未看见彼此",
         "date": "2026.09.01", "vol": "VOL.20",
         "theme": "t-a",
@@ -399,6 +418,7 @@ EPISODES = [
     },
     {
         "slug": "20260904-zhibenlun-liubai",
+        "eid": "zhibenlun-liubai",
         "file": "20260904_知本论_过度追求人生确定性是个陷阱",
         "date": "2026.09.04", "vol": "VOL.21",
         "show": "知本论 vol.170", "guest": "程乐松（北大哲学系·宗教学系系主任）",
@@ -435,6 +455,7 @@ EPISODES = [
     },
     {
         "slug": "20260905-coffeeplus-hongxi",
+        "eid": "coffeeplus-hongxi",
         "file": "20260905_CoffeePlus_虹吸咖啡_郭晓妍",
         "date": "2026.09.05", "vol": "VOL.22",
         "show": "Coffee Plus", "guest": "郭晓妍（2019 世界虹吸壶大赛中国区总冠军 · 2023 世界季军 · M2M 讲师）",
@@ -467,6 +488,7 @@ EPISODES = [
     },
     {
         "slug": "20260908-yanzhonghuashu-qingshan",
+        "eid": "yanzhonghuashu-qingshan",
         "file": "20260908_岩中花述_鲁豫对话庆山",
         "date": "2026.09.08", "vol": "VOL.24",
         "theme": "t-a",
@@ -512,6 +534,7 @@ EPISODES = [
     },
     {
         "slug": "20260907-changtan-chenglesong",
+        "eid": "changtan-chenglesong",
         "file": "20260907_长谈脱不花_程乐松_活得哲学一点",
         "date": "2026.09.07", "vol": "VOL.23",
         "theme": "t-d",
@@ -559,6 +582,7 @@ EPISODES = [
     },
     {
         "slug": "20260911-zixishi-105-hao-nengliang",
+        "eid": "zixishi-105-hao-nengliang",
         "date": "2026-09-11",
         "vol": "VOL.25",
         "show": "自习室 STUDY ROOM",
@@ -593,6 +617,7 @@ EPISODES = [
     },
     {
         "slug": "20260929-kenengxingzhezhou-bianjie",
+        "eid": "kenengxingzhezhou-bianjie",
         "file": "20260929_可能性褶皱_18_边界感",
         "style": "cornell",
         "cornell_data": "cornell_18_data",
@@ -633,6 +658,7 @@ EPISODES = [
     },
     {
         "slug": "20260930-chenguo-s1e5-shehuihua",
+        "eid": "chenguo-s1e5-shehuihua",
         "file": "20260930_陈果的播客_好的生活_S1E5_社会化",
         "style": "cornell",
         "cornell_data": "cornell_cg_s1e5_data",
@@ -669,6 +695,7 @@ EPISODES = [
     },
     {
         "slug": "20261009-jiaoyuzaichang-zuofumu",
+        "eid": "jiaoyuzaichang-zuofumu",
         "file": "20261009_教育在场_做父母为什么这么难",
         "date": "2026.10.09", "vol": "VOL.28",
         "show": "教育在场", "guest": "成庆（上海大学历史系副教授 · 佛学研究者 ·《人生解忧》作者）",
@@ -708,6 +735,7 @@ EPISODES = [
     },
     {
         "slug": "20261011-tongmonan-xunzhaowangyisheng",
+        "eid": "tongmonan-xunzhaowangyisheng",
         "file": "20261011_童漠男专场_寻找王医生",
         "date": "2026.10.11", "vol": "VOL.29",
         "show": "童漠男", "guest": "童漠男（脱口秀演员 · 编剧）",
@@ -742,6 +770,7 @@ EPISODES = [
     },
     {
         "slug": "20261015-zhixing-e236",
+        "eid": "zhixing-e236",
         "date": "2026.10.15",
         "vol": "VOL.30",
         "show": "知行小酒馆",
@@ -778,6 +807,7 @@ EPISODES = [
     },
     {
         "slug": "20261016-zhankai-shanyue-dianshibao",
+        "eid": "zhankai-shanyue-dianshibao",
         "file": "20261016_展开讲讲_十月广播电视报",
         "date": "2026.10.16",
         "vol": "VOL.31",

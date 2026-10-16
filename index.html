@@ -316,6 +316,8 @@ select:focus { border-color:var(--ink); }
 .w-title .quiet-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px solid var(--ink);
   padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink);
   background:var(--bg-warm); cursor:pointer; }
+.w-title .eid-tag { font-family:'Noto Sans Mono',monospace; font-size:9px; margin-left:8px; vertical-align:2px; letter-spacing:.06em; color:var(--ink-3); opacity:.75; }
+.w-meta .eid { font-family:'Noto Sans Mono',monospace; font-size:9.5px; color:var(--ink-3); letter-spacing:.06em; }
 .w-title .style-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px dashed var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink-2,#55544f); opacity:.85; }
 .w-meta { display:flex; gap:14px; margin-top:5px; font-family:'Noto Sans Mono',monospace; font-size:10px; color:var(--ink-3); letter-spacing:.05em; }
 .w-meta .ep:empty { display:none; }
@@ -474,6 +476,7 @@ function rowHTML(w, showInRow){
   var badge='';
   if(w.star) badge+='<span class="star">★</span>';
   if(w.style && STYLE_LABEL[w.style]) badge+='<span class="style-tag">'+STYLE_LABEL[w.style]+'</span>';
+  if(w.eid){ var nv=(w.quiet?2:1); if(nv>1) badge+='<span class="eid-tag" title="同一期节目的全部记录 · episode_id '+w.eid+'">同源 '+nv+' 版</span>'; }
   if(w.quiet) badge+='<span class="quiet-tag" title="打开'+(w.quiet_label||'知识杂志')+'" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.quiet+'\',\'_blank\')">'+(w.quiet_label||'知识杂志')+' ↗</span>';
   var link = w.link ? w.link : 'javascript:void(0)';
   var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
@@ -482,7 +485,7 @@ function rowHTML(w, showInRow){
     +'<span class="w-main">'+sh
     +'<div class="w-title">'+w.title+badge
     +'</div>'
-    +'<div class="w-meta"><span class="ep">'+ (w.ep?w.ep:'') +'</span>'+(w.guest?'<span class="guest">'+w.guest+'</span>':'')+'<span class="dur">'+(w.duration? w.duration+' 时长':'时长 —')+'</span></div></span>'
+    +'<div class="w-meta"><span class="ep">'+ (w.ep?w.ep:'') +'</span>'+(w.guest?'<span class="guest">'+w.guest+'</span>':'')+'<span class="dur">'+(w.duration? w.duration+' 时长':'时长 —')+'</span>'+(w.eid?'<span class="eid">'+w.eid+'</span>':'')+'</div></span>'
     +'<span class="w-right"><span class="st-badge '+STATUS_CLASS[w.status]+'">'+STATUS_LABEL[w.status]+'</span>'
     +'<span class="w-arrow">→</span></span>'
     +'</a>';
@@ -496,7 +499,7 @@ function currentRows(){
   return WALL.filter(function(w){
     if(st && w.status !== st) return false;
     if(show && w.show !== show) return false;
-    if(q){ var hay=(w.show+' '+w.title+' '+(w.guest||'')+' '+(w.ep||'')+' '+(w.date||'')).toLowerCase(); if(hay.indexOf(q)===-1) return false; }
+    if(q){ var hay=(w.show+' '+w.title+' '+(w.guest||'')+' '+(w.ep||'')+' '+(w.date||'')+' '+(w.eid||'')+' '+((w.link||'')+(w.quiet||''))).toLowerCase(); if(hay.indexOf(q)===-1) return false; }
     return true;
   });
 }
