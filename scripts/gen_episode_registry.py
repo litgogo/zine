@@ -51,9 +51,11 @@ def main():
         e = eps.get(eid, {})
         versions = {}
         if w.get('link'):
-            versions['cornell' if w.get('style') == 'cornell' else 'zine'] = w['link']
+            versions['zine'] = w['link']
         if w.get('quiet'):
             versions['quiet'] = w['quiet']
+        if w.get('deep'):
+            versions['cornell' if w.get('deep_style') == 'cornell' else 'deep'] = w['deep']
         kbs = kb_match(w.get('show', ''), w.get('title', ''), files)
         if kbs:
             versions['kb'] = kbs if len(kbs) > 1 else kbs[0]

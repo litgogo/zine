@@ -7,7 +7,7 @@
 """
 
 EP = {
-    "slug": "20260930-chenguo-s1e5-shehuihua",
+    "slug": "20260930-chenguo-s1e5-shehuihua-cornell",
     "num": "S1E5",
     "num_en": "SOCIALIZATION",
     "title": "人在社会化的过程中，如何成为更好的自己",

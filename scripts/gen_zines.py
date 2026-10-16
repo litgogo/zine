@@ -58,6 +58,10 @@ def build(ep, theme_class, theme_name):
     <p>{esc(body)}</p>
     <p class="spacer"></p>"""
 
+    deep_html = ""
+    if ep.get("deep_link"):
+        deep_html = ('<div class="wrap"><a class="deep-link" href="%s">%s</a></div>'
+                     % (ep["deep_link"], esc(ep.get("deep_label", "这一期的深度阅读版"))))
     quotes_html = ""
     for q in quotes:
         quotes_html += f"""
@@ -109,6 +113,7 @@ body {{
   font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
 }}
 .masthead-name {{ flex:1; }} .masthead-issue {{ color:var(--accent); }}
+.deep-link {{ display:inline-block; margin:0 0 3vh 0; font-family:'Noto Sans Mono',monospace; font-size:11px; letter-spacing:.08em; border:1px dashed var(--accent); color:var(--accent); padding:3px 9px; text-decoration:none; }}
 .zine-cover {{
   max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
   display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
@@ -231,6 +236,8 @@ body {{
     <span class="stamp">{vol}</span>
   </div>
 </section>
+
+{deep_html}
 
 <section class="pull-quote-section">
   <div class="tracing-card">

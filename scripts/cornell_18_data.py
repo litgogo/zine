@@ -7,7 +7,7 @@
 """
 
 EP = {
-    "slug": "20260929-kenengxingzhezhou-bianjie",
+    "slug": "20260929-kenengxingzhezhou-bianjie-cornell",
     "num": "18",
     "num_en": "PERSONAL BOUNDARIES",
     "title": "温和而坚定地构建个人边界",

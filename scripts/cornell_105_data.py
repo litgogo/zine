@@ -3,7 +3,7 @@
 """自习室 STUDY ROOM 105｜好能量 —— 康奈尔笔记杂志数据"""
 
 EP = {
-    "slug": "20260911-zixishi-105-hao-nengliang",
+    "slug": "20260911-zixishi-105-hao-nengliang-cornell",
     "num": "105",
     "num_en": "GOOD ENERGY",
     "title": "好能量",

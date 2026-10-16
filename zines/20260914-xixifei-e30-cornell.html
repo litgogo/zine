@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>西西弗高速 E30 · 康奈尔笔记版</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700;900&family=Noto+Sans+SC:wght@300;400;500&family=Noto+Sans+Mono&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+<style>
+
+/* ══════════════════════════════════════
+   0. RESET
+══════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { font-size: 16px; scroll-behavior: smooth; }
+
+/* ══════════════════════════════════════
+   1. THEME TOKENS
+══════════════════════════════════════ */
+:root, body.t-a {
+  --bg:           #f5f0e8;
+  --bg-warm:      #ede8dc;
+  --bg-rule:      #d6ceb8;
+  --ink:          #2a2018;
+  --ink-2:        #4a3828;
+  --ink-3:        #8a7060;
+  --accent:       #8b2e1a;
+  --accent-dim:   rgba(139,46,26,.10);
+  --rule:         #c4b89a;
+  --mono-bg:      #e8e2d4;
+  --tracing-bg:   rgba(248,245,235,.55);
+  --tracing-fold: #d8d0bc;
+  --colophon-bg:  #2a2018;
+  --colophon-fg:  rgba(245,240,232,.65);
+  --colophon-acc: #d4916a;
+  --btn-bg:       rgba(42,32,24,.08);
+  --btn-border:   rgba(42,32,24,.18);
+  --btn-active:   #8b2e1a;
+}
+body.t-b {
+  --bg:           #0d1b2a;
+  --bg-warm:      #112233;
+  --bg-rule:      #1e3a5f;
+  --ink:          #d4e5f7;
+  --ink-2:        #a8c8e8;
+  --ink-3:        #6898c0;
+  --accent:       #5bc0f8;
+  --accent-dim:   rgba(91,192,248,.12);
+  --rule:         #1e3a5f;
+  --mono-bg:      #0a1520;
+  --tracing-bg:   rgba(13,40,70,.55);
+  --tracing-fold: #1a3050;
+  --colophon-bg:  #060e18;
+  --colophon-fg:  rgba(180,210,240,.65);
+  --colophon-acc: #5bc0f8;
+  --btn-bg:       rgba(91,192,248,.08);
+  --btn-border:   rgba(91,192,248,.22);
+  --btn-active:   #5bc0f8;
+}
+body.t-c {
+  --bg:           #fafaf5;
+  --bg-warm:      #f2f2ec;
+  --bg-rule:      #e0e0d8;
+  --ink:          #1a1a1a;
+  --ink-2:        #3a3a3a;
+  --ink-3:        #888888;
+  --accent:       #c0392b;
+  --accent-dim:   rgba(192,57,43,.08);
+  --rule:         #cccccc;
+  --mono-bg:      #f0f0ea;
+  --tracing-bg:   rgba(250,250,245,.6);
+  --tracing-fold: #ddddd5;
+  --colophon-bg:  #1a1a1a;
+  --colophon-fg:  rgba(245,245,240,.65);
+  --colophon-acc: #c0392b;
+  --btn-bg:       rgba(26,26,26,.06);
+  --btn-border:   rgba(26,26,26,.16);
+  --btn-active:   #c0392b;
+}
+body.t-d {
+  --bg:           #f2f4ee;
+  --bg-warm:      #e8ece0;
+  --bg-rule:      #d0d8c4;
+  --ink:          #1e2818;
+  --ink-2:        #3a4830;
+  --ink-3:        #7a8a6a;
+  --accent:       #3a6e28;
+  --accent-dim:   rgba(58,110,40,.09);
+  --rule:         #c0caa8;
+  --mono-bg:      #e4ecd8;
+  --tracing-bg:   rgba(240,244,234,.55);
+  --tracing-fold: #c8d4b4;
+  --colophon-bg:  #1e2818;
+  --colophon-fg:  rgba(232,236,224,.65);
+  --colophon-acc: #7ab858;
+  --btn-bg:       rgba(30,40,24,.07);
+  --btn-border:   rgba(30,40,24,.18);
+  --btn-active:   #3a6e28;
+}
+
+/* ══════════════════════════════════════
+   2. BASE
+══════════════════════════════════════ */
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: 'Noto Serif SC', Georgia, serif;
+  line-height: 1.85;
+  -webkit-font-smoothing: antialiased;
+  transition: background .3s ease, color .3s ease;
+}
+
+/* ══════════════════════════════════════
+   3. BILINGUAL · 双语切换
+   默认显示英文；body.lang-zh 时显示中文
+══════════════════════════════════════ */
+
+/* 非双语模式：隐藏所有 lang 标签（降级安全） */
+[lang="en"], [lang="zh"] { display: inline; }
+
+/* 双语模式默认：EN 可见，ZH 隐藏 */
+[data-bilingual] [lang="zh"] { display: none; }
+[data-bilingual] [lang="en"] { display: inline; }
+
+/* 切换后：ZH 可见，EN 隐藏 */
+[data-bilingual].lang-zh [lang="zh"] { display: inline; }
+[data-bilingual].lang-zh [lang="en"] { display: none; }
+
+/* 块级文本节点（p、h1-h3、blockquote 直接子的 span） */
+[data-bilingual] p > [lang],
+[data-bilingual] h1 > [lang],
+[data-bilingual] h2 > [lang],
+[data-bilingual] h3 > [lang],
+[data-bilingual] .article-lede > [lang],
+[data-bilingual] .cover-sub > [lang],
+[data-bilingual] .pq-script > [lang],
+[data-bilingual] .pq-small-text > [lang],
+[data-bilingual] .pq-below > [lang],
+[data-bilingual] blockquote > [lang] {
+  display: block;
+}
+[data-bilingual].lang-zh p > [lang="en"],
+[data-bilingual].lang-zh h1 > [lang="en"],
+[data-bilingual].lang-zh h2 > [lang="en"],
+[data-bilingual].lang-zh h3 > [lang="en"],
+[data-bilingual].lang-zh .article-lede > [lang="en"],
+[data-bilingual].lang-zh .cover-sub > [lang="en"],
+[data-bilingual].lang-zh .pq-script > [lang="en"],
+[data-bilingual].lang-zh .pq-small-text > [lang="en"],
+[data-bilingual].lang-zh .pq-below > [lang="en"],
+[data-bilingual].lang-zh blockquote > [lang="en"] {
+  display: none;
+}
+
+/* ══════════════════════════════════════
+   4. MASTHEAD
+══════════════════════════════════════ */
+.zine-masthead {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ink);
+  color: var(--bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 5vw;
+  height: 44px;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  gap: 16px;
+}
+.masthead-name  { flex: 1; font-weight: 400; }
+.masthead-issue { color: var(--accent); flex-shrink: 0; }
+
+/* 语言切换按钮组 —— 仅双语模式渲染 */
+.lang-switcher {
+  display: none;           /* 默认隐藏 */
+  align-items: center;
+  gap: 2px;
+  flex-shrink: 0;
+}
+[data-bilingual] .lang-switcher { display: flex; } /* 双语模式才显示 */
+
+.lang-btn {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .14em;
+  padding: 4px 10px;
+  border: 1px solid var(--btn-border);
+  background: var(--btn-bg);
+  color: var(--bg);
+  cursor: pointer;
+  transition: background .18s, color .18s, border-color .18s;
+  line-height: 1;
+  opacity: .7;
+}
+.lang-btn:hover { opacity: 1; }
+.lang-btn.active {
+  background: var(--btn-active);
+  border-color: var(--btn-active);
+  color: #fff;
+  opacity: 1;
+}
+/* t-b 深色主题按钮文字需深色 */
+body.t-b .lang-btn.active { color: #0d1b2a; }
+body.t-d .lang-btn.active { color: #fff; }
+
+@media print { .zine-masthead { display: none; } }
+
+/* ══════════════════════════════════════
+   5. L01 · 封面
+══════════════════════════════════════ */
+.zine-cover {
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 8vh 5vw 5vh;
+  min-height: 85vh;
+  display: grid;
+  grid-template-rows: auto auto auto 1fr auto;
+  border-bottom: 2px solid var(--ink);
+}
+.cover-meta {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 5vh;
+}
+.issue-rule { flex: 1; height: 1px; background: var(--rule); }
+.issue-theme { padding: 3px 10px; border: 1px solid var(--rule); color: var(--accent); }
+
+.cover-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(40px, 7vw, 88px);
+  font-weight: 900;
+  line-height: 1.05;
+  letter-spacing: -.022em;
+  color: var(--ink);
+  margin-bottom: 3vh;
+}
+.cover-title em { font-style: italic; color: var(--accent); }
+
+.cover-sub {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: clamp(13px, 1.5vw, 16px);
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.72;
+  max-width: 50ch;
+  padding-left: 18px;
+  border-left: 3px solid var(--accent);
+  margin-bottom: 5vh;
+}
+
+.cover-image-slot {
+  background: var(--bg-warm);
+  border: 1px solid var(--rule);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 26vh;
+  margin-bottom: 4vh;
+  overflow: hidden;
+}
+.cover-image-slot img { width: 100%; height: 100%; object-fit: cover; filter: saturate(.75) contrast(1.05); }
+.cover-image-slot.empty::after {
+  content: attr(data-label);
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .2em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+}
+
+.cover-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .14em;
+  color: var(--ink-3);
+  border-top: 1px solid var(--rule);
+  padding-top: 2vh;
+  text-transform: uppercase;
+}
+.stamp {
+  font-family: 'Noto Serif SC', serif;
+  font-size: 28px;
+  font-weight: 900;
+  letter-spacing: -.02em;
+  color: var(--accent);
+  opacity: .28;
+  line-height: 1;
+}
+
+/* ══════════════════════════════════════
+   6. L04 · Pull Quote 硫酸纸卡片
+══════════════════════════════════════ */
+.pull-quote-section {
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 6vh 5vw;
+  border-bottom: 1px solid var(--rule);
+}
+.tracing-card {
+  position: relative;
+  padding: 36px 44px 32px;
+  background: var(--tracing-bg);
+  backdrop-filter: blur(1px);
+  border: 1px solid rgba(128,120,100,.28);
+  box-shadow:
+    2px 4px 12px rgba(0,0,0,.07),
+    4px 8px 28px rgba(0,0,0,.05),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image: linear-gradient(135deg, rgba(255,255,255,.65) 0%, rgba(240,235,218,.2) 100%);
+}
+.tracing-card::after {
+  content: '';
+  position: absolute;
+  top: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 24px 24px 0;
+  border-color: transparent var(--tracing-fold) transparent transparent;
+  filter: drop-shadow(-2px 2px 3px rgba(0,0,0,.10));
+}
+.pq-small-text {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  line-height: 1.8;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin: 0 auto 24px;
+  text-align: center;
+}
+.pq-script {
+  font-family: 'Dancing Script', cursive;
+  font-size: clamp(30px, 4.4vw, 52px);
+  font-weight: 700;
+  line-height: 1.28;
+  color: var(--ink);
+  text-align: center;
+  margin-bottom: 20px;
+  letter-spacing: -.01em;
+}
+.pq-cite {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .2em;
+  color: var(--ink-3);
+  text-align: center;
+  text-transform: uppercase;
+  display: block;
+}
+.pq-below {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  line-height: 1.82;
+  color: var(--ink-2);
+  max-width: 52ch;
+  margin: 20px auto 0;
+  text-align: center;
+}
+
+/* ══════════════════════════════════════
+   7. L02 · 双栏正文
+══════════════════════════════════════ */
+.zine-body {
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 5.5vh 5vw;
+  border-bottom: 1px solid var(--rule);
+}
+.zine-body.two-col {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 4.5vw;
+  align-items: start;
+}
+.col-narrow { position: sticky; top: 56px; }
+
+.sidebar-block {
+  border-left: 2px solid var(--rule);
+  padding-left: 14px;
+  margin-bottom: 2.8vh;
+}
+.sidebar-label {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+}
+.sidebar-block p {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.72;
+}
+.sidebar-tag {
+  display: inline-block;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9.5px;
+  padding: 2px 7px;
+  margin: 2px 2px 2px 0;
+  border: 1px solid var(--rule);
+  color: var(--ink-3);
+  letter-spacing: .1em;
+}
+
+/* ══════════════════════════════════════
+   8. L03 · 单栏长文
+══════════════════════════════════════ */
+.zine-body.one-col { display: block; }
+.col-center { max-width: 660px; margin: 0 auto; }
+
+/* ══════════════════════════════════════
+   9. 文章通用
+══════════════════════════════════════ */
+.article-eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 10px;
+}
+.article-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+
+.article-title {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(22px, 2.8vw, 32px);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -.015em;
+  color: var(--ink);
+  margin-bottom: 2vh;
+  padding-top: 1.2vh;
+  border-top: 2px solid var(--accent);
+}
+.article-lede {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(14.5px, 1.6vw, 17px);
+  font-style: italic;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.72;
+  margin-bottom: 2vh;
+}
+
+.col-wide p, .col-center p {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(14px, 1.3vw, 15.5px);
+  color: var(--ink-2);
+  line-height: 1.92;
+  margin-bottom: 0;
+}
+.col-wide p + p, .col-center p + p { text-indent: 2em; }
+
+.col-wide h3, .col-center h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(15px, 1.5vw, 18px);
+  font-weight: 700;
+  color: var(--ink);
+  margin: 3.2vh 0 1.2vh;
+  letter-spacing: -.01em;
+}
+.col-wide strong, .col-center strong { font-weight: 600; color: var(--ink); }
+.col-wide mark, .col-center mark { background: var(--accent-dim); color: var(--accent); padding: 1px 3px; }
+
+.col-wide blockquote, .col-center blockquote {
+  margin: 20px 0;
+  padding: 14px 20px;
+  background: var(--bg-warm);
+  border-left: 3px solid var(--rule);
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 13.5px;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.82;
+}
+
+/* ══════════════════════════════════════
+   10. L05 · 图文混排
+══════════════════════════════════════ */
+.image-pull {
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 5vh 5vw;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  align-items: start;
+  border-bottom: 1px solid var(--rule);
+}
+.image-frame { display: flex; flex-direction: column; gap: 12px; }
+.image-frame img { width: 100%; height: auto; display: block; filter: saturate(.75) contrast(1.05); }
+.image-caption {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  color: var(--ink-3);
+  line-height: 1.6;
+  letter-spacing: .04em;
+  border-top: 1px solid var(--rule);
+  padding-top: 8px;
+}
+.image-body {
+  font-family: 'Noto Serif SC', serif;
+  font-size: clamp(14px, 1.3vw, 15.5px);
+  color: var(--ink-2);
+  line-height: 1.9;
+}
+
+/* ══════════════════════════════════════
+   11. L06 · 目录页
+══════════════════════════════════════ */
+.zine-index {
+  max-width: 960px;
+  margin-inline: auto;
+  padding: 6vh 5vw;
+  border-bottom: 1px solid var(--rule);
+}
+.index-label {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 3vh;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.index-label::after { content: ''; flex: 1; height: 1px; background: var(--rule); }
+.index-list { list-style: none; }
+.index-list li {
+  display: grid;
+  grid-template-columns: 36px 1fr auto 32px;
+  align-items: baseline;
+  gap: 12px;
+  padding: 1.4vh 0;
+  border-bottom: 1px solid var(--bg-rule);
+  font-family: 'Noto Serif SC', serif;
+}
+.index-num { font-family: 'Noto Sans Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: .1em; }
+.index-title { font-size: clamp(14px, 1.5vw, 17px); font-weight: 400; color: var(--ink); }
+.index-dots { flex: 1; border-bottom: 1px dotted var(--rule); margin-bottom: 4px; }
+.index-page { font-family: 'Noto Sans Mono', monospace; font-size: 11px; color: var(--ink-3); letter-spacing: .1em; }
+
+/* ══════════════════════════════════════
+   12. TRACING APPENDIX · 硫酸纸附页
+══════════════════════════════════════ */
+.tracing-appendix {
+  position: relative;
+  max-width: 900px;
+  margin: 52px auto 0;
+  padding: 32px 40px 28px;
+  background: var(--tracing-bg);
+  backdrop-filter: blur(2px);
+  border: 1px solid rgba(128,120,100,.3);
+  box-shadow:
+    1px 3px 8px rgba(0,0,0,.06),
+    3px 6px 20px rgba(0,0,0,.07),
+    inset 0 0 0 1px rgba(255,255,255,.5);
+  background-image: linear-gradient(135deg, rgba(255,255,255,.62) 0%, rgba(235,228,210,.22) 100%);
+  transform: rotate(-.45deg);
+  transform-origin: top left;
+}
+.tracing-appendix::before {
+  content: 'APPENDIX · 附页';
+  position: absolute;
+  top: -11px; left: 20px;
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .24em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  background: var(--bg);
+  padding: 0 8px;
+}
+.tracing-appendix::after {
+  content: '';
+  position: absolute;
+  bottom: 0; right: 0;
+  width: 0; height: 0;
+  border-style: solid;
+  border-width: 0 0 20px 20px;
+  border-color: transparent transparent var(--tracing-fold) transparent;
+  filter: drop-shadow(-1px -1px 2px rgba(0,0,0,.08));
+}
+.appendix-inner {
+  transform: rotate(.45deg);
+  transform-origin: top left;
+}
+.appendix-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 22px;
+  letter-spacing: -.01em;
+  line-height: 1.2;
+}
+.appendix-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px 36px;
+}
+.appendix-label {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .24em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 6px;
+  padding-bottom: 5px;
+  border-bottom: 1px dashed var(--rule);
+}
+.appendix-block p {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.78;
+  margin-bottom: 0;
+}
+.appendix-block p + p { margin-top: 6px; }
+.appendix-rule { height: 1px; background: rgba(128,120,100,.25); margin: 20px 0 12px; }
+.appendix-fine {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9px;
+  letter-spacing: .18em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+/* ══════════════════════════════════════
+   13. L07 · 尾页
+══════════════════════════════════════ */
+.colophon { background: var(--colophon-bg); padding: 6vh 5vw 7vh; }
+.colophon-inner { max-width: 960px; margin-inline: auto; }
+.colophon-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 4vw; margin-bottom: 4vh; }
+.colophon h5 {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--colophon-acc);
+  margin-bottom: 10px;
+}
+.colophon p {
+  font-family: 'Noto Sans SC', sans-serif;
+  font-size: 12.5px;
+  font-weight: 300;
+  color: var(--colophon-fg);
+  line-height: 1.78;
+}
+.colophon-rule { height: 1px; background: rgba(128,120,100,.2); margin-bottom: 2.5vh; }
+.colophon-fine {
+  font-family: 'Noto Sans Mono', monospace;
+  font-size: 9.5px;
+  letter-spacing: .18em;
+  color: var(--colophon-fg);
+  opacity: .35;
+  text-transform: uppercase;
+}
+
+/* ══════════════════════════════════════
+   14. UTILITIES
+══════════════════════════════════════ */
+.section-hr {
+  border: none; height: 1px;
+  background: linear-gradient(to right, transparent, var(--rule) 20%, var(--rule) 80%, transparent);
+  max-width: 960px; margin: 40px auto;
+}
+.section-hr-heavy {
+  border: none; border-top: 1.5px solid var(--ink);
+  max-width: 960px; margin: 40px auto;
+}
+
+/* ══════════════════════════════════════
+   15. RESPONSIVE
+══════════════════════════════════════ */
+@media (max-width: 640px) {
+  .zine-body.two-col  { grid-template-columns: 1fr; }
+  .col-narrow         { position: static; }
+  .image-pull         { grid-template-columns: 1fr; }
+  .colophon-grid      { grid-template-columns: 1fr; gap: 3vh; }
+  .appendix-grid      { grid-template-columns: 1fr; }
+  .index-list li      { grid-template-columns: 32px 1fr 28px; }
+  .index-dots         { display: none; }
+  .tracing-appendix   { margin: 40px 0 0; }
+}
+@media print {
+  .zine-masthead { display: none; }
+  .col-narrow    { position: static; }
+  .stamp         { opacity: .15; }
+  body           { font-size: 11pt; }
+  /* 打印时展示中文（如已切换） */
+}
+
+</style>
+
+<style id="cornell">
+/* ══ 康奈尔组件：线索栏 / 笔记栏 / 总结栏 ══ */
+.cornell {
+  max-width: 960px; margin-inline: auto; padding: 5vh 5vw 4.4vh;
+  border-bottom: 1px solid var(--rule);
+}
+.cornell-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 2vh; }
+.cornell-no {
+  font-family: 'Noto Sans Mono', monospace; font-size: 11px; letter-spacing: .18em;
+  color: var(--accent); flex-shrink: 0;
+}
+.cornell-time {
+  font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .14em;
+  color: var(--ink-3); flex-shrink: 0;
+}
+.cornell-rule { flex: 1; height: 1px; background: var(--rule); }
+.cornell-title {
+  font-family: 'Noto Serif SC', serif; font-size: clamp(19px, 2.3vw, 26px);
+  font-weight: 700; line-height: 1.28; letter-spacing: -.015em;
+  color: var(--ink); margin-bottom: 2.4vh; padding-top: 1vh;
+  border-top: 2px solid var(--accent);
+}
+.cornell-grid { display: grid; grid-template-columns: 200px 1fr; gap: 0; }
+.cue-col {
+  padding-right: 20px; border-right: 1px solid var(--rule);
+}
+.notes-col { padding-left: 24px; }
+.cue-label, .notes-label {
+  font-family: 'Noto Sans Mono', monospace; font-size: 9px; letter-spacing: .24em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 12px;
+}
+.cue-q {
+  font-family: 'Noto Sans SC', sans-serif; font-size: 12.5px; font-weight: 400;
+  color: var(--ink); line-height: 1.7; margin-bottom: 16px; padding-left: 13px;
+  border-left: 2px solid var(--rule); position: relative;
+}
+.cue-q::before {
+  content: 'Q'; position: absolute; left: -1px; top: 0;
+  font-family: 'Noto Sans Mono', monospace; font-size: 8px; color: var(--accent);
+  background: var(--bg); padding: 0 2px 2px 1px;
+}
+.cue-kv {
+  font-family: 'Noto Sans Mono', monospace; font-size: 9.5px; letter-spacing: .08em;
+  color: var(--ink-3); line-height: 1.9; margin-bottom: 16px;
+}
+.cue-kv b { color: var(--ink-2); font-weight: 400; }
+.notes-col ul { list-style: none; }
+.notes-col li {
+  font-family: 'Noto Serif SC', serif; font-size: clamp(13.5px, 1.25vw, 15px);
+  color: var(--ink-2); line-height: 1.95; margin-bottom: 12px; padding-left: 18px;
+  position: relative;
+}
+.notes-col li::before {
+  content: ''; position: absolute; left: 2px; top: .72em;
+  width: 5px; height: 5px; background: var(--accent); opacity: .55;
+}
+.notes-col li b, .notes-col li strong { color: var(--ink); font-weight: 600; }
+.notes-col li em { font-style: normal; color: var(--accent); }
+.notes-col blockquote {
+  margin: 14px 0; padding: 12px 18px; background: var(--bg-warm);
+  border-left: 3px solid var(--rule); font-family: 'Noto Sans SC', sans-serif;
+  font-size: 13px; font-weight: 300; color: var(--ink-2); line-height: 1.8;
+}
+.summary-bar {
+  margin-top: 3vh; padding-top: 14px; border-top: 1px dashed var(--rule);
+  display: grid; grid-template-columns: 76px 1fr; gap: 16px; align-items: baseline;
+}
+.summary-label {
+  font-family: 'Noto Sans Mono', monospace; font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--accent);
+}
+.summary-text {
+  font-family: 'Noto Serif SC', serif; font-size: clamp(13.5px, 1.3vw, 15.5px);
+  font-weight: 600; color: var(--ink); line-height: 1.8;
+}
+.part-divider {
+  max-width: 960px; margin: 0 auto; padding: 5vh 5vw 3vh; text-align: center;
+  border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule);
+}
+.part-divider .pd-en {
+  font-family: 'Noto Sans Mono', monospace; font-size: 10px; letter-spacing: .3em;
+  text-transform: uppercase; color: var(--ink-3);
+}
+.part-divider .pd-title {
+  font-family: 'Noto Serif SC', serif; font-size: clamp(22px, 3vw, 34px);
+  font-weight: 900; color: var(--ink); margin: 10px 0 8px; letter-spacing: -.02em;
+}
+.part-divider .pd-sub {
+  font-family: 'Noto Sans SC', sans-serif; font-size: 13px; font-weight: 300;
+  color: var(--ink-2); line-height: 1.75; max-width: 46ch; margin: 0 auto;
+}
+.howto {
+  max-width: 960px; margin-inline: auto; padding: 5vh 5vw; border-bottom: 1px solid var(--rule);
+}
+.howto-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 3vw; margin-top: 2.4vh; }
+.howto-cell { border-top: 2px solid var(--accent); padding-top: 12px; }
+.howto-cell h6 {
+  font-family: 'Noto Sans Mono', monospace; font-size: 9.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--ink-3); margin-bottom: 8px;
+}
+.howto-cell p {
+  font-family: 'Noto Sans SC', sans-serif; font-size: 12.5px; font-weight: 300;
+  color: var(--ink-2); line-height: 1.75;
+}
+@media (max-width: 640px) {
+  .cornell-grid { grid-template-columns: 1fr; }
+  .cue-col { border-right: none; border-bottom: 1px solid var(--rule); padding: 0 0 14px; margin-bottom: 16px; }
+  .notes-col { padding-left: 0; }
+  .howto-grid { grid-template-columns: 1fr; }
+}
+@media print {
+  .cornell, .part-divider, .howto { page-break-inside: auto; }
+  .cornell { page-break-before: always; }
+  .part-divider { page-break-before: always; page-break-after: always; }
+  .cornell-head, .cornell-title, .summary-bar { break-inside: avoid; page-break-inside: avoid; }
+  .notes-col li, .cue-q { break-inside: avoid; }
+  .tracing-card, .tracing-appendix, .cover-image-slot { break-inside: avoid; page-break-inside: avoid; }
+  .zine-cover { padding: 3vh 5vw; min-height: auto; }
+  .cover-title { font-size: 40px; }
+  .cover-image-slot { max-height: 42vh; }
+}
+</style>
+
+</head>
+<body class="t-a">
+
+<header class="zine-masthead">
+  <span class="masthead-name">XIXIFU EXPRESS · 西西弗高速</span>
+  <span class="masthead-issue">E30 · CORNELL NOTES · 2026.09</span>
+</header>
+
+<section class="zine-cover">
+  <div class="cover-meta">
+    <span class="issue-tag">VOL.01 · 2026</span>
+    <span class="issue-rule"></span>
+    <span class="issue-theme">信息社会化</span>
+  </div>
+  <h1 class="cover-title">一个人要消化<br>多少信息，<br><em>才能成为一个社会人？</em></h1>
+  <p class="cover-sub">西西弗驿站 Pit Stop · 第 30 期 · 111 分钟。本期以「康奈尔笔记」重排：左栏留给问题，中间是笔记，末尾一句话收束——因为这一期讲的正是「怎么把流过去的信息，安置下来」。</p>
+  <div class="cover-image-slot"><img src="../covers/20260914-xixifei-e30.jpg" alt="episode cover"></div>
+  <div class="cover-footer">
+    <span>J · K　主播　|　小大人混社会指南 · 开学季企划</span>
+    <span class="stamp">NO.30</span>
+  </div>
+</section>
+
+<section class="howto">
+  <div class="article-eyebrow">使用说明 · How to read</div>
+  <h2 class="article-title">为什么用康奈尔笔记排一期播客</h2>
+  <p class="article-lede">康奈尔笔记的原型是：右边记笔记，左边写线索（问题、关键词），底部写总结。本期把它用在了播客上——17 章各占一页，三区齐全。</p>
+  <div class="howto-grid">
+    <div class="howto-cell">
+      <h6>线索栏 · Cue</h6>
+      <p>每章先抛问题，再给答案。读到一半可以只看左栏自测：这一章在回答什么？（来自节目时间轴与章节主旨，不是我的补充。）</p>
+    </div>
+    <div class="howto-cell">
+      <h6>笔记栏 · Notes</h6>
+      <p>按节目原话整理的要点，保留主播的比喻与自陈（「海拉细胞」「信息大富翁」「偶尔沉迷，常常失败，总是反抗」）。</p>
+    </div>
+    <div class="howto-cell">
+      <h6>总结栏 · Summary</h6>
+      <p>每章一句话收束，加粗部分是这一章真正的落点。全期的总总结在附页——那一页留给读者自己写。</p>
+    </div>
+  </div>
+</section>
+
+<section class="zine-index">
+  <h3 class="index-label">目录 · CONTENTS</h3>
+  <ol class="index-list">
+    <li>
+      <span class="index-num">01</span>
+      <span class="index-title">信息过载：信息爆炸 vs 信息茧房、情绪极化</span>
+      <span class="index-dots"></span>
+      <span class="index-page">06:38</span>
+    </li>
+    <li>
+      <span class="index-num">02</span>
+      <span class="index-title">思想验证的 quiz</span>
+      <span class="index-dots"></span>
+      <span class="index-page">09:32</span>
+    </li>
+    <li>
+      <span class="index-num">03</span>
+      <span class="index-title">信息分配：算法是我们时代最大的科技黑箱</span>
+      <span class="index-dots"></span>
+      <span class="index-page">19:12</span>
+    </li>
+    <li>
+      <span class="index-num">04</span>
+      <span class="index-title">注意力被 AI 做局了</span>
+      <span class="index-dots"></span>
+      <span class="index-page">21:07</span>
+    </li>
+    <li>
+      <span class="index-num">05</span>
+      <span class="index-title">信息判断：信息不断增加，事实未必增加，理解未必增加</span>
+      <span class="index-dots"></span>
+      <span class="index-page">29:40</span>
+    </li>
+    <li>
+      <span class="index-num">06</span>
+      <span class="index-title">信息塑造公共参与：为什么越来越多事情被饭圈化地理解</span>
+      <span class="index-dots"></span>
+      <span class="index-page">37:26</span>
+    </li>
+    <li>
+      <span class="index-num">07</span>
+      <span class="index-title">到底是「新闻死了」，还是「太长不看」</span>
+      <span class="index-dots"></span>
+      <span class="index-page">44:20</span>
+    </li>
+    <li>
+      <span class="index-num">08</span>
+      <span class="index-title">如何判断复杂和站队？严谨是叠甲吗</span>
+      <span class="index-dots"></span>
+      <span class="index-page">49:50</span>
+    </li>
+    <li>
+      <span class="index-num">09</span>
+      <span class="index-title">当事人的遥远与舆论的不可独善其身</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:01:35</span>
+    </li>
+    <li>
+      <span class="index-num">10</span>
+      <span class="index-title">如何判断一个人发言的合法性？如何界定惩罚的烈度</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:11:19</span>
+    </li>
+    <li>
+      <span class="index-num">11</span>
+      <span class="index-title">「我的内心已经没有公共议题的余地了」</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:19:45</span>
+    </li>
+    <li>
+      <span class="index-num">12</span>
+      <span class="index-title">注意力分配：我为自己建造了一个「信息茧房」</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:24:24</span>
+    </li>
+    <li>
+      <span class="index-num">13</span>
+      <span class="index-title">注意力效率：设定单位时间内摄取信息的主题</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:29:16</span>
+    </li>
+    <li>
+      <span class="index-num">14</span>
+      <span class="index-title">注意力范围：减少对社交网络上他人私生活的关注</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:33:49</span>
+    </li>
+    <li>
+      <span class="index-num">15</span>
+      <span class="index-title">表达范围：建立互联网表达边界，公共性与私人性分开</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:35:57</span>
+    </li>
+    <li>
+      <span class="index-num">16</span>
+      <span class="index-title">判断范围：验证是一种动作</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:40:21</span>
+    </li>
+    <li>
+      <span class="index-num">17</span>
+      <span class="index-title">参与范围：未必要用激烈的方式去关心世界</span>
+      <span class="index-dots"></span>
+      <span class="index-page">1:43:31</span>
+    </li>
+  </ol>
+</section>
+
+<section class="part-divider">
+  <div class="pd-en">PART ONE · THE PROBLEM</div>
+  <div class="pd-title">问题层：社会给我们出了什么题</div>
+  <div class="pd-sub">信息过载 · 信息分配 · 信息判断 · 公共参与，以及一个内容生产者在这一环境里的切身体感。共 11 章。</div>
+</section>
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.01</span>
+    <span class="cornell-time">06:38</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">信息过载：信息爆炸 vs 信息茧房、情绪极化</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">为什么「信息爆炸」和「信息茧房」会同时发生？</div>
+    <div class="cue-q">被消耗的到底是信息量，还是情绪？</div>
+      <div class="cue-kv">KEYWORDS<br><b>热搜 · 出梗 · 情绪极化 · token</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>热搜逃不掉：爆款新闻集合了人最爱看的要素——<b>男女、钱财、八卦、造神、塌房</b>；每个标题都在试图「出梗」，因为梗像快捷键，不必知道上下文也能秒懂，且会跟各种语境结合、迅速繁殖，<em>像海拉细胞一样无穷无尽</em>。</li>
+    <li>密集看过之后「脑袋嗡嗡」：<em>我真的有必要知道这么多吗？这会不会太消耗我自己的 token？</em></li>
+    <li>「信息茧房」的另一面不是听不到不同意见，而是<strong>接触到的全是用最激烈方式包装后的意见</strong>——于是它反而激发你更强烈的情绪反应，这就是情绪极化。</li>
+    <li>平台的奖励机制单一：<b>背景含量低 + 高情绪 + 强判断</b>（愤怒、嘲笑、震惊、审判、站队）。信息数量越来越多，<b>类型反而越来越单一</b>。</li>
+    <li>反复模式一旦被察觉就产生逆反：如果不看新闻日期，根本判断不了这是什么时候的新闻——第二天就被覆盖掉。</li>
+    <li>分歧的处理雏形：感觉自己平静时<em>刻意不让自己自由冲浪</em>，精心划出一小片「风平浪静的温暖水域」，因为害怕情绪被劫持。</li>
+    <li>对流行词的警惕：「幸福者退让」已经转了五六七八手，无法溯源原意——她们的反讽是<em>幸福者是不上网的</em>。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">过载的不只是信息量，是<strong>情绪浓度</strong>：你以为在接收事实，其实在接收被情绪包装过的立场。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.02</span>
+    <span class="cornell-time">09:32</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">思想验证的 quiz</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">一组快问快答，测的到底是什么？</div>
+      <div class="cue-kv">KEYWORDS<br><b>自测 · 收藏夹 · 正反馈</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>最近一次因什么看了太多推文：<b>孙雨晨的事</b>。</li>
+    <li>什么热搜毫无兴趣：<b>PDF</b>——他们自己的说法是「逐帧解读真人秀」。</li>
+    <li>明明同意某个观点却害怕点赞：<b>收藏夹 ≈ 暂停键</b>。「当我看见一个观点我特别同意的时候，我也会警惕自己——这种特别同意的原因是什么？是不是也触及到某些不理性的根源？」</li>
+    <li>哪个瞬间意识到过载：看到一来一回的隔空喊话；看到彩礼话题时决定不再关心，改回去听原先那期彩礼节目，发现<em>完全可以纳入原框架，并没有因为他巨富就特别到哪里去</em>。</li>
+    <li>什么证据能改变立场：<b>事实本身</b>。</li>
+    <li>曾经以为必须知道、现在发现完全可以不知道：<b>99% 以上的热搜</b>，私人事务都可以不知道。</li>
+    <li>哪种情绪最容易让你继续刷：不再是愤怒、焦虑，而是<b>正反馈</b>（看了开心、有收获、很平静）——「意识到这东西让我愤怒焦虑的时候，我反而不会往下刷了」。</li>
+    <li>看到「爆」字的感受：<b>恐惧</b>。对照 2019 年的豆瓣热搜——话题后面跟的不是「爆」而是「凉」，那个设计被记住。</li>
+    <li>什么时候觉得「到这就够了」：私人事件或真人秀开始被逐帧分析的时候。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">自测题不测立场，测的是<strong>你和信息之间的主动权还剩多少</strong>。</span>
+  </div>
+</section>
+
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">第 05 章 · 1:33:26 前后，本期被引用最多的一句判断</p>
+    <div class="pq-script">信息不断增加，<br>事实未必增加，<br>理解未必增加。</div>
+    <span class="pq-cite">—— 西西弗高速 E30</span>
+    <p class="pq-below">数量、事实、理解是三件事。多数情况下，我们增加的只是第一件。</p>
+  </div>
+</section>
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.03</span>
+    <span class="cornell-time">19:12</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">信息分配：算法是我们时代最大的科技黑箱</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">我们每天看到的信息，到底由谁筛选出来？</div>
+    <div class="cue-q">平台分配信息的逻辑变过几次？</div>
+      <div class="cue-kv">KEYWORDS<br><b>算法 · 时间线 · 停留时长</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>社交媒体的三个阶段：<b>关系</b>（把认识的人推给你）→ <b>兴趣</b>（微博热搜、头条：谁的内容排在前面，标准每时每刻在变）→ <b>预测</b>（猜你喜欢、捕捉停留时长）。</li>
+    <li><em>谁能掌握时间线是很重要的</em>——她会把微博调回按时间排序，不让算法按自认为的顺序打乱关注流。</li>
+    <li>小红书的精准：你在某个帖子多看一段时间，下一页就已经捕捉到你停留时长的差异，根本不需要你再点开。</li>
+    <li>操纵力变强的关键：它<b>不是以可憎的方式</b>（那反而好识别），而是<b>顺着你、讨你喜欢</b>的方式。</li>
+    <li>AI 智能体已嵌入所有社交媒体页面（小红书「点点」、抖音「求真」），互动入口把「你想干什么」变成平台可读取的指令。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">分配权的迁移：你<strong>想看</strong>什么 → 什么让你<strong>继续看</strong> → 怎么安排才能让你<strong>产生下一步动作</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.04</span>
+    <span class="cornell-time">21:07</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">注意力被 AI 做局了</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">主体性是怎么一点点交出去的？</div>
+    <div class="cue-q">平台有可能把算法控制权还给用户吗？</div>
+      <div class="cue-kv">KEYWORDS<br><b>主体性 · Threads · 公共经验</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>主体性的三步退让：从「我想看什么」到「什么东西让你继续看」，再到「我怎么安排信息才能让你产生下一步行动」——消费、继续聊、或情绪煽动。</li>
+    <li>用工具理性管理 APP 反而落入圈套：被一个平台伤害 → 从另一个平台补偿 → 又陷入「让它拥有我注意力」的逻辑，花在社媒的时间成倍增加。<em>「大英帝国的烟，日本的白面，两大强国伺候我一个人」——但你获得的同时也难免于争执与党同伐异。</em></li>
+    <li>AI 的引导性设计：每次回答完都留一句「这个问题还有别的线索，如果你愿意我可以再总结一下」——<em>注意力也被 AI 做局了</em>。</li>
+    <li>一个自陈的「异化时刻」：出门和朋友吃饭，晚高峰花了一个多小时，聊天时朋友们老举着手机——<em>「我此刻非常非常想念我的电脑」</em>，想回家继续和 AI 聊十万个为什么。</li>
+    <li>新变量：英文文章 *Social Media's Next Evolution: User-controlled Algorithms*（2026-06）；Threads 于 6 月 16 日推出新功能，允许用户公开发帖干预信息流（主动告诉算法我的喜好）。</li>
+    <li>最担心的后果：<b>私人化的信息流让公共经验变少</b>——同一个公共事件，一个人的首页已经讨论到第五层，另一个人的首页闻所未闻。</li>
+    <li><em>我们讨论的根本不是同一件事</em>：网上吵架的两个人，各说各话，因为讨论的前提和材料并不一致。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">算法分配的不只是曝光，是<strong>可见的现实</strong>——当每人一台现实，吵架的双方可能根本不在同一件事里。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.05</span>
+    <span class="cornell-time">29:40</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">信息判断：信息不断增加，事实未必增加，理解未必增加</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">真假越来越难辨，个人还能做什么？</div>
+    <div class="cue-q">哪些「误信信号」值得警惕？</div>
+      <div class="cue-kv">KEYWORDS<br><b>误信信号 · 面相学 · 验证责任</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li><b>「据说……」</b>——一个免责的传播装置：只要加上这两个字，好像就先天占据了不被审判的优势，但信息已经传出去了。</li>
+    <li><b>「我早就看出来／我早就知道」</b>——事后诸葛式的断言。</li>
+    <li><b>短视频的经典论证结构</b>：上来先给结论（「今天天气真好」），论据是「我最近刷到一个博主说他今天出门没带伞」。</li>
+    <li><b>互联网面相学</b>：「这个人一看面相就不好」。为什么它有传播力——面相学提供了一种<em>确定感</em>，人很难忍受坏事毫无缘由、毫无预兆地发生；而看脸下判断的成本极低，话里还带一点「我早就识破」的小得意。</li>
+    <li>今天的痛苦不是「处理不过来」（历史上信息一直在过载），而是<b>筛选机制没了，或被替换成了一个目标不是帮你筛选的平台／人</b>。</li>
+    <li>核实责任被推给个人：媒介素养课教「多核实多查证」，但普通人没有足够时间、精力、能力和资源；很多事情机构媒体都做不了，何况个人。</li>
+    <li><b>观点正在伪装成事实</b>：过去报纸杂志用栏目区分报道与评论，现在全部混在社交媒体上，边界模糊。</li>
+    <li>她们的自律动作：尽量把<b>报道 / 评论 / 抱言</b>（高度语境下的大胆推断）分开说；并明确<em>「不要让我们成为你唯一的筛选机制」</em>——因为我们也脱离了机构媒体，同样时间精力有限。</li>
+    <li>当判断事实和维护身份绑在一起，你就更难修正自己的判断。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">事实未必随信息增长——因为<strong>验证的责任被推给了个人，而验证的成本被推给了时间</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.06</span>
+    <span class="cornell-time">37:26</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">信息塑造公共参与：为什么越来越多事情被饭圈化地理解</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">饭圈思维为什么成了「底层逻辑」？</div>
+    <div class="cue-q">它最隐秘的那一层是什么？</div>
+      <div class="cue-kv">KEYWORDS<br><b>阵营 · 人格化 · 流量个体</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>饭圈思维的核心不是追星，而是一套越来越普遍的现代人认知机制：<b>先判断谁是自己人、谁是敌人，再按阵营分配信任、情感，甚至分配事实</b>。</li>
+    <li>一个从不追星的中年男性讨论足球和国际政治时可能非常「饭圈」，但没有人这么说他。</li>
+    <li>真正的问题不是「为什么会有这种思维」，而是<em>社会为什么把人越来越培养得有这个思维</em>——算法、身份政治、群体动员、注意力竞争构成的信息环境。</li>
+    <li><b>更隐秘的一层：把复杂问题人格化和道德化。</b>公共议题本来是制度、历史、结构、组织、利益；一旦打包成几个人物的关系，它就变成一个故事——谁是好人是坏人、谁被冤枉、谁被辜负、谁被背刺。</li>
+    <li>原因很简单：制度历史结构太难理解，人物关系太容易理解。于是政治事件被讲成宫斗，商业竞争变成磕 CP，社会事件变成人格鉴定，「xx 学」登上热搜。</li>
+    <li>完整链条：信息过载 → 人需要降低认知成本 → <b>阵营标签是最简单的认知工具</b> → 算法不断强化你已有的身份与偏好、又不断推给你情绪强烈的反对声音 → 你也情绪强烈起来去捍卫立场 → 围绕它建立整套叙事 → 再一次确立身份。</li>
+    <li>个体的代价：一个陈姓老人的院子因为葫芦刚好长了七个，变成「一个老人和七个葫芦娃」的网红景点，无数人打卡、每隔一段时间就被叫出来拍照——<em>没有任何人或机构能接住破天的流量</em>。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">饭圈思维的完整链条：<strong>先分阵营，再分配信任与情感，最后连事实也一起分配。</strong></span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.07</span>
+    <span class="cornell-time">44:20</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">到底是「新闻死了」，还是「太长不看」</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">说「新闻已死」会不会本身成为惯性？</div>
+    <div class="cue-q">为什么我们只关心能「切身感受」的议题？</div>
+      <div class="cue-kv">KEYWORDS<br><b>新闻已死 · 公共议题门槛 · newsletter</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>创作者的体感：每次有大新闻出现，总会看到「新闻已死」——但也有媒体在持续做事。<em>不要让「新闻已死」成为一种理解事情的惯性。</em></li>
+    <li>被引用的一段话：任何国家每个职业都有想把它干好的人——就像农民种地、医生治病、警察破案，这是一个人的手艺、乐趣和尊严；能不能做到要看时代给的可能，但「后者并不会否定前者」。</li>
+    <li>只看单一议题的原因：缺乏公共议题训练时，我们只会关注<em>能有切身感受的议题</b>（职场、家庭、亲密关系、肉身安全）——它们不需要知识门槛和公共视角，就能直接作用到身体和情绪。</li>
+    <li>遥远议题（矿难、医疗事故、泥石流）要跨越自身经验，需要学社会学视角、建立制度反思能力，需要人文素养和同理心的广度；而在当下环境里这么做<b>没有任何直接好处</b>，可能找不到一起讨论的人，还会产生强烈挫败感。</li>
+    <li>评论区常见的一句「存一下，等我心情好点再看」——不是不想，是真的没有带宽了。</li>
+    <li><b>newsletter 像心跳</b>：平时不引人注意、关注度不高，但必须一直跳动。她们做缅甸地震那期（国外、非热点）反而激发大量听众分享自己的救灾经验和 2008 年的公共记忆。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">不是新闻死了，是<strong>关心公共议题的门槛被抬高了，而回报被拿走了</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.08</span>
+    <span class="cornell-time">49:50</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">如何判断复杂和站队？严谨是叠甲吗</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">「叠甲」是不是一个跳过论证的工具？</div>
+    <div class="cue-q">「语境坍塌」为什么必须先垫逻辑？</div>
+      <div class="cue-kv">KEYWORDS<br><b>叠甲 · 语境坍塌 · 负责范围</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>总结成一句粗暴的话：<b>复杂总是被要求站队，严谨总是被说成叠甲。</b></li>
+    <li>最容易说的言论是强烈的情绪指向和价值判断；讲出一种逻辑的过程很难。没有立刻给出清晰判断，就被说成犬儒、绥靖、端水、洗白——这些词几乎没有对话的可能（「你急了你没急，你解释你没急，你又急了」）。</li>
+    <li>「叠甲」的两种语义：① 带贬义，指自我保护；② <b>本义</b>——发表观点前预先补充限定条件、身份声明、划定范围、厘清概念、铺垫逻辑。后者在当下环境<em>在绝大多数情况下都是必要的</em>。</li>
+    <li>原因：<b>语境坍塌</b>（传播学术语）。现实中说话自然有分寸，因为关系、场合、情境会把听众分开；互联网把所有听众压进同一个界面，同一句话被完全不同的人以完全不同的前提听到。</li>
+    <li>她的实践：明确说明「这期不是评价电影好不好，而是提出理解它的一种路径（声音理论）」——先建立共识的概念，再基于共识讨论。</li>
+    <li>错位的评价：<em>你越严谨好像你越心虚，你越武断好像你越有勇气。</em>「主播叠甲 20 分钟才进正题」——那 20 分钟恰恰是准备时耗时最多、最努力的部分，而结论反而是最容易下的。</li>
+    <li>她的自我训练方向：有意识地训练自己<b>论述它，而不是判断它</b>。</li>
+    <li>更深的影响：如果传播环境长期奖励「先说结论」而不奖励充分论证，受影响的不只是表达者，是所有人怎么想（「太长不看」「帮我总结一下」都是跳过论证）。</li>
+    <li>成熟公共表达的判据：既不是什么都不敢说，也不是什么都敢说，而是<b>知道自己能对哪一部分负责</b>。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">叠甲不是心虚，是<strong>在一个没有共同前提的环境里，先把前提重建起来</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.09</span>
+    <span class="cornell-time">1:01:35</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">当事人的遥远与舆论的不可独善其身</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">为什么离自己很远的人出事，我们也会恐惧？</div>
+    <div class="cue-q">舆论恐惧的核心到底是什么？</div>
+      <div class="cue-kv">KEYWORDS<br><b>核爆 · 正名位 · Tiptoe</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>看到「爆」字的感受，从好奇／兴奋变成<b>恐惧</b>：它像一个核爆，你知道一定有东西要被毁灭。</li>
+    <li>恐惧的不是「这事会发生在我身上」，而是<b>任何事都可能被卷入这种信息核爆</b>——过去被挖掘、只言片语被截取、复杂的事被压缩成可传播的标签、你的身份被迅速定义。</li>
+    <li>核心：身处其中，<em>你对自己是谁没有任何控制的能力</em>。你是自己的把关人，却毫无设防的可能。</li>
+    <li>惩罚的界限：不是原则性的错误，只是不符合当下的主流观点、审美、价值取向——那他过去所有的事都是错的吗？隐私都要公布吗？公众意义上惩罚一个人的界限在哪里？</li>
+    <li>边界已被打破：过去默认公众人物接受更高的公共审视、普通人拥有稳固的私人边界；真人秀与社交媒体打破了它，但普通人<b>没有资源、团队和应对舆情的能力</b>。</li>
+    <li>最苦的一层：算法会把关于你的帖子<em>精准推给你最在意的那 10 个人</em>。「它可以推给全世界，但不要推给我最在意的那 10 个人」——她说不清那种羞耻感从何而来。</li>
+    <li>女性创作者的处境：男性获得成功仿佛成了主体状态的<b>安置位</b>（获得一个家）；女性获得成功是一个<b>正名位</b>——永远处于待定状态，「先把你放在那里，你得不断证明自己配得上」。</li>
+    <li>接受度差异：受众接受一个女性创作者的基础往往是<b>认同感</b>（同意观点 + 过往为其背书），所以「证明自己值得」这道题没有尽头。</li>
+    <li>她的自我校正：那是环境给我的压力，不该由一个具体的女性创作者承担——<em>我把解题的期待投射给了她，但她没有义务符合我的期待</em>。</li>
+    <li>推荐英剧《踮起脚尖》(Tiptoe)：曼彻斯特两个多年邻居，在社交媒体上反性少数言论的影响下逐渐变成死敌。主创的话：<em>每句话都会被武器化，每个念头都会被夸大，每种偏见都会得到确认。</em>人类的进化并没有让我们适应用短促却无法抹去的文字交流。</li>
+    <li>她自己的规矩：朋友之间若有潜在冲突，一定要求语音或见面沟通——朋友之间都如此，何况网友。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">舆论恐惧的根不是「我会被骂」，而是<strong>一旦机制启动，你没有任何被保护的可能</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.10</span>
+    <span class="cornell-time">1:11:19</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">如何判断一个人发言的合法性？如何界定惩罚的烈度</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">为什么「你是谁」比「你说得对不对」更重要？</div>
+    <div class="cue-q">惩罚的伦理为什么没跟上曝光的能力？</div>
+      <div class="cue-kv">KEYWORDS<br><b>合法性 · 舆论刑期 · 分布式惩罚</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>对发言合法性的要求很高，惩罚烈度同样很高：身份政治决定说话的可信度——过往立场、身边关系都成了判断标准。反驳一个观点很难，<b>否定一个人的资格很容易</b>（「他就是个 xx，那没事了」）。</li>
+    <li><em>人是会成长的，但互联网有记忆。</em>年轻人很早就在网络上留下不可磨灭的痕迹，舆论会挖出你十年前的言论说「你就是那个人」——像刻舟求剑。「我有时都不同意昨天的自己，何况别人。」</li>
+    <li>关系不等于事实：能被看到的关系不是全部的事实——<em>这些关系是全部的关系吗？言论能否独立于关系存在？关系是唯一的判断标准吗？</em></li>
+    <li>曝光能力已经极度发达，但<b>惩罚伦理没有同步发展</b>。不是不该惩罚，而是应该如何惩罚。</li>
+    <li><b>舆论刑期</b>：坐牢还有出狱、还有再就业的一天，社会仍然保护你的权益；舆论上有结束的那一天吗？一个人应该被永久归档，还是可以获得重新的解释？</li>
+    <li><b>弥散式／分布式的惩罚</b>：每个人只做了一点点（一句评论），但合起来的势能极大，责任被稀释——找不到一个人为结果负责。案例：2022 年粉发女孩郑灵华遭网暴，生前已走法律途径但追责困难；有攻击者仍认为自己的留言与最终结果没有直接关系。</li>
+    <li>情节推演与逻辑省略：把染粉色头发延伸为「生活作风」，再延伸为造谣——而当事人并没有做错什么。</li>
+    <li><b>惩罚性公民权</b>（翻转电台钟李自造的概念）：在缺少正常公共参与渠道的情况下，一部分人的公民意识不表现为争取权利，而是<b>惩罚敌人</b>，并因此获得裁决的快感、获得「我真的推动了什么」的错觉。</li>
+    <li>结构性解释：主流渠道对舆论的惩罚力度同样很高；长期的重刑主义倾向，使「罪不至此」「应有相匹配的惩罚伦理」在舆论场上显得非常不合时宜。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">我们发展出了巨大的曝光能力，却<strong>没有发展出与之匹配的惩罚伦理</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.11</span>
+    <span class="cornell-time">1:19:45</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">「我的内心已经没有公共议题的余地了」</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">心理余裕是怎么被耗尽的？</div>
+    <div class="cue-q">为什么状态越差，越容易把注意力交出去？</div>
+      <div class="cue-kv">KEYWORDS<br><b>token · 日子人 · 信息节律</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li><em>「我的 token 就这么多，这个世界请不要在我的界面上放更多的问题了。」</em></li>
+    <li>人的处理效率很低，而且不能把所有内存都用来处理信息：想保持自律，就要花很大精力维持「保持自律的能力」；想高效处理信息，就要先有高效处理信息的<b>身心条件</b>。</li>
+    <li>倦怠社会的常态：宣告自己做一个「日子人」，以此夺回一点对生活的控制感（「不聊原生家庭、不聊主体性、不聊奥德赛、不聊前额叶和课题分离」）。</li>
+    <li>一个反例式的辨析：不是没有心理余裕，而是<em>在有意识地分配心理空间</em>——「对公共议题视而不见的人，一旦外网发个小作文，会逐字观摩、熬夜阅读」。</li>
+    <li><b>关键洞察：人状态越差，其实越容易把注意力交出去。</b>状态好时可以主动搜索、阅读、选择信息；状态差时窝在沙发上一摊，打开一个 APP，让信息流无穷无尽地滑下去，三个小时就过去了。倦怠降低的不只是判断力，是<b>面对信息的自主性</b>。</li>
+    <li>她的解法：状态差时不漫无目的地刷，改看一部老剧（安全、熟悉、不带评判地沉浸），或者干脆去睡觉——那是充电，是恢复 token。</li>
+    <li><b>给自己建立信息的节律</b>（像二十四节气）：什么时候适合了解一个复杂议题、什么时候只需要看必要的新闻、什么时候应该允许自己完全退出、什么时候重新进入公共世界——<em>要知道自己什么时候上线、什么时候离线、什么时候再上线；离线的时候，要相信地球在继续转动。</em></li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">关心公共议题需要「余裕」，而余裕是<strong>要先花力气维持的</strong>——所以它天然最先被牺牲。</span>
+  </div>
+</section>
+
+
+<section class="pull-quote-section">
+  <div class="tracing-card">
+    <p class="pq-small-text">第 13 章 · 1:33:17 主播谈笔记与信息素养</p>
+    <div class="pq-script">从流量<br>变成存量。</div>
+    <span class="pq-cite">—— 西西弗高速 E30</span>
+    <p class="pq-below">写下来、起标题、归主题、与别的材料建立联系——信息才从「我刷到过」变成「我可以调用」。</p>
+  </div>
+</section>
+
+<section class="part-divider">
+  <div class="pd-en">PART TWO · THE SOLUTION</div>
+  <div class="pd-title">解题层：六条边界的私人解法</div>
+  <div class="pd-sub">注意力分配 · 注意力效率 · 注意力范围 · 表达范围 · 判断范围 · 参与范围。主播明言：应对方式永远少于具体困境，且一定不是通用答案。共 6 章。</div>
+</section>
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.12</span>
+    <span class="cornell-time">1:24:24</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">注意力分配：我为自己建造了一个「信息茧房」</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">主动造茧房，和被困在信息茧房里有什么不同？</div>
+    <div class="cue-q">「朋友圈」到底是什么权？</div>
+      <div class="cue-kv">KEYWORDS<br><b>朋友圈 · 同侪压力 · 焦虑源</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>2020 年前后（疫情第一年）关掉朋友圈，至今 6 年。动因：铺天盖地的信息难以应对，且有信息焦虑——<em>每次看到红点都想点开，打开是一个不怎么熟的朋友发的午餐照片。「我真的有必要知道他午餐吃了什么吗？」</em></li>
+    <li>关键区分：她并不认为自己减少了信息的涉入（这个时代最难做到的就是减少信息涉入），但<b>减少了很多焦虑感</b>——身边人的信息往往是焦虑的主要来源，而「你需要知道的信息你肯定不会错过，总会知道的」。</li>
+    <li>J 的对照：脱离职场之后几乎不再发朋友圈。因为从前朋友圈还承担着<b>工作成果的汇报与展演</b>功能；现在工作只需对自己负责，那一层义务消失了，是一种<b>同侪压力的解放</b>——不用关心别人做了什么，也不用特地展示自己做了什么。</li>
+    <li>一条重要的前提承认：这是较为奢侈的做法。刚毕业的第一份工作，朋友圈很多时候<b>不是朋友权，而是工作权</b>。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">主动造茧房不是拒绝世界，是<strong>把「知道谁午餐吃了什么」从默认选项里删掉</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.13</span>
+    <span class="cornell-time">1:29:16</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">注意力效率：设定单位时间内摄取信息的主题</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">有方法的信息处理长什么样？</div>
+    <div class="cue-q">「信息通关」的快感从哪来？</div>
+      <div class="cue-kv">KEYWORDS<br><b>通关 · 织网 · 流量→存量</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>方法：控制自己不去关注什么；把有限的时间分配给自己在做的事情上；尽量看原始文本，而不是 AI 总结好的；做主题明确的筛选时<b>不要链接到别的主题</b>，否则永远做不完。</li>
+    <li>J 的「通关」：在一个陌生领域一点点了解、建立基本认知 → 释放极高的多巴胺。判据不是懂流行梗或人物关系，而是<b>知道各个元素在历史与时间坐标系里的位置、知道这个领域的基本逻辑</b>——到这一步算入门，但已经非常快乐。</li>
+    <li>区分工作与娱乐的逻辑：尽量不在工作时间看只为娱乐的内容。「你也可以告诉自己我刷微博也是在看，但其实你知道不是的。」</li>
+    <li><b>两种信息快乐</b>：超链接漫游（点状、发散、刺激直接、容易产生创意）vs 纵深织网（结构化、需要延迟满足、坐得住、先积累材料，直到某一刻「原来散落的东西可以彼此连接」，甚至自动解构出框架）。后者可能是前者的指数级回报。</li>
+    <li>神经元修复与生长的动态图：一个小触角伸出去，连上另一个，成为一个完整的系统——「每次做一个小通关，就想象一些神经元连接起来了」。</li>
+    <li>AI 加速了这个过程：过去要跑图书馆找书，现在可以让 AI 帮你发散。</li>
+    <li>信息素养不必指向更自律（「每天三小时深度阅读」），可以<b>调整趣味和欲望</b>：当你开始觉得「理解比刷到更快乐」「建立联系比获得刺激更快乐」，素养自然就变高了，而且是快乐的。</li>
+    <li>她偏爱的处理方式：<b>做大量笔记</b>。① 增加确定感与结构感——信息不是从我身上流过去，而是被暂时安置在一个地方；② 一旦写下、起标题、归入主题、与其他材料建立联系，它就从「我刷到过的东西」变成<em>可以再次调用去延伸思考的东西</em>——<b>从流量变成存量</b>。「我是一个信息大富翁。」</li>
+    <li>笔记本里有一个固定的「新闻与舆论关注清单」板块：记录这段时间大家在讨论什么，到年底不用从头梳理。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">把信息从<strong>流量变成存量</strong>——写下来、起标题、归主题，它才从「刷到过」变成「可以调用」。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.14</span>
+    <span class="cornell-time">1:33:49</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">注意力范围：减少对社交网络上他人私生活的关注</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">为什么「仅凭公开信息判断他人」容易失误？</div>
+      <div class="cue-kv">KEYWORDS<br><b>冰山一角 · 南辕北辙 · 义务</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>关掉朋友圈之后，本来就不知道大多数朋友的私人生活；随着年纪变大，对他人私人生活更没有兴趣。</li>
+    <li>判据：每个人展示出来的生活都是<b>冰山一角</b>——作为朋友都无法通过交情完全理解他人的生活，更不要说对网络上陌生人的私生活有什么看法。</li>
+    <li>媒体工作带来的视角：知道一些热点背后没有被公之于众的信息之后，再看网络上的各种讨论，会发现讨论与事实<b>南辕北辙</b>——「如果评论者真的知道发生了什么，完全会有相反的看法」。</li>
+    <li>不公布有它的原因：公共领域可能是监管、审查、公关、一方的压制；私人领域的原因更多——可能是风险判断，也可能是当事人宁愿被误解，也不希望别人再窥探自己的生活。</li>
+    <li>郭碧婷的采访：她没想过解释，甚至觉得这是一种巨大的自由——因为没有人知道真实的她是什么样子。（注：能做到的人很少，不解释需要一颗很大的心脏，也可以有团队。）</li>
+    <li>一句收束：<em>委屈者未必真委屈，获益者未必真获益，发声者未必真有理，沉默者未必不如海</em>——没有告知的义务，也没有了解他人的义务；守好自己的边界，知道自己的认知局限，就挺好的。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">私生活的信息<strong>天然不完整</strong>，用它去判断人，误差是结构性的。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.15</span>
+    <span class="cornell-time">1:35:57</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">表达范围：建立互联网表达边界，公共性与私人性分开</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">把公共空间当成亲密空间，会发生什么？</div>
+    <div class="cue-q">不分享私人生活，是缩小自己吗？</div>
+      <div class="cue-kv">KEYWORDS<br><b>亲密关系功能 · 错位 · 不用解释的自由</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>她正在进行的新尝试：在笔记本上用大写加粗的字写下一句话——<b>「我对自己的要求应该是提供更好的内容，而不是更好的我自己。」</b>于是减少在社交媒体分享私人生活，多发真正有感而发的内容，并尽量发长一些。</li>
+    <li>自剖：从高中住校开始就沉迷微博，十五年间社交媒体（几乎就是微博）承担了她一部分<b>亲密关系的功能</b>——朋友、播客搭档，甚至最早的实习机会都因微博而来；从读书、毕业、踏入职场到做播客，她的社会化过程几乎围绕它完成。</li>
+    <li>错位在哪：她在这里满足过被看见、被理解、被安慰、被喜欢、被期待的需要，久把它当成亲密空间——开心发、难过发、脆弱发、无聊发、无事发生也发——却忽视了它是<b>由很多陌生人构成的巨大公共空间</b>。十五年前的微博和如今的微博已经不是同一个社会场域，而她还在用同样的方式对待它：非常错位，也非常不成熟。</li>
+    <li>代价有两层：一是真的会遇到 stalker（噩梦般的体验）；二是不断强化自我意识与表演性——<em>你会在体验一件事的时候就想着要展示一件事。</em></li>
+    <li>转向之后的收获：不再分享私人生活，真实生活重新变得没有观众、没有第三方视角——很多事情因此重新获得「<b>不需要产生任何意义</b>」的权利，你也拥有了<b>不用解释的自由</b>，真正开始和自己待着。</li>
+    <li>但这不等于「缩小自己」：她并没有从公共生活中撤退，反而更关注公共生活（要求自己去发跟公共生活相关的内容）；在感受与表达之间<b>重新放回一点时间</b>，把「大家快来了解我」的冲动，换成「这是我对世界的理解，我也可以分享给你」。</li>
+    <li>两种表达方式没有高低之分：一种把社交媒体当作亲密关系的延伸（满足一部分不想与真实人类建立亲密关系的人），另一种把它当作公共写作的空间。人和互联网的关系是<em>最长远的一段关系</em>，需要在不同年龄与人生阶段反复调试。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">公共性与私人性分开，不是缩小自己，是<strong>把「被看见」换成「把话说清楚」</strong>。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.16</span>
+    <span class="cornell-time">1:40:21</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">判断范围：验证是一种动作</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">怎么从情绪回到判断？</div>
+    <div class="cue-q">怎么摆脱饭圈思维？</div>
+      <div class="cue-kv">KEYWORDS<br><b>验证 · 交叉性 · 多条归属</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li><b>验证是一种动作。</b>实施一些基本的验证，这个动作本身就会让人冷静下来；也不必着急立刻对某些事发表看法，因为事情的发展需要过程。</li>
+    <li>慢功夫的回报：写长稿时常常是全网最后一篇，别人都写完了他们还在磕磕巴巴地查——这个过程锻炼出「给事情以时间」的能力，也承认「人组织自己的想法也需要过程」。</li>
+    <li>摆脱饭圈思维的办法一：<b>多看不同的议题，不要只关心一个议题</b>。深陷一个议题的思维模式时转换方向，会发现原来的框架不适用，再回头看它如何限制了自己的判断。</li>
+    <li>办法二：<b>交叉性理论</b>（美国法学家提出）——人不只活在单一身份里，而是活在多个身份、制度与权力关系的交叉点上。理解不平等不能只问「你属于哪个群体」，而要问种种位置在这个交叉点上如何塑造了你的处境（性别、种族、阶级、国籍……每一项还可无限细分）。分析完之后，情绪就冷静下来，不会轻易得出「因为你是 xx，所以你才做这些事」。</li>
+    <li>难点自白：饭圈思维最难摆脱的地方，是它提供了强烈的<b>归属感</b>，而归属感是人的刚需，在原子化的社会里更被需要。</li>
+    <li>出路：<b>不让自己只有单一的归属</b>，而是拥有多个互不重叠的归属——当一个人同时属于三四个立场不完全一致的小共同体，他在任何单一议题上都不容易被彻底说服。</li>
+    <li>J 的补充：给自己建立<b>交叉性的社会关系</b>——生活在其中自然会面对矛盾，而面对矛盾本身，就是练习处理复杂。</li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">让<strong>动作</strong>（验证、换议题、看交叉点）把情绪降下来，而不是等情绪自己降下来。</span>
+  </div>
+</section>
+
+
+<section class="cornell">
+  <div class="cornell-head">
+    <span class="cornell-no">CH.17</span>
+    <span class="cornell-time">1:43:31</span>
+    <span class="cornell-rule"></span>
+    <span class="cornell-time">CUES / NOTES / SUMMARY</span>
+  </div>
+  <h2 class="cornell-title">参与范围：未必要用激烈的方式去关心世界</h2>
+  <div class="cornell-grid">
+    <aside class="cue-col">
+      <div class="cue-label">线索栏 · Cue</div>
+    <div class="cue-q">关心世界有没有不那么激烈的方式？</div>
+    <div class="cue-q">知道、理解、表达、行动，是同一件事吗？</div>
+      <div class="cue-kv">KEYWORDS<br><b>顺拐情绪 · 四件事 · 完整的人</b></div>
+    </aside>
+    <div class="notes-col">
+      <div class="notes-label">笔记栏 · Notes</div>
+      <ul>
+    <li>警惕「特别顺拐的情绪」：喜欢一件事，看别人也喜欢就很快乐；恨一件事，看别人骂也就很快乐。一旦意识到这种顺畅，就停下来去看别的事情，检查情绪是否走到了<b>失去理性轨道</b>的地方。</li>
+    <li>与平台斗智斗勇是一辈子的事——「与社交媒体的关系是处理一辈子的关系，与平台算法斗智斗勇又是一辈子的工作」。</li>
+    <li>他们的态度（化用医学名言）：<b>偶尔沉迷，常常失败，总是反抗</b>——「屡战屡败，屡败屡战」。</br>训练技术为我所用：把小红书变成自己的定制化杂志；不同的 AI 解决不同的问题；每过一段时间换一种兴趣风格，快速获得某个领域的知识；尽量用平台去<b>理解事实而不是观点</b>——最容易传播的是观点，而观点附着的事实需要艰难的求证。</li>
+    <li>一个比喻：在信息的星海里找事实的翻版，把它们收集起来，造一艘船。</li>
+    <li>对「政治性抑郁」的正面回应：关心世界未必一定要用激烈的、愤怒的、痛苦的方式。我们常用<b>情绪的烈度</b>来表达<b>关注的强度</b>，但人的注意力、情感和行动能力都有上限（「人到中年，情绪都有上限」）。</li>
+    <li><b>四件不同的事</b>：我只是需要知道 / 我需要理解 / 我要表达态度 / 我要采取行动——网络环境经常把这四个动作<b>压缩成一个动作</b>（你知道了好像就得行动，你理解了就得表达）。但真正的公共参与不一定高调、不一定公开：可以是你长期阅读，可以是通过自己的专业和职业方式表达，也可以是照顾好身边的人和身边的环境。</li>
+    <li>收束：<em>「一个人不必由自己的信息流来定义自己，也不必通过对每件事情的态度来证明自己是谁。」</em>她常问自己：「离开互联网，你还有什么？」——你还拥有职业、兴趣、自己的身体、私人的关系、非常具体的生活；让父母了解你是谁、让朋友更深入地认识你，或许都比在互联网上展示你是谁更重要。</li>
+    <li>全期的判据：成熟的信息社会化 = <b>知道什么样的信息值得进入我的世界，什么信息可以暂时不进入；知道自己什么时候判断、什么时候等待</b>。目标是「我关注世界，同时希望自己拥有可持续的关心的能力」——<em>先成为一个完整的人，再来关心世界。</em></li>
+      </ul>
+    </div>
+  </div>
+  <div class="summary-bar">
+    <span class="summary-label">总结栏</span>
+    <span class="summary-text">把「知道—理解—表达—行动」重新拆成四件事，<strong>关心才有可持续性</strong>。</span>
+  </div>
+</section>
+
+
+<div class="tracing-appendix">
+  <div class="appendix-inner">
+    <div class="appendix-title">Appendix · 总总结与对照</div>
+
+    <div class="appendix-grid">
+      <div class="appendix-block">
+        <div class="appendix-label">全期总结（总结栏 · 汇总）</div>
+        <p>成熟的信息社会化不是「知道得多」，而是三件事：<b>知道什么信息值得进入我的世界、什么信息可以暂时不进入；知道自己什么时候判断、什么时候等待。</b></p>
+        <p>节目最后一句是「我关注世界，同时希望自己拥有可持续的关心的能力」——先成为一个完整的人，再来关心世界。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">结构（17 章）</div>
+        <p>Part I 问题层 11 章：信息过载 → 信息分配（算法）→ 注意力被 AI 做局 → 信息判断 → 公共参与被饭圈化 → 「新闻已死」→ 严谨=叠甲？→ 舆论恐惧 → 合法性与惩罚烈度 → 心理余裕耗尽。</p>
+        <p>Part II 解题层 6 章：注意力分配 / 效率 / 范围 → 表达范围 → 判断范围 → 参与范围。四类边界，六条。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">与既有档案的对照（Venues 加注）</div>
+        <p>1. 「信息增加，事实未必增加，理解未必增加」 ↔ 档案已写：「互联网把<b>模糊性</b>给拔掉了」——信息量 ≠ 判断力。<br>
+        2. 「验证是一种动作」 ↔ 档案的「在信息过载里保持判断力」——把能力操作化成一个<b>动作</b>。<br>
+        3. 「减少关注他人私生活」 ↔ 9/12 的实践划界：「尊重不需要投入」。<br>
+        4. 「算法是最大的科技黑箱」 ↔ 对账结论：「重复的归机器，判断的归人」。</p>
+      </div>
+      <div class="appendix-block">
+        <div class="appendix-label">留给读者的两个问题</div>
+        <p>① 主播说「我为自己建造了一个信息茧房」（主动<b>过滤</b>）；档案写的是「深度思考需要无聊与留白」（主动<b>空出</b>）。同一个减法的两种命名——你认哪一个词？</p>
+        <p>② 节目把解法落在「设定范围」而不是「少看点」。你自己现在掌握着几个范围？</p>
+      </div>
+    </div>
+
+    <div class="appendix-rule"></div>
+    <div class="appendix-fine">
+      音频来源：小宇宙 · 西西弗高速 E30（111 min）| 逐字稿：本地 faster-whisper medium 转写（分块避 OOM），简体，3304 段 | 专名已校订：西匍→西西弗、信息减防→信息茧房、恶物战争→俄乌战争、WalkBuddy→WorkBuddy | 02:15「小刚」疑为「小K」，未擅改 | 商业属性：本期为开学季企划「小大人混社会指南」，由富国基金「有富同享」与腾讯 WorkBuddy 赞助播出，观点归主播 | 排版：zine-skill 模板 + 康奈尔三区组件 | 本刊仅作私人阅读档案
+    </div>
+  </div>
+</div>
+
+<footer class="colophon">
+  <div class="colophon-inner">
+    <div class="colophon-grid">
+      <div>
+        <h5>关于本期</h5>
+        <p>西西弗高速 E30《一个人要消化多少信息，才能成为一个社会人？》。111 分钟，17 章。以康奈尔笔记重排：线索栏 = 问题，笔记栏 = 要点，总结栏 = 一句话。</p>
+      </div>
+      <div>
+        <h5>出版信息</h5>
+        <p>2026 年 9 月 · 西西弗高速（J / K）<br>逐字稿转写：Venues（本地）<br>仅限个人阅读与归档，不得商用。</p>
+      </div>
+      <div>
+        <h5>设计信息</h5>
+        <p>Noto Serif SC · Noto Sans SC · Noto Sans Mono · Dancing Script<br>牛皮纸档案主题（t-a）<br>康奈尔三区版式 · 单页卷动 · A4 输出</p>
+      </div>
+    </div>
+    <div class="colophon-rule"></div>
+    <p class="colophon-fine">© 2026 · XIXIFU EXPRESS E30 · CORNELL NOTES EDITION · FOR PRIVATE READING</p>
+  </div>
+</footer>
+</body>
+</html>

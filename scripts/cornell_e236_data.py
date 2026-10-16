@@ -3,7 +3,7 @@
 """E236 v3 · 按 Gogo 的十节总结重制，两节并一页。"""
 
 EP = {
-    "slug": "20261015-zhixing-e236",
+    "slug": "20261015-zhixing-e236-cornell",
     "num": "E236",
     "num_en": "ZHIXING",
     "title": "从时间管理\n到爱你老己",
