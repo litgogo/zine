@@ -44,7 +44,11 @@ body {
   font-family:'Noto Sans Mono', monospace; font-size:11px; letter-spacing:.16em; text-transform:uppercase;
 }
 .masthead-name { flex:1; } .masthead-issue { color:var(--accent); }
-.deep-link { display:inline-block; margin:0 0 3vh 0; font-family:'Noto Sans Mono',monospace; font-size:11px; letter-spacing:.08em; border:1px dashed var(--accent); color:var(--accent); padding:3px 9px; text-decoration:none; }
+.deep-link { display:inline-block; margin:0 0 3vh 0; font-family:'Noto Sans Mono',monospace; font-size:11px; letter-spacing:.08em; padding:4px 11px; text-decoration:none; border-radius:2px; color:#245a7d; border:1px solid rgba(36,90,125,.45); background:rgba(36,90,125,.07); transition:background .18s, border-color .18s; }
+.deep-link:hover { background:rgba(36,90,125,.14); border-color:rgba(36,90,125,.7); }
+.t-b .deep-link { color:#8fc4ea; border-color:rgba(143,196,234,.5); background:rgba(143,196,234,.10); }
+.t-b .deep-link:hover { background:rgba(143,196,234,.18); border-color:rgba(143,196,234,.75); }
+@media (max-width:640px) { .deep-link { display:block; text-align:center; font-size:11.5px; padding:10px 12px; margin:0 auto 3vh auto; max-width:100%; word-break:break-word; } }
 .zine-cover {
   max-width:960px; margin-inline:auto; padding:7vh 5vw 4vh; min-height:88vh;
   display:grid; grid-template-rows:auto auto auto 1fr auto; border-bottom:2px solid var(--ink);
@@ -168,7 +172,7 @@ body {
   </div>
 </section>
 
-<div class="wrap"><a class="deep-link" href="zines/20260911-zixishi-105-hao-nengliang-cornell.html">康奈尔笔记版 →</a></div>
+<div class="wrap"><a class="deep-link" href="20260911-zixishi-105-hao-nengliang-cornell.html">康奈尔笔记版 →</a></div>
 
 <section class="pull-quote-section">
   <div class="tracing-card">

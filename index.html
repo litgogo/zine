@@ -316,6 +316,8 @@ select:focus { border-color:var(--ink); }
 .w-title .quiet-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px solid var(--ink);
   padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink);
   background:var(--bg-warm); cursor:pointer; }
+.w-title .base-tag { font-family:'Noto Sans Mono',monospace; font-size:9.5px; border:1px solid var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink-2,#55544f); opacity:.85; cursor:pointer; }
+.w-title .base-tag:hover, .w-title .deep-tag:hover { opacity:1; }
 .w-title .deep-tag { font-family:'Noto Sans SC',sans-serif; font-size:9.5px; border:1px dashed var(--ink); padding:0 5px; margin-left:8px; vertical-align:2px; letter-spacing:.12em; color:var(--ink-2,#55544f); opacity:.85; cursor:pointer; }
 .w-title .eid-tag { font-family:'Noto Sans Mono',monospace; font-size:9px; margin-left:8px; vertical-align:2px; letter-spacing:.06em; color:var(--ink-3); opacity:.75; }
 .w-meta .eid { font-family:'Noto Sans Mono',monospace; font-size:9.5px; color:var(--ink-3); letter-spacing:.06em; }
@@ -477,9 +479,10 @@ function rowHTML(w, showInRow){
   var badge='';
   if(w.star) badge+='<span class="star">★</span>';
   if(w.style && STYLE_LABEL[w.style]) badge+='<span class="style-tag">'+STYLE_LABEL[w.style]+'</span>';
+  if(w.link) badge+='<span class="base-tag" title="电子杂志基础记录（show notes）" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.link+'\',\'_blank\')">shownotes ↗</span>';
   if(w.deep) badge+='<span class="deep-tag" title="这一期的深度阅读版" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.deep+'\',\'_blank\')">'+(STYLE_LABEL[w.deep_style]||'深度阅读')+' ↗</span>';
+  if(w.quiet) badge+='<span class="deep-tag" title="这一期的主题电子杂志" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.quiet+'\',\'_blank\')">'+(w.quiet_label||'QuietCast')+' ↗</span>';
   if(w.eid){ var nv=1+(w.quiet?1:0)+(w.deep?1:0); if(nv>1) badge+='<span class="eid-tag" title="同一期节目的全部记录 · episode_id '+w.eid+'">同源 '+nv+' 版</span>'; }
-  if(w.quiet) badge+='<span class="quiet-tag" title="打开'+(w.quiet_label||'知识杂志')+'" onclick="event.preventDefault();event.stopPropagation();window.open(\''+w.quiet+'\',\'_blank\')">'+(w.quiet_label||'知识杂志')+' ↗</span>';
   var link = w.link ? w.link : 'javascript:void(0)';
   var sh = (showInRow===false)? '' : '<span class="w-show">'+w.show+'</span>';
   return '<a class="w-row" href="'+link+'">'

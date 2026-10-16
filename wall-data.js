@@ -29,7 +29,7 @@ var WALL = [
 {"date":"2026.09.05","show":"Coffee Plus","guest":"郭晓妍","title":"谁说是「老登的灯」？重新认识虹吸咖啡","ep":"#114","duration":"1:36:00","status":"zine","link":"zines/20260905-coffeeplus-hongxi.html","eid":"coffeeplus-hongxi"},
 {"date":"2026.09.04","show":"知本论","guest":"程乐松","title":"过度追求人生确定性，是个陷阱","ep":"vol.170","duration":"1:06:00","status":"zine","link":"zines/20260904-zhibenlun-liubai.html","eid":"zhibenlun-liubai"},
 {"date":"2026.09.01","show":"无人知晓","guest":"孟岩","title":"我们从未看见彼此","ep":"E46","duration":"1:15:47","status":"zine","link":"zines/20260901-wurenzhixiao-weicengkanjian.html","star":true,"eid":"wurenzhixiao-weicengkanjian"},
-{"date":"2026.08.19","show":"自习室 STUDY ROOM","guest":"花卷 × 自习室","title":"影响力｜用七条法则拿捏人性","duration":"1:25:25","status":"zine","link":"zines/20260819-yingxiangli-qitiao.html","quiet":"quiet/20260819-yingxiangli-qitiao/index.html","quiet_label":"知识笔记","revision":2,"eid":"yingxiangli-qitiao"},
+{"date":"2026.08.19","show":"自习室 STUDY ROOM","guest":"花卷 × 自习室","title":"影响力｜用七条法则拿捏人性","duration":"1:25:25","status":"zine","link":"zines/20260819-yingxiangli-qitiao.html","quiet":"quiet/20260819-yingxiangli-qitiao/index.html","quiet_label":"QuietCast","revision":2,"eid":"yingxiangli-qitiao"},
 {"date":"2026.08.14","show":"新生PLUS","guest":"蔡康永 × 詹青云","title":"蔡康永×詹青云：40岁找到的是原则，而不是答案","status":"zine","link":"zines/20260814-newplus-principle.html","eid":"newplus-principle"},
 {"date":"2026.08.14","show":"出逃在即","guest":"出逃studio","title":"为什么你很难找到 deeptalk 的人","status":"zine","link":"zines/20260814-chutao-deeptalk.html","eid":"chutao-deeptalk"},
 {"date":"2026.08.12","show":"展开讲讲","guest":"洞姐 / 康堤 / 王老师","title":"只要你学得足够慢","ep":"第100期","status":"zine","link":"zines/20260812-zhankai-100.html","eid":"zhankai-100"},
