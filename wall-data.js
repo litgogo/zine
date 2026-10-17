@@ -68,7 +68,8 @@ var BOOK_COVER = {
   "岩中花述": "covers/logo-yanzhonghuashu-xhs.png",
   "可能性褶皱": "covers/logo-kenengxingzhezhou-xhs.png",
   "陈果的播客｜好的，生活": "covers/logo-chenguo-xhs.jpg",
-  "教育在场": "covers/logo-jiaoyuzaichang-xhs.jpg"
+  "教育在场": "covers/logo-jiaoyuzaichang-xhs.jpg",
+  "童漠男": "covers/20261011-tongmonan-xunzhaowangyisheng.jpg"
 };
 
 var STATUS_LABEL = { zine:"已转zine", pending:"待筛选", transcript:"逐字稿", saved:"仅收藏" };
