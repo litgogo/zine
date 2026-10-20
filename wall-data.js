@@ -47,7 +47,7 @@ var WALL = [
 {"date":"2026.04.18","show":"西西弗高速","guest":"李清照 / 丁玲 / 萧红","title":"女性心灵史","ep":"#25","status":"zine","link":"zines/20260418-xixifei-nvxing.html","eid":"xixifei-nvxing"},
 {"date":"2026.04.14","show":"声东击西","guest":"Junyu / Justin","title":"Vibe Coding 与龙虾","ep":"#384","status":"zine","link":"zines/20260414-shengdong-xi-vibe.html","eid":"shengdong-xi-vibe"},
 {"date":"2026.04.13","show":"知行小酒馆","guest":"施展","title":"宏大叙事与个人命运","ep":"E231","status":"zine","link":"zines/20260413-zhixing-zhanshi.html","eid":"zhixing-zhanshi"},
-{"date":"2026.03.20","show":"无人知晓","guest":"李继刚","title":"人何以自处","ep":"E45","duration":"3:26:38","status":"zine","link":"zines/20260320-wurenzhixiao-lijigang.html","eid":"wurenzhixiao-lijigang"},
+{"date":"2026.03.20","show":"无人知晓","guest":"李继刚","title":"人何以自处","ep":"E45","duration":"3:26:38","status":"zine","link":"zines/20260320-wurenzhixiao-lijigang.html","quiet":"quiet/20260320-wurenzhixiao-lijigang/index.html","quiet_label":"QuietCast","eid":"wurenzhixiao-lijigang"},
 {"date":"2026.03.18","show":"你，静不下来","guest":"车璐 × 李静 × 养鸡","title":"稳住身体，就是稳住你人生的底盘","duration":"1:00:21","status":"zine","link":"zines/20260318-jingbuxialai-chelu.html","eid":"jingbuxialai-chelu"}
 ];
 
