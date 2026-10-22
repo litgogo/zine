@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date": "2026.10.22", "show": "半拿铁", "guest": "刘飞 × 潇磊", "title": "O2O 与共享经济：属于单车、充电宝、上门美甲和按摩的魔幻撒钱年代", "ep": "No.218", "duration": "3:35:21", "status": "zine", "link": "zines/20261022-bannatie-o2o.html", "eid": "bannatie-o2o"},
 {"date": "2026.10.22", "show": "Coffee Plus", "guest": "Niki、Christian、Moon、Peter、Jerry、Milly 六位伙伴", "title": "星巴克，怎么会一切与咖啡无关", "ep": "#115", "duration": "1:36:19", "status": "zine", "link": "zines/20261022-coffeeplus-starbucks.html", "eid": "coffeeplus-starbucks"},
 {"date":"2026.10.16","show":"展开讲讲","guest":"洞姐、康堤、王老师","title":"我已经不再是我，而你却依然是你","ep":"十月广播电视报","duration":"2:27:00","status":"zine","link":"zines/20261016-zhankai-shanyue-dianshibao.html","eid":"zhankai-shanyue-dianshibao"},
 {"date":"2026.10.15","show":"知行小酒馆","guest":"雨白 × Arthur","title":"从时间管理到爱你老己：我们如何停止和自己较劲？","ep":"E236","duration":"1:33:00","status":"zine","link":"zines/20261015-zhixing-e236.html","eid":"zhixing-e236","deep":"zines/20261015-zhixing-e236-cornell.html","deep_style":"cornell"},
