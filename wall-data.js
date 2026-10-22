@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date": "2026.10.22", "show": "CoffeePlus 播客", "guest": "Niki、Christian、Moon、Peter、Jerry、Milly 六位伙伴", "title": "星巴克，怎么会一切与咖啡无关", "ep": "#115", "duration": "1:36:19", "status": "zine", "link": "zines/20261022-coffeeplus-starbucks.html", "eid": "coffeeplus-starbucks"},
 {"date":"2026.10.16","show":"展开讲讲","guest":"洞姐、康堤、王老师","title":"我已经不再是我，而你却依然是你","ep":"十月广播电视报","duration":"2:27:00","status":"zine","link":"zines/20261016-zhankai-shanyue-dianshibao.html","eid":"zhankai-shanyue-dianshibao"},
 {"date":"2026.10.15","show":"知行小酒馆","guest":"雨白 × Arthur","title":"从时间管理到爱你老己：我们如何停止和自己较劲？","ep":"E236","duration":"1:33:00","status":"zine","link":"zines/20261015-zhixing-e236.html","eid":"zhixing-e236","deep":"zines/20261015-zhixing-e236-cornell.html","deep_style":"cornell"},
 {"date":"2026.10.11","show":"童漠男","guest":"童漠男","title":"寻找王医生：每个人都在寻找自己的北下关","duration":"1:50:00","status":"zine","link":"zines/20261011-tongmonan-xunzhaowangyisheng.html","eid":"tongmonan-xunzhaowangyisheng"},
