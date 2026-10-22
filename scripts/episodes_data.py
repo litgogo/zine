@@ -1020,7 +1020,7 @@ EPISODES = [
         "file": "20260927_CoffeePlus_星巴克_咖啡师的价值",
         "date": "2026.10.22",
         "vol": "VOL.33",
-        "show": "CoffeePlus 播客 #115",
+        "show": "Coffee Plus #115",
         "guest": "林嘉丽 Niki × Niki、Christian、Moon、Peter、Jerry、Milly 六位星巴克伙伴",
         "title": "星巴克，怎么会一切与咖啡无关",
         "core": "星巴克中国咖啡师大赛全国总决赛的现场，六位伙伴坐下来聊自己怎么进来的、为什么留下。这个比赛不只考技能，还考表达、考「人文联结」的热情。节目借它问了一个更基本的问题：一个吧台，能不能长成一条人生的路。",
