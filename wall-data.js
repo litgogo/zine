@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date": "2026.10.25", "show": "Coffee Plus", "guest": "Yujia × 李金龙", "title": "比赛没赢有什么关系，在内蒙古做好咖啡也很了不起", "ep": "#117", "duration": "1:29:34", "status": "zine", "link": "zines/20261025-coffeeplus-lijinlong.html", "eid": "coffeeplus-lijinlong"},
 {"date": "2026.10.23", "show": "半拿铁", "guest": "刘飞 × 潇磊", "title": "互联网视频平台混战：从后舍男生到漫长的季节", "ep": "No.204", "duration": "2:27:58", "status": "zine", "link": "zines/20261023-bannatie-videoplatform.html", "eid": "bannatie-videoplatform"},
 {"date": "2026.10.22", "show": "半拿铁", "guest": "刘飞 × 潇磊", "title": "O2O 与共享经济：属于单车、充电宝、上门美甲和按摩的魔幻撒钱年代", "ep": "No.218", "duration": "3:35:21", "status": "zine", "link": "zines/20261022-bannatie-o2o.html", "eid": "bannatie-o2o"},
 {"date": "2026.10.22", "show": "Coffee Plus", "guest": "Niki、Christian、Moon、Peter、Jerry、Milly 六位伙伴", "title": "星巴克，怎么会一切与咖啡无关", "ep": "#115", "duration": "1:36:19", "status": "zine", "link": "zines/20261022-coffeeplus-starbucks.html", "eid": "coffeeplus-starbucks"},
