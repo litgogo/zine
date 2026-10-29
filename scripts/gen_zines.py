@@ -32,6 +32,9 @@ def build(ep, theme_class, theme_name):
     source_note = ep.get("source_note", "素材归档自 Gogo 的播客知识库（podcast-kb），本期由 Venues 排版。")
     source_short = ep.get("source_short", "podcast-kb 归档")
     resonance_html = "".join(f"<p>{esc(b)}</p>" for b in str(resonance).split("\n\n") if b.strip())
+    # 导语：她指定要放在正文开头的文字，逐字照录，不改写
+    lede_html = "".join(f'<p class="article-lede">{esc(p)}</p>'
+                        for p in str(ep.get("lede","")).split("\n") if p.strip())
     cover_fit = ep.get("cover_fit", "cover")
     cover_min_h = ep.get("cover_min_h", "32vh")
     _feat = ep.get("feature")
@@ -272,6 +275,7 @@ body {{
     </div>
   </aside>
   <article class="col-wide">
+    {lede_html}
     {sections}
     {quotes_html}
     <div class="article-eyebrow">Gogo 的思考</div>
