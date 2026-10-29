@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date": "2026.10.28", "show": "知行小酒馆", "guest": "雨白 × 温义飞 × 杨天楠", "title": "从「大结果」到「大红果」：你还相信越努力越幸运吗", "ep": "E255", "duration": "1:09:27", "status": "zine", "link": "zines/20261028-zhixingxiaofang-e255.html", "eid": "zhixing-e255-dahongguo"},
 {"date": "2026.10.25", "show": "Coffee Plus", "guest": "Yujia × 李金龙", "title": "比赛没赢有什么关系，在内蒙古做好咖啡也很了不起", "ep": "#117", "duration": "1:29:34", "status": "zine", "link": "zines/20261025-coffeeplus-lijinlong.html", "eid": "coffeeplus-lijinlong"},
 {"date": "2026.10.23", "show": "半拿铁", "guest": "刘飞 × 潇磊", "title": "互联网视频平台混战：从后舍男生到漫长的季节", "ep": "No.204", "duration": "2:27:58", "status": "zine", "link": "zines/20261023-bannatie-videoplatform.html", "eid": "bannatie-videoplatform"},
 {"date": "2026.10.22", "show": "半拿铁", "guest": "刘飞 × 潇磊", "title": "O2O 与共享经济：属于单车、充电宝、上门美甲和按摩的魔幻撒钱年代", "ep": "No.218", "duration": "3:35:21", "status": "zine", "link": "zines/20261022-bannatie-o2o.html", "eid": "bannatie-o2o"},
