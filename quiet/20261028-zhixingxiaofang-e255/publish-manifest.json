@@ -1,0 +1,37 @@
+{
+ "slug": "20261028-zhixingxiaofang-e255",
+ "episode_id": "zhixing-e255-dahongguo",
+ "status": "preview",
+ "revision": 2,
+ "built_at": "2026-10-29",
+ "source": {
+  "podcast": "知行小酒馆",
+  "episode": "E255",
+  "url": "https://www.xiaoyuzhoufm.com/episode/6adb068cc96c8942ec110ee1",
+  "published_at": "2026-10-23"
+ },
+ "paths": {
+  "dir": "quiet/20261028-zhixingxiaofang-e255/",
+  "magazine": "quiet/20261028-zhixingxiaofang-e255/index.html",
+  "pdf": "quiet/20261028-zhixingxiaofang-e255/magazine.pdf",
+  "notes": "quiet/20261028-zhixingxiaofang-e255/notes.html",
+  "knowledge": "quiet/20261028-zhixingxiaofang-e255/knowledge.json",
+  "cover": "quiet/20261028-zhixingxiaofang-e255/assets/cover.jpg",
+  "base_zine": "zines/20261028-zhixingxiaofang-e255.html"
+ },
+ "resources": {
+  "pages": 14,
+  "pdf_pages": 28,
+  "claims": 23,
+  "palette": "t-d"
+ },
+ "checks": {
+  "pdf_rendered": true,
+  "notes_rendered": true,
+  "local_preview": true,
+  "online": false
+ },
+ "blocked_by": [
+  "发布授权（Gogo 点头后 push）"
+ ]
+}

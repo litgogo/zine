@@ -1,0 +1,258 @@
+{
+ "id": "podcast-episode-6adb068cc96c8942ec110ee1",
+ "slug": "20261028-zhixingxiaofang-e255",
+ "title": "地图还没展开的时候",
+ "subtitle": "当「越努力越幸运」失效，人还能凭什么确认自己在往前走",
+ "content_type": "podcast_zine",
+ "editorial_mode": [
+  "knowledge",
+  "reading"
+ ],
+ "status": "preview",
+ "source_coverage": "full_transcript",
+ "review_state": {
+  "claims_total": 23,
+  "verified": 23,
+  "pending": 0,
+  "pending_ids": []
+ },
+ "source": {
+  "podcast": "知行小酒馆",
+  "episode": "E255 从「大结果」到「大红果」：你还相信越努力越幸运吗",
+  "url": "https://www.xiaoyuzhoufm.com/episode/6adb068cc96c8942ec110ee1",
+  "published_at": "2026-10-23",
+  "duration": "1:09:27",
+  "host": "雨白",
+  "guest": "温义飞、杨天楠"
+ },
+ "transcript": {
+  "path": "03-data/podcast-kb/transcripts/20261028_知行小酒馆_E255_逐字稿.md",
+  "origin": "Gogo 自行转写的 docx",
+  "chars": 26129,
+  "caveat": "语音识别转写，非官方字幕；人名与机构名已校正"
+ },
+ "topics": [
+  "意义感",
+  "经济上行期的结束",
+  "AI 与劳动",
+  "公共讨论"
+ ],
+ "claims": [
+  {
+   "claim_id": "c01",
+   "text": "旧人生路径的完整描述",
+   "speaker": "温义飞",
+   "ts": "07:34",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c02",
+   "text": "跨期违约：信任一夜之间翻面",
+   "speaker": "杨天楠",
+   "ts": "08:08",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c03",
+   "text": "九十年代下岗与房地产调整作例",
+   "speaker": "杨天楠",
+   "ts": "09:22",
+   "claim_type": "转述",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c04",
+   "text": "2023 年四个确认的并置",
+   "speaker": "温义飞",
+   "ts": "04:56",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c05",
+   "text": "四件事无单一因果，属解释框架",
+   "speaker": "温义飞",
+   "ts": "20:18",
+   "claim_type": "边界",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c06",
+   "text": "生产正义建立在供给不足之上",
+   "speaker": "温义飞",
+   "ts": "10:05",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c07",
+   "text": "从生产端伦理转向消费端伦理",
+   "speaker": "杨天楠",
+   "ts": "11:49",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c08",
+   "text": "K 型 / I 型分化比喻",
+   "speaker": "杨天楠",
+   "ts": "14:39",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c09",
+   "text": "房地产财富传导 vs 算力资本流向",
+   "speaker": "杨天楠",
+   "ts": "20:18",
+   "claim_type": "转述",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c10",
+   "text": "AI 是第三次自恋创伤",
+   "speaker": "温义飞",
+   "ts": "27:51",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c11",
+   "text": "范式转移后长期投资无法测算",
+   "speaker": "杨天楠",
+   "ts": "34:28",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c12",
+   "text": "幸福是当下，意义是时间",
+   "speaker": "杨天楠",
+   "ts": "31:03",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c13",
+   "text": "意义需结果与我相关且可控",
+   "speaker": "杨天楠",
+   "ts": "31:25",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c14",
+   "text": "烦躁与失控感的循环",
+   "speaker": "杨天楠",
+   "ts": "50:33",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c15",
+   "text": "红果、抖音是情绪的容器",
+   "speaker": "杨天楠",
+   "ts": "40:02",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c16",
+   "text": "大结果 → 大红果",
+   "speaker": "杨天楠",
+   "ts": "41:41",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c17",
+   "text": "舆论思潮四阶段",
+   "speaker": "杨天楠",
+   "ts": "35:15",
+   "claim_type": "观察",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c18",
+   "text": "自由是沉重的东西",
+   "speaker": "杨天楠",
+   "ts": "41:41",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c19",
+   "text": "努力 → 行动，没有办法努力消费",
+   "speaker": "杨天楠",
+   "ts": "45:22",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c20",
+   "text": "创造、照护、传承",
+   "speaker": "杨天楠",
+   "ts": "55:10",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c21",
+   "text": "不要追问周期何时结束",
+   "speaker": "温义飞",
+   "ts": "01:00:09",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c22",
+   "text": "现在开始行动，兴高采烈地犯错",
+   "speaker": "杨天楠",
+   "ts": "01:04:29",
+   "claim_type": "建议",
+   "confidence": "已核实"
+  },
+  {
+   "claim_id": "c23",
+   "text": "不愿意在看不见终点的路上消耗自己",
+   "speaker": "雨白",
+   "ts": "01:07:40",
+   "claim_type": "观点",
+   "confidence": "已核实"
+  }
+ ],
+ "tags": [
+  "知行小酒馆",
+  "大红果",
+  "跨期违约",
+  "四个确认",
+  "创造照护传承"
+ ],
+ "related_entries": [
+  "zines/20261028-zhixingxiaofang-e255.html",
+  "topics/奥德赛.md",
+  "topics/经济上行期.md"
+ ],
+ "revision": 2,
+ "updated_at": "2026-10-29",
+ "files": {
+  "notes": "notes.html",
+  "notes_md": "notes.md",
+  "magazine": "index.html",
+  "pdf": "magazine.pdf",
+  "cover": "assets/cover.jpg",
+  "spec": "content-spec.json",
+  "pages": 14
+ },
+ "palette": "t-d",
+ "site": {
+  "target": "zine-site",
+  "repo": "litgogo/zine",
+  "path": "quiet/20261028-zhixingxiaofang-e255/",
+  "url": "https://litgogo.github.io/zine/quiet/20261028-zhixingxiaofang-e255/index.html",
+  "wall_field": "quiet"
+ },
+ "blocked_by": []
+}

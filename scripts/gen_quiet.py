@@ -186,6 +186,9 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
   section.page > h1, section.page > .eyebrow { margin-top: 0; }
   h1 + .sub, h1 + .q { margin-top: 1.5mm; }
   .diagram { margin: 4mm 0 3mm; }
+  /* 图表与笔记区不跨页拆开：标题和方框分到两页会读断 */
+  .diagram, .slot, blockquote, .cmp, .mapitem { break-inside: avoid; page-break-inside: avoid; }
+  h2, .thesis { break-after: avoid; page-break-after: avoid; }
   .diagram .d-title { margin-bottom: 1.5mm; }
   footer.sources .row { padding: 5px 0; }
   section.page:last-of-type { break-after: auto; }
