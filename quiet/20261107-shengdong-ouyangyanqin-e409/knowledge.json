@@ -1,0 +1,176 @@
+{
+  "episode_id": "shengdong-e409-ouyang",
+  "slug": "20261107-shengdong-ouyangyanqin-e409",
+  "source_coverage": "show_notes + 第三方精读稿（依据 Gogo 转写逐字稿整理）",
+  "revision": 1,
+  "built_at": "2026-11-09",
+  "claims": [
+    {
+      "claim_id": "c01",
+      "text": "东莞厂区儿童空间用废弃皮料、矿泉水瓶与马达、天花板、平板卡车作为教育材料",
+      "speaker": "欧阳艳琴",
+      "ts": "14:41",
+      "claim_type": "个人经验",
+      "confidence": "已核实",
+      "note": "节目简介与精读稿一致"
+    },
+    {
+      "claim_id": "c02",
+      "text": "教育起点差异分资源、经验、可能性三层",
+      "speaker": "编者整理",
+      "ts": "",
+      "claim_type": "推论",
+      "confidence": "已核实",
+      "note": "由精读稿第二章归纳"
+    },
+    {
+      "claim_id": "c03",
+      "text": "十来个学生测主科无人及格；1866 名初二学生五年后 17 人考上一本，六成未上高中",
+      "speaker": "欧阳艳琴转述宋映泉研究",
+      "ts": "22:05",
+      "claim_type": "转述",
+      "confidence": "已核实",
+      "note": "数字取自节目简介，与精读稿一致"
+    },
+    {
+      "claim_id": "c04",
+      "text": "提出「珍贵的普通人」，不承诺阶层跃迁",
+      "speaker": "欧阳艳琴",
+      "ts": "38:38",
+      "claim_type": "观点",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c05",
+      "text": "三年制：全人教育打底加编程、设计、工艺训练",
+      "speaker": "欧阳艳琴",
+      "ts": "41:20",
+      "claim_type": "事实",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c06",
+      "text": "有学生面试实习通过，签合同前退出",
+      "speaker": "欧阳艳琴",
+      "ts": "49:12",
+      "claim_type": "个人经验",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c07",
+      "text": "她要的是一整套在社会里走下来的基本能力，不只是几个技能",
+      "speaker": "欧阳艳琴",
+      "ts": "01:02:31",
+      "claim_type": "观点",
+      "confidence": "待核",
+      "note": "精读稿标注此处有语音转写错误"
+    },
+    {
+      "claim_id": "c08",
+      "text": "2022 年秋取消固定专业课，三年制改一年加两年支持",
+      "speaker": "欧阳艳琴",
+      "ts": "01:05:05",
+      "claim_type": "事实",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c09",
+      "text": "转型时犹豫：课程积累、家长需求、3+2 模式",
+      "speaker": "欧阳艳琴",
+      "ts": "01:05:39",
+      "claim_type": "个人经验",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c10",
+      "text": "桂仙案例：统筹六十人晚餐，后在国际学校幼儿园转正",
+      "speaker": "欧阳艳琴",
+      "ts": "01:20:47",
+      "claim_type": "个人经验",
+      "confidence": "已核实",
+      "note": "姓名按精读稿写法"
+    },
+    {
+      "claim_id": "c11",
+      "text": "耗子案例：结构化信息敏感，后进入宠物店",
+      "speaker": "欧阳艳琴",
+      "ts": "01:28:14",
+      "claim_type": "个人经验",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c12",
+      "text": "学堂落在小洲村，社区提供低成本与熟人网络",
+      "speaker": "欧阳艳琴",
+      "ts": "01:50:26",
+      "claim_type": "个人经验",
+      "confidence": "已核实",
+      "note": ""
+    },
+    {
+      "claim_id": "c13",
+      "text": "我们随时都在，搞砸了也没人怪他",
+      "speaker": "欧阳艳琴",
+      "ts": "01:55:19",
+      "claim_type": "观点",
+      "confidence": "待核",
+      "note": "引文经精读稿转引，未回听"
+    },
+    {
+      "claim_id": "c14",
+      "text": "四句原话清单",
+      "speaker": "逐字稿转引",
+      "ts": "",
+      "claim_type": "引文",
+      "confidence": "待核",
+      "note": "未回听音频逐条核对"
+    }
+  ],
+  "themes": [
+    {
+      "no": "01",
+      "title": "资源观",
+      "pages": [
+        "P04",
+        "P05"
+      ]
+    },
+    {
+      "no": "02",
+      "title": "结构看见",
+      "pages": [
+        "P06"
+      ]
+    },
+    {
+      "no": "03",
+      "title": "教育命题",
+      "pages": [
+        "P07"
+      ]
+    },
+    {
+      "no": "04",
+      "title": "技能与进入社会",
+      "pages": [
+        "P08",
+        "P09"
+      ]
+    },
+    {
+      "no": "05",
+      "title": "转向与支持",
+      "pages": [
+        "P10",
+        "P11",
+        "P12"
+      ]
+    }
+  ]
+}

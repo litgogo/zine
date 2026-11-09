@@ -1,0 +1,35 @@
+{
+  "slug": "20261107-shengdong-ouyangyanqin-e409",
+  "episode_id": "shengdong-e409-ouyang",
+  "status": "preview",
+  "revision": 1,
+  "built_at": "2026-11-09",
+  "source": {
+    "podcast": "声东击西",
+    "episode": "#409 欧阳艳琴",
+    "url": "https://www.xiaoyuzhoufm.com/episode/6aec57ea88191f4f6eca0e58",
+    "listen_date": "2026-11-07"
+  },
+  "paths": {
+    "site": "quiet/20261107-shengdong-ouyangyanqin-e409/index.html",
+    "notes": "quiet/20261107-shengdong-ouyangyanqin-e409/notes.html",
+    "pdf": "quiet/20261107-shengdong-ouyangyanqin-e409/magazine.pdf",
+    "spec": "quiet/20261107-shengdong-ouyangyanqin-e409/content-spec.json"
+  },
+  "assets": {
+    "cover": "covers/20261107-shengdong-ouyangyanqin-e409.jpg"
+  },
+  "files": {
+    "index.html": 223636,
+    "notes.html": 6715,
+    "magazine.pdf": 1446382,
+    "content-spec.json": 17502,
+    "knowledge.json": 4690,
+    "notes.md": 3552
+  },
+  "pages": {
+    "sections": 15,
+    "pdf_pages": 15
+  },
+  "base_archive": "zines/20261107-shengdong-ouyangyanqin-e409.html"
+}
