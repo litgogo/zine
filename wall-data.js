@@ -16,6 +16,7 @@
 var STYLE_LABEL = { cornell: '康奈尔笔记' };
 
 var WALL = [
+{"date": "2026.11.07", "show": "声东击西", "guest": "欧阳艳琴 × 徐涛", "title": "珍贵的普通人：当教育不再保证改变命运", "ep": "#409", "duration": "2:13:00", "status": "zine", "link": "zines/20261107-shengdong-ouyangyanqin-e409.html", "eid": "shengdong-e409-ouyang"},
 {"date": "2026.08.08", "show": "出逃在即", "guest": "小意", "title": "友情是一段没有绑架的爱", "duration": "", "status": "zine", "link": "zines/20260808-chujiu-xiaoyi.html", "eid": "chujiu-xiaoyi"},
 {"date": "2026.10.28", "show": "知行小酒馆", "guest": "雨白 × 温义飞 × 杨天楠", "title": "从「大结果」到「大红果」：你还相信越努力越幸运吗", "ep": "E255", "duration": "1:09:27", "status": "zine", "link": "zines/20261028-zhixingxiaofang-e255.html", "quiet": "quiet/20261028-zhixingxiaofang-e255/index.html", "quiet_label": "QuietCast", "eid": "zhixing-e255-dahongguo"},
 {"date": "2026.10.25", "show": "Coffee Plus", "guest": "Yujia × 李金龙", "title": "比赛没赢有什么关系，在内蒙古做好咖啡也很了不起", "ep": "#117", "duration": "1:29:34", "status": "zine", "link": "zines/20261025-coffeeplus-lijinlong.html", "eid": "coffeeplus-lijinlong"},

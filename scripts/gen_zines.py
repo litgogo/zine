@@ -237,7 +237,7 @@ body {{
     <span class="issue-rule"></span>
     <span class="issue-theme">{theme_name}</span>
   </div>
-  <h1 class="cover-title">{esc(title)}</h1>
+  <h1 class="cover-title">{'<br>'.join(esc(t) for t in str(title).split(chr(10)))}</h1>
   <p class="cover-sub">{esc(core)}</p>
   <div class="cover-image-slot" style="min-height:{cover_min_h}">
     <img src="{cover_src}" alt="{esc(title)} 封面" style="object-fit:{cover_fit}">
