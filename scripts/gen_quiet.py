@@ -185,7 +185,11 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
   section.page { break-after: page; border-top: none; padding: 0; }
   section.page > h1, section.page > .eyebrow { margin-top: 0; }
   h1 + .sub, h1 + .q { margin-top: 1.5mm; }
-  .diagram { margin: 4mm 0 3mm; }
+  p { margin-bottom: 3.1mm; }
+  .thesis { margin-bottom: 2.4mm; }
+  .src { margin-top: 2.4mm; }
+  .slot { margin-top: 3mm; padding: 3mm 4mm; }
+  .diagram { margin: 3mm 0 2.4mm; }
   /* 图表与笔记区不跨页拆开：标题和方框分到两页会读断 */
   .diagram, .slot, blockquote, .cmp, .mapitem { break-inside: avoid; page-break-inside: avoid; }
   h2, .thesis { break-after: avoid; page-break-after: avoid; }
