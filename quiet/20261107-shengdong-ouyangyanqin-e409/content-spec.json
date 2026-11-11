@@ -501,5 +501,7 @@
       "页面文字分三类：节目原话、编者整理、以及 Gogo 自己的判断。第四页的「两把尺子」是编辑归纳，不是嘉宾原话。",
       "这本册子是二次编辑层，基础归档见站点电子杂志 VOL.38。两版共用同一个 episode_id：shengdong-e409-ouyang。"
     ]
-  }
+  },
+  "reading_link": "./reading.pdf",
+  "reading_label": "精读 PDF"
 }
