@@ -1,0 +1,25 @@
+{
+  "slug": "20261110-zhixingxiaofang-e257-xinxijiaolv",
+  "revision": 1,
+  "built_at": "2026-11-10",
+  "pages": 16,
+  "files": {
+    "index.html": {
+      "bytes": 649757,
+      "sha256": "a41b57c99c037f3c84cec4d55f6b073160759542e7d0e2a0af62aac793ba4795"
+    },
+    "magazine.pdf": {
+      "bytes": 1659522,
+      "sha256": "ab6d1b504e4367ea3da2940a69e5d6c3d8b9a5a896e67491d5bf533f9a1929ec"
+    },
+    "notes.html": {
+      "bytes": 6078,
+      "sha256": "17dee8110fd889511dabfcec1c42fd0f7062573233b82132077f796400dd416e"
+    },
+    "content-spec.json": {
+      "bytes": 17314,
+      "sha256": "079238aacb3bd03bbdefb6719445d3ee99cda78194bd40afcbf7ef7a311dde53"
+    }
+  },
+  "status": "published"
+}

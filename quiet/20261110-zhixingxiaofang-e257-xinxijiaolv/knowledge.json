@@ -1,0 +1,126 @@
+{
+  "episode_id": "zhixing-e257-xinxijiaolv",
+  "title": "答案唾手可得",
+  "podcast": "知行小酒馆",
+  "episode": "E257",
+  "source_url": "https://www.xiaoyuzhoufm.com/episode/6aed7b615b7c4709bfe1fe12",
+  "built_at": "2026-11-10",
+  "revision": 1,
+  "claims": [
+    {
+      "id": "c01",
+      "speaker": "少楠",
+      "ts": "09:45",
+      "text": "以前的信息焦虑是信息太多我该看什么？现在我觉得应该不叫信息焦虑，而是决策焦虑。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c02",
+      "speaker": "少楠",
+      "ts": "13:44",
+      "text": "有些时候我们拿终身学习当做一种幌子，说我还在学，还在学的过程中。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c03",
+      "speaker": "少楠",
+      "ts": "07:38",
+      "text": "用 AI 做游戏，能生成，但想加入自己的修改时不知道结构怎么安排、也判断不了方案是否合理。",
+      "status": "paraphrase",
+      "method": "逐字稿叙述转述"
+    },
+    {
+      "id": "c04",
+      "speaker": "少楠 × 雨白",
+      "ts": "12:51",
+      "text": "四个判断维度为编者从对话中归纳，节目没有给出清单式标准。",
+      "status": "editorial",
+      "method": "编者归纳"
+    },
+    {
+      "id": "c05",
+      "speaker": "少楠",
+      "ts": "30:49",
+      "text": "对知识的知晓不重要了，对知识的应用更重要了。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c06",
+      "speaker": "少楠",
+      "ts": "41:31",
+      "text": "我们读书要的是注意的承诺。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c07",
+      "speaker": "少楠",
+      "ts": "58:14",
+      "text": "你一个锚越大越沉，扎得越深，就是你投入的时间。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c08",
+      "speaker": "少楠",
+      "ts": "11:29",
+      "text": "一旦你下完注之后，其实你就不会焦虑了，或者你焦虑会大幅降低。当你不下注的时候，你收集的可能性越多，然后你的焦虑就会越大。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c09",
+      "speaker": "少楠",
+      "ts": "19:26",
+      "text": "很多时候我们很多焦虑来自于我们在拿外部的尺子去量自己。你越量是越焦虑的，因为那个尺子怎么样都不适合你。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c10",
+      "speaker": "少楠",
+      "ts": "01:11:15",
+      "text": "我在关心杭州桂花什么时候开。",
+      "status": "verified",
+      "method": "回听逐字稿"
+    },
+    {
+      "id": "c11",
+      "speaker": "少楠",
+      "ts": "22:31",
+      "text": "朗读功能的例子：原先不愿做，得知有用户眼睛不适无法长时间看屏幕后改变了判断。",
+      "status": "paraphrase",
+      "method": "逐字稿叙述转述"
+    },
+    {
+      "id": "c12",
+      "speaker": "少楠",
+      "ts": "—",
+      "text": "坂本龙一说过一个人一生能看几次满月。",
+      "status": "pending",
+      "method": "转述，未逐字核对原话出处"
+    }
+  ],
+  "files": {
+    "index.html": {
+      "bytes": 649757,
+      "sha256": "a41b57c99c037f3c84cec4d55f6b073160759542e7d0e2a0af62aac793ba4795"
+    },
+    "magazine.pdf": {
+      "bytes": 1659522,
+      "sha256": "ab6d1b504e4367ea3da2940a69e5d6c3d8b9a5a896e67491d5bf533f9a1929ec"
+    },
+    "notes.html": {
+      "bytes": 6078,
+      "sha256": "17dee8110fd889511dabfcec1c42fd0f7062573233b82132077f796400dd416e"
+    },
+    "content-spec.json": {
+      "bytes": 17314,
+      "sha256": "079238aacb3bd03bbdefb6719445d3ee99cda78194bd40afcbf7ef7a311dde53"
+    }
+  },
+  "notes": "c04 为编者归纳；c03、c11 为叙述转述；c12 未逐字核对。时间戳取自精读稿与官方章节标记。"
+}
