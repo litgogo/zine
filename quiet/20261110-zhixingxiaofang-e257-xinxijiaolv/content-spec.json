@@ -423,5 +423,7 @@
       "页面文字分三类：节目原话、编者整理、以及留给你填的判断。P04 到 P13 的论述除标注引文外均为编者归纳。",
       "这本册子是二次编辑层，仅依据 show notes 的基础归档见站点电子杂志 VOL.39。两版共用 episode_id：zhixing-e257-xinxijiaolv。"
     ]
-  }
+  },
+  "reading_link": "./reading.pdf",
+  "reading_label": "精读 PDF"
 }

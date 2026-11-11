@@ -296,6 +296,9 @@ def build(spec):
     home = spec.get('home_link', '../../../index.html')
     notes = spec.get('notes_link', './notes.html')
     pdf = spec.get('pdf_link', './magazine.pdf')
+    reading = spec.get('reading_link')
+    reading_label = spec.get('reading_label', '精读 PDF')
+    reading_a = (f'<a href="{esc(reading)}">{esc(reading_label)}</a>' if reading else '')
     s = [f'<div class="sheet">']
     cov = spec.get('cover', {})
     s.append('<section class="page cover">')
@@ -356,14 +359,17 @@ def build(spec):
                  f'<a href="{esc(home)}">← 返回首页</a>'
                  f'<a href="{esc(notes)}">知识笔记</a>'
                  f'<a href="{esc(pdf)}">下载 PDF</a>'
-                 f'<span class="fine">QUIETCAST · REV {esc(str(spec.get("revision", 1)))}</span>'
+                 + reading_a
+                 + f'<span class="fine">QUIETCAST · REV {esc(str(spec.get("revision", 1)))}</span>'
                  '</footer>')
         s.append('</section>')
     s.append('</div>')
     body = ('<div class="sitebar"><div class="sitebar-inner">'
             f'<a href="{esc(home)}">← 播客知识库</a><span class="sep">/</span>'
             f'<a href="{esc(notes)}">知识笔记</a><span class="sep">/</span>'
-            f'<a href="{esc(pdf)}">PDF</a></div></div>' + "\n".join(s))
+            f'<a href="{esc(pdf)}">PDF</a>'
+            + (f'<span class="sep">/</span><a href="{esc(reading)}">{esc(reading_label)}</a>' if reading else '')
+            + '</div></div>' + "\n".join(s))
     return (f'<!DOCTYPE html><html lang="zh-CN"><head><meta charset="utf-8">'
             f'<meta name="viewport" content="width=device-width, initial-scale=1">'
             f'<title>{esc(spec.get("title",""))}</title><style>{css}</style></head>'
