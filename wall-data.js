@@ -57,5 +57,6 @@ var WALL = [
 {"date":"2026.04.13","show":"知行小酒馆","guest":"施展","title":"宏大叙事与个人命运","ep":"E231","status":"zine","link":"zines/20260413-zhixing-zhanshi.html","eid":"zhixing-zhanshi"},
 {"date":"2026.03.20","show":"无人知晓","guest":"李继刚","title":"人何以自处","ep":"E45","duration":"3:26:38","status":"zine","link":"zines/20260320-wurenzhixiao-lijigang.html","quiet":"quiet/20260320-wurenzhixiao-lijigang/index.html","quiet_label":"QuietCast","eid":"wurenzhixiao-lijigang"},
 {"date":"2026.03.18","show":"你，静不下来","guest":"车璐 × 李静 × 养鸡","title":"稳住身体，就是稳住你人生的底盘","duration":"1:00:21","status":"zine","link":"zines/20260318-jingbuxialai-chelu.html","eid":"jingbuxialai-chelu"},
-{"date":"2026.11.11","show":"健康静距离","guest":"李静 × 郁琦 金鸿雁 白辰 姚宁 杨立春","title":"女性被忽视的十年健康盲区","ep":"","duration":"3:12:00","status":"zine","link":"zines/20261111-jiankangjingjuli-weijuejingqi.html","eid":"jiankang-weijuejingqi"}
+{"date":"2026.11.11","show":"健康静距离","guest":"李静 × 郁琦 金鸿雁 白辰 姚宁 杨立春","title":"女性被忽视的十年健康盲区","ep":"","duration":"3:12:00","status":"zine","link":"zines/20261111-jiankangjingjuli-weijuejingqi.html","eid":"jiankang-weijuejingqi"},
+{"date":"2026.11.18","show":"面基","guest":"江岳 × 老钱","title":"咱们 80 后：一个代际与中国追赶的 40 年","ep":"","duration":"1:45:00","status":"zine","link":"zines/20261118-mianji-80s-daiji.html","eid":"mianji-80s"}
 ]
