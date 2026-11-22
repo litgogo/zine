@@ -62,6 +62,7 @@ var WALL = [
 ]
 
 var BOOK_COVER = {
+  "面基": "covers/20261118-mianji-80s-daiji.jpg",
   "长谈": "covers/logo-changtan-xhs.jpg",
   "无人知晓": "covers/logo-wurenzhixiao-xhs.jpg",
   "自习室 STUDY ROOM": "covers/logo-zixishi-xhs.jpg",
