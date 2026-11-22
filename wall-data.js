@@ -60,3 +60,30 @@ var WALL = [
 {"date":"2026.11.11","show":"健康静距离","guest":"李静 × 郁琦 金鸿雁 白辰 姚宁 杨立春","title":"女性被忽视的十年健康盲区","ep":"","duration":"3:12:00","status":"zine","link":"zines/20261111-jiankangjingjuli-weijuejingqi.html","eid":"jiankang-weijuejingqi"},
 {"date":"2026.11.18","show":"面基","guest":"江岳 × 老钱","title":"咱们 80 后：一个代际与中国追赶的 40 年","ep":"","duration":"1:45:00","status":"zine","link":"zines/20261118-mianji-80s-daiji.html","eid":"mianji-80s"}
 ]
+
+var BOOK_COVER = {
+  "长谈": "covers/logo-changtan-xhs.jpg",
+  "无人知晓": "covers/logo-wurenzhixiao-xhs.jpg",
+  "自习室 STUDY ROOM": "covers/logo-zixishi-xhs.jpg",
+  "声东击西": "covers/logo-shengdong-jixi-xhs.jpg",
+  "新世相": "covers/logo-xinshixiang-xhs.jpg",
+  "你，静不下来": "covers/logo-nijingbuxialai-xhs.jpg",
+  "知行小酒馆": "covers/logo-zhixing-xiaojiuguan-xhs.jpg",
+  "半拿铁": "covers/logo-bannatie-xhs.jpg",
+  "展开讲讲": "covers/logo-zhankai-jiangjiang-xhs.jpg",
+  "西西弗高速": "covers/logo-xixifu-gaosu-xhs.jpg",
+  "Coffee Plus": "covers/logo-coffeeplus-xhs.jpg",
+  "张小珺商业访谈录": "covers/logo-zhangxiaojun-xhs.jpg",
+  "知本论": "covers/logo-zhibenlun-xhs.jpg",
+  "岩中花述": "covers/logo-yanzhonghuashu-xhs.png",
+  "可能性褶皱": "covers/logo-kenengxingzhezhou-xhs.png",
+  "陈果的播客｜好的，生活": "covers/logo-chenguo-xhs.jpg",
+  "教育在场": "covers/logo-jiaoyuzaichang-xhs.jpg",
+  "童漠男": "covers/20261011-tongmonan-xunzhaowangyisheng.jpg",
+  "新生PLUS": "covers/logo-xinshengplus.jpg",
+  "出逃在即": "covers/logo-chutaozaiji.jpg",
+  "鲁豫慢谈": "covers/logo-luyumantan.jpg"
+};
+
+var STATUS_LABEL = { zine:"已转zine", pending:"待筛选", transcript:"逐字稿", saved:"仅收藏" };
+var STATUS_CLASS = { zine:"st-zine", pending:"st-pending", transcript:"st-transcript", saved:"st-saved" };
