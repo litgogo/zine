@@ -180,32 +180,46 @@ footer.sources .row .l { min-width: 140px; color: var(--ink); font-weight: 700; 
 @page { size: A5; margin: 14mm 13mm 15mm; }
 @media print {
   /* A5 上不要把网页字号等比缩小：用 pt 重新给一套，保证墨色与字号到位 */
-  body { font-size: 11.8pt; line-height: 1.8; }
+  body { font-size: 10.9pt; line-height: 1.72; }
   .sheet { max-width: none; padding: 0; }
   section.page { break-after: page; border-top: none; padding: 0; }
   section.page > h1, section.page > .eyebrow { margin-top: 0; }
   h1 + .sub, h1 + .q { margin-top: 1.5mm; }
-  p { margin-bottom: 3.1mm; }
-  .thesis { margin-bottom: 2.4mm; }
+  p { margin-bottom: 2.5mm; }
+  .thesis { margin-bottom: 2.2mm; padding: 2.6mm 3.2mm; }
   .src { margin-top: 2.4mm; }
   .slot { margin-top: 3mm; padding: 3mm 4mm; }
-  .diagram { margin: 3mm 0 2.4mm; }
+  .diagram { margin: 2.4mm 0 2mm; padding: 2.6mm; }
+  .cmp { gap: 2.6mm; }
+  .cmp > div { padding: 2.4mm 2.8mm; }
+  .cmp .k { margin-bottom: 1.2mm; }
+  .cmp p { margin-bottom: 1.2mm; }
   /* 图表与笔记区不跨页拆开：标题和方框分到两页会读断 */
   .diagram, .slot, blockquote, .cmp, .mapitem { break-inside: avoid; page-break-inside: avoid; }
   h2, .thesis { break-after: avoid; page-break-after: avoid; }
   .diagram .d-title { margin-bottom: 1.5mm; }
   footer.sources .row { padding: 5px 0; }
   section.page:last-of-type { break-after: auto; }
-  h1 { font-size: 22.9pt; } h2 { font-size: 17.1pt; } h3 { font-size: 13.5pt; }
+  h1 { font-size: 22.9pt; } h2 { font-size: 16.2pt; margin: 2mm 0 2mm; } h3 { font-size: 13.5pt; }
   .cover h1 { font-size: 31pt; } .cover .sub { font-size: 13pt; }
-  .thesis { font-size: 13pt; } blockquote { font-size: 13pt; }
+  .thesis { font-size: 12pt; } blockquote { font-size: 11.6pt; padding: 3mm 3.4mm; }
   .eyebrow, .diagram .d-title, .meta, .src, .slot, blockquote cite,
   footer.sources, .cmp .k, .mapitem .h { font-size: 9.5pt; }
   .mapitem .t { font-size: 13pt; }
-  .concept { height: 50mm; }
+  .concept { height: 46mm; }
   .footnav { margin-top: 10mm; }
   .coverimg { margin: 6mm 0; }
   .coverimg img { max-height: 92mm; }
+  /* 带图表的页：正文收一点，保证图表不和正文分到两页 */
+  section.page:has(.diagram) p { font-size: 10.2pt; line-height: 1.64; margin-bottom: 2mm; }
+  section.page:has(.diagram) .thesis { font-size: 11.4pt; padding: 2.2mm 3mm; margin-bottom: 1.8mm; }
+  section.page:has(.diagram) h2 { font-size: 15pt; margin: 1.5mm 0 1.8mm; }
+  section.page:has(.diagram) .question { font-size: 9pt; margin-bottom: .8mm; }
+  section.page:has(.diagram) .src { margin-top: 1.8mm; }
+  .src { break-before: avoid; page-break-before: avoid; }
+  .mapitem { padding: 2.1mm 0; }
+  .mapitem .t { font-size: 12pt; }
+  .mapitem .h { font-size: 8.8pt; }
   .sitebar { display: none !important; }   /* 粘性站点条不进纸版 */
   a { color: inherit; text-decoration: none; }
 }

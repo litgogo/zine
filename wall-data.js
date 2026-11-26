@@ -58,10 +58,11 @@ var WALL = [
 {"date":"2026.03.20","show":"无人知晓","guest":"李继刚","title":"人何以自处","ep":"E45","duration":"3:26:38","status":"zine","link":"zines/20260320-wurenzhixiao-lijigang.html","quiet":"quiet/20260320-wurenzhixiao-lijigang/index.html","quiet_label":"QuietCast","eid":"wurenzhixiao-lijigang"},
 {"date":"2026.03.18","show":"你，静不下来","guest":"车璐 × 李静 × 养鸡","title":"稳住身体，就是稳住你人生的底盘","duration":"1:00:21","status":"zine","link":"zines/20260318-jingbuxialai-chelu.html","eid":"jingbuxialai-chelu"},
 {"date":"2026.11.11","show":"健康静距离","guest":"李静 × 郁琦 金鸿雁 白辰 姚宁 杨立春","title":"女性被忽视的十年健康盲区","ep":"","duration":"3:12:00","status":"zine","link":"zines/20261111-jiankangjingjuli-weijuejingqi.html","eid":"jiankang-weijuejingqi"},
-{"date":"2026.11.18","show":"面基","guest":"江岳 × 老钱","title":"咱们 80 后：一个代际与中国追赶的 40 年","ep":"","duration":"1:45:00","status":"zine","link":"zines/20261118-mianji-80s-daiji.html","eid":"mianji-80s"}
+{"date":"2026.11.18","show":"面基","guest":"江岳 × 老钱","title":"咱们 80 后：一个代际与中国追赶的 40 年","ep":"","duration":"1:45:00","status":"zine","link":"zines/20261118-mianji-80s-daiji.html","eid":"mianji-80s"},{"date": "2026.11.19", "show": "言外之意", "guest": "窦文涛 × 许子东", "title": "大时代的小注解", "ep": "", "duration": "2:12:13", "status": "zine", "link": "quiet/20261119-yanwai-ziranguang-xuzidong/index.html", "quiet": "quiet/20261119-yanwai-ziranguang-xuzidong/index.html", "quiet_label": "QuietCast", "eid": "ziranguang-xu"}
 ]
 
 var BOOK_COVER = {
+  "言外之意": "covers/20261119-yanwai-ziranguang-xuzidong.jpg",
   "面基": "covers/20261118-mianji-80s-daiji.jpg",
   "长谈": "covers/logo-changtan-xhs.jpg",
   "无人知晓": "covers/logo-wurenzhixiao-xhs.jpg",
